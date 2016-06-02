@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
+
+    <title>{{blogname}}--multicast</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>multicast</h1>
+        <h2>{{ subtitle }}</h2>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+		<a id="blog" class="anchor" href="#blog" aria-hidden="true">
+			<span aria-hidden="true" class="octicon octicon-link"></span>
+		</a>
+			blog
+		</h1>
+		<h1 id="multicasting">Multicasting</h1>
+<h4 id="keywords">Keywords</h4>
+<pre><code>- Unicasting
+- Multicasting
+</code></pre>
+<h4 id="multicast-group">Multicast group</h4>
+<h4 id="archetypal-multicast-api">Archetypal Multicast API</h4>
+<pre><code>- join
+- leave
+- send 
+- receive
+</code></pre>
+<h4 id="reliable-multicasting">Reliable Multicasting</h4>
+<ul>
+<li>guarantees that each message is eventually delivered to each process in the group</li>
+<li>no restriction on the order</li>
+</ul>
+<h5 id="unordered">Unordered</h5>
+<h5 id="fifo-multicast">FIFO multicast</h5>
+<ul>
+<li>places no restriction on the delivery oder among different processes</li>
+</ul>
+<h5 id="causal-order-multicast">Causal Order Multicast</h5>
+<h5 id="atomic-order-multicast">Atomic order multicast</h5>
+<h4 id="unreliable-multicasting">Unreliable Multicasting</h4>
+<ul>
+<li>make a good-faith attempt to deliver messages</li>
+<li>arrival of the correct message at each process is not guaranteed</li>
+</ul>
+<hr>
+
+      </section>
+    </div>
+
+    
+  </body>
+</html>

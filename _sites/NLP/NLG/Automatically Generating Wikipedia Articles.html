@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
+
+    <title>{{blogname}}--Automatically Generating Wikipedia Articles</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>Automatically Generating Wikipedia Articles</h1>
+        <h2>{{ subtitle }}</h2>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+		<a id="blog" class="anchor" href="#blog" aria-hidden="true">
+			<span aria-hidden="true" class="octicon octicon-link"></span>
+		</a>
+			blog
+		</h1>
+		<p><center></p>
+<h1 id="automatically-generating-wikipedia-articles">Automatically Generating Wikipedia Articles</h1>
+<h1 id="a-structure-aware-approach">A Structure-Aware Approach</h1>
+<p></center></p>
+<h2 id="aim">Aim</h2>
+<ul>
+<li>a method to learn topic-specific extractors for content section jointly for the entire template.<ul>
+<li>use a global integer linear programming formulation</li>
+</ul>
+</li>
+<li>create a comprehensive textual overview of a subject composed of info drawn from the Internet.</li>
+</ul>
+<h2 id="training-corpus">Training Corpus</h2>
+<ul>
+<li>n documents,d1,d2,dn ...</li>
+<li>for di,a set of doc delineated sections si1,si2...sim,and their corresponding heading,hi1,hi2...him.</li>
+</ul>
+<h2 id="process">Process</h2>
+<ol>
+<li>Prepocessing<ol>
+<li>Template introduction<ol>
+<li>cluster all section headings hi1,...him for all di using a repeated bisectioning algorithm(Zhao et al.,2005)<ol>
+<li>similarity function use cosine similarity and TFIDF</li>
+</ol>
+</li>
+<li>eliminate any clusters with low internal similarity, and there are no yield unified topics.</li>
+<li>determine the average number of sections k over all docs, then select the k largest section clusters as topics t1...tk.</li>
+<li>order these topics t1...tk using a majority ordering algorithm(Cohen et al., 1998)<ol>
+<li>consistent with a maximal number of pairwise relationshops observed in our data set.</li>
+</ol>
+</li>
+<li>each topic tj is identified by the most frequent heading found within the cluster.</li>
+</ol>
+</li>
+<li>Search:To retrieve relevant excerpts,query reformulation<ol>
+<li>search using Yahoo! and retrieve the first ten result pages for each topic and extracts all possible texts(6 excerpts per page).</li>
+<li>for each topic tj of each document we wish to create, label the excerpts ej1...ejr.(the total number of excerpts found on the Internet may be differ)</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>Learning Content Selection<ul>
+<li>Model<ul>
+<li>Input<ol>
+<li>The title of the desired doc</li>
+<li>t1...tk,topics from the content template</li>
+<li>ej1...ejr,candidate excerpts for each topic tj</li>
+</ol>
+</li>
+<li>Define<ol>
+<li><img src="http://www.forkosh.com/mathtex.cgi? \phi(e_{jl})">,feature vector for the lth candidate excerpt for topic tj.</li>
+<li>w1...wk,parameter vectors,one for each topic t1..tk</li>
+</ol>
+</li>
+<li>Process<ol>
+<li>Ranking<ol>
+<li><img src="http://www.forkosh.com/mathtex.cgi? score_j(e_{jl}) = \phi(e_{jl}) 	imes \underset{w_j}{ightarrow}"></li>
+<li>the position l of excerpt ejl within the <b> topic-specific candidate vector </b> is the excerpt's rank.</li>
+</ol>
+</li>
+<li>Optimizing the Global Objective<ul>
+<li>Objective:<img src="http://www.forkosh.com/mathtex.cgi? min\sum^k_{j=1}\sum^r_{l=1}{l 	imes x_{jl}}"></li>
+<li>Exclusivity Constraints:<img src="http://www.forkosh.com/mathtex.cgi? \sum^r_{l=1}{x_{jl}}=1,orall j\inegin{Bmatrix} 1...k\end{Bmatrix}"></li>
+<li>Redundancy Constraints:<ul>
+<li><img src="http://www.forkosh.com/mathtex.cgi? (x_{jl} + x_{j'l'})	imes sim(e_{jl} + e_{j'l'}),orall j,j' \in egin{Bmatrix} 1...k\end{Bmatrix} orall l,l' \in egin{Bmatrix} 1...r\end{Bmatrix}"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>solve tool<ul>
+<li>lp-solve</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>Training<ol>
+<li>for each section we add the <b>gold excerpts</b> sij to the corrsponding eij1...eijr for di and tj.</li>
+<li><img alt="" src="http://i.imgur.com/BqQygc6.png"></li>
+</ol>
+</li>
+</ul>
+</li>
+<li>Application<ol>
+<li>Given the title of a requested doc, we select several excerpts from the candidate vectors returned by the search procedure.</li>
+</ol>
+</li>
+</ol>
+<h2 id="_1">简明流程</h2>
+<ol>
+<li>预处理<ol>
+<li>确定新文档中出现的topic<ol>
+<li>使用Zhao的方法进行标题的聚类</li>
+<li>消除内部距离较小的类,使训练集中没有表示相近意思的标题<ol>
+<li>是否指使用出现次数最大的标题代替其他标题?</li>
+</ol>
+</li>
+<li>定义k为各篇文档中heading数目的平均数,取出现次数最大的k个聚类</li>
+<li>使用Cohen的方法将类排序,这k个类形成k个topic</li>
+<li>使用出现最频繁的标题代表topic<ol>
+<li>这个标题之后就用于代表文章k部分之中的一部分,那么实际效果究竟如何?</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>搜索<ol>
+<li>搜索yahoo!搜索到的前10页中每页6段形成摘要</li>
+<li>对摘要编号</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>学习<ol>
+<li>初始化向量w为零向量</li>
+<li>对每篇文章每个topic,使用Rank函数衡量其分数<ol>
+<li>Rank函数的权值向量即为w,w代表着每段的权重</li>
+<li>做一个全局整数线性规划,求解一个01矩阵x,使得Objective尽可能小<ol>
+<li>这个公式什么意思?摘要的编号不是按顺序直接排的么?<img src="http://www.forkosh.com/mathtex.cgi? min\sum^k_{j=1}\sum^r_{l=1}{l 	imes x_{jl}}"></li>
+</ol>
+</li>
+</ol>
+</li>
+<li>计算<ol>
+<li><img alt="" src="http://i.imgur.com/w45eyxf.png"><ol>
+<li>为什么要把01向量x和文字一起比较?是指要把预料库的文件拆分为段落(摘要)?还是拆分为词?为什么不是x与sij的特征向量相比较?</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>应用<ol>
+<li>使用最终的01向量w形成一篇新文档</li>
+</ol>
+</li>
+</ol>
+
+      </section>
+    </div>
+
+    
+  </body>
+</html>
