@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
+
+    <title>{{blogname}}--TSPi Week2</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>TSPi Week2</h1>
+        <h2>{{ subtitle }}</h2>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+		<a id="blog" class="anchor" href="#blog" aria-hidden="true">
+			<span aria-hidden="true" class="octicon octicon-link"></span>
+		</a>
+			blog
+		</h1>
+		<h2 id="54">5.4</h2>
+<h2 id="55">5.5</h2>
+<p>做计划的时候遇到突发情况,预留5%-10%PV作为(management and miscellaneous)管理与杂物(M&amp;M)阶段</p>
+<h2 id="56">5.6 计划过程</h2>
+<ol>
+<li>把原来策略表中形成的所有产品(代码,测试计划,说明书...)列出,把策略表的功能和其他的产品的size data 放入SUMS(SUMDI)表中.<ul>
+<li>SUMS表填三列1. 产品名称 2. 单位 3. 只填新增加和修改的量</li>
+</ul>
+</li>
+<li>TASK表,task names: 从TSPI过程流程走包含的任务如(启动和策略,计划,需求分析,编码,测试...,按时间顺序列写),PLAN{hours:花了多少小时,PV:每个任务的PV值是计划完成任务的时间占总时间的百分比, Cumulative PV:到此为止在这个项目中计划花费的时间占总时间百分比,Week No. 在第几周做},ACTUAL{hours:实际完成花费小时,EV实际占总时间百分比,Cumulative EV:...,WeekNo....,}</li>
+<li>Schedule表:日程安排表{现加,不在讲义,week No. PLAN{HOURS,PV,Cumulative PV},Actural{HOURS,EV,Cumulative EV}}</li>
+<li>比较TASK表和SCHEDULE表,Ttotal,Stotal,若T&gt;S,则项目太大不能完成.需要缩小任务</li>
+<li>PLANSUMMARY(SUMP)(from SUMQ &amp; TASK)完成size(SUMS)和time(TASK)部分</li>
+<li>Quality Plan(SUMQ)<ol>
+<li>Summary rate<ol>
+<li>LOC/hour</li>
+<li>%reuse 复用比例</li>
+<li>%new reuse 本次的代码有%将被下一个周期/项目复用</li>
+</ol>
+</li>
+<li>Percent defect-free(PDF)<ol>
+<li>给定的模块中,无缺陷的模块占总数百分比 </li>
+<li>system-&gt;subsystem-&gt;component-&gt;module-&gt;submodule</li>
+<li>在系统测试阶段,达到或者超过90%</li>
+</ol>
+</li>
+<li>??</li>
+<li>defects/KLOC<ol>
+<li>编码前是没有的</li>
+<li>重视个人代码复查</li>
+</ol>
+</li>
+<li>Defect Radios<ol>
+<li>缺陷比率 比率尽量&gt;2</li>
+<li>分为两方面<ol>
+<li>Code review/compile defect radio</li>
+<li>Code review/unit defect radio</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>Development time radios<ol>
+<li>具体见PPT</li>
+</ol>
+</li>
+<li>A/FR in PSPi A/FR &gt; 2; in TSPi A/FR = 1</li>
+<li>Review and inspection rates<ol>
+<li>...</li>
+</ol>
+</li>
+<li>Defect-injection Rates(Defects/Hour)</li>
+<li>Phase Yields(阶段效益)<ol>
+<li>在一个给定的阶段里</li>
+<li>排除缺陷的效益</li>
+<li>(defects found) / (defects in the product (former + injected))</li>
+</ol>
+</li>
+<li>Process Yields(过程效益)<ol>
+<li>在一个给定阶段之前</li>
+<li>PSPi:&gt;80% TSPi:before first compile 75%,before first unit test:85%</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>产生个人表(如个人SCHEDULE表)</li>
+<li>Balance team workload</li>
+<li>5/17交 TASK(team/engineer(dont need to submit)),SCHDULE(team/engineer(...)),SUMP,SUMQ,SUMS   </li>
+<li>每周都要收集表..见PPT</li>
+</ol>
+<h1 id="6">6 需求分析</h1>
+<h2 id="61-why-we-need-requirements">6.1 Why we need Requirements</h2>
+<h2 id="62-the-srs">6.2 The SRS</h2>
+<ol>
+<li>角色分析</li>
+<li>功能需求分析(不能出现模块)</li>
+<li>UML用例图(Use Case)</li>
+<li>非功能需求分析</li>
+</ol>
+<h2 id="63-why-requirements-is-important">6.3 why Requirements is important?</h2>
+<ol>
+<li>you can argue that any changes will cost time &amp; money.</li>
+</ol>
+<h2 id="64-process">6.4 Process</h2>
+<ol>
+<li>入口准则<ol>
+<li>Need statements:说明</li>
+<li>开发策略/计划</li>
+</ol>
+</li>
+<li>需求分析说明(Need Statement Review)<ol>
+<li>开发经理</li>
+<li>不明白的问题提出并记录</li>
+</ol>
+</li>
+<li>Need Statement Clarification<ol>
+<li>同甲方交流对应问题</li>
+</ol>
+</li>
+<li>Requirement Task Allocation<ol>
+<li>开发经理将SRS开发的任务分解,team leader分配</li>
+</ol>
+</li>
+<li>Requirements Documentation<ol>
+<li>提交给开发经理,开发经理形成草稿.</li>
+</ol>
+</li>
+<li>System Test Plan<ol>
+<li>开发经理领导整个团队产生并复查</li>
+<li>对功能性能进行测试</li>
+<li>安排测试结果</li>
+</ol>
+</li>
+<li>Requirements &amp; System Test Plan Inspection]<ol>
+<li>quality/process manager</li>
+<li>填写INS表格(不用填了)</li>
+</ol>
+</li>
+<li>Requirements Update<ol>
+<li>由开发经理将已经修订过的SRS和System Test Plan整合为新文档</li>
+<li>Verify traceability</li>
+</ol>
+</li>
+<li>User SRS Review</li>
+<li>Requirements Baseline<ul>
+<li>support manager:baselines an official SRS copy</li>
+<li>team can now change only by CCR</li>
+</ul>
+</li>
+<li>Exit Criteria<ul>
+<li>completed,inspected,updated SRS and system test plan</li>
+<li>LOGT,LOGD,SUMS,TASK,SCHEDULE,SUMP,SUMQ</li>
+<li>INS(completed inspection form)</li>
+<li>update project notebook(5/24 SRS,system test plan 不用交,SUMS,TASK,SCHEDULE,SUMP,SUMS要交)</li>
+</ul>
+</li>
+</ol>
+
+      </section>
+    </div>
+
+    
+  </body>
+</html>
