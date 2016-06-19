@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
+
+    <title>{{blogname}}--1_并行计算机与并行计算</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>1_并行计算机与并行计算</h1>
+        <h2>{{ subtitle }}</h2>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+		<a id="blog" class="anchor" href="#blog" aria-hidden="true">
+			<span aria-hidden="true" class="octicon octicon-link"></span>
+		</a>
+			blog
+		</h1>
+		<h1 id="_1">并行计算机与并行计算</h1>
+<h2 id="_2">并行主要方法</h2>
+<ol>
+<li>任务分解</li>
+<li>功能分解</li>
+<li>区域分解</li>
+</ol>
+<h2 id="_3">并行计算机</h2>
+<ol>
+<li>SIMD型并行计算机(Single Instruction Multi-Data)<ol>
+<li>同时支持标量指令和向量指令</li>
+</ol>
+</li>
+<li>MIMD并行计算机<ol>
+<li>多指令流多数据流</li>
+<li>单一的共享地址空间</li>
+<li>存储访问成为性能瓶颈</li>
+<li>典型:SMP<ol>
+<li>SMP Symmetrical Multi-Processing: 在一个计算机上汇集一组处理器,共享内存等资源,由单一操作系统管理</li>
+</ol>
+</li>
+<li>SIMD适合开发细粒度的数据并行任务,MIMD适合粗粒度的任务并行</li>
+</ol>
+</li>
+<li>分布存储多计算机<ul>
+<li>松散耦合多机系统</li>
+<li>节点独立（可有局部存储、IO设备等）</li>
+<li>多地址空间</li>
+<li>易于扩展</li>
+<li>难于编程</li>
+<li>消息传递通信接口</li>
+</ul>
+</li>
+<li>分布共享存储多处理器(Distributed Shared Memory DSM)<ul>
+<li>将物理上分布的存储系统，通过硬件和软件的办法，向用户提供一个单一的全局地址空间</li>
+<li>处理器： 每个结点有一个或多个CPU</li>
+<li>分布式存储：每个结点中有存储模块</li>
+<li>网络：专用的高性能互联网络连接（Myrinet, Infiniband, …）</li>
+<li>单一的操作系统</li>
+<li>单一的内存地址空间：所有内存模块都由硬件进行了统一的编址，各个结点既可以直接访问局部内存单元，又可以直接访问其他结点的局部内存单元</li>
+<li>可扩展到上百个结点</li>
+<li>支持消息传递、共享存储并行程序设计</li>
+</ul>
+</li>
+<li>MPP Masively Parallel Processing<ol>
+<li>每个节点有自己的操作系统,内存,一个或多个微处理器</li>
+</ol>
+</li>
+<li>集群NOW Network of Workstations或者COW Cluster of Workstations<ul>
+<li>每个结点都是一个完整的工作站，有独立的硬盘与操作系统</li>
+<li>结点间通过低成本的通用网络（如千兆以太网）连接</li>
+<li>与MPP 之间的界线越来越模糊
+<img alt="" src="http://i.imgur.com/n82Jafm.png"></li>
+</ul>
+</li>
+</ol>
+<h2 id="_4">并行计算软件环境</h2>
+<ol>
+<li>操作系统与编程语言<ul>
+<li>并行计算机主流操作系统：UNIX/Linux/Windows</li>
+<li>编程语言<ul>
+<li>Fortran 77/90/95</li>
+<li>C/C++</li>
+<li>其他</li>
+</ul>
+</li>
+<li>
+<p>三种常见的并行编程环境：</p>
+<ul>
+<li>
+<p>消息传递  MPI PVM</p>
+<ul>
+<li>MPI提供了更多更高效的通信函数</li>
+<li>PVM提供了更灵活的功能，如虚拟机的配置，任务的映射等。</li>
+</ul>
+</li>
+<li>
+<p>共享存储  OpenMP</p>
+<ul>
+<li>不是一门新的语言，是对基本语言的扩展。</li>
+<li>支持C语言、C++和Fortran；</li>
+<li>源代码中加入专用的pragma,编译器可以自动将程序进行并行化，并在必要之处加入同步互斥以及通信。</li>
+<li>当选择忽略这些pragma，或者编译器不支持OpenMP时，程序又可退化为通常的程序（一般为串行），代码仍然可以正常运作，只是不能利用多线程来加速程序执行。    </li>
+</ul>
+</li>
+<li>数据并行  HPF<ul>
+<li>扩展自Fortran 90，它以数据并行的方式工作，使运算工作能够进行分拆，并以扩散方式发派到运算阵列中的各颗处理器上，以此达到高效能运算。</li>
+</ul>
+</li>
+</ul>
+<h2 id="_5">并行计算效率</h2>
+<p><img alt="" src="http://i.imgur.com/pYMSjOO.png"></p>
+<h3 id="amdahls-law">Amdahl’s law</h3>
+<ul>
+<li>P个处理器，一般而言最大的加速比为p。通常达不到。（考虑到通信开销，任务的分拆，合并等）</li>
+<li>如果加速比为p，称为线性加速比。</li>
+<li><b>偶尔会出现超线性加速比</b><ul>
+<li>串行算法不合理</li>
+<li>特别有利于进行并行计算的独特的结构</li>
+<li>算法的不确定性。随机性。</li>
+<li>更多的内存。</li>
+</ul>
+</li>
+<li>限制加速的因素：<ul>
+<li>一些处理器处于闲置状态</li>
+<li>出现了额外的计算</li>
+<li>进程间的通信时间。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+
+      </section>
+    </div>
+
+    
+  </body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
+
+    <title>{{blogname}}--考点</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>考点</h1>
+        <h2>{{ subtitle }}</h2>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+		<a id="blog" class="anchor" href="#blog" aria-hidden="true">
+			<span aria-hidden="true" class="octicon octicon-link"></span>
+		</a>
+			blog
+		</h1>
+		<h2 id="_1">课堂内容</h2>
+<ol>
+<li>主体,MPI,扩展性好</li>
+<li>并行算法的各方面<ol>
+<li>简单划分分治同步流水线负载均匀...</li>
+</ol>
+</li>
+<li>几种典型应用</li>
+<li>目的:知道经典用法,在遇到大规模问题时知道如何处理</li>
+<li>需要从数学角度理解运行原理</li>
+<li>伪代码</li>
+<li>绝大部分例题都可能会考</li>
+</ol>
+<hr>
+<h2 id="_2">题型</h2>
+<ol>
+<li>填空</li>
+<li>单项选择</li>
+<li>判断</li>
+<li>大题</li>
+<li>题量不少</li>
+</ol>
+<h2 id="_3">题型涉及</h2>
+<ol>
+<li>前两章有些东西需要记忆<ol>
+<li>并行计算的基本条件</li>
+<li>如何并行</li>
+<li>最重要的并行计算机类型<ol>
+<li>比如阵列处理机,有矢量,标量两种数据类型</li>
+<li>比如共享存储的多处理机,以及其瓶颈</li>
+<li>比如并行计算加速比</li>
+<li>MPI的消息信封组成,信纸组成</li>
+<li>网络性</li>
+<li>SMP</li>
+<li>指令流/数据流划分依据以及其主流机型</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>用p个CPU,分治,桶排序,若n&gt;p,求复杂度</li>
+<li>负载均衡,线性分散,集中负载均衡的原则和问题</li>
+<li>Amdal's Law</li>
+<li>并行的奇偶归并排序,若有n个处理器,则复杂度是?</li>
+<li>主流并行编程环境及类型,消息传递,数据并行,共享内存...</li>
+<li>MPI不同的数据交互方式,通用常见例子<ol>
+<li>阻塞/非阻塞通讯</li>
+</ol>
+</li>
+<li>Scatter,Gather等群集通信方式,及其复杂度,对于接收方,Scatter是常数的,Gather线性</li>
+<li>用n^2个处理器对两个n*n矩阵做乘法运算</li>
+<li>用n个处理器对上三角求解.</li>
+<li>一个非阻塞的通讯+test不等于阻塞型通讯.(还需要wait)</li>
+<li>openMP不是基于消息传递,而是基于共享内存.</li>
+<li>基本的机型及其特点</li>
+<li>流水线<ol>
+<li>有P个进程构成的流水线完成M个任务需要多少流水线周期,证明当流水线工作周期延长后工作效率接近于一个周期</li>
+</ol>
+</li>
+<li>全局性同步<ol>
+<li>Barrier</li>
+<li>蝶形栅栏,工作原理,复杂度(对数)</li>
+</ol>
+</li>
+<li>线性结构的负载均衡<ol>
+<li>一种折中</li>
+<li>工作原理,伪代码,工作流程</li>
+</ol>
+</li>
+<li>流水线方式做并行插入排序<ol>
+<li>当n&gt;p时,阐述工作机制复杂度</li>
+</ol>
+</li>
+<li>并行的快速归并等排序方法的实现复杂度.</li>
+</ol>
+
+      </section>
+    </div>
+
+    
+  </body>
+</html>
