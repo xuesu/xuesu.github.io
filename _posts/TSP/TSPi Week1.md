@@ -193,11 +193,11 @@ Baseline:基线
 1. Risk 可能发生 Issue 必然发生
 2. 常见风险问题(<font color='red'>掌握</font>)
 	1. Too large a product 
-		- 解决:功能分周期迭代
+		- 解决:先建立小的核心功能早期版本,功能分周期迭代
 	2. Difficult or complex function
-		- 解决:先使用简单原理
+		- 解决:建立原型进行取舍
 	3. Support System Problem
-		- 解决: 先做demo测试
+		- 解决: 先做demo了解支持系统工作原理
 	4. Testing time:
 		- 原因:缺陷太多测试期长
 		- 解决:依据TSP和PSP过程
