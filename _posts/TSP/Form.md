@@ -172,6 +172,7 @@
 ##Postmortem
 ###周期一报告
 - 队长分任务分配任务
+- ![](http://i.imgur.com/GMLdaVn.png)
 ###PIP
 - 与SUMP等计划比较
 ###PEER

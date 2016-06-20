@@ -70,6 +70,17 @@
 #6 需求分析
 ##6.1 Why we need Requirements
 ##6.2 The SRS
+内容
+
+1. functional requirement
+2. external interface requirement
+3. design constraints
+4. attributes
+5. other requirements
+
+实际
+
+
 1. 角色分析
 2. 功能需求分析(<font color='red'>不能出现模块</font>)
 3. UML用例图(Use Case)
