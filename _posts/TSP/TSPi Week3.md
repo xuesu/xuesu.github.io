@@ -57,7 +57,7 @@
 2. High-Level Design
 	- Develop Manager分任务,Team Leader 分配至人
 	- 内容:定义软件架构,命名模块,分配用例,分配任务
-3. Design Standard
+3. The name glossary and Design Standard
 	- Qualiy/Process Manager(<font color='red'>掌握</font>)
 4. Design Task Allocation
 5. The Design Specification

@@ -77,7 +77,7 @@
 		1. 缺陷比率 比率尽量>2
 		2. 分为两方面
 			1. Code review/compile defect radio
-			2. Code review/unit defect radio
+			2. DLD review/unit defect radio
 	6. Development time radios
 		1. 具体见PPT
 	7. A/FR in PSPi A/FR > 2; in TSPi A/FR = 1
