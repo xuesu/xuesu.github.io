@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
+
+    <title>{{blogname}}--TSPi Week4</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>TSPi Week4</h1>
+        <h2>{{ subtitle }}</h2>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+		<a id="blog" class="anchor" href="#blog" aria-hidden="true">
+			<span aria-hidden="true" class="octicon octicon-link"></span>
+		</a>
+			blog
+		</h1>
+		<h1 id="integration-system-test">Integration &amp; System Test</h1>
+<h2 id="91-testing-principles">9.1 Testing Principles</h2>
+<ol>
+<li>Tspi测试的主要目标(<font color="red">掌握</font>)评估产品而非修复缺陷</li>
+</ol>
+<h2 id="92-testing-strategy">9.2 Testing Strategy(<font color="red">记住</font>)</h2>
+<ol>
+<li>Build The System<ol>
+<li>与集成测试其实是两步</li>
+</ol>
+</li>
+<li>Integration Test </li>
+<li>System Test</li>
+<li>Regression Test(从第二周期开始(<font color="red">掌握</font>))<ol>
+<li>采用循环的开发策略</li>
+<li>是否影响以前的功能</li>
+</ol>
+</li>
+</ol>
+<h2 id="93-the-build-integration-test">9.3 The Build &amp; Integration Test</h2>
+<ol>
+<li>should not test functions(<font color="red">掌握</font>)</li>
+<li>测试模块间的调用和关联是否正确.</li>
+<li>策略体现在四方面(<font color="red">掌握</font>)<ol>
+<li>Big-Bang Strategy<ol>
+<li>优点:需要最少的测试开发工作</li>
+<li>缺点:成功很难,尤其是质量低时</li>
+</ol>
+</li>
+<li>The One-at-a-time Strategy<ol>
+<li>优点:很容易找到每次新添加的部分和其他模块间关系是否有问题</li>
+<li>缺点:需要大量测试开发工作.</li>
+</ol>
+</li>
+<li>The Cluster Strategy<ol>
+<li>把功能相似的分为一类</li>
+</ol>
+</li>
+<li>The Flat-System Strategy<ol>
+<li>由高层次向低层次逐渐集成</li>
+<li>优点:最开始就能发现大范围的问题</li>
+<li>缺点:通常需要大量存根(stub)等处理未集成的子模块的空返回.</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="94">9.4 系统测试策略(<font color="red">掌握,区分系统测试策略和集成测试策略</font>)</h2>
+<ol>
+<li>Function-first strategy<ol>
+<li>按照功能模块进行测试<ol>
+<li>对每个功能点在正常/非正常/重点情况下进行测试</li>
+</ol>
+</li>
+<li>测试性能</li>
+</ol>
+</li>
+<li>Functional-Area Strategy<ol>
+<li>从底层功能区到两个功能区之间测试</li>
+<li>正常/非正常测试数字计算/可用性/性能/质量</li>
+</ol>
+</li>
+<li>Combining the Preceding-two Strategy<ol>
+<li>结合功能第一策略和功能区策略</li>
+<li>首先采用功能第一测试原子功能,然后结合到一起形成功能区</li>
+</ol>
+</li>
+<li>Reversing the Preceding Strategy<ol>
+<li>与二者结合策略相反</li>
+<li>从上往下走</li>
+</ol>
+</li>
+</ol>
+<h2 id="95-test-planning">9.5 Test Planning</h2>
+<ol>
+<li>要求了解测试计划(步骤,支撑材料,结果,测试无缺陷运行时间以及每次测试运行总时间,发现缺陷总数,计划排除的缺陷数,相应的测试支撑材料所需工作时间)(<font color="red">掌握</font>)</li>
+</ol>
+<h2 id="96-tracking-and-measuring-testing">9.6 Tracking and Measuring Testing</h2>
+<ol>
+<li>填写LOGD,LOGTEST(开始时间,结束时间,哪些模块记录了什么等)</li>
+<li>为回归测试提供参考</li>
+</ol>
+<h2 id="97-documentation">9.7 Documentation</h2>
+<ol>
+<li>用户使用手册</li>
+<li>包含((<font color="green">了解,不用记住</font>))<ol>
+<li>文档包含</li>
+<li>功能</li>
+<li>想查的东西</li>
+</ol>
+</li>
+<li>书写原则(<font color="red">记住</font>)<ol>
+<li>短句,简单句</li>
+<li>简单的词和短语</li>
+<li>使用标准条款</li>
+</ol>
+</li>
+<li>Review(<font color="red">掌握</font>)<ol>
+<li>组织架构是否合理</li>
+<li>Terminology<ol>
+<li>可能涉及专业知识,需要进行解释</li>
+</ol>
+</li>
+<li>Content<ol>
+<li>内容是否正确,完整(根据架构)</li>
+</ol>
+</li>
+<li>准确性</li>
+<li>可读性</li>
+<li>易懂性</li>
+</ol>
+</li>
+</ol>
+<h2 id="98-the-test-process">9.8 The Test Process</h2>
+<ol>
+<li>Entry Criteria(前面阶段工作/表格/数据/文档都ok)</li>
+<li>测试开发工作</li>
+<li>建立系统(Build)(开发策略第一步)<ol>
+<li>质量过程经理每个步骤都要看看是否返工</li>
+</ol>
+</li>
+<li>集成测试<ol>
+<li>记录LOGD,LOGTEST</li>
+</ol>
+</li>
+<li>系统测试</li>
+<li>Documentation<ol>
+<li>需要复查集成</li>
+</ol>
+</li>
+<li>Exit Criteria<ol>
+<li>最终产品</li>
+<li>用户使用手册</li>
+<li>LOGTEST</li>
+<li>五大表格</li>
+<li>测试实际数据</li>
+</ol>
+</li>
+</ol>
+<h1 id="_1">后置处理</h1>
+<h2 id="vob">Vob</h2>
+<ul>
+<li>Fell short:没有完成目标</li>
+</ul>
+<h2 id="why">Why</h2>
+<ol>
+<li>通过提供标准流程来改善开发过程</li>
+<li>PIP表,过程改进建议表,为下一个周期做准备</li>
+</ol>
+<h2 id="process">Process</h2>
+<ol>
+<li>Entry Criteria</li>
+<li>Review Process Data<ol>
+<li>对前面产生的所有数据进行分析</li>
+<li>与SUMQ表作比较,评估哪些地方没有达到标准,可以知道哪些地方做的不够好需要改进,哪些地方较好,填入PIP表</li>
+</ol>
+</li>
+<li>Evaluate Role Performance<ol>
+<li>对于个人角色进行评估</li>
+<li>每个角色的工作在哪些地方非常有效</li>
+<li>在哪些地方存在提高空间</li>
+<li>准备周期1报告<ol>
+<li>在team leader领导分工下,一起完成</li>
+<li>包含<ol>
+<li>summary:一个团队总结</li>
+<li>Roles Reports:角色报告</li>
+<li>Engineer Reports:作为软件开发工程师的报告</li>
+</ol>
+</li>
+<li>集成检验总结</li>
+</ol>
+</li>
+<li>角色评估<ol>
+<li>第三步是角色的性能评估由自己/同学评价</li>
+<li>第五步使用PEER表格进行评价</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>出口准则<ol>
+<li>PEER,PIP,周期报告,其他表</li>
+</ol>
+</li>
+</ol>
+<h1 id="11-being-on-a-team">11 Being on a team(都要掌握)</h1>
+<ol>
+<li>协同工作准则<ol>
+<li>负责</li>
+<li>为自己的目标奋斗</li>
+<li>适合的原则<ol>
+<li>尊重自己和他人</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>有效的团队合作<ol>
+<li>内部交流沟通</li>
+</ol>
+</li>
+<li>协同工作报告</li>
+<li>团队建设责任<ol>
+<li>尽自己所能</li>
+<li>参与团队目标和计划的建设</li>
+<li>建设维护高效合作团对</li>
+</ol>
+</li>
+</ol>
+<h2 id="_2">期末比期中考试题目多,有论述题,主观题要尽可能多答</h2>
+<ul>
+<li>5/31 应当完成设计阶段</li>
+<li>6/2 实现(不要求交源码)</li>
+<li>6/3 测试</li>
+<li>提交用户使用手册</li>
+<li>6/16 周期一报告</li>
+<li>6/17 验收,视频演示5min</li>
+</ul>
+
+      </section>
+    </div>
+
+    
+  </body>
+</html>
