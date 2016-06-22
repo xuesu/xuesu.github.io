@@ -76,4 +76,10 @@ MPI程序启动时自动建立通信器MPI\_COMM\_WORLD,包含程序中所有MPI
 	- double	
 - MPI_LONG_DOUBLE		
 	- long double	
+##2.7 编译运行
+- mpiexec  – n 2 d:\mpijob\cpi.exe 
+	- 在当前节点上启动两个进程
+	- 多个进程使用同一个标准输出。
+	- 只有一个进程能得到标准输入。
+
 
