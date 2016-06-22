@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
+
+    <title>{{blogname}}--Chapter11</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>Chapter11</h1>
+        <h2>{{ subtitle }}</h2>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+		<a id="blog" class="anchor" href="#blog" aria-hidden="true">
+			<span aria-hidden="true" class="octicon octicon-link"></span>
+		</a>
+			blog
+		</h1>
+		<h1 id="chapter-26-gof-design-patterns">Chapter 26 GoF Design Patterns</h1>
+<p>SSCAOFF</p>
+<h2 id="adaptor">Adaptor</h2>
+<p>如何解决不相容的借口问题，或者如何为具有不同接口的类似构件提供稳定的借口？</p>
+<p>解决方案：通过中介适配器对象，将构件的原有接口转换为其他接口。增加一层间接性对象，通过这些对象将不同的外部接口调整为在应用程序内使用的一致接口</p>
+<h2 id="factory">Factory工厂</h2>
+<p>当有特殊考虑（例如存在复杂创建逻辑，为了改良内聚而分离创建职责等）时，应该由谁来负责创建对象？</p>
+<p>解决方案：创建称为工厂的纯虚构对象来处理这些创建职责</p>
+<h2 id="singletonsingleton">Singleton&lt;&lt;singleton&gt;&gt;单例</h2>
+<p>只有唯一实例的类即为“单实例类”。对象需要全局可见性和单点访问</p>
+<p>解决方案：对类定义静态方法用以返回单实例</p>
+<h2 id="strategyinterface">Strategy&lt;&lt;interface&gt;&gt;策略</h2>
+<p>如何设计变化但相关的算法或政策？如何设计才能使这些算法或政策具有可变更能力？</p>
+<p>解决方案：在单独的类中分别定义每种算法/政策/策略，并且使其具有共同接口</p>
+<h2 id="composite">Composite组合</h2>
+<p>如何能够像处理非组织（原子）对象一样，（多态地）处理一组对象或具有组合解耦的对象呢？</p>
+<p>解决方案：定义组合和原子对象的类，使它们实现相同的接口,外部组合对象包含一组内部对象,外部和内部对象实现相同的接口</p>
+<h2 id="facade">Facade外观</h2>
+<p>对一组完全不同的实现或接口需要公共、统一的接口。可能会与子系统内部的大量事物产生耦合，或者子系统的实现可能会改变，怎么办？</p>
+<p>解决方案：对子系统定义惟一的接触点—使用外观对象封装子系统。该外观对象提供了惟一和统一的接口，并负责与子系统构件进行协作</p>
+<h2 id="observerpublish-subscribedelegation">Observer(Publish-Subscribe/Delegation)观察者</h2>
+<p>不同类型的订阅者对象关注于发布者对象的状态变化或事件，并且想要在发布者产生事件时以自己独特的方式作出反应。此外，发布者想要保持与订阅者的低耦合。如何对此进行设计呢？</p>
+<p>解决方案：定义“订阅者”和“监听器”接口。订阅者实现此接口。发布者可以动态注册关注某事件的订阅者，并在事件发生时通知它们</p>
+
+      </section>
+    </div>
+
+    
+  </body>
+</html>
