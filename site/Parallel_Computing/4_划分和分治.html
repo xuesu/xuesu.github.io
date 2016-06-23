@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
+
+    <title>{{blogname}}--4_划分和分治</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>4_划分和分治</h1>
+        <h2>{{ subtitle }}</h2>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+		<a id="blog" class="anchor" href="#blog" aria-hidden="true">
+			<span aria-hidden="true" class="octicon octicon-link"></span>
+		</a>
+			blog
+		</h1>
+		<h1 id="chapter-4">Chapter 4 划分和分治</h1>
+<h2 id="_1">数列求和</h2>
+<h3 id="scatterreducet_startup">使用scatter和reduce节约t_startup</h3>
+<pre><code>主进程:
+s=n/p
+scatter( numbers,&amp;s,Pgroup,root=master)
+reduce_add(&amp;sum,&amp;s,Pgroup,root=master)
+从进程:
+scatter( numbers,&amp;s,Pgroup,root=master)
+……
+reduce_add(&amp;part_sum,&amp;s,Pgroup,root=master)
+</code></pre>
+<p>若使用scatter+reduce,通信复杂度为</p>
+<p>tcomm = 2* (tstartup + n * tdata) </p>
+<ul>
+<li>tstartup 启动时间，握手时间</li>
+</ul>
+<p>否则为</p>
+<p>tcomm = 2 * (p * tstartup + n * tdata)</p>
+<h2 id="_2">桶排序</h2>
+<p>有效的前提是均匀分布</p>
+<h2 id="_3">自适应积分</h2>
+<p><img alt="" src="http://i.imgur.com/CPXIddu.png">
+错误的情况下可能终止较快</p>
+<h2 id="n-">n-天体运行</h2>
+<h3 id="barnes-hut">Barnes-Hut算法</h3>
+<ul>
+<li>整个空间看作一个包含很多物体的立方体。</li>
+<li>整个空间分为8个子立方体。</li>
+<li>如果某子立方体不包含物体，则被删除</li>
+<li>否则保留下来。</li>
+<li>如果子立方体包含超过一个物体，则递归地划分。直至只包含一个物体为止。</li>
+</ul>
+<p><img alt="" src="http://i.imgur.com/L7R5BcK.png">
+每个物体受到的力只需要从根节点开始遍历树即可：</p>
+<ul>
+<li>底层立方体内的点，以单个天体的方式计算。</li>
+<li>上层直至顶层的节点均以立方体的方式计算。</li>
+</ul>
+<p>其计算复杂度也为O(nlogn) （每个物体为logn，n个物体）</p>
+<p>也即总体复杂度为O(nlogn)  ， 优于o（N2）。</p>
+
+      </section>
+    </div>
+
+    
+  </body>
+</html>

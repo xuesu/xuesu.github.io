@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
+
+    <title>{{blogname}}--6_同步计算</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>6_同步计算</h1>
+        <h2>{{ subtitle }}</h2>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+		<a id="blog" class="anchor" href="#blog" aria-hidden="true">
+			<span aria-hidden="true" class="octicon octicon-link"></span>
+		</a>
+			blog
+		</h1>
+		<h1 id="chapter-6">Chapter 6 同步计算</h1>
+<ol>
+<li>同步栅栏<ol>
+<li>定义</li>
+<li>计数器</li>
+<li>树形栅栏</li>
+<li>蝶形栅栏</li>
+<li>局部同步</li>
+<li>死锁</li>
+</ol>
+</li>
+<li>同步计算  数据并行</li>
+<li>同步计算例子<ol>
+<li>前缀求和</li>
+<li>迭代法解线性方程组</li>
+<li>热分布问题</li>
+</ol>
+</li>
+</ol>
+<h2 id="11">1.1 同步栅栏</h2>
+<p>MPI_Barrier 栅栏</p>
+<h2 id="12">1.2 线性计数器实现</h2>
+<p>集中式计数器,直观理解签到</p>
+<p>栅栏工作的两个阶段：</p>
+<ul>
+<li>到达阶段：<ul>
+<li>进程进入此阶段，表明己方已经就绪。</li>
+</ul>
+</li>
+<li>离开阶段：<ul>
+<li>所有的进程都可以离开，进程知晓其他进程已就绪。</li>
+</ul>
+</li>
+</ul>
+<h2 id="13">1.3 树实现</h2>
+<p>复杂度降为 O(log p) </p>
+<ol>
+<li>
+<p>check in </p>
+<ol>
+<li>两两结对，形成小组</li>
+<li>小组两两结对，形成大组</li>
+<li>......</li>
+<li>根节点只处理两个超大组。</li>
+</ol>
+<p>同学交作业不是直接交给学习委员课代表，而是先交给小组长，小组长们再交给学习委员。</p>
+</li>
+<li>
+<p>check out</p>
+<p>以上过程的相反过程，逐级往下通知即可。</p>
+<h2 id="_1"><font color='red'>蝶形栅栏</font></h2>
+<ul>
+<li>蝶形结构，</li>
+<li>所有的步骤，所有的节点均处于工作状态。
+只要一个阶段
+<img alt="" src="http://i.imgur.com/d7hlIu8.png"></li>
+</ul>
+<h2 id="_2">局部同步</h2>
+<h2 id="_3">死锁</h2>
+<p>两种解决方式</p>
+</li>
+<li>
+<p>一个进程（比如偶数编号的）先发送后接收，一个进程（比如奇数编号的）先接收后发送。</p>
+</li>
+<li>MPI_Sendrecv</li>
+</ol>
+<h2 id="-">同步计算-数据并行</h2>
+<p>并行程序设计语言中：(注意forall)</p>
+<pre><code>forall (i = 0; i &lt; n; i++)
+{
+   a[i] = a[i] + k; 
+}
+</code></pre>
+<p>在每个循环体实例中被赋予不同的值。
+以上操作隐着全局的栅栏：</p>
+<pre><code>i = myrank;
+a[i] = a[i] + k; 
+barrier(mygroup);
+</code></pre>
+<h2 id="-_1">同步计算-前缀求和</h2>
+<p><img alt="" src="http://i.imgur.com/kW9xRa2.png"></p>
+<h2 id="_4">求解线性方程组</h2>
+<ol>
+<li>对方程组进行变形,如下
+    <img alt="" src="http://i.imgur.com/PMFPskx.png"></li>
+<li>将方程组改写为X = BX</li>
+<li>对于Xi，利用X=BX，可以计算出Xi+1</li>
+<li>若迭代收敛,则可以认为已经求解<ol>
+<li>收敛条件(充分)<ol>
+<li>| x_i^t –x_i^{t-1} |&lt; 误差范围</li>
+<li><img alt="" src="http://i.imgur.com/PQOmGz4.png"></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="_5">实现</h3>
+<p>每个未知数分配给一个进程。 对进城 i而言：</p>
+<pre><code>x[i] = b[i];                                          // 初始化  
+for (iteration = 0; iteration &lt; limit; iteration++) {
+    sum = -a[i][i] * x[i];
+    for (j = 0; j &lt; n; j++)
+        sum = sum + a[i][j] * x[j];
+    new_x[i] = (b[i] - sum) / a[i][i];    //新的临时值   broadcast_recv(&amp;new_x[i]);        /*bcast/rec values */
+    global_barrier();                          /* wait for all procs */
+}
+</code></pre>
+<h3 id="_6">复杂度线性</h3>
+<h2 id="_7">热分布问题</h2>
+<h3 id="_8">问题描述</h3>
+<p>计算机对热传导方程离散化模拟。</p>
+<ul>
+<li>正方形的金属薄片。</li>
+<li>四条边的温度已知。特别地，如果四边的温度相等，最终每个点的温度都与边的温度相等。</li>
+<li>任一点的温度依赖于周围点的温度：</li>
+<li>正方形划分为正方形的小网格，每个内部网格的温度为周围网格温度的均值。</li>
+</ul>
+<p><b>而中间过程，则随着模拟的顺序和方式的不同会不同。</b></p>
+
+      </section>
+    </div>
+
+    
+  </body>
+</html>

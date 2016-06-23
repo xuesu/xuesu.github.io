@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
+
+    <title>{{blogname}}--5_流水线计算</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>5_流水线计算</h1>
+        <h2>{{ subtitle }}</h2>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+		<a id="blog" class="anchor" href="#blog" aria-hidden="true">
+			<span aria-hidden="true" class="octicon octicon-link"></span>
+		</a>
+			blog
+		</h1>
+		<h1 id="chapter-5">Chapter 5 流水线计算</h1>
+<h2 id="category">Category</h2>
+<ol>
+<li>流水线计算<ol>
+<li>类型1</li>
+<li>类型2</li>
+<li>类型3</li>
+</ol>
+</li>
+<li>流水线计算举例<ol>
+<li>数字相加</li>
+<li>数列排序</li>
+<li>质数生成</li>
+<li>线性方程求解</li>
+</ol>
+</li>
+</ol>
+<h2 id="_1">适合流水线计算的情形</h2>
+<p>一个问题被分成一系列的任务，如果：</p>
+<ul>
+<li>整个问题的多个实例。</li>
+<li>要处理一系列的数据项，每个数据需要多次步骤。</li>
+<li>每个进程在完成自身的操作前，能把下一个进程需要的信息向前传送。</li>
+</ul>
+<h2 id="_2">类型一</h2>
+<p><img alt="" src="http://i.imgur.com/WRc05PA.png">
+- 每个实例要依次顺序经过p个进程，
+- 经过开始的p-1个周期后，每个周期完成一个实例。
+-  p个进程构成的流水线，完成m个问题实例，需要m+p-1 个流水线周期。平均周期为 m+p-1 /m  。 当m较大时，趋于1.</p>
+<h2 id="_3">类型二</h2>
+<p><img alt="" src="http://i.imgur.com/HXfJMvv.png">
+有一串数据必须被顺序处理。每个数据要经过一系列的操作。</p>
+<h2 id="_4">类型三</h2>
+<p><img alt="" src="http://i.imgur.com/vdcbCth.png">
+每个进程都能在自己的工作完成前，把下一个进程需要的数据传递出去。</p>
+<h2 id="-1">流水线加法-类型1</h2>
+<ul>
+<li>流水线周期：所有的进程同时运行一个周期。<ul>
+<li>ttotal=流水线周期时间×周期数 =（tcomp+tcomm）×周期数</li>
+</ul>
+</li>
+<li>单实例问题：<ul>
+<li>即只有一组数（n个）需要相加,因为只有一组数m=1 所以需要n个周期</li>
+<li>在一个周期中，每个进程需要完成1次运算，两次数据传递。<ul>
+<li>tcomp=1</li>
+<li>tcomm=2（tstartup +tdata）</li>
+</ul>
+</li>
+<li>ttotal = n（1+2（tstartup +tdata））即复杂度为O（n）</li>
+</ul>
+</li>
+<li>多实例问题<ul>
+<li>有m组数需要相加。需要的周期数为m+n-1</li>
+<li>ttotal =（ m+n-1）（1+2（tstartup +tdata））</li>
+<li>平均每组ta=ttotal/m = （ m+n-1）（1+2（tstartup +tdata）） /m </li>
+<li><b>当m很大时，趋近于1.</b></li>
+</ul>
+</li>
+</ul>
+<h2 id="-2">并行插入排序-类型2</h2>
+<ol>
+<li>进程p0接受数列的第一个数字。</li>
+<li>保存当前接收到的最大数字，且把比这个数小的其他数传给下一个进程。</li>
+<li>如果输入的数比当前保存的大，就替换掉当前的数，原先存储的数字往下传递。</li>
+<li>每个后继进程都采用同样的算法。</li>
+<li>结束后P0中保存最大的数，P1，第二大的数等。</li>
+</ol>
+<p>并行复杂度：</p>
+<ul>
+<li>n个数，n个进程</li>
+<li>周期数为n+n-1 =2n-1</li>
+<li>每个周期有一个比较和交换操作，以及一次recv 和send</li>
+<li>ttotal=（2n-1）×（1+2（tstartup+tdata））</li>
+<li>线性复杂度。</li>
+</ul>
+<h2 id="-">生成素数-类型三</h2>
+<ol>
+<li>流水线的第一级输入从2开始的一系列连续的数（如果不是（不从2开始，或者不连续），此算法还要修正） ，剔除所有2的倍数并把余下的数传给下一级。</li>
+<li>下一级收到的第一个数必是素数，保存下来，并剔除掉所有此素数的倍数，剩下的数继续往下传。</li>
+<li>流水线上所有的节点都按照如此方式处理。</li>
+</ol>
+<h3 id="_5">可以并行传送</h3>
+<ul>
+<li>比较小的素数剔除时消耗的时间多，前面的进程工作量大，后面的进程工作量小。</li>
+<li>前面的进程不必等待全部处理完后再往后传送，而是并行进行的。</li>
+</ul>
+<p>代码如下：</p>
+<pre><code>recv(&amp;x, Pi-1);
+for (i = 0; i &lt; n; i++) {
+    recv(&amp;number, Pi-1);
+    If (number == terminator)break;
+    (number % x) != 0) send(&amp;number, P i+1);
+}
+</code></pre>
+<h2 id="-_1">求解上三角矩阵-类型三</h2>
+<p><b>代码稍作改进，不用全收到后再计算。</b></p>
+<pre><code>sum = 0;
+for (j = 0; j &lt; i; j++)
+ {
+    recv(&amp;x[j], Pi-1); 
+    send(&amp;x[j], Pi+1);
+    sum = sum + a[i][j]*x[j];
+}   
+x[i] = (b[i] - sum)/a[i][i];
+send(&amp;x[i], Pi+1);
+</code></pre>
+<h3 id="_6">复杂度分析</h3>
+<p>每个进程的工作量不一样。最后一个最大。最大的进程需要进行n次计算。n次接收和发送。<b>复杂度为O（n）</b></p>
+
+      </section>
+    </div>
+
+    
+  </body>
+</html>
