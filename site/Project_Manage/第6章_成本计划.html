@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
+
+    <title>{{blogname}}--第6章 成本计划</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>第6章 成本计划</h1>
+        <h2>{{ subtitle }}</h2>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+		<a id="blog" class="anchor" href="#blog" aria-hidden="true">
+			<span aria-hidden="true" class="octicon octicon-link"></span>
+		</a>
+			blog
+		</h1>
+		<h1 id="6"><font color='red'>第6章 软件项目成本计划</font></h1>
+<h2 id="_1">软件项目规模</h2>
+<p>软件项目规模即工作量</p>
+<p>例如：软件规划，软件管理，需求，设计，编码，测试，以及后期的维护等任务。</p>
+<h3 id="_2">规模单位</h3>
+<ul>
+<li>LOC(Loc of Code)<ul>
+<li>源代码程序长度的测量</li>
+</ul>
+</li>
+<li>FP(Function Point)<ul>
+<li>用系统的功能数量来测量</li>
+</ul>
+</li>
+<li>人月</li>
+<li>人天</li>
+<li>人年</li>
+</ul>
+<h3 id="_3">软件项目成本</h3>
+<ol>
+<li>完成软件规模相应付出的代价。</li>
+<li>待开发的软件项目需要的资金。 </li>
+<li>人的劳动的消耗所需要的代价是软件产品的主要成本</li>
+</ol>
+<h4 id="_4">规模是成本的主要因素，是成本估算的基础</h4>
+<h3 id="_5">成本估算结果</h3>
+<ol>
+<li>直接成本<ul>
+<li>与具体项目相关的成本</li>
+</ul>
+</li>
+<li>间接成本<ul>
+<li>可以分摊到各个具体项目中的成本,例如水电费</li>
+</ul>
+</li>
+</ol>
+<h2 id="_6"><font color='red'>估算方法(掌握每种估算方法的计算法)</font></h2>
+<ol>
+<li>代码行估算法</li>
+<li>功能点估算法</li>
+<li>用例点估算法</li>
+<li>类比(自顶向下)算法</li>
+<li>自下而上估算法</li>
+<li>参数估算法</li>
+<li>专家估算法</li>
+</ol>
+<h2 id="_7">代码行估算法</h2>
+<ul>
+<li>从软件程序量的角度定义项目规模。</li>
+<li>与具体的编程语言有关</li>
+<li>分解足够详细</li>
+<li>有一定的经验数据（类比和经验方法）</li>
+</ul>
+<h3 id="_8">缺点</h3>
+<ul>
+<li>对代码行没有公认的可接受的标准定义</li>
+<li>代码行数量依赖于所用的编程语言和个人的编程风格. </li>
+<li>在项目早期,需求不稳定、设计不成熟、实现不确定的情况下很难准确地估算代码量. </li>
+<li>代码行强调编码的工作量,只是项目实现阶段的一部分 </li>
+</ul>
+<h2 id="_9">功能点估算</h2>
+<ul>
+<li>与实现的语言和技术没有关系</li>
+<li>用系统的功能数量来测量其规模</li>
+<li>通过评估、加权、量化得出功能点</li>
+</ul>
+<p><font color='red'>
+FP =UFC*TCF</p>
+<ul>
+<li>UFC：未调整功能点计数</li>
+<li>TCF：技术复杂度因子
+</font></li>
+</ul>
+<h3 id="ufc">UFC</h3>
+<ul>
+<li>功能计数项:(从处理逻辑的角度)</li>
+<li>外部输入 EI<ul>
+<li>给软件提供面向应用的数据的项（如屏幕、表单、对话框、控件，文件等）；在这个过程中，数据穿越外部边界进入到系统内部。 </li>
+</ul>
+</li>
+<li>外部输出 EU<ul>
+<li>给软件提供面向应用的数据的项（如屏幕、表单、对话框、控件，文件等）；在这个过程中，数据穿越外部边界进入到系统内部</li>
+</ul>
+</li>
+<li>外部查询 EQ External Inquiry <ul>
+<li>外部查询是一个输入引出一个即时的简单输出。没有处理过程。 </li>
+</ul>
+</li>
+<li>外部接口文件 EIF's External Interface Files <ul>
+<li>外部接口文件是用户可以识别的一组逻辑相关数据，这组数据只能被引用。用这些接口把信息传送给另一个系统。 </li>
+</ul>
+</li>
+<li>内部逻辑文件 Internal Logical Files ILF's<ul>
+<li>用户可以识别的一组逻辑相关的数据，而且完全存在于应用的边界之内，并且通过外部输入维护，是逻辑主文件的数目。 
+<img alt="" src="http://i.imgur.com/q1zytrV.png"></li>
+</ul>
+</li>
+</ul>
+<h3 id="tcf">TCF</h3>
+<p><img alt="" src="http://i.imgur.com/A6DNRZ3.png">
+<img alt="" src="http://i.imgur.com/4hexThH.png"></p>
+<h2 id="_10">用例点计算模型</h2>
+<ol>
+<li>计算未调整的角色的权值UAW;</li>
+<li>计算未调整的用例权值UUCW ;</li>
+<li>计算未调整的用例点UUCP;</li>
+<li>计算技术和环境因子TEF;</li>
+<li>计算调整的用例点UCP ;</li>
+<li>计算工作量( man－hours)</li>
+</ol>
+<h3 id="uaw">未调整的角色权值UAW</h3>
+<p><img alt="" src="http://i.imgur.com/EWesrrj.png"></p>
+<h3 id="uucw">未调整的用例权值UUCW</h3>
+<p><img alt="" src="http://i.imgur.com/X2BZcWp.png"></p>
+<h3 id="uucp">计算UUCP</h3>
+<p>UUCP = UAW + UUCW
+<img alt="" src="http://i.imgur.com/EgnUzUd.png"></p>
+<h3 id="tcf_1">计算技术因子TCF</h3>
+<p><img alt="" src="http://i.imgur.com/b76lujD.png"></p>
+<h3 id="ecf">计算环境因子ECF</h3>
+<p><img alt="" src="http://i.imgur.com/oCwl6FQ.png"></p>
+<h3 id="ucp">计算调整后的用例点UCP</h3>
+<p>UCP = UUCP * TCF * ECF</p>
+<h3 id="_11">计算工作量</h3>
+<p>Effort = UCP * PF</p>
+<p>例:设PF = 20 工时/用例点</p>
+<h2 id="_12">类比(自顶向下)估算法</h2>
+<p>估算人员根据以往的完成类似项目所消耗的总成本（或工作量），来推算将要开发的软件的总成本（或工作量），然后按比例将它分配到各个开发任务单元中</p>
+<h3 id="_13">使用情况</h3>
+<ul>
+<li>有类似的历史项目数据</li>
+<li>信息不足（例如市场招标）的时候</li>
+<li>要求不是非常精确估算的时候</li>
+</ul>
+<h2 id="_14">自下而上估算法</h2>
+<p>利用任务分解图(WBS),对各个具体工作包进行详细的成本估算,然后将结果累加起来得出项目总成本。</p>
+<h3 id="_15">特点</h3>
+<ul>
+<li>相对比较准确，它的准确度来源于每个任务的估算情况</li>
+<li>花费时间</li>
+</ul>
+<h2 id="_16">参数估算法</h2>
+<p>通过项目数据,进行回归分析,得出回归模型,参数模型来估算(规模)成本的方法。</p>
+<h3 id="_17">特点</h3>
+<p>比较简单,而且也比较准确
+如果模型选择不当或者数据不准,也会导致偏差</p>
+<h3 id="_18">具体公式</h3>
+<ul>
+<li>面向LOC驱动的<ul>
+<li>Walston-Felix(IBM)<ul>
+<li>E= 5.2*(KLOC)^0.91</li>
+</ul>
+</li>
+<li>Balley-Basili<ul>
+<li>E=5.5+0.73*(KLOC)^1.16</li>
+</ul>
+</li>
+<li>.COCOMO<ul>
+<li>E=3.2*(KLOC)^1.05</li>
+</ul>
+</li>
+<li>Doty<ul>
+<li>E=5.288*(KLOC)^1.047</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>面向FP驱动的<ul>
+<li>Albrecht and Gaffney<ul>
+<li>E=-12.39+0.0545FP</li>
+</ul>
+</li>
+<li>Matson,Barnett<ul>
+<li>E=585.7+15.12FP</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>整体公式:E=a+b*SC<ul>
+<li>E:以人月表示的工作量</li>
+<li>a,b,c:经验导出的系数</li>
+<li>S:主要的输入参数(通常是LOC,FP等)</li>
+</ul>
+</li>
+</ul>
+<h3 id="_19">建议掌握模型</h3>
+<h4 id="walston-felix">Walston-felix模型</h4>
+<p>E ＝ 5.2×L ^0.91 ，L是源代码行数(以KLOC计)，E是工作量（以PM计） </p>
+<p>D ＝ 4.1×L ^ 0.36，D是项目持续时间(以月计) </p>
+<p>S ＝ 0.54×E ^ 0.6，S是人员需要量(以人计) </p>
+<p>DOC ＝ 49×L ^ 1.01，DOC是文档数量(以页计) </p>
+<h5 id="_20">例子:</h5>
+<p>采用java 完成项目，估计有366功能点，则</p>
+<p>L = 366×46 = 16386行 = 16.386KLOC</p>
+<p>E ＝ 5.2×L ^ 0.91 ＝ 5.2×16.386 ^ 0.91 ＝ 66人月 </p>
+<p>DOC ＝ 49×L ^ 1.01 ＝ 49×16.386 ^ 1.01 ＝ 826页 </p>
+<h4 id="cocomoconstructive-cost-model">COCOMO(Constructive Cost model)</h4>
+<h5 id="_21">系列</h5>
+<p>COCOMO 81 
+COCOMO II 
+模型系列</p>
+<h5 id="_22">基本原理</h5>
+<p>将开发所需要的工作量表示为软件规模和一系列成本因子的函数,基本估算公式:</p>
+<p><img alt="" src="http://i.imgur.com/aTMxLr1.png"></p>
+<p>A:可以校准的常量; S为软件规模; E为规模的指数,说明不同规模软件具有的相对规模经济和不经济性;EM为工作量乘数,反映某个项目特征对完成项目开发所需工作量的影响程度;n为描述软件项目特征的成本驱动因子的个数</p>
+<h5 id="_23">模型级别</h5>
+<ol>
+<li>基本COCOMO<ul>
+<li>静态单变量模型</li>
+</ul>
+</li>
+<li>中等COCOMO<ul>
+<li>基本模型基础上考虑影响因素，调整模型</li>
+</ul>
+</li>
+<li>高级COCOMO<ul>
+<li>中等COCOMO模型基础上考虑各个步骤的影响</li>
+</ul>
+</li>
+</ol>
+<h5 id="_24">项目类型</h5>
+<ol>
+<li>有机: Organic，<ul>
+<li>各类应用程序，例如数据处理、科学计算 等</li>
+<li>受硬件的约束比较小，程序的规模不是很大 </li>
+</ul>
+</li>
+<li>嵌入式: Embedded<ul>
+<li>系统程序，例如实时处理、控制程序等 </li>
+<li>紧密联系的硬件、软件和操作的限制条件下运行，软件规模任意 </li>
+</ul>
+</li>
+<li>半有机: Semidetached<ul>
+<li>各类实用程序，介于上述两种软件之间，例如编译器（程序） </li>
+<li>规模和复杂度都属于中等或者更高 </li>
+</ul>
+</li>
+</ol>
+<h4 id="cocomo-81">基本COCOMO-81</h4>
+<p>E= a * (KLOC)^b</p>
+<ul>
+<li>E是所需的人力（人月） </li>
+<li>KLOC是交付的代码行</li>
+<li>a ， b是依赖于项目自然属性的系数
+<img alt="" src="http://i.imgur.com/fBZtgsz.png"></li>
+</ul>
+<h4 id="cocomo-8">中等COCOMO-8</h4>
+<p><img alt="" src="http://i.imgur.com/i6Jn0aN.png"></p>
+<h5 id="cocomo-81_1">中等COCOMO-81乘法因子的成本驱动属性</h5>
+<ol>
+<li>产品属性</li>
+<li>平台属性</li>
+<li>人员属性</li>
+<li>过程属性
+<img alt="" src="http://i.imgur.com/XDimafX.png">
+乘法因子为各项相乘</li>
+</ol>
+<h4 id="cocomo">高级（详细）COCOMO</h4>
+<p>将项目分解为一系列的子系统或者子模型 
+在一组子模型的基础上更加精确地调整一个模型的属性， 
+<img alt="" src="http://i.imgur.com/ukyNbbG.png"></p>
+<h4 id="cocomo-ii">COCOMO II</h4>
+<ul>
+<li>应用组装模型---规划阶段</li>
+<li>早期设计模型---设计阶段</li>
+<li>后体系结构模型---开发阶段
+<img alt="" src="http://i.imgur.com/GECSKXh.png"></li>
+</ul>
+<h2 id="_25">专家估算法</h2>
+<p>由多位专家进行成本估算，一个专家可能会有偏见，最好由多位专家进行估算，取得多个估算值,最后得出综合的估算值。</p>
+<h3 id="delphi">Delphi</h3>
+<ul>
+<li>组织者确定专家，这些专家互相不见面</li>
+<li>组织者发给每位专家一份软件规格说明</li>
+<li>专家以无记名对该软件给出3个规模的估算值<ul>
+<li>最小ai</li>
+<li>最可能的mi</li>
+<li>最大bi</li>
+</ul>
+</li>
+<li>组织者计算每位专家的Ei=(ai+4mi+bi)/6</li>
+<li>如果各个专家的估算差异超出规定的范围（例如：15%），则需重复上述过程</li>
+<li>最终可以获得一个多数专家共识的软件规模：E=E1+E2+…En/n（N:表示N 个专家）</li>
+</ul>
+<h2 id="_26">实用软件估算模型</h2>
+<p>是一种自下而上和参数法的结合模型,步骤如下:</p>
+<ol>
+<li>
+<p>对任务进行分解:1,2,…,I,…n</p>
+</li>
+<li>
+<p>估算每个工作包的成本Ei</p>
+<ol>
+<li>直接估算成本Ei</li>
+<li>先估算规模Qi，然后估算成本Ei= Qi *人力成本参数</li>
+</ol>
+</li>
+<li>
+<p>直接成本=E1+E2+……+ Ei+……+ En</p>
+<ol>
+<li>开发成本</li>
+<li>管理成本,质量成本<ul>
+<li>Scale(Mgn)=a* Scale(Dev)</li>
+<li>[a为比例系数：例如：20%--25%]</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p>间接成本估算</p>
+<ol>
+<li>按照企业模型直接估算</li>
+<li>间接成本=直接成本*间接成本系数</li>
+<li>间接成本= 规模<em>人力成本参数</em>间接成本系数</li>
+</ol>
+</li>
+<li>
+<p>项目总估算成本= 直接成本+间接成本</p>
+<ol>
+<li>估算成本=直接成本+间接成本</li>
+<li>估算成本=直接成本(1+间接成本系数)</li>
+<li>估算成本=规模*人力成本参数（1+间接成本系数）</li>
+<li>成本系数=人力成本参数* （1+间接成本系数）</li>
+</ol>
+</li>
+<li>
+<p>项目总报价</p>
+<ol>
+<li>项目总报价=项目总估算成本+风险利润</li>
+<li>项目总报价=(1+(a+b+c) %) *项目总估算成本<ol>
+<li>项目利润=估算成本*a%</li>
+<li>风险基金=估算成本*b%</li>
+<li>税=估算成本*c% (例如:c为5.5左右)</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="_27"><font color='red'>成本预算</font></h2>
+<ul>
+<li>成本预算是将项目的总成本按照项目的进度分摊到各个工作单元中去</li>
+<li>成本预算的目的是产生成本基线 
+<img alt="" src="http://i.imgur.com/WN6eeMr.png"></li>
+<li>包括三种情况<ul>
+<li>给任务分配资源成本<ul>
+<li>与资源的基本费率紧密相连,如加班费...</li>
+</ul>
+</li>
+<li>给任务分配固定资源成本<ul>
+<li>当一个项目的资源需要固定数量的资金时，可以向任务分配固定资源成本。如兼职人员成本</li>
+</ul>
+</li>
+<li>给任务分配固定成本<ul>
+<li>有些任务是固定成本的类型的任务，也就是说，管理者知道某项任务的成本不变，不管任务的工期有多长，或不管任务使用了那些资源。在这种情况下，管理者向任务直接分配成本</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      </section>
+    </div>
+
+    
+  </body>
+</html>
