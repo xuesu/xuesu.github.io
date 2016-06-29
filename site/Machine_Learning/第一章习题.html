@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
+
+    <title>{{blogname}}--第一章习题</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>第一章习题</h1>
+        <h2>{{ subtitle }}</h2>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+		<a id="blog" class="anchor" href="#blog" aria-hidden="true">
+			<span aria-hidden="true" class="octicon octicon-link"></span>
+		</a>
+			blog
+		</h1>
+		<h1 id="_1">第一章习题</h1>
+<ol>
+<li>
+<p>给出三种机器学习方法适合的计算机应用,三种不适合的计算机应用. 挑选本书未提及的应用并给每个应用一句话评价</p>
+<p>Answer:</p>
+<ol>
+<li>不适合的计算机应用<ol>
+<li>汇率计算,已有确定算法</li>
+<li>word,在简单的编辑与可视化方面并不需要机器学习</li>
+<li>教务系统,虽然涉及到的数据较多,但是普通的教务系统没有需要用到机器学习算法的功能.</li>
+</ol>
+</li>
+<li>适合的计算机应用<ol>
+<li>淘宝. 一个购物网站,需要机器学习算法来向用户推荐商品</li>
+<li>中医专家系统. 一个通过患者脉搏来推断患者是否生病的系统.其中的算法非常复杂,程序员很难将之一一分清</li>
+<li>五子棋游戏.游戏AI可能需要机器学习以保证其下棋能力进而提高趣味性</li>
+</ol>
+</li>
+<li>挑选一些本书未提到的学习任务,写一段话非正式地加以描述,再尽可能精确地描述出他的任务,性能衡量标准和训练经验,最后,给出要学习的目标函数和它的表示.讨论出这个任务设计汇总中考虑的主要折中</li>
+</ol>
+<p>Answer:</p>
+<ul>
+<li>任务T:淘宝产品推送</li>
+<li>性能标准P:用户点击推送的次数</li>
+<li>训练经验E:产品的销量,图片,类别,描述.用户关注点,购买历史,浏览历史</li>
+<li>目标函数V:产品数量为n,推送栏长度为m,Clicki为推送后第i个商品的浏览次数,Xi为第i个商品是否被推送,也即Xi取0或1,且Xi=0时,不被推送,Xi=1时,被推送,<img src="http://www.forkosh.com/mathtex.cgi? \hat{V}(b) = Click_i * X_i           ,\sum_{x=1}^{n}{X_i}=m"></li>
+<li>不同的用户点击推送的可能性不同,且有些点击推送次数较多的用户点击推送后不一定会购买.</li>
+<li>证明本章描述的LMS权更新法则采用了梯度下降方法使误差平方最小化,确切地将,像文中那样定义误差平方E,然后计算E对wi的倒数,其中假定<img src="http://www.forkosh.com/mathtex.cgi? \hat{V}(b)">与文本定义的一样是个线性函数.梯度下降是通过与<img src="http://www.forkosh.com/mathtex.cgi? -rac{\partial {E}}{\partial {w_i} }">成比例地更新每个权值实现的,所以必须证明对于所遇到的每个训练样例,LMS训练法则都是按照这个比例来改变权值</li>
+</ul>
+<p>Answer:</p>
+<p><img alt="" src="http://i.imgur.com/RroFrjW.jpg">
+4. 实验生成器模块可采用其他一些策略,考虑实验生成器用下面的策略提出新的棋局
+1. 产生随机的合法的棋局
+2. 从前面的对弈中挑选一个棋局,然后走上次没有走的棋来产生新的棋局
+3. 一种你自己设计的策略</p>
+<p>讨论这些策略的优劣,如果训练样例的数量是固定的,哪个效果最好?假设性能衡量为世界锦标赛上赢棋最多</p>
+<p>Answer:</p>
+<p>策略如下:</p>
+<ol>
+<li>产生随机的合法的棋局</li>
+<li>从前面的对弈中挑选一个棋局,然后走上次没有走的棋来产生新的棋局</li>
+<li>从前面的解答中挑选一个棋局,然后走对手的棋来产生新的棋局</li>
+</ol>
+<p>我认为</p>
+<p>第1种策略在E(训练经验)越多的情况下越可能正确</p>
+<p>第二种情况能够遍历初始样例所对应的那一部分后续搜索空间,训练样例较少的情况下最优,但是耗时较长</p>
+<p>在训练样例很少的情况下,第3种策略较优,但是要提防自身的策略非常差,导致自我对弈没有有益的经验</p>
+</li>
+<li>
+<p>使用类似于西洋跳棋问题的算法,实现一个简单的tic-tac-toe游戏,学习到的函数应为自选的棋局参数的线性组合,让这个棋局和自己的拷贝反复比赛,后者使用一个手工建立的固定评估函数,绘制出你的程序的获胜率随着训练次数的变化情况</p>
+</li>
+</ol>
+
+      </section>
+    </div>
+
+    
+  </body>
+</html>

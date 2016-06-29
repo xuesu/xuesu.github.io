@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
+
+    <title>{{blogname}}--Ch05_Firework</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>Ch05_Firework</h1>
+        <h2>{{ subtitle }}</h2>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+		<a id="blog" class="anchor" href="#blog" aria-hidden="true">
+			<span aria-hidden="true" class="octicon octicon-link"></span>
+		</a>
+			blog
+		</h1>
+		<h1 id="chapter-06-filewalls">Chapter 06 Filewalls</h1>
+<h2 id="policy-actions">Policy Actions</h2>
+<ul>
+<li>Packets flowing through a firewall can have one of three outcomes:<ul>
+<li>Accepted: permitted through the firewall</li>
+<li>Dropped: not allowed through with no indication of failure</li>
+<li>Rejected: not allowed through, accompanied by an attempt to inform the source that the packet was rejected</li>
+</ul>
+</li>
+</ul>
+<h2 id="filewall-types">Filewall Types</h2>
+<ul>
+<li>packet filters (stateless)<ul>
+<li>If a packet matches the packet filter's set of rules, the packet filter will drop or accept it</li>
+<li>Screening Router</li>
+</ul>
+</li>
+<li>"stateful" filters<ul>
+<li>it maintains records of all connections passing through it and can determine if a packet is either the start of a new connection, a part of an existing connection, or is an invalid packet. </li>
+</ul>
+</li>
+<li>application layer<ul>
+<li>It works like a proxy it can “understand” certain applications and protocols. </li>
+<li>It may inspect the contents of the traffic, blocking what it views as inappropriate content (i.e. websites, viruses, vulnerabilities, ...)</li>
+</ul>
+</li>
+</ul>
+<h2 id="_1">伪装信任主机/合法地址/电话拨号 绕过防火墙</h2>
+<h2 id="demilitarized-zone-dmz">Demilitarized Zone DMZ 隔离区,控制区,非军事化区</h2>
+<p>那些需要从外部访问，但是需要一定保护措施的系统通常被设置在DMZ网络中，一般来讲，DMZ中的系统需要或者本身具有外部连通性。</p>
+<h2 id="unified-threat-management-products-utm">一体化威胁管理产品(Unified Threat Management Products, UTM）</h2>
+<p>One approach to reducing the administrative and performance burden is to replace all inline network products (firewall, IPS, IDS, VPN, antispam, antisypware, and so on) with a single device, a unified threat management (UTM) system, that integrates a variety of approaches to dealing with network-based attacks. A significant issue with a UTM device is performance, both throughput and latency, e.g. typical throughput losses for current commercial devices is 50%. 
+Figure 9.6 is a typical UTM appliance architecture, in it note:
+<img alt="" src="http://i.imgur.com/FRbLd4l.png"></p>
+<ol>
+<li>inbound traffic is decrypted if necessary before its initial inspection. If the device functions as a VPN boundary node, then IPSec decryption would take place here.</li>
+<li>an initial firewall module filters traffic, discarding packets that violate rules and/or passing packets that conform to rules set in the firewall policy.</li>
+<li>then, a number of modules analyze individual packets and flows of packets at various protocols levels. A data analysis engine is responsible for keeping track of packet flows and coordinating the work of antivirus, IDS, and IPS engines.</li>
+<li>the data analysis engine also reassembles multipacket payloads for content analysis by the antivirus engine and the Web filtering and antispam modules.</li>
+<li>some incoming traffic may need to be re-encrypted to maintain internal security </li>
+<li>all detected threats are reported to the logging and reporting module, which is used to issue alerts for specified conditions and for forensic analysis.</li>
+<li>the bandwidth-shaping module can use various priority and quality of service (QoS) algorithms to optimize performance.</li>
+</ol>
+<h1 id="ids">IDS</h1>
+<ul>
+<li>assume intruder behavior differs from legitimate users<ul>
+<li>expect overlap as shown</li>
+<li>observe deviations, from past history</li>
+</ul>
+</li>
+<li>problems of:<ul>
+<li>false positives</li>
+<li>false negatives</li>
+<li>must compromise</li>
+</ul>
+</li>
+</ul>
+<h2 id="type">Type</h2>
+<p>基于主机or网络或混合</p>
+<h3 id="host-based-ids">Host-based IDS</h3>
+<p>specialized software to monitor system activity to detect suspicious behavior</p>
+<p>检测内容： 系统调用、端口调用、系统日志、安全审记、应用日志</p>
+<h3 id="network-based-ids">Network-based IDS</h3>
+<ol>
+<li>Monitors traffic at selected points on the network<ol>
+<li>Real time; packet-by-packet
+<img alt="" src="http://i.imgur.com/lvgiczj.png"></li>
+</ol>
+</li>
+</ol>
+<h2 id="ids-detection-model">IDS detection Model</h2>
+<h3 id="misuse-detectionsignature-detection"><font color = 'red'>Misuse detection/signature detection</font></h3>
+<ul>
+<li>
+<p>基于知识的检测也称为误用检测，误用检测对检测的系统活动进行分析，试图发现那些与预定义好了的入侵特征相匹配的事件和事件集。</p>
+</li>
+<li>
+<p>与入侵相对应的模式被称为特征，所以误用检测也被称为基于特征的检测。在目前的误用检测产品中，最常见的实现形式是将每一个入侵事件行为定义为一个特征描述，所有入侵行为特征描述就组成一个特征库。</p>
+</li>
+<li>
+<p>误用检测系统通过对事件进行分析，提取出事件的特征模式，并与特征库进行匹配，由匹配结果来判断是否有入侵行为发生。</p>
+</li>
+<li>
+<p>规则匹配是最常见的误用检测手段，目前也有比较复杂的误用检测技术，包括基于状态的分析技术和状态转换技术，都在一定程度上对简单的规则匹配技术进行了改进和提高。</p>
+</li>
+<li>
+<p>误用检测技术的优点有：能准确迅速的检测到入侵模式库里已经定义好的入侵模式，而不会产生太多的误报；检测结果清晰明朗，容易对入侵事件有准确的定位；类似于杀毒软件的工作模式，便于升级维护。</p>
+</li>
+<li>
+<p>存在的主要不足之处包括：对入侵模式库的依赖性很强，只能检测到已知的入侵模式，对新型入侵无能为力，容易产生漏报；入侵模式库的完备性难以保证，存在难于管理以及搜索的效率问题。</p>
+</li>
+</ul>
+<h3 id="anomaly-detection"><font color='red'>anomaly detection</font></h3>
+<ul>
+<li>
+<p>基于行为的检测也称为异常检测，异常检测技术基于用户行为和进程行为都有较大程度的稳定性这样一个前提。如果建立了用户行为和进程行为的正常模式，当出现较大的偏差异常时，则可以认为有恶意的入侵行为发生。</p>
+</li>
+<li>
+<p>异常检测的关键问题是正常模式的建立以及对偏差的检测和判定，</p>
+</li>
+<li>
+<p>在实现技术上，异常检测系统首先收集一段时间正常操作活动的历史数据，建立起代表用户、主机、网络连接的正常行为轮廓，然后收集事件数据并使用不同的方法来判断所检测的事件活动是否偏离了正常行为轮廓。</p>
+</li>
+<li>
+<p>异常检测技术是目前入侵检测技术研究的热点领域，其所能达到的对未知入侵行为的检测能力令人神往，虽然目前还不能准确的做到这一点，但有一些研究至少可以表明这一点是能够做到的。</p>
+</li>
+<li>
+<p>在异常检测领域主要的方法有：统计方法、机器学习方法、数据挖掘方法、聚类方法等。</p>
+</li>
+<li>
+<p>异常检测技术的优点有：不依赖于具体的入侵知识，而是基于行为，可以检测到新型的入侵方式；不存在入侵模式库，避免了繁琐费时的搜索匹配工作，效率较高。</p>
+</li>
+<li>
+<p>存在的主要不足之处：系统、用户、网络行为的复杂性导致正常模式的建立较为困难；统计方法的应用要有一定的前提；异常行为的判断很难做到准确，误报率较高。</p>
+</li>
+</ul>
+<h3 id="hybrid">Hybrid</h3>
+<p>目前商业化的入侵检测产品大都是将误用检测技术和异常检测技术结合起来，以误用检测模块作为主体，异常检测模块作为有益的补充。</p>
+
+      </section>
+    </div>
+
+    
+  </body>
+</html>

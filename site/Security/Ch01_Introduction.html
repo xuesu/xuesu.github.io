@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
+
+    <title>{{blogname}}--Ch01_Introduction</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>Ch01_Introduction</h1>
+        <h2>{{ subtitle }}</h2>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+		<a id="blog" class="anchor" href="#blog" aria-hidden="true">
+			<span aria-hidden="true" class="octicon octicon-link"></span>
+		</a>
+			blog
+		</h1>
+		<h1 id="network-security-and-management">Network Security and Management</h1>
+<h2 id="_1">安全战略</h2>
+<ol>
+<li>美国<ol>
+<li>网络安全战略计划CNAP</li>
+<li>2001年10月4日 小布什 未经许可的国内监视项目</li>
+<li>2001年10月26日 爱国者宣言</li>
+<li>2005年11月16日 纽约时报披露国内监视项目</li>
+<li>华为中兴事件:<ol>
+<li>2011年11月 对中国通讯公司的安全调查</li>
+<li>2012年10月8日 认定华为中兴威胁国家安全</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>中国<ol>
+<li>中央网络安全和信息化领导小组(习近平,李克强,刘云山)</li>
+</ol>
+</li>
+</ol>
+<h2 id="science-of-security">Science of Security</h2>
+<h3 id="organizers">Organizers</h3>
+<ul>
+<li>David Evans, University of Virginia </li>
+<li>Karl Levitt, National Science Foundation</li>
+<li>Brad Martin, National Security Agency</li>
+<li>James Silk, Institute for Defense Analyses </li>
+</ul>
+<h3 id="defining-security">Defining Security</h3>
+<p>The security of a system, application, or protocol is always relative to</p>
+<ul>
+<li>A set of desired properties</li>
+<li>An adversary with specific capabilities</li>
+</ul>
+<h3 id="security-goals">Security Goals</h3>
+<h4 id="cia">CIA</h4>
+<h5 id="confidentially">Confidentially</h5>
+<p>the avoidance of the unauthorized disclosure of information. </p>
+<h6 id="tools">Tools</h6>
+<ul>
+<li>Encryption</li>
+<li>Access Control</li>
+<li>Authentication<ul>
+<li>the determination of the identity or role that someone has. <ul>
+<li>something the person has (like a smart card or a radio key fob storing secret keys),</li>
+<li>something the person knows (like a password), </li>
+<li>something the person is (like a human with a fingerprint). </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Authorization<ul>
+<li>the determination if a person or system is allowed access to resources, based on an access control policy. </li>
+</ul>
+</li>
+<li>Physical Security<ul>
+<li>the establishment of physical barriers to limit access to protected computational resources. </li>
+</ul>
+</li>
+</ul>
+<h5 id="integrity">Integrity</h5>
+<p>the property that information has not be altered in an unauthorized way.</p>
+<h6 id="tools_1">Tools</h6>
+<ol>
+<li>Backups</li>
+<li>Checksums</li>
+<li>Data correcting codes</li>
+</ol>
+<h5 id="availability">Availability</h5>
+<p>the property that information is accessible and modifiable in a timely fashion by those authorized to do so.</p>
+<h6 id="tools_2">Tools</h6>
+<ol>
+<li>Physical protection</li>
+<li>Computational redundancies</li>
+</ol>
+<h4 id="aaa">AAA</h4>
+<ul>
+<li>Assurance</li>
+<li>Authenticity</li>
+<li>Anonymity</li>
+</ul>
+<h5 id="assurance">Assurance</h5>
+<p>how trust is provided and managed in computer systems.</p>
+<h6 id="tools_3">Tools</h6>
+<ul>
+<li>Policies<ul>
+<li>which specify behavioral expectations that people or systems have for themselves and others. </li>
+</ul>
+</li>
+<li>Permissions<ul>
+<li>which describe the behaviors that are allowed by the agents that interact with a person or system. </li>
+</ul>
+</li>
+<li>Protections<ul>
+<li>which describe mechanisms put in place to enforce permissions and polices.</li>
+</ul>
+</li>
+</ul>
+<h5 id="authenticity">Authenticity</h5>
+<p>the ability to determine that statements, policies, and permissions issued by persons or systems are genuine.</p>
+<h6 id="primary-tool">Primary Tool</h6>
+<ol>
+<li>digital signatures</li>
+</ol>
+<h5 id="anomynity">Anomynity</h5>
+<p>the property that certain records or transactions not to be attributable to any individual.</p>
+<h6 id="tools_4">Tools</h6>
+<ul>
+<li>Aggregation<ul>
+<li>the combining of data from many individuals so that disclosed sums or averages cannot be tied to any individual. </li>
+</ul>
+</li>
+<li>Mixing<ul>
+<li>the intertwining of transactions, information, or communications in a way that cannot be traced to any individual. </li>
+</ul>
+</li>
+<li>Proxies<ul>
+<li>trusted agents that are willing to engage in actions for an individual in a way that cannot be traced back to that person. </li>
+</ul>
+</li>
+<li>Pseudonyms<ul>
+<li>fictional identities that can fill in for real identities in communications and transactions, but are otherwise known only to a trusted entity. </li>
+</ul>
+</li>
+</ul>
+<h2 id="threats-and-attacks">Threats and Attacks</h2>
+<h3 id="eavesdropping">eavesdropping 窃听</h3>
+<p>the interception of information intended for someone else during its transmission over a communication channel.</p>
+<h3 id="alteration">Alteration 修改</h3>
+<p>unauthorized modification of information. </p>
+<h3 id="denial-of-service">Denial-of-service</h3>
+<p>the interruption or degradation of a data service or information access. </p>
+<ul>
+<li>SPAM</li>
+<li>Email Bomber</li>
+</ul>
+<h3 id="masquerading">Masquerading 伪装</h3>
+<p>the fabrication of information that is purported to be from someone who is not actually the author.</p>
+<h3 id="repudiation">Repudiation 否认(接收)</h3>
+<p>the denial of a commitment or data receipt. </p>
+<p>This involves an attempt to back out of a contract or a protocol that requires the different parties to provide receipts acknowledging that data has been received.</p>
+<h3 id="correlation-and-traceback">Correlation(相关) and traceback(追踪)</h3>
+<p>the integration of multiple data sources and information flows to determine the source of a particular data stream or piece of information.</p>
+<h2 id="the-ten-security-principles">The ten Security Principles</h2>
+<p><a href="http://www.cs.arizona.edu/~collberg/Teaching/466-566/2012/Handouts/Handout-2.pdf">http://www.cs.arizona.edu/~collberg/Teaching/466-566/2012/Handouts/Handout-2.pdf</a></p>
+<ol>
+<li>economy of mechanism 架构经济,简单,尽可能小<ol>
+<li>Keep the design and implementation as simple and small as possible.</li>
+</ol>
+</li>
+<li>fail-safe defaults 默认安全机制保守<ol>
+<li>The default security configuration should be conservative</li>
+</ol>
+</li>
+<li>complete mediation 定时使用安全框架检查资源<ol>
+<li>Every time a resource is accessed, the access should be checked against a protection scheme.</li>
+</ol>
+</li>
+<li>open design 架构公开<ol>
+<li>The security architecture and design of a system should be made publically available.</li>
+<li>Security should rely only on keeping cryptographic keys secret. </li>
+<li>is the opposite of <b>security by obscurity</b></li>
+</ol>
+</li>
+<li>separation of priviledge 权限分离<ol>
+<li>multiple conditions should be required to achieve access to restricted resources or have a program perform some action.</li>
+</ol>
+</li>
+<li>Least priviledge 权限最小化<ol>
+<li>Each program and user of a computer system should operate with the bare minimum privileges necessary to function properly.</li>
+</ol>
+</li>
+<li>Least common mechanism 公共资源最小化<ol>
+<li>mechanisms. allowing resources to be shared by more than one user should be minimized</li>
+</ol>
+</li>
+<li>Psychological acceptability 可被用户接受<ol>
+<li>that user interfaces should be well designed and intuitive, and all security-related settings should adhere to what an ordinary user might expect.</li>
+</ol>
+</li>
+<li>Work factor 根据攻击者可能具有的资源设计绕过安全机制的代价<ol>
+<li>the cost of circumventing (绕过) a security mechanism should be compared with the resources of an attacker when designing a security scheme. </li>
+</ol>
+</li>
+<li>Compromise recording 记录被攻击的细节<ol>
+<li>sometimes it is more desirable to record the details of an intrusion than to adopt more sophisticated measures to prevent it. </li>
+</ol>
+</li>
+</ol>
+
+      </section>
+    </div>
+
+    
+  </body>
+</html>
