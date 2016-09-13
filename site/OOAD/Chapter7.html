@@ -1,37 +1,99 @@
-\<\!DOCTYPE\ html\>\
-\<html\>\
-\ \ \<head\>\
-\ \ \ \ \<meta\ charset\=\'utf\-8\'\>\
-\ \ \ \ \<meta\ http\-equiv\=\"X\-UA\-Compatible\"\ content\=\"chrome\=1\"\>\
-\
-\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/stylesheet\.css\"\ media\=\"screen\"\>\
-\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/github\-dark\.css\"\ media\=\"screen\"\>\
-\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/print\.css\"\ media\=\"print\"\>\
-\
-\ \ \ \ \<title\>\{\{blogname\}\}\-\-\{\{title\}\}\<\/title\>\
-\ \ \<\/head\>\
-\
-\ \ \<body\>\
-\
-\ \ \ \ \<header\>\
-\ \ \ \ \ \ \<div\ class\=\"container\"\>\
-\ \ \ \ \ \ \ \ \<h1\>\{\{\ title\ \}\}\<\/h1\>\
-\ \ \ \ \ \ \ \ \<h2\>\{\{\ subtitle\ \}\}\<\/h2\>\
-\ \ \ \ \ \ \<\/div\>\
-\ \ \ \ \<\/header\>\
-\
-\ \ \ \ \<div\ class\=\"container\"\>\
-\ \ \ \ \ \ \<section\ id\=\"main\_content\"\>\
-\ \ \ \ \ \ \ \ \<h1\>\
-\	\	\<a\ id\=\"blog\"\ class\=\"anchor\"\ href\=\"\/\"\ aria\-hidden\=\"true\"\>\
-\	\	\	\<span\ aria\-hidden\=\"true\"\ class\=\"octicon\ octicon\-link\"\>INDEX\<\/span\>\
-\	\	\<\/a\>\
-\	\	\<\/h1\>\
-\	\	\{\{content\}\}\
-\
-\ \ \ \ \ \ \<\/section\>\
-\ \ \ \ \<\/div\>\
-\
-\ \ \ \ \
-\ \ \<\/body\>\
-\<\/html\>\
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
+
+    <title>{{blogname}}--Chapter7</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>Chapter7</h1>
+        <h2>{{ subtitle }}</h2>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+		<a id="blog" class="anchor" href="/" aria-hidden="true">
+			<span aria-hidden="true" class="octicon octicon-link">INDEX</span>
+		</a>
+		</h1>
+		<h1 id="chapter-12-requirements-to-design">Chapter 12: Requirements to Design</h1>
+<h2 id="requirements-to-design">Requirements to Design</h2>
+<ol>
+<li>iteratively do the right thing, do the thing right</li>
+<li>provoke early change</li>
+<li>didnt all that analysis and modeling take weeks to do</li>
+</ol>
+<h1 id="chapter-13-logical-architecture-uml-package-diagrams">Chapter 13 Logical Architecture &amp; UML Package diagrams</h1>
+<h2 id="goals">Goals</h2>
+<ol>
+<li>introduce a logical architecture using layers</li>
+<li>illustrate the logical architecture using UML</li>
+</ol>
+<p><img alt="" src="http://i.imgur.com/W0kS1lW.png"></p>
+<h2 id="what-is-the-logical-architecture-and-layers">what is the logical architecture and layers</h2>
+<ol>
+<li>the logical architecture is the large-scale of the software classes into packages, subsystems and layers</li>
+<li>A layer is a very coarse-grained grouping of classes, packages or subsystems that has cohensive responsibility for a major respect of the system</li>
+<li>typical layer in an OO system include<ol>
+<li>user interface</li>
+<li>application logic and domain objects</li>
+<li>technical service</li>
+</ol>
+</li>
+<li>strict/relaxed layered architecture </li>
+</ol>
+<h2 id="what-is-software-architecture">What is software architecture</h2>
+<p>An architectrue is the set of significant decisions about the organization of a software system, the selection of the structure elements and their interfaces by which ther system is composed, together with their behavior as specified in the collaboration among those elements, the composition of these structural and behavioral elements into progressively larger subsystems- these elements and their interfaces, their collaborations and their composition</p>
+<h1 id="chapter-15-uml-interaction-diagram">Chapter 15 UML Interaction Diagram</h1>
+<p>Interaction Diagram</p>
+<ol>
+<li>sequence Diagram</li>
+<li>Communication Diagram</li>
+</ol>
+<p><img alt="" src="http://i.imgur.com/5CRCtSR.png">
+<img alt="" src="http://i.imgur.com/MbChbry.png">
+<img alt="" src="http://i.imgur.com/j03VR9F.png">
+<img alt="" src="http://i.imgur.com/wBdAamO.png"></p>
+<h2 id="_1">单例模式</h2>
+<p><img alt="" src="http://i.imgur.com/YfLEa4j.png"></p>
+<h2 id="found-message-execution-specification-bar-sychronous-message">found message, execution specification bar, sychronous message</h2>
+<p><img alt="" src="http://i.imgur.com/sEKbEV9.png"></p>
+<h2 id="reply">Reply 用虚线</h2>
+<h2 id="messages-to-self">Messages to self</h2>
+<p><img alt="" src="http://i.imgur.com/T4jw0QD.png"></p>
+<h2 id="object-creation-destruction">Object Creation &amp; Destruction</h2>
+<p><img alt="" src="http://i.imgur.com/9985Ii9.png"></p>
+<h2 id="common-frame-operator">Common Frame Operator</h2>
+<ol>
+<li>alt</li>
+<li>loop</li>
+<li>opt</li>
+<li>par</li>
+<li>region<ol>
+<li>only one thread can run</li>
+</ol>
+</li>
+</ol>
+<h2 id="polymorphic-messages-and-classes">Polymorphic Messages and Classes</h2>
+<p><img alt="" src="http://i.imgur.com/jA3NK63.png"></p>
+<h2 id="asychronous-callsstick-arrow-synchronous-callfilled-arrow">Asychronous Calls(stick arrow) synchronous call(filled arrow)</h2>
+<p><img alt="" src="http://i.imgur.com/i1oGHfA.png">
+<img alt="" src="http://i.imgur.com/msx0Eh5.png"></p>
+
+      </section>
+    </div>
+
+    
+  </body>
+</html>

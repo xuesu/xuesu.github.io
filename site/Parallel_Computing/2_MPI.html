@@ -1,37 +1,294 @@
-\<\!DOCTYPE\ html\>\
-\<html\>\
-\ \ \<head\>\
-\ \ \ \ \<meta\ charset\=\'utf\-8\'\>\
-\ \ \ \ \<meta\ http\-equiv\=\"X\-UA\-Compatible\"\ content\=\"chrome\=1\"\>\
-\
-\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/stylesheet\.css\"\ media\=\"screen\"\>\
-\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/github\-dark\.css\"\ media\=\"screen\"\>\
-\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/print\.css\"\ media\=\"print\"\>\
-\
-\ \ \ \ \<title\>\{\{blogname\}\}\-\-\{\{title\}\}\<\/title\>\
-\ \ \<\/head\>\
-\
-\ \ \<body\>\
-\
-\ \ \ \ \<header\>\
-\ \ \ \ \ \ \<div\ class\=\"container\"\>\
-\ \ \ \ \ \ \ \ \<h1\>\{\{\ title\ \}\}\<\/h1\>\
-\ \ \ \ \ \ \ \ \<h2\>\{\{\ subtitle\ \}\}\<\/h2\>\
-\ \ \ \ \ \ \<\/div\>\
-\ \ \ \ \<\/header\>\
-\
-\ \ \ \ \<div\ class\=\"container\"\>\
-\ \ \ \ \ \ \<section\ id\=\"main\_content\"\>\
-\ \ \ \ \ \ \ \ \<h1\>\
-\	\	\<a\ id\=\"blog\"\ class\=\"anchor\"\ href\=\"\/\"\ aria\-hidden\=\"true\"\>\
-\	\	\	\<span\ aria\-hidden\=\"true\"\ class\=\"octicon\ octicon\-link\"\>INDEX\<\/span\>\
-\	\	\<\/a\>\
-\	\	\<\/h1\>\
-\	\	\{\{content\}\}\
-\
-\ \ \ \ \ \ \<\/section\>\
-\ \ \ \ \<\/div\>\
-\
-\ \ \ \ \
-\ \ \<\/body\>\
-\<\/html\>\
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
+
+    <title>{{blogname}}--2_MPI</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>2_MPI</h1>
+        <h2>{{ subtitle }}</h2>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+		<a id="blog" class="anchor" href="/" aria-hidden="true">
+			<span aria-hidden="true" class="octicon octicon-link">INDEX</span>
+		</a>
+		</h1>
+		<h1 id="mpi">MPI</h1>
+<p>Message Passing Interface</p>
+<ul>
+<li>是一种标准或规范的代表，而不特指某一个对它的具体实现。迄今为止所有的并行计算机制造商都提供对MPI 的支持</li>
+<li>最终目的是服务于进程间通信的目标</li>
+<li>提供一个高效、可扩展、统一的并行编程环境</li>
+<li>是一个库，不是一门语言，提供库函数/过程供C/FORTRAN 调用</li>
+</ul>
+<p>目标</p>
+<ol>
+<li>较高的通信性能；</li>
+<li>较好的程序可移植性；</li>
+<li>强大的功能</li>
+</ol>
+<h2 id="21-mpi">2.1 MPI进程</h2>
+<h3 id="mpi_1">MPI进程</h3>
+<p>MPI程序中一个独立参与通信的个体</p>
+<h3 id="mpi_2">MPI进程组</h3>
+<p>MPI程序中由部分或全部进程构成的有序集合,每个进程都被赋予一个所在进程组中唯一的序号(rank)，用于在该组中标识该进程，称为进程号，取值从0开始，0，1，2......</p>
+<h2 id="22-mpi-communicator">2.2 MPI Communicator</h2>
+<h3 id="mpi-communicator">MPI Communicator</h3>
+<p>MPI通信子,(MPI通信域,MPI通信器,)<b>包括进程组(Progress Group)和通信上下文(Communication Context),</b>同于描述通信进程之间的通信关系</p>
+<p>MPI程序启动时自动建立通信器MPI_COMM_WORLD,包含程序中所有MPI进程
+,之后用户可以根据自己的需要，建立其它的进程组</p>
+<p><b>进程间通信必须通过通信器进行</b></p>
+<h4 id="communication-context">Communication Context</h4>
+<p>通信上下文：安全地区别不同的通信以免相互干扰，<font color='red'>通信上下文不是显式的对象，</font>只是作为通信域的一部分出现</p>
+<h2 id="23-mpi">2.3 MPI消息</h2>
+<p>一个消息指进程之间的一次数据交换</p>
+<h4 id="_1"><font color='red'><b>消息构成</b></font></h4>
+<ul>
+<li>Message Buffer<ul>
+<li>buf<ul>
+<li>起始地址</li>
+</ul>
+</li>
+<li>count<ul>
+<li>个数</li>
+</ul>
+</li>
+<li>datatype<ul>
+<li>数据类型</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Message Envelop<ul>
+<li>dest<ul>
+<li>源/目标进程</li>
+</ul>
+</li>
+<li>tag<ul>
+<li>消息标签</li>
+</ul>
+</li>
+<li>comm<ul>
+<li>通信子</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="24-mpi">2.4 MPI编程特征</h2>
+<ul>
+<li>在函数和数据类型定义中, 接MPI_之后的第一个字母大写，其余全部为小写字母，即MPI_Xxxx_xxx形式</li>
+<li>除MPI_WTIME和MPI_WTICK外，所有C 函数调用之后都将返回一个错误信息码</li>
+<li>MPI 的所有C 函数中的输出参数用的都是指针</li>
+</ul>
+<h2 id="25-mpi">2.5 MPI数据类型</h2>
+<ul>
+<li>MPI datatype          <ul>
+<li>C datatype    </li>
+</ul>
+</li>
+<li>MPI_CHAR             <ul>
+<li>signed char   </li>
+</ul>
+</li>
+<li>MPI_SHORT                <ul>
+<li>signed short int  </li>
+</ul>
+</li>
+<li>MPI_INT              <ul>
+<li>signed int    </li>
+</ul>
+</li>
+<li>MPI_LONG             <ul>
+<li>signed long int   </li>
+</ul>
+</li>
+<li>MPI_UNSIGNED_CHAR       <ul>
+<li>unsigned char </li>
+</ul>
+</li>
+<li>MPI_UNSIGNED_SHORT      <ul>
+<li>unsigned short int    </li>
+</ul>
+</li>
+<li>MPI_UNSIGNED_INT        <ul>
+<li>unsigned int  </li>
+</ul>
+</li>
+<li>MPI_UNSIGNED_LONG       <ul>
+<li>unsigned long int </li>
+</ul>
+</li>
+<li>MPI_FLOAT                <ul>
+<li>float </li>
+</ul>
+</li>
+<li>MPI_DOUBLE           <ul>
+<li>double    </li>
+</ul>
+</li>
+<li>MPI_LONG_DOUBLE     <ul>
+<li>long double   </li>
+</ul>
+</li>
+</ul>
+<h2 id="27">2.7 编译运行</h2>
+<ul>
+<li>mpiexec  – n 2 d:\mpijob\cpi.exe <ul>
+<li>在当前节点上启动两个进程</li>
+<li>多个进程使用同一个标准输出。</li>
+<li>只有一个进程能得到标准输入。</li>
+</ul>
+</li>
+<li>mpiexec – hosts 2  node1 3 node2  4 d:\mpijob\cpi<ul>
+<li>在node1上启动3个进程，node2上启动4个进程。</li>
+</ul>
+</li>
+</ul>
+<h2 id="mpi_3">MPI常用接口</h2>
+<h3 id="_2">初始化和结束</h3>
+<ul>
+<li>int  MPI_Init(int <em>argc, char </em>**argv)<ul>
+<li>该函数初始化MPI 并行程序的执行环境，它必须在调用所有其它MPI 函数之前被调用，并且在一个MPI 程序中，只能被调用一次.</li>
+</ul>
+</li>
+<li>int MPI_Finalize(void)<ul>
+<li>该函数清除MPI 环境的所有状态。即一但它被调用，所有MPI 函数都不能再调用，其中包括MPI_INIT</li>
+</ul>
+</li>
+</ul>
+<h3 id="_3">通信子</h3>
+<ul>
+<li>int MPI_Comm_rank(MPI_Comm comm, int *rank)<ul>
+<li>该函数返回本进程在指定通信器中的进程号</li>
+</ul>
+</li>
+<li>int MPI_Comm_size(MPI_Comm comm, int *size)<ul>
+<li>该函数返回指定通信器所包含的进程数</li>
+</ul>
+</li>
+</ul>
+<h3 id="_4">发送数据</h3>
+<h3 id="_5">接收数据</h3>
+<ul>
+<li>
+<p>MPI_Recv(received_request,100,MPI_BYTE,MPI_Any_source,MPI_Any_tag,comm,&amp;Status);</p>
+</li>
+<li>
+<p>接收消息时返回的状态STATUS，在C 语言中是用结构定义的，其中包括MPI_SOURCE，MPI_TAG和MPI_ERROR以及接收消息元素的个数，（用函数MPI_GET_COUNT来读取）</p>
+</li>
+</ul>
+<h3 id="_6">其他</h3>
+<ul>
+<li>
+<p>double MPI_Wtime(void)</p>
+<ul>
+<li>该函数返回当前的墙钟时间</li>
+</ul>
+</li>
+<li>
+<p>int MPI_Get_processor_name(char <em>name, int </em>namelen)   </p>
+<ul>
+<li>该函数返回进程所在结点的主机名</li>
+</ul>
+</li>
+</ul>
+<h2 id="_7">通信</h2>
+<h3 id="_8">阻塞型检测</h3>
+<ul>
+<li>int MPI_Wait(MPI_Request <em>request, MPI_Status </em>status) <ul>
+<li>该函数是阻塞型的，它必须等待指定的通信请求完成后才能返回，与之相应的非阻塞型函数是MPI_TEST。成功返回时，status中包含关于所完成的通信的消息，</li>
+<li>一个非阻塞的通信加上MPI_Wait 等价于阻塞型通信。</li>
+</ul>
+</li>
+</ul>
+<h3 id="_9">非阻塞型检测</h3>
+<ul>
+<li>int MPI_Test(MPI_Request <em>request, int </em>flag, MPI_Status *status)<ul>
+<li>非阻塞型通信检测函数，不论通信是否完成都立刻返回，功能同MPI_WAIT</li>
+</ul>
+</li>
+</ul>
+<h2 id="_10">群集通信</h2>
+<ol>
+<li>通信域中的所有进程必须调用群集通信函数。</li>
+<li>每个群集通信函数使用类似于点对点通信中的标准、阻塞的通信模式。</li>
+<li>一个群集通信操作是不是同步操作取决于实现。MPI要求用户负责保证他的代码无论实现是否同步都必须是正确的。</li>
+<li>所有参与群集操作的进程中，Count和Datatype必须是兼容的。</li>
+<li><b>消息信封由通信域和源/目标定义。</b></li>
+</ol>
+<h3 id="_11">同步功能</h3>
+<p>int MPI_Barrier(MPI_Comm comm)    </p>
+<h3 id="_12">通信</h3>
+<h4 id="_13">广播</h4>
+<ul>
+<li>int MPI_Bcast(void *buf, int count, MPI_Datatype datatype, int root, MPI_Comm comm)<ul>
+<li>root进程将自己buf中的内容广播发送到通信器内的所有进程（<b>包括它自身</b>）</li>
+</ul>
+</li>
+</ul>
+<h4 id="_14">散发</h4>
+<ul>
+<li>int MPI_Scatter(void <em>sendbuf, int sendcount, MPI_Datatype sendtype, void </em>recvbuf, int recvcount, MPI_Datatype recvtype, int root, MPI_Comm comm)<ul>
+<li>根进程将这些数据块按进程的标识号依次分发给各个进程（包括root进程）</li>
+</ul>
+</li>
+</ul>
+<h4 id="_15">收集</h4>
+<ul>
+<li>int MPI_Gather(void <em>sendbuf, int sendcount, MPI_Datatype sendtype, void </em>recvbuf, int recvcount, MPI_Datatype recvtype, int root, MPI_Comm comm) <ul>
+<li>这n个消息按照进程的标识rank排序进行拼接，然后存放在Root进程的接收缓冲中。</li>
+</ul>
+</li>
+</ul>
+<h3 id="_16">聚集</h3>
+<ol>
+<li>首先是通信的功能，即消息根据要求发送到目标进程，目标进程也已经收到了各自需要的消息；</li>
+<li>然后是对消息的处理，即执行计算功能；</li>
+<li>最后把处理结果放入指定的接收缓冲区。</li>
+</ol>
+<h4 id="reduce">规约Reduce</h4>
+<ul>
+<li>int MPI_Reduce(void <em>sendbuf, void </em>recvbuf, int count, MPI_Datatype datatype, <b>MPI_Op op</b>, int root, MPI_Comm comm) </li>
+<li>普通归约：MPI_REDUCE<ul>
+<li>该函数将通信器内每个进程输入缓冲区（sendbuf）中的数据按给定的操作进行简单运算，并将其结果返回到根进程的输出缓冲区（recvbuf）中</li>
+</ul>
+</li>
+<li>归约运算可以使用MPI 预定义的运算操作，也可以使用户自己定义的运算操作<ul>
+<li>自定义归约运算操作：MPI_OP_CREATE</li>
+<li>当自定义的运算不再需要时，可以将其释放，以释放其占用的系统资源<ul>
+<li>释放自定义的归约操作：MPI_OP_FREE
+<img alt="" src="http://i.imgur.com/k55Ce5T.png"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="scan">扫描Scan</h4>
+<ul>
+<li>int MPI_Scan(void <em>sendbuf, void </em>recvbuf, int count, MPI_Datatype datatype, MPI_Op op, MPI_Comm comm)<ul>
+<li>可以把扫描操作看作是一种特殊的归约，即每一个进程都对排在它前面的进程进行归约操作</li>
+</ul>
+</li>
+</ul>
+
+      </section>
+    </div>
+
+    
+  </body>
+</html>

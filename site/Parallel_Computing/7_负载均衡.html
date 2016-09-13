@@ -1,37 +1,191 @@
-\<\!DOCTYPE\ html\>\
-\<html\>\
-\ \ \<head\>\
-\ \ \ \ \<meta\ charset\=\'utf\-8\'\>\
-\ \ \ \ \<meta\ http\-equiv\=\"X\-UA\-Compatible\"\ content\=\"chrome\=1\"\>\
-\
-\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/stylesheet\.css\"\ media\=\"screen\"\>\
-\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/github\-dark\.css\"\ media\=\"screen\"\>\
-\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/print\.css\"\ media\=\"print\"\>\
-\
-\ \ \ \ \<title\>\{\{blogname\}\}\-\-\{\{title\}\}\<\/title\>\
-\ \ \<\/head\>\
-\
-\ \ \<body\>\
-\
-\ \ \ \ \<header\>\
-\ \ \ \ \ \ \<div\ class\=\"container\"\>\
-\ \ \ \ \ \ \ \ \<h1\>\{\{\ title\ \}\}\<\/h1\>\
-\ \ \ \ \ \ \ \ \<h2\>\{\{\ subtitle\ \}\}\<\/h2\>\
-\ \ \ \ \ \ \<\/div\>\
-\ \ \ \ \<\/header\>\
-\
-\ \ \ \ \<div\ class\=\"container\"\>\
-\ \ \ \ \ \ \<section\ id\=\"main\_content\"\>\
-\ \ \ \ \ \ \ \ \<h1\>\
-\	\	\<a\ id\=\"blog\"\ class\=\"anchor\"\ href\=\"\/\"\ aria\-hidden\=\"true\"\>\
-\	\	\	\<span\ aria\-hidden\=\"true\"\ class\=\"octicon\ octicon\-link\"\>INDEX\<\/span\>\
-\	\	\<\/a\>\
-\	\	\<\/h1\>\
-\	\	\{\{content\}\}\
-\
-\ \ \ \ \ \ \<\/section\>\
-\ \ \ \ \<\/div\>\
-\
-\ \ \ \ \
-\ \ \<\/body\>\
-\<\/html\>\
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
+
+    <title>{{blogname}}--7_负载均衡</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>7_负载均衡</h1>
+        <h2>{{ subtitle }}</h2>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+		<a id="blog" class="anchor" href="/" aria-hidden="true">
+			<span aria-hidden="true" class="octicon octicon-link">INDEX</span>
+		</a>
+		</h1>
+		<h1 id="chapter-7">Chapter 7 负载均衡</h1>
+<ol>
+<li>定义</li>
+<li>静态负载均衡</li>
+<li>动态负载均衡<ol>
+<li>集中式动态负载均衡</li>
+<li>分散式动态负载均衡</li>
+<li>线性结构动态负载均衡</li>
+</ol>
+</li>
+<li>最短路径问题<ol>
+<li>Dijkstra算法</li>
+<li>Moore算法</li>
+</ol>
+</li>
+</ol>
+<h2 id="_1">静态负载平衡</h2>
+<ul>
+<li>很难准确估计每个进程的时间，如果不真正执行它</li>
+<li>求解步数无法实现确定</li>
+<li>通信延迟</li>
+</ul>
+<h2 id="_2">动态负载平衡</h2>
+<h3 id="_3">集中式动态负载平衡</h3>
+<ol>
+<li>任务由一个中心点分发，主从结构。</li>
+<li>任务由主进程发送给从进程</li>
+<li>从进程结束后向主进程申请新任务。</li>
+</ol>
+<p>术语： work pool, replicated worker, processor farm.  </p>
+<p><img alt="" src="http://i.imgur.com/YXQeQYd.png"></p>
+<h3 id="_4">分散式动态负载均衡</h3>
+<ol>
+<li>适合于进程个数较多，计算任务颗粒较细</li>
+<li>一组进程来完成任务的分配。</li>
+<li>工作进程可以把任务分配给其他进程，也能从其他进程得到任务。</li>
+</ol>
+<h4 id="_5">树状分散式工作池</h4>
+<p><img alt="" src="http://i.imgur.com/L7PXLGh.png"></p>
+<h4 id="_6">全分布工作池</h4>
+<p><img alt="" src="http://i.imgur.com/KAhAwIx.png"></p>
+<h4 id="_7">进程选择方式</h4>
+<ol>
+<li>轮询 round robin</li>
+<li>随机 random polling</li>
+</ol>
+<h3 id="_8"><font color='red'>线性结构负载均衡</font></h3>
+<ol>
+<li>主进程从一端向队列输入任务。</li>
+<li>某进程发现其输入端有任务，且其自身空闲，就取得任务。</li>
+<li>任务沿着队列向后移动。</li>
+<li>逐渐地，所有的进程都具有任务</li>
+<li>高优先级的任务先放入队列。</li>
+</ol>
+<p><img alt="" src="http://i.imgur.com/TCyeff7.png"></p>
+<h4 id="_9">主进程</h4>
+<pre><code>for(int i=0;i&lt;num_tasks;i++)
+{
+    recv(P1,request_tag);       // 从P1接收请求
+    send(&amp;task,P1,task_tag);        // 发送任务给P1
+}
+recv(P1,request_tag);           // 接收请求
+send(&amp;empty,P1,task_tag);       // 任务结束
+</code></pre>
+<h4 id="_10">从进程</h4>
+<pre><code>if(buffer==empty)
+{
+send(Pi-1,request_tag); //  请求任务
+recv(&amp;buffer,Pi-1,task_tag); //收到任务
+}
+if(buffer==full)&amp;&amp;(!busy)
+{
+task=buffer;
+buffer=empty;
+busy=true; // 将缓冲区的任务拿去执行
+}
+nrecv（Pi+1，request_tag,request);
+// 非阻塞地接收右边进程请求
+if(request&amp;&amp;(buffer==full))
+// 实际代码中要使用MPI_Wait() 或 MPI_Test() 检测request
+{
+send(&amp;buffer,Pi+1);
+buffer=empty;
+}
+if(busy)
+{
+dowork();
+busy=false;
+}
+</code></pre>
+<p><b>线性结构也可以扩展为一棵树,有多个后继</b>
+<img alt="" src="http://i.imgur.com/LXLnlsI.png"></p>
+<h2 id="-moore">最短路问题-Moore算法</h2>
+<ol>
+<li>设源点为s∈V,从s到其它各顶点的最短路径长度用一个一维数组dist存储。首先置dist(s)=0，dist(v)←∞，v≠s，v∈V。Moore算法同Dijkstra算法不同之处是：将Dijkstra算法中的待搜索顶点表替换成待搜索队列。<ol>
+<li>dist(s)=0，dist(v)←∞，v≠s，v∈V。</li>
+<li>搜索队列queue 输入 s</li>
+<li>如果待搜索队列非空，<ol>
+<li>将队头的顶点u从队列中移出作为本次搜索的顶点</li>
+<li>然后检查u的所有射出边uv，uv∈E。若dist(u)+w(u,v)&lt;dist(v)，则此时找出了一条从s到v的更短路径，置dist(v)等于dist(u)+w(u,v)。若v不在搜索队列中，则把v加入到队列的队尾。</li>
+</ol>
+</li>
+<li>如此重复进行，直到整个待搜索队列空时，算法终止。</li>
+</ol>
+</li>
+<li>复杂度是O (nm)，期中m是边/弧数</li>
+</ol>
+<h3 id="_11">并行实现</h3>
+<ul>
+<li>集中式工作池</li>
+<li>主进程：顶点队列 ，当前的最优距离数组</li>
+<li>从进程：图的邻接矩阵为所有进程共享</li>
+</ul>
+<h4 id="_12">主进程</h4>
+<pre><code>while(vertex_queue!=empty)
+{
+recv(Pany, Source=pi);  // 来自于从进程的请求，可以是任意从进程，接收后获取其进程号
+v=get_vertex_queue();    // 取得头节点
+send(&amp;v,Pi);                     // 节点发送给pi进程
+send(&amp;dist,&amp;n,Pi)             // 最新的距离向量发送给pi进程
+recv(&amp;j,&amp;dist[j],Pany,source=Pi);    // 有更好的结果返回，接收来自于任何进程的请求，接收后获知其进程号pi（与前面的pi未必相同）
+append_queue(j,dist[j]);    // 把新的节点加入到队列尾部，如果队列已经有此点，则不加。
+}
+recv(Pany,source=pi);      
+send(Pi,termination_tag);       // 任务结束
+</code></pre>
+<h4 id="_13">从进程</h4>
+<pre><code>send（Pmaster）  // 请求任务
+recv（&amp;v，Pmaster，tag）  // 接收到指示
+if(tag!=termination_tag)         // 如果有任务
+{
+     recv(&amp;dist,&amp;n,Pmaster)     // 接收到距离
+    for(j=0;j&lt;n;j++)
+         if(w[v][j]!=infinity) 
+        {
+            newdist_j=dist[v]+w[v][j])
+            if(newdist_j&lt;dist[j])
+            {
+                dist[j]=newdist_j;
+                send(&amp;j,&amp;dist[j],Pmaster);  // 找到更好的距离了，发送给主进程。
+            }
+        }
+}
+</code></pre>
+<h3 id="_14">分散式工作池实现</h3>
+<ol>
+<li>顶点与进程一一对应。</li>
+<li>邻接矩阵为各进程共享。</li>
+<li>最短距离数组dist 分布在各进程中，进程i记录dist[i] 的最新值。</li>
+<li>没有显示的队列。</li>
+<li>每个顶点收到一个距离，如果优于到目前为止的最优距离，则立刻以此顶点为中心展开搜索，把到邻居的距离发送给邻居。</li>
+<li>每个邻居则会递归重复上述过程。</li>
+<li>顶点只有收到新距离才是活动的。</li>
+<li>顶点个数多于进程个数时，一个进程处理多个顶点。</li>
+</ol>
+
+      </section>
+    </div>
+
+    
+  </body>
+</html>

@@ -1,37 +1,361 @@
-\<\!DOCTYPE\ html\>\
-\<html\>\
-\ \ \<head\>\
-\ \ \ \ \<meta\ charset\=\'utf\-8\'\>\
-\ \ \ \ \<meta\ http\-equiv\=\"X\-UA\-Compatible\"\ content\=\"chrome\=1\"\>\
-\
-\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/stylesheet\.css\"\ media\=\"screen\"\>\
-\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/github\-dark\.css\"\ media\=\"screen\"\>\
-\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/print\.css\"\ media\=\"print\"\>\
-\
-\ \ \ \ \<title\>\{\{blogname\}\}\-\-\{\{title\}\}\<\/title\>\
-\ \ \<\/head\>\
-\
-\ \ \<body\>\
-\
-\ \ \ \ \<header\>\
-\ \ \ \ \ \ \<div\ class\=\"container\"\>\
-\ \ \ \ \ \ \ \ \<h1\>\{\{\ title\ \}\}\<\/h1\>\
-\ \ \ \ \ \ \ \ \<h2\>\{\{\ subtitle\ \}\}\<\/h2\>\
-\ \ \ \ \ \ \<\/div\>\
-\ \ \ \ \<\/header\>\
-\
-\ \ \ \ \<div\ class\=\"container\"\>\
-\ \ \ \ \ \ \<section\ id\=\"main\_content\"\>\
-\ \ \ \ \ \ \ \ \<h1\>\
-\	\	\<a\ id\=\"blog\"\ class\=\"anchor\"\ href\=\"\/\"\ aria\-hidden\=\"true\"\>\
-\	\	\	\<span\ aria\-hidden\=\"true\"\ class\=\"octicon\ octicon\-link\"\>INDEX\<\/span\>\
-\	\	\<\/a\>\
-\	\	\<\/h1\>\
-\	\	\{\{content\}\}\
-\
-\ \ \ \ \ \ \<\/section\>\
-\ \ \ \ \<\/div\>\
-\
-\ \ \ \ \
-\ \ \<\/body\>\
-\<\/html\>\
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
+
+    <title>{{blogname}}--TSPi Week1</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>TSPi Week1</h1>
+        <h2>{{ subtitle }}</h2>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+		<a id="blog" class="anchor" href="/" aria-hidden="true">
+			<span aria-hidden="true" class="octicon octicon-link">INDEX</span>
+		</a>
+		</h1>
+		<h1 id="introduction">Introduction</h1>
+<h2 id="1-why-study-tsp-whats-tspi">1. Why study TSP &amp; What's TSPi(了解)</h2>
+<h2 id="2-tspi-design">2. TSPi Design(了解)</h2>
+<ol>
+<li>simple framework based on PSP</li>
+<li>several cycles</li>
+<li>standard measures for quality, performance and for teams &amp; students</li>
+<li>use role &amp; team evaluations</li>
+<li>require process discipline</li>
+<li>guidance on teamwork</li>
+</ol>
+<h2 id="3-tspi-structure-flow">3. TSPi Structure &amp; Flow(<font color='red'>掌握</font>)</h2>
+<ol>
+<li>最基本的开发策略:<font color = 'red'>循环(Cyclic)</font></li>
+<li>8个过程阶段(比TSP多一个,<font color='red'>要知道8个阶段,不能有单词拼写错误</font>)<ol>
+<li>Launch</li>
+<li>Strategy</li>
+<li>Plan</li>
+<li>Requirement</li>
+<li>Design</li>
+<li>Implementation</li>
+<li>Test</li>
+<li>Postmortem(事后析误)</li>
+</ol>
+</li>
+</ol>
+<h2 id="4-the-cyclic-development-strategy">4. The Cyclic Development Strategy(了解)</h2>
+<ol>
+<li>每个迭代生产前期可测试版本</li>
+<li>small enough, 能够在规定时间内完成</li>
+<li>迭代结束后,最终产品</li>
+</ol>
+<h1 id="the-logic-of-the-team-software-process">The Logic of the Team Software Process</h1>
+<h2 id="vocab">Vocab.</h2>
+<ol>
+<li>procrastination</li>
+<li>creep</li>
+<li>cohesion</li>
+<li>jell</li>
+<li>arbitrary</li>
+</ol>
+<h2 id="why-project-fail">Why Project Fail</h2>
+<ol>
+<li><font color = 'red'>原因:对压力的不良反应</font><ol>
+<li>In Software Project:<font color = 'red'>压力主要来源于日程表太过紧凑</font></li>
+<li>TSP通过<font color ='red'>Strategy &amp; Planning process</font>, 安排与能力匹配的时间表,来解决这个问题</li>
+</ol>
+</li>
+</ol>
+<h2 id="22-common-team-problems">2.2 Common Team Problems(<font color='red'>掌握</font>)</h2>
+<ol>
+<li>Ineffective Leadership 领导不力</li>
+<li>Failure to Compromise or Cooperate 妥协或团队合作不力</li>
+<li>Lack of Participation 缺乏参与</li>
+<li>Procrastination and Lack of Confidence 拖延且缺乏信心</li>
+<li>Poor Quality 低劣的软件质量</li>
+<li>Function Creep 功能蔓延</li>
+<li>Ineffective Peer Evaluation 无效的同伴评价</li>
+</ol>
+<h2 id="23-what-is-a-team">2.3 What is a Team?</h2>
+<ul>
+<li>定义(<font color='red'>掌握</font>)<ol>
+<li>一个Team包括至少两个人</li>
+<li>这些成员为一个共同目标努力</li>
+<li>每个成员都有特定的被指派的角色或者功能</li>
+<li>实现目标依赖于成员的相互依赖合作</li>
+</ol>
+</li>
+<li>与group区别:group不一定有相同目标</li>
+</ul>
+<h2 id="24-building-effective-teams">2.4 Building Effective Teams<font color='red'>掌握</font></h2>
+<ol>
+<li>Team Cohesion 团队内聚力</li>
+<li>Challenging Goal 挑战性目标</li>
+<li>Feedback 反馈(能知道每个成员做了什么和他们的表现)</li>
+<li>Common Working Framework 达成一致的工作框架(如开始/完成时间,阶段)</li>
+</ol>
+<h2 id="25-how-teams-develop">2.5 How Teams Develop</h2>
+<ol>
+<li>需要时间累积</li>
+<li>分为以下三方层次<ol>
+<li>outset:最开始成员有不同目标</li>
+<li>jell:成员接受团队目标(Launch)</li>
+<li>arbitrary:团队对目标还有争议,但共同处理建设</li>
+</ol>
+</li>
+</ol>
+<h2 id="26-how-tspi-build-teams25">2.6 How TSPi build Teams(注意与2.5节区别)<font color='red'>掌握</font></h2>
+<ol>
+<li>Goals:by having all team members participate in defining a set of common goals</li>
+<li>Roles:defines a standard set of team-member roles</li>
+<li>Plans</li>
+<li>Communication(Internal Communication):hold team meetings every week.</li>
+<li>External Communication:make weekly summary reports to the instructor</li>
+</ol>
+<h1 id="chapter-3-launch">Chapter 3 Launch</h1>
+<h2 id="vocabulary">Vocabulary</h2>
+<p>Complementary:互补的</p>
+<p>Yield:产量,利润</p>
+<p>Facilitator:促进者</p>
+<p>Moderate:适度的,使缓和</p>
+<p>Baseline:基线</p>
+<h2 id="31-student-infomation">3.1 Student Infomation</h2>
+<ol>
+<li>step<ol>
+<li>each student fill INFO form</li>
+<li>The instructor make team and role assignments.</li>
+</ol>
+</li>
+</ol>
+<h2 id="33-team-role">3.3 Team Role</h2>
+<ol>
+<li>Team leader</li>
+<li>Development Manager</li>
+<li>Planning Manager</li>
+<li>Quality/Process Manager</li>
+<li>Support Manager</li>
+</ol>
+<h2 id="34-team-goals">3.4 Team Goals</h2>
+<h3 id="why-team-goals">Why Team Goals</h3>
+<ol>
+<li>an essential step at the start</li>
+</ol>
+<h3 id="goals-setting-consideration">Goals Setting Consideration<font color = 'red'>(掌握)</font></h3>
+<ol>
+<li>set aggressive but realistic goals有挑战性,可实现</li>
+<li>set specific and measured goals简单的,可评估的</li>
+</ol>
+<h2 id="35-goal-setting-for-tspi">3.5 Goal Setting for TSPi(模板)</h2>
+<ol>
+<li><font color ='red'>Goal 1: produce a quality product</font> <ol>
+<li>Measure 1.1: Percent of defect found before the first compile (Process Yield):80%</li>
+<li>Measure 1.2: Number of defects found in system test:0</li>
+<li>.. Requirements functions included at project completion:100%</li>
+</ol>
+</li>
+<li><font color ='red'>Run a productive and well-managed project.</font><ol>
+<li>Error in estimated product size: &lt; 20%</li>
+<li>Error in estimated development hours: &lt; 20%</li>
+<li>Percent of data recorded and entered in project notebook: 100%</li>
+</ol>
+</li>
+<li><font color ='red'>Finish on time</font><ol>
+<li>Days early or late in completing the development cycle &lt;4</li>
+</ol>
+</li>
+</ol>
+<h2 id="36-team-member-goals">3.6 Team Member Goals(<font color = 'yellow'>理解</font>)</h2>
+<p><img alt="" src="http://i.imgur.com/KQzB6xI.png"></p>
+<h2 id="37-the-role-goals">3.7 The Role Goals<font color = 'red'>掌握</font></h2>
+<h3 id="team-leader">Team Leader</h3>
+<ol>
+<li>build &amp; Maintain an effective team创建高效团队</li>
+<li>Motivate all team members to work aggressively on the project.激发团队成员的工作进取心</li>
+<li>Resolve all the issues team members bring to you.解决所有问题</li>
+<li>Keep the instructor fully informed about the team's progress. 与指导者之间良好沟通</li>
+<li>perform effectively as the team's meeting facilitator. 团队会议的组织者</li>
+</ol>
+<h3 id="development-manager">Development Manager</h3>
+<ol>
+<li>produce a superior product</li>
+<li>fully use the team members' skill and ability.</li>
+</ol>
+<h3 id="planning-manager">Planning Manager</h3>
+<ol>
+<li>Produce a complete,precise,and accurate plan for team and members.负责完整精确正确的计划</li>
+<li>Accurately report team status every week.</li>
+</ol>
+<h3 id="qualityprocess-manager">Quality/Process Manager</h3>
+<ol>
+<li>All team members accurately report and properly use the TSPi process data</li>
+<li>The team faithfully follows the TSPi and produces a product.</li>
+<li>All team inspections are properly moderate and reported.</li>
+<li>All team meetings are accurately reported, and the reports are put in the project notebook.</li>
+</ol>
+<h3 id="support-manager">Support Manager</h3>
+<ol>
+<li>Team has suitable tools and methods to support its work.</li>
+<li>No unauthorized changes are made to baselined products</li>
+<li>All team's risks and issues are recorded in the risk-tracking system and report each week</li>
+<li>The team meets its reuse goals for the development cycle</li>
+</ol>
+<h2 id="38-team-meeting">3.8 Team Meeting</h2>
+<ol>
+<li>作用:<ol>
+<li>team communication</li>
+<li>planning</li>
+<li>decision making</li>
+</ol>
+</li>
+<li>最重要作用(<font color='yellow'>理解</font>)<ol>
+<li>收集分析团队数据</li>
+</ol>
+</li>
+</ol>
+<h2 id="39-the-first-team-meeting">3.9 The first Team Meeting(<font color='red'>重要,掌握</font>)</h2>
+<ol>
+<li>startup</li>
+<li>具体需做<ol>
+<li>讨论角色</li>
+<li>复查和修订团队目标(如TSPi模板)</li>
+<li>确定每周例会时间</li>
+<li>确定每周把TSPi相关文档数据提交给计划经理的时间</li>
+</ol>
+</li>
+</ol>
+<h2 id="310-data-requirements">3.10 Data Requirements</h2>
+<ol>
+<li>每个团队成员每周都需要更新自己的TASK,SCHEDULE,WEEK表格并交给计划经理</li>
+<li>计划经理产生每周回报</li>
+<li>Team leader汇报给指导者</li>
+</ol>
+<h1 id="chapter-4-the-development-strategy">Chapter 4 The Development Strategy</h1>
+<h2 id="vocabulary_1">Vocabulary</h2>
+<ol>
+<li>postulate 要求,假定,以...为出发点</li>
+<li>identify 识别</li>
+<li>preliminary 预备的</li>
+<li>figure out</li>
+<li>justified 有道理的</li>
+<li>compromise 损害,连累,危及</li>
+<li>justify 证明...有道理的</li>
+</ol>
+<h2 id="41-what-the-strategy-is">4.1 What the Strategy is</h2>
+<ol>
+<li>策略是为了找出构建大型系统的方法(了解)</li>
+<li>目标是尽可能减少风险(日程太近导致项目做不出来)</li>
+<li>循环开发策略</li>
+</ol>
+<h2 id="42-how-the-strategy-is-produced">4.2 How the Strategy is produced(了解)</h2>
+<ol>
+<li>列出策略约束</li>
+<li>列出可能策略</li>
+<li>列出利弊</li>
+<li>评估</li>
+<li>决定</li>
+<li>记录</li>
+</ol>
+<h2 id="43-establish-strategy-criteria">4.3 Establish Strategy Criteria(了解)</h2>
+<p>评估策略是否合理的标准</p>
+<ol>
+<li>周期一一定生产出最终产品的最核心功能集</li>
+<li>周期1核心版本后续可以升级加强</li>
+<li>每个周期的产品高质量且可测</li>
+<li>采取模块化结构,工作相对独立完成</li>
+</ol>
+<h2 id="44-produce-the-conceptual-design">4.4 策略周期主要做的三件事-Produce the conceptual Design</h2>
+<ol>
+<li>确定所有周期会开发的功能</li>
+<li>分配到不同周期how/component/function/big</li>
+</ol>
+<h2 id="45-produce-the-preliminary-size-estimate">4.5 策略周期主要做的三件事-Produce the Preliminary Size Estimate</h2>
+<ol>
+<li>Planning Manager计算大概需要多少行新添加或者修改的代码</li>
+<li>计入STRAT表</li>
+</ol>
+<h2 id="46-produce-the-preliminary-time-estimate">4.6 策略周期主要做的三件事-Produce the Preliminary Time Estimate</h2>
+<ol>
+<li>Planning Manager使用LOC-per-hour计算工时</li>
+</ol>
+<h2 id="47-">4.7 第二件重要的事-风险评估</h2>
+<ol>
+<li>Risk 可能发生 Issue 必然发生</li>
+<li>常见风险问题(<font color='red'>掌握</font>)<ol>
+<li>Too large a product <ul>
+<li>解决:先建立小的核心功能早期版本,功能分周期迭代</li>
+</ul>
+</li>
+<li>Difficult or complex function<ul>
+<li>解决:建立原型进行取舍</li>
+</ul>
+</li>
+<li>Support System Problem<ul>
+<li>解决: 先做demo了解支持系统工作原理</li>
+</ul>
+</li>
+<li>Testing time:<ul>
+<li>原因:缺陷太多测试期长</li>
+<li>解决:依据TSP和PSP过程</li>
+</ul>
+</li>
+<li>Product Control<ul>
+<li>解决:TSP强调配置管理</li>
+</ul>
+</li>
+<li>Teamwork Problem</li>
+</ol>
+</li>
+<li>过程<ol>
+<li>找出risk</li>
+<li>给risk打分</li>
+<li>分配等级高于LL的给成员来跟踪,在周会讨论</li>
+<li>记录到ITL表</li>
+</ol>
+</li>
+</ol>
+<h2 id="48-riskitl">4.8 记录risk到ITL表</h2>
+<h2 id="49-produce-the-configuration-management-plan">4.9 第三件重要的事-Produce the Configuration Management Plan<font color='red'>掌握</font></h2>
+<ol>
+<li>SCM(Software Configuration Management)<ol>
+<li>CIP 配置标识计划<ol>
+<li>给出命名规则,保证产品无重名</li>
+<li>标识产品纳入配置管理控制下的时间点</li>
+<li>标出product的owner,需要通过拥有者同意才能修改</li>
+</ol>
+</li>
+<li>CCP 配置控制规程<ol>
+<li>保证更改不冲突</li>
+</ol>
+</li>
+<li>CCB 配置控制委员会<ol>
+<li>一定包含Development Manager</li>
+<li>由Support Manager负责</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>目的:确保所有软件产品的内容已知,可用,可追踪的</li>
+</ol>
+<h2 id="411-exit-criteria">4.11 Exit Criteria(<font color='red'>掌握</font>)</h2>
+<ol>
+<li>STRAT form</li>
+<li>ITL form</li>
+<li>软件配置管理SCM</li>
+</ol>
+
+      </section>
+    </div>
+
+    
+  </body>
+</html>

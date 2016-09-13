@@ -1,37 +1,108 @@
-\<\!DOCTYPE\ html\>\
-\<html\>\
-\ \ \<head\>\
-\ \ \ \ \<meta\ charset\=\'utf\-8\'\>\
-\ \ \ \ \<meta\ http\-equiv\=\"X\-UA\-Compatible\"\ content\=\"chrome\=1\"\>\
-\
-\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/stylesheet\.css\"\ media\=\"screen\"\>\
-\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/github\-dark\.css\"\ media\=\"screen\"\>\
-\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/print\.css\"\ media\=\"print\"\>\
-\
-\ \ \ \ \<title\>\{\{blogname\}\}\-\-\{\{title\}\}\<\/title\>\
-\ \ \<\/head\>\
-\
-\ \ \<body\>\
-\
-\ \ \ \ \<header\>\
-\ \ \ \ \ \ \<div\ class\=\"container\"\>\
-\ \ \ \ \ \ \ \ \<h1\>\{\{\ title\ \}\}\<\/h1\>\
-\ \ \ \ \ \ \ \ \<h2\>\{\{\ subtitle\ \}\}\<\/h2\>\
-\ \ \ \ \ \ \<\/div\>\
-\ \ \ \ \<\/header\>\
-\
-\ \ \ \ \<div\ class\=\"container\"\>\
-\ \ \ \ \ \ \<section\ id\=\"main\_content\"\>\
-\ \ \ \ \ \ \ \ \<h1\>\
-\	\	\<a\ id\=\"blog\"\ class\=\"anchor\"\ href\=\"\/\"\ aria\-hidden\=\"true\"\>\
-\	\	\	\<span\ aria\-hidden\=\"true\"\ class\=\"octicon\ octicon\-link\"\>INDEX\<\/span\>\
-\	\	\<\/a\>\
-\	\	\<\/h1\>\
-\	\	\{\{content\}\}\
-\
-\ \ \ \ \ \ \<\/section\>\
-\ \ \ \ \<\/div\>\
-\
-\ \ \ \ \
-\ \ \<\/body\>\
-\<\/html\>\
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
+
+    <title>{{blogname}}--WikiWrite_Generating_Wikipedia_Articles_Automatically</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>WikiWrite_Generating_Wikipedia_Articles_Automatically</h1>
+        <h2>{{ subtitle }}</h2>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+		<a id="blog" class="anchor" href="/" aria-hidden="true">
+			<span aria-hidden="true" class="octicon octicon-link">INDEX</span>
+		</a>
+		</h1>
+		<h1 id="wikiwrite-generating-wikipedia-articles-automatically">WikiWrite: Generating Wikipedia Articles Automatically</h1>
+<h2 id="authur">Authur</h2>
+<ol>
+<li>Siddhartha Banerjee</li>
+<li>Prasenjit Mitra</li>
+</ol>
+<h2 id="keyword">Keyword</h2>
+<ol>
+<li>WikiWrite: a system capable of generating new Wikipedia content.<b>learn content templates from similar articles without Wikipedia categories</b></li>
+<li>document embedding:文本嵌入</li>
+<li>paraphrasing:释义<ol>
+<li>the system used the original word without any paraphrasing.</li>
+</ol>
+</li>
+<li>Informativeness:信息量</li>
+</ol>
+<h2 id="abstract">Abstract</h2>
+<ol>
+<li>
+<p>obtains feature representations of entities on Wikipedia</p>
+<ol>
+<li>
+<p>an existing work on document embeddings to obtain <b>vector representations</b> of words and paragraphs.(<font color="blue">Attention!Preprocessor here!</font>)</p>
+<ul>
+<li>obtain the vector representations of <font color ="red">the red-linked entities</font> using paragraph vector model(Le and Mikolov,2014)<b>(PV-DM model)</b></li>
+</ul>
+</li>
+<li>
+<p>Using words &amp; paragraphs representation, <b>identify articles</b> that are <b>very similar to the new entity</b> on Wikipedia.</p>
+<ul>
+<li>articles to be identified: existing Wikipedia articles that are semantically close to the red-linked entity(<font color = "blue"><b>Using cosine similarity</b></font>)</li>
+</ul>
+</li>
+<li>Train machine learning classifiers using <b>content from the similar articles</b> to <font color = "green">assign web retrieved content on the new entity into relevant sections</font> in the new entity's Wiki.</li>
+<li>Propose a novel abstractive summarization(新型抽象总结?) technique that use <b>two-step ILP model</b> to <b>synthesize the assigned content in each section</b> &amp; rewrite the content to produce a well-formed informative summary.</li>
+<li>this Article jointly optimizes the order with the informativeness and linguistic quality of the summary(of the content assigned to the sections in the article).</li>
+<li>compute the coherence score between any two sentences using transition probabilities of word-pairs(nouns and verbs) between the sentences.<ol>
+<li><b>THE transition probabilities are learned from pairs of adjacent sentences that exist in the similar articles.</b></li>
+</ol>
+</li>
+<li>propose an optimization model to find a <b>suitable set of lexical and phrasal transformations</b> for <b>paraphrasing the generated summaries.</b></li>
+</ol>
+<h2 id="1-introduction">1 Introduction</h2>
+<h3 id="assumption">Assumption</h3>
+<ol>
+<li>Wikipedia categories are known.</li>
+<li>articles often belongs to multiple categories.</li>
+<li><font color='red'>copyright violations</font>, the text on internet can not be directly use</li>
+<li>An abstractive summarization system,use <b>sentence fusion</b></li>
+<li>sentences selected (and paraphased) from multiple docs must be ordered such that the resulting article is coherent.</li>
+<li>this Article jointly optimizes the order with the informativeness and linguistic quality of the summary(of the content assigned to the sections in the article 2.1).</li>
+</ol>
+</li>
+</ol>
+<h3 id="data-source">Data Source</h3>
+<ol>
+<li>obtain the red-linked entites using a paragraph vector model(Le and Mikolov,2014)<ul>
+<li>paragraph vector model: computes continuous distributed vector representations of varying-length texts</li>
+</ul>
+</li>
+</ol>
+<h3 id="how-to-evaluate-the-efficiency">How to evaluate the efficiency</h3>
+<ol>
+<li>compare the accuracies with other comparable systems.</li>
+<li>reconstruct existing articles on Wiki and compare the org &amp; autogen</li>
+<li>create 50 new articles in Wiki.</li>
+</ol>
+<h2 id="question">Question</h2>
+<h3 id="abstract_1">Abstract</h3>
+<ol>
+<li>1.1 what's document embedding?</li>
+</ol>
+
+      </section>
+    </div>
+
+    
+  </body>
+</html>

@@ -1,37 +1,177 @@
-\<\!DOCTYPE\ html\>\
-\<html\>\
-\ \ \<head\>\
-\ \ \ \ \<meta\ charset\=\'utf\-8\'\>\
-\ \ \ \ \<meta\ http\-equiv\=\"X\-UA\-Compatible\"\ content\=\"chrome\=1\"\>\
-\
-\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/stylesheet\.css\"\ media\=\"screen\"\>\
-\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/github\-dark\.css\"\ media\=\"screen\"\>\
-\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/print\.css\"\ media\=\"print\"\>\
-\
-\ \ \ \ \<title\>\{\{blogname\}\}\-\-\{\{title\}\}\<\/title\>\
-\ \ \<\/head\>\
-\
-\ \ \<body\>\
-\
-\ \ \ \ \<header\>\
-\ \ \ \ \ \ \<div\ class\=\"container\"\>\
-\ \ \ \ \ \ \ \ \<h1\>\{\{\ title\ \}\}\<\/h1\>\
-\ \ \ \ \ \ \ \ \<h2\>\{\{\ subtitle\ \}\}\<\/h2\>\
-\ \ \ \ \ \ \<\/div\>\
-\ \ \ \ \<\/header\>\
-\
-\ \ \ \ \<div\ class\=\"container\"\>\
-\ \ \ \ \ \ \<section\ id\=\"main\_content\"\>\
-\ \ \ \ \ \ \ \ \<h1\>\
-\	\	\<a\ id\=\"blog\"\ class\=\"anchor\"\ href\=\"\/\"\ aria\-hidden\=\"true\"\>\
-\	\	\	\<span\ aria\-hidden\=\"true\"\ class\=\"octicon\ octicon\-link\"\>INDEX\<\/span\>\
-\	\	\<\/a\>\
-\	\	\<\/h1\>\
-\	\	\{\{content\}\}\
-\
-\ \ \ \ \ \ \<\/section\>\
-\ \ \ \ \<\/div\>\
-\
-\ \ \ \ \
-\ \ \<\/body\>\
-\<\/html\>\
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
+
+    <title>{{blogname}}--软件项目管理</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>软件项目管理</h1>
+        <h2>{{ subtitle }}</h2>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+		<a id="blog" class="anchor" href="/" aria-hidden="true">
+			<span aria-hidden="true" class="octicon octicon-link">INDEX</span>
+		</a>
+		</h1>
+		<h1 id="_1">软件项目管理</h1>
+<h2 id="_2">软件项目管理概念和重要性</h2>
+<p><img alt="" src="http://i.imgur.com/P3U5XkK.png"></p>
+<h2 id="1">第1章 软件项目管理概述</h2>
+<h3 id="11">1.1 项目与软件项目</h3>
+<ul>
+<li>项目：为了创造一个唯一的产品或者提供一个唯一的服务而进行的临时性的努力</li>
+<li>项目是唯一的</li>
+<li>项目的特征<ul>
+<li>有明确的目标</li>
+<li>项目之间的活动具有相关性<ul>
+<li>需求,设计,代码,测试...</li>
+</ul>
+</li>
+<li>限定的周期</li>
+<li>独特性</li>
+<li>资源成本的约束性</li>
+<li>项目的不确定性</li>
+</ul>
+</li>
+<li>软件项目的特殊性<ul>
+<li>逻辑试题</li>
+<li>相互作用的系统</li>
+<li>变更</li>
+<li>渐进明细</li>
+</ul>
+</li>
+</ul>
+<h3 id="12">1.2 项目管理与软件项目管理</h3>
+<p><img alt="" src="http://i.imgur.com/Xz5TBaw.png">
+项目管理是一系列的伴随着项目进行而进行的,目的是为了确保项目能够达到期望的结果的一系列管理行为</p>
+<h3 id="13-pmbok">1.3 项目管理知识体系(PMBOK)</h3>
+<p>每4-5年有新版本,10个域,共47个过程,5个过程组</p>
+<ol>
+<li>Scope Mgt<ul>
+<li>范围管理,明确管理对象及范围</li>
+</ul>
+</li>
+<li>Time Mgt<ul>
+<li>项目时间管理</li>
+</ul>
+</li>
+<li>Cost Mgt<ul>
+<li>成本管理</li>
+</ul>
+</li>
+<li>Quality Mgt<ul>
+<li>质量管理(1-4为主要管理)</li>
+</ul>
+</li>
+<li>HR Mgt<ul>
+<li>人力资源管理</li>
+</ul>
+</li>
+<li>Comm Mgt<ul>
+<li>沟通管理</li>
+</ul>
+</li>
+<li>Risk Mgt<ul>
+<li>风险管理</li>
+</ul>
+</li>
+<li>Procurement Mgt<ul>
+<li>采购管理</li>
+</ul>
+</li>
+<li>StakeHolder Mgt(New)<ul>
+<li>干系管理</li>
+</ul>
+</li>
+<li>Integration Mgt<ul>
+<li>集成</li>
+</ul>
+</li>
+</ol>
+<h3 id="14">1.4 过程管理在软件项目管理中的作用</h3>
+<ul>
+<li>可以通过提高过程质量提高产品质量</li>
+<li>过程管理,就是对过程进行管理使过程能够被共享,复用,得到持续改进</li>
+<li>项目规划过程,指导项目执行
+<img alt="" src="http://i.imgur.com/VDYINlI.png"></li>
+<li>五个过程组<ol>
+<li>初始</li>
+<li>计划</li>
+<li>控制(有时将执行控制合并)</li>
+<li>执行</li>
+<li>结束</li>
+</ol>
+</li>
+</ul>
+<h3 id="15">1.5 软件项目管理过程</h3>
+<p><img alt="" src="http://i.imgur.com/bYLxMpm.png">
+基于路线图管理项目</p>
+<h2 id="2">第2章 软件项目确立</h2>
+<p><img alt="" src="http://i.imgur.com/VKZ2Rt7.png">
+- 立项,招投标,授权</p>
+<h3 id="21">2.1 项目立项</h3>
+<p><img alt="" src="http://i.imgur.com/XTg5eg3.png">
+- 项目立项:明确项目的目标,时间表,项目使用的资源和经费,而且得到执行该项目的项目经理和项目发起人的认可
+- Make or Buy决策</p>
+<h3 id="22">2.2 项目招投标</h3>
+<ul>
+<li>甲方:招标书 乙方:项目分析,标书(建议书(参与竞标))</li>
+<li>招标书<ul>
+<li>对象,资格</li>
+<li>投标格式</li>
+<li>评标</li>
+<li>验收标准</li>
+<li>etc.
+<img alt="" src="http://i.imgur.com/bADM8oP.png"></li>
+</ul>
+</li>
+<li>标书<ul>
+<li>目标,需求,技术方案,项目管理思路等...</li>
+</ul>
+</li>
+</ul>
+<h3 id="23">2.3 项目授权</h3>
+<ul>
+<li>授权书</li>
+<li>确认项目存在的文件,包括对项目的确认,对项目经理的授权和对项目目标的概述等</li>
+<li>项目任务书</li>
+</ul>
+<h3 id="25">2.5 课程实践</h3>
+<p>项目分析
+1. 需求
+2. 技术实现
+3. 工作量
+4. 是否可行
+5. 问题</p>
+<h2 id="3">第3章 软件生存期模型</h2>
+<h3 id="31">3.1 生存期模型定义</h3>
+<p>软件生存期模型特征
+- 描述开发的主要阶段
+- 定义每个阶段完成的主要过程和活动
+- 定义每个阶段的输入输出</p>
+<h2 id="4">第4章 软件项目需求管理</h2>
+<ul>
+<li>项目计划-&gt;范围计划-&gt;需求管理</li>
+<li><img alt="" src="http://i.imgur.com/mP7MBZT.png"></li>
+</ul>
+
+      </section>
+    </div>
+
+    
+  </body>
+</html>

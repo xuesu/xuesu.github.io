@@ -1,37 +1,159 @@
-\<\!DOCTYPE\ html\>\
-\<html\>\
-\ \ \<head\>\
-\ \ \ \ \<meta\ charset\=\'utf\-8\'\>\
-\ \ \ \ \<meta\ http\-equiv\=\"X\-UA\-Compatible\"\ content\=\"chrome\=1\"\>\
-\
-\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/stylesheet\.css\"\ media\=\"screen\"\>\
-\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/github\-dark\.css\"\ media\=\"screen\"\>\
-\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/print\.css\"\ media\=\"print\"\>\
-\
-\ \ \ \ \<title\>\{\{blogname\}\}\-\-\{\{title\}\}\<\/title\>\
-\ \ \<\/head\>\
-\
-\ \ \<body\>\
-\
-\ \ \ \ \<header\>\
-\ \ \ \ \ \ \<div\ class\=\"container\"\>\
-\ \ \ \ \ \ \ \ \<h1\>\{\{\ title\ \}\}\<\/h1\>\
-\ \ \ \ \ \ \ \ \<h2\>\{\{\ subtitle\ \}\}\<\/h2\>\
-\ \ \ \ \ \ \<\/div\>\
-\ \ \ \ \<\/header\>\
-\
-\ \ \ \ \<div\ class\=\"container\"\>\
-\ \ \ \ \ \ \<section\ id\=\"main\_content\"\>\
-\ \ \ \ \ \ \ \ \<h1\>\
-\	\	\<a\ id\=\"blog\"\ class\=\"anchor\"\ href\=\"\/\"\ aria\-hidden\=\"true\"\>\
-\	\	\	\<span\ aria\-hidden\=\"true\"\ class\=\"octicon\ octicon\-link\"\>INDEX\<\/span\>\
-\	\	\<\/a\>\
-\	\	\<\/h1\>\
-\	\	\{\{content\}\}\
-\
-\ \ \ \ \ \ \<\/section\>\
-\ \ \ \ \<\/div\>\
-\
-\ \ \ \ \
-\ \ \<\/body\>\
-\<\/html\>\
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
+
+    <title>{{blogname}}--WebSocketSpring</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>WebSocketSpring</h1>
+        <h2>{{ subtitle }}</h2>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+		<a id="blog" class="anchor" href="/" aria-hidden="true">
+			<span aria-hidden="true" class="octicon octicon-link">INDEX</span>
+		</a>
+		</h1>
+		<h1 id="websocket">WebSocket</h1>
+<p>http://docs.spring.io/spring/docs/current/spring-framework-reference/html/websocket.html#websocket-intro</p>
+<h2 id="1-introduction">1 Introduction</h2>
+<p>使用websocket优点以及设计考虑,移植挑战等.</p>
+<p>RFC 6455:全双工(full-duplex,two-way communication)</p>
+<p>初始的握手使用HTTP,后面使用TCP,这其中要求协议切换(protocol upgrade,protocol switch)(需要回复http状态101),之后连接保持打开</p>
+<h3 id="11-webscoket-fallback-options">1.1 WebScoket Fallback Options</h3>
+<p>在不同浏览器中对websocket的支持不同,有些时候连接会被关闭,因此spring框架使用sockJS协议</p>
+<h3 id="12-a-messaging-architecture">1.2 A Messaging Architecture</h3>
+<p>REST框架使用许多URL,与此同时WebSocket应用程序则可能只使用最初用于http握手的那个url</p>
+<p>spring-websocket,spring-messaging</p>
+<h3 id="13-sub-protocol-support-in-websocket">1.3 Sub-Protocol Support in WebSocket</h3>
+<p>Websocket是TCP层上非常薄的一层,它并不使用任何特殊的消息协议,将信息解析出来的工作交由应用执行,它将bit流转为信息流,由于websocket本身太过低级,大部分的webapplication使用web框架而不是仅仅使用websocket本身</p>
+<p>因此,websocket定义了sub-protocols这个概念,在握手时,client和server都能使用header选项<code>Sec-WebSocket-Protocol</code>来同意一个子协议,这个子协议通常是应用层协议.子协议不是强制要求的,而且有时候尽管使用了子协议,客户端和服务器还是需要一个数据格式的约定.</p>
+<p>spring框架使用的子协议是STOMP,一个简单的消息框架,主要面向脚本语言.</p>
+<h3 id="should-i-use-websocket">Should I use WebSocket?</h3>
+<p>如果客户端和服务器需要以高频率和低延时交换信息,那么websocket是个不错的选择</p>
+<p>Spring框架允许@Controlle和@RestController都支持Websocket和普通的http</p>
+<h2 id="2-websocket-api">2. WebSocket API</h2>
+<p>Tomcat 7.0.47+, Jetty 9.1+, GlassFish 4.1+, WebLogic 12.1.3+, and Undertow 1.0+ (and WildFly 8.0+). </p>
+<h3 id="create-and-configure-a-websockethandler">Create and Configure a WebSocketHandler</h3>
+<p>创建WebSocket server</p>
+<ol>
+<li>
+<p>创建handler很简单,只需要实现WebSocketHandler接口或者继承TextWebSocketHandler或者BinaryWebSocketHandler即可</p>
+<pre><code>import org.springframework.web.socket.WebSocketHandler;
+import org.springframework.web.socket.WebSocketSession;
+import org.springframework.web.socket.TextMessage;
+
+public class MyHandler extends TextWebSocketHandler {
+
+    @Override
+    public void handleTextMessage(WebSocketSession session, TextMessage message) {
+        // ...
+    }
+
+}
+</code></pre>
+<ol>
+<li>
+<p>专用的WebSocket JavaConfig 或者XML配置以将handler与特定的URL联系</p>
+<p>import org.springframework.web.socket.config.annotation.EnableWebSocket;
+import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
+import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;</p>
+<p>@Configuration
+@EnableWebSocket
+public class WebSocketConfig implements WebSocketConfigurer {</p>
+<pre><code>@Override
+public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
+    registry.addHandler(myHandler(), "/myHandler");
+}
+
+@Bean
+public WebSocketHandler myHandler() {
+    return new MyHandler();
+}
+</code></pre>
+<p>}</p>
+</li>
+</ol>
+<p>或者</p>
+<pre><code>&lt;beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:websocket="http://www.springframework.org/schema/websocket"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/websocket
+        http://www.springframework.org/schema/websocket/spring-websocket.xsd"&gt;
+
+    &lt;websocket:handlers&gt;
+        &lt;websocket:mapping path="/myHandler" handler="myHandler"/&gt;
+    &lt;/websocket:handlers&gt;
+
+    &lt;bean id="myHandler" class="org.springframework.samples.MyHandler"/&gt;
+
+&lt;/beans&gt;
+</code></pre>
+</li>
+<li>
+<p>通过WebSocketHttpRequestHandler的帮助下,可以将WebSocketHandler与其它Http环境集成,不需要仅仅使用SpringMVC</p>
+</li>
+</ol>
+<h3 id="22-websocket-handshake">2.2 自定义WebSocket Handshake</h3>
+<p>最简单的方式是通过HandshakeInterceptor.这样的interceptor能够被用在handshake之前或者配置WebSocketSession的属性上,例如,这个内置的拦截器可以将httpsession的属性传给websocket session</p>
+<pre><code>    @Configuration
+    @EnableWebSocket
+    public class WebSocketConfig implements WebSocketConfigurer {
+
+        @Override
+        public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
+            registry.addHandler(new MyHandler(), "/myHandler")
+                .addInterceptors(new HttpSessionHandshakeInterceptor());
+        }
+
+    }
+</code></pre>
+<p>XML</p>
+<pre><code>    &lt;beans xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:websocket="http://www.springframework.org/schema/websocket"
+        xsi:schemaLocation="
+            http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/websocket
+            http://www.springframework.org/schema/websocket/spring-websocket.xsd"&gt;
+
+        &lt;websocket:handlers&gt;
+            &lt;websocket:mapping path="/myHandler" handler="myHandler"/&gt;
+            &lt;websocket:handshake-interceptors&gt;
+                &lt;bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor"/&gt;
+            &lt;/websocket:handshake-interceptors&gt;
+        &lt;/websocket:handlers&gt;
+
+        &lt;bean id="myHandler" class="org.springframework.samples.MyHandler"/&gt;
+
+    &lt;/beans&gt;
+</code></pre>
+<p>一种更加先进的选择是继承DefaultHandshakeHandler,它执行力额WebSocket的握手,比如检测客户,商议子协议等等</p>
+<p>如果WebSocket需要自定义RequestUpgradeStrategy来适应一个Wengine和version现在还不支持的websocket服务器,那么需要设置一个自定义的HandshakeHandler</p>
+<h3 id="23-websockethandler-decoration">2.3 WebSocketHandler Decoration</h3>
+<p>Spring提供了基础类WebSocketHandlerDecorator以用于修饰WebSocketHandler并使其做额外的事</p>
+<p>当使用WebSocket 的JavaConfig或者XML设置时,logging和异常处理被默认添加.ExceptionWebSocketHandlerDecorator把所有在WebSocketHandler中丢出的错误接住后,关闭webSocket会话</p>
+
+      </section>
+    </div>
+
+    
+  </body>
+</html>

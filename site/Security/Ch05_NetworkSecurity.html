@@ -1,37 +1,129 @@
-\<\!DOCTYPE\ html\>\
-\<html\>\
-\ \ \<head\>\
-\ \ \ \ \<meta\ charset\=\'utf\-8\'\>\
-\ \ \ \ \<meta\ http\-equiv\=\"X\-UA\-Compatible\"\ content\=\"chrome\=1\"\>\
-\
-\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/stylesheet\.css\"\ media\=\"screen\"\>\
-\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/github\-dark\.css\"\ media\=\"screen\"\>\
-\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/print\.css\"\ media\=\"print\"\>\
-\
-\ \ \ \ \<title\>\{\{blogname\}\}\-\-\{\{title\}\}\<\/title\>\
-\ \ \<\/head\>\
-\
-\ \ \<body\>\
-\
-\ \ \ \ \<header\>\
-\ \ \ \ \ \ \<div\ class\=\"container\"\>\
-\ \ \ \ \ \ \ \ \<h1\>\{\{\ title\ \}\}\<\/h1\>\
-\ \ \ \ \ \ \ \ \<h2\>\{\{\ subtitle\ \}\}\<\/h2\>\
-\ \ \ \ \ \ \<\/div\>\
-\ \ \ \ \<\/header\>\
-\
-\ \ \ \ \<div\ class\=\"container\"\>\
-\ \ \ \ \ \ \<section\ id\=\"main\_content\"\>\
-\ \ \ \ \ \ \ \ \<h1\>\
-\	\	\<a\ id\=\"blog\"\ class\=\"anchor\"\ href\=\"\/\"\ aria\-hidden\=\"true\"\>\
-\	\	\	\<span\ aria\-hidden\=\"true\"\ class\=\"octicon\ octicon\-link\"\>INDEX\<\/span\>\
-\	\	\<\/a\>\
-\	\	\<\/h1\>\
-\	\	\{\{content\}\}\
-\
-\ \ \ \ \ \ \<\/section\>\
-\ \ \ \ \<\/div\>\
-\
-\ \ \ \ \
-\ \ \<\/body\>\
-\<\/html\>\
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
+
+    <title>{{blogname}}--Ch05_NetworkSecurity</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>Ch05_NetworkSecurity</h1>
+        <h2>{{ subtitle }}</h2>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+		<a id="blog" class="anchor" href="/" aria-hidden="true">
+			<span aria-hidden="true" class="octicon octicon-link">INDEX</span>
+		</a>
+		</h1>
+		<h1 id="chapter06_networksecurity">Chapter06_NetworkSecurity</h1>
+<h2 id="history-of-denial-of-service-attacks">History of Denial of Service Attacks</h2>
+<ol>
+<li>Early 1990s:  Individual Attacks. First DoS Tools</li>
+<li>Late 1990s:  Botnets, First DDoS Tools</li>
+<li>Feb 2000:  First Large-Scale DDoS Attack</li>
+<li>CNN, Yahoo, E*Trade, eBay, Amazon.com, Buy.com</li>
+<li>2004:  DDoS for hire and Extortion</li>
+<li>2007:  DDoS against Estonia</li>
+<li>2008:  DDoS against political dissident groups</li>
+<li>2008:  DDoS against Republic of Georgia during military conflict with Russia</li>
+</ol>
+<h2 id="dos-attacks">DoS Attacks</h2>
+<ol>
+<li>Spaming(垃圾邮件) &amp; e-mail bomb</li>
+<li>
+<p>Ping of Death(ICMP)</p>
+<ul>
+<li>防御方法<ol>
+<li>Block echo requests to broadcast networks</li>
+<li>Ban the IP of the attacker</li>
+<li>Filtering echo requests / Firewall</li>
+</ol>
+</li>
+<li>用伪装的IP进行ping攻击<ul>
+<li>Smurf/Fraggle Attack<ul>
+<li>Use intermediate networks as amplification points</li>
+<li><img alt="" src="http://i.imgur.com/v7puxwY.png"></li>
+<li>Measure<ul>
+<li>Change firewall settings</li>
+<li>Change router settings to not forward to broadcast IP addresses</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><font color='red'>TCP SYN Flood DoS Attacks</p>
+<ol>
+<li>Attacker sends a SYN request and never responds to the SYN-ACK request<ol>
+<li>Final ACK vs. IP spoofing</li>
+</ol>
+</li>
+<li>Results in “half-open connection”</li>
+<li>Server resources consumed by these connections<ol>
+<li>Timeout</li>
+</ol>
+</li>
+<li>Allows no new connections</font></li>
+</ol>
+</li>
+<li>
+<p>Buffer Overflow</p>
+<ul>
+<li>Attempts to put more data, which would be long input strings, into the buffer than it can hold</li>
+<li>Code red, slapper and slammer are attacks that took advantage of buffer overflows</li>
+</ul>
+</li>
+</ol>
+<h2 id="access-attacks">Access Attacks 访问权限的获取</h2>
+<ol>
+<li>Eavesdropping</li>
+<li>Interception 拦截窃听</li>
+<li>Spoofing<ol>
+<li>IP Spoofing <ol>
+<li>Remote machine acts as a node on the local network to find vulnerabilities with your servers, and installs a backdoor program or Trojan horse to gain control over network resources</li>
+<li>Pharming: <strong>DNS Hijacking</strong></li>
+</ol>
+</li>
+<li>Interface Spoofing</li>
+</ol>
+</li>
+<li>
+<p>Password Guessing Attacks</p>
+<ol>
+<li>Brute Force Attack</li>
+<li>Dictionary Attack</li>
+</ol>
+</li>
+<li>
+<p>Man-in-the-Middle Attacks</p>
+<ul>
+<li>placing a piece of software between a server and user that they are aware of</li>
+<li>Software intercepts data and then send the information to the server as if nothing is wrong</li>
+</ul>
+</li>
+<li>
+<p>Social Engineering</p>
+</li>
+</ol>
+
+      </section>
+    </div>
+
+    
+  </body>
+</html>

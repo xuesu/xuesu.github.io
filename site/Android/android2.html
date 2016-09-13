@@ -1,37 +1,68 @@
-\<\!DOCTYPE\ html\>\
-\<html\>\
-\ \ \<head\>\
-\ \ \ \ \<meta\ charset\=\'utf\-8\'\>\
-\ \ \ \ \<meta\ http\-equiv\=\"X\-UA\-Compatible\"\ content\=\"chrome\=1\"\>\
-\
-\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/stylesheet\.css\"\ media\=\"screen\"\>\
-\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/github\-dark\.css\"\ media\=\"screen\"\>\
-\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/print\.css\"\ media\=\"print\"\>\
-\
-\ \ \ \ \<title\>\{\{blogname\}\}\-\-\{\{title\}\}\<\/title\>\
-\ \ \<\/head\>\
-\
-\ \ \<body\>\
-\
-\ \ \ \ \<header\>\
-\ \ \ \ \ \ \<div\ class\=\"container\"\>\
-\ \ \ \ \ \ \ \ \<h1\>\{\{\ title\ \}\}\<\/h1\>\
-\ \ \ \ \ \ \ \ \<h2\>\{\{\ subtitle\ \}\}\<\/h2\>\
-\ \ \ \ \ \ \<\/div\>\
-\ \ \ \ \<\/header\>\
-\
-\ \ \ \ \<div\ class\=\"container\"\>\
-\ \ \ \ \ \ \<section\ id\=\"main\_content\"\>\
-\ \ \ \ \ \ \ \ \<h1\>\
-\	\	\<a\ id\=\"blog\"\ class\=\"anchor\"\ href\=\"\/\"\ aria\-hidden\=\"true\"\>\
-\	\	\	\<span\ aria\-hidden\=\"true\"\ class\=\"octicon\ octicon\-link\"\>INDEX\<\/span\>\
-\	\	\<\/a\>\
-\	\	\<\/h1\>\
-\	\	\{\{content\}\}\
-\
-\ \ \ \ \ \ \<\/section\>\
-\ \ \ \ \<\/div\>\
-\
-\ \ \ \ \
-\ \ \<\/body\>\
-\<\/html\>\
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
+
+    <title>{{blogname}}--android2</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>android2</h1>
+        <h2>{{ subtitle }}</h2>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+		<a id="blog" class="anchor" href="/" aria-hidden="true">
+			<span aria-hidden="true" class="octicon octicon-link">INDEX</span>
+		</a>
+		</h1>
+		<h1 id="android-base">Android Base</h1>
+<h2 id="resvaluesstringsxml">res/values/strings.xml</h2>
+<p>store global string</p>
+<h2 id="ddms">DDMS</h2>
+<p>test tool</p>
+<p>included by ADT</p>
+<h3 id="devices">Devices</h3>
+<p>与DDMS连接的设备的终端信息，以及应用程序的基本信息</p>
+<h3 id="emulator-control">Emulator Control</h3>
+<p>向模拟设备打入电话，信息，GPS等，</p>
+<h3 id="log-cat">Log Cat</h3>
+<p>信息输出面板</p>
+<ul>
+<li>log.v verbose</li>
+<li>log.i info</li>
+<li>log.a assert</li>
+<li>log.d debug</li>
+<li>log.w warning</li>
+<li>log.e error</li>
+</ul>
+<h3 id="_1">第三方开发工具</h3>
+<p>DroidDraw</p>
+<h3 id="_2">将应用部署到虚拟机</h3>
+<ul>
+<li>eclipse</li>
+<li>第三方管理工具：手机助手<ol>
+<li>打包</li>
+<li>创建keystore（许可文件，方便进行升级发布）</li>
+<li>输入信息</li>
+</ol>
+</li>
+</ul>
+
+      </section>
+    </div>
+
+    
+  </body>
+</html>

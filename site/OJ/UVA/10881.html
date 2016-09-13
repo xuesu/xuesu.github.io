@@ -1,37 +1,116 @@
-\<\!DOCTYPE\ html\>\
-\<html\>\
-\ \ \<head\>\
-\ \ \ \ \<meta\ charset\=\'utf\-8\'\>\
-\ \ \ \ \<meta\ http\-equiv\=\"X\-UA\-Compatible\"\ content\=\"chrome\=1\"\>\
-\
-\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/stylesheet\.css\"\ media\=\"screen\"\>\
-\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/github\-dark\.css\"\ media\=\"screen\"\>\
-\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/print\.css\"\ media\=\"print\"\>\
-\
-\ \ \ \ \<title\>\{\{blogname\}\}\-\-\{\{title\}\}\<\/title\>\
-\ \ \<\/head\>\
-\
-\ \ \<body\>\
-\
-\ \ \ \ \<header\>\
-\ \ \ \ \ \ \<div\ class\=\"container\"\>\
-\ \ \ \ \ \ \ \ \<h1\>\{\{\ title\ \}\}\<\/h1\>\
-\ \ \ \ \ \ \ \ \<h2\>\{\{\ subtitle\ \}\}\<\/h2\>\
-\ \ \ \ \ \ \<\/div\>\
-\ \ \ \ \<\/header\>\
-\
-\ \ \ \ \<div\ class\=\"container\"\>\
-\ \ \ \ \ \ \<section\ id\=\"main\_content\"\>\
-\ \ \ \ \ \ \ \ \<h1\>\
-\	\	\<a\ id\=\"blog\"\ class\=\"anchor\"\ href\=\"\/\"\ aria\-hidden\=\"true\"\>\
-\	\	\	\<span\ aria\-hidden\=\"true\"\ class\=\"octicon\ octicon\-link\"\>INDEX\<\/span\>\
-\	\	\<\/a\>\
-\	\	\<\/h1\>\
-\	\	\{\{content\}\}\
-\
-\ \ \ \ \ \ \<\/section\>\
-\ \ \ \ \<\/div\>\
-\
-\ \ \ \ \
-\ \ \<\/body\>\
-\<\/html\>\
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
+
+    <title>{{blogname}}--10881</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>10881</h1>
+        <h2>{{ subtitle }}</h2>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+		<a id="blog" class="anchor" href="/" aria-hidden="true">
+			<span aria-hidden="true" class="octicon octicon-link">INDEX</span>
+		</a>
+		</h1>
+		<h2 id="question">Question</h2>
+<p><a href="https://uva.onlinejudge.org/external/108/10881.pdf" title="10881 Piotr's Ants">https://uva.onlinejudge.org/external/108/10881.pdf</a></p>
+<h2 id="evolution">Evolution</h2>
+<h2 id="_1">思路</h2>
+<ol>
+<li>在图上演示后,可以发现,当两只蚂蚁发生碰撞后,两只蚂蚁将会沿着对方的路线走,也就是说,如果不管它们的身份,那么这两只蚂蚁等同于没有碰撞.因此,我们能够获得T秒后蚂蚁应该存在的位置.</li>
+<li>由于蚂蚁碰到障碍物(蚂蚁)就会反弹,很明显木棒上的蚂蚁的相对位置是不变的,因此,我们可以记录输入时蚂蚁初始时的相对位置,输出时参照这一顺序输出.</li>
+</ol>
+<h2 id="need-to-be-awared">Need to be awared</h2>
+<p>蚂蚁可以站在木棒的起点,也即position=0和position=l的时候蚂蚁都没有掉落</p>
+<h2 id="code">Code</h2>
+<pre><code>#include&lt;cstdio&gt;
+#include &lt;algorithm&gt;
+#include &lt;iostream&gt;
+using namespace std;
+#define MAXN 10004
+int ind[MAXN];
+struct Ant{
+    int pos;
+    int ind;
+    int dir;
+}a[MAXN];
+
+bool cmp(Ant a1,Ant a2){
+    if(a1.pos!=a2.pos)return a1.pos &lt; a2.pos;
+    return a2.dir &gt; a1.dir;
+}
+bool cmpind(Ant a1,Ant a2){
+    return a1.ind &lt; a2.ind;
+}
+
+int main(){
+
+    //freopen("out.txt", "w", stdout);
+    int T;
+    scanf("%d",&amp;T);
+    for(int ti = 1;ti &lt;= T;ti++){
+        int l,t,n;
+        scanf("%d%d%d",&amp;l,&amp;t,&amp;n);
+        for(int i = 0;i &lt; n;i++){
+            char op[2];
+            scanf("%d%s",&amp;(a[i].pos),op);
+            if(op[0]=='L'){
+                a[i].dir = -1;
+            }else{
+                a[i].dir = 1;
+            }
+            a[i].ind = i;
+        }
+        sort(a,a+n,cmp);
+        for(int i = 0;i &lt; n;i++){
+            ind[i] = a[i].ind;
+        }
+        for(int i = 0;i &lt; n;i++){
+            a[i].pos = a[i].pos + a[i].dir * t;
+
+        }
+        sort(a,a+n,cmp);
+        for(int i = 0;i &lt; n;i++){
+            a[i].ind = ind[i];
+            if((i &gt; 0 &amp;&amp; a[i].pos == a[i - 1].pos) || (i &lt; n - 1&amp;&amp; a[i].pos == a[i+1].pos)){
+                a[i].dir = 0;
+            }
+
+        }
+        sort(a,a+n,cmpind);
+        cout&lt;&lt;"Case #"&lt;&lt;ti&lt;&lt;":"&lt;&lt;endl;
+        for(int i = 0;i &lt; n;i++){
+
+            if(a[i].pos &lt; 0 ||a[i].pos &gt; l){\The ant can stand on where pos = 0
+                cout&lt;&lt;("Fell off")&lt;&lt;endl;
+            }else {
+                cout&lt;&lt;a[i].pos&lt;&lt;" "&lt;&lt;(a[i].dir==1?"R":(a[i].dir == 0?"Turning":"L"))&lt;&lt;endl;
+            }
+        }
+        cout&lt;&lt;endl;
+    }
+    return 0;
+}
+</code></pre>
+
+      </section>
+    </div>
+
+    
+  </body>
+</html>

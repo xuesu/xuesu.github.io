@@ -1,37 +1,144 @@
-\<\!DOCTYPE\ html\>\
-\<html\>\
-\ \ \<head\>\
-\ \ \ \ \<meta\ charset\=\'utf\-8\'\>\
-\ \ \ \ \<meta\ http\-equiv\=\"X\-UA\-Compatible\"\ content\=\"chrome\=1\"\>\
-\
-\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/stylesheet\.css\"\ media\=\"screen\"\>\
-\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/github\-dark\.css\"\ media\=\"screen\"\>\
-\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/print\.css\"\ media\=\"print\"\>\
-\
-\ \ \ \ \<title\>\{\{blogname\}\}\-\-\{\{title\}\}\<\/title\>\
-\ \ \<\/head\>\
-\
-\ \ \<body\>\
-\
-\ \ \ \ \<header\>\
-\ \ \ \ \ \ \<div\ class\=\"container\"\>\
-\ \ \ \ \ \ \ \ \<h1\>\{\{\ title\ \}\}\<\/h1\>\
-\ \ \ \ \ \ \ \ \<h2\>\{\{\ subtitle\ \}\}\<\/h2\>\
-\ \ \ \ \ \ \<\/div\>\
-\ \ \ \ \<\/header\>\
-\
-\ \ \ \ \<div\ class\=\"container\"\>\
-\ \ \ \ \ \ \<section\ id\=\"main\_content\"\>\
-\ \ \ \ \ \ \ \ \<h1\>\
-\	\	\<a\ id\=\"blog\"\ class\=\"anchor\"\ href\=\"\/\"\ aria\-hidden\=\"true\"\>\
-\	\	\	\<span\ aria\-hidden\=\"true\"\ class\=\"octicon\ octicon\-link\"\>INDEX\<\/span\>\
-\	\	\<\/a\>\
-\	\	\<\/h1\>\
-\	\	\{\{content\}\}\
-\
-\ \ \ \ \ \ \<\/section\>\
-\ \ \ \ \<\/div\>\
-\
-\ \ \ \ \
-\ \ \<\/body\>\
-\<\/html\>\
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
+
+    <title>{{blogname}}--10_排序</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>10_排序</h1>
+        <h2>{{ subtitle }}</h2>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+		<a id="blog" class="anchor" href="/" aria-hidden="true">
+			<span aria-hidden="true" class="octicon octicon-link">INDEX</span>
+		</a>
+		</h1>
+		<h1 id="chapter-10">Chapter 10 排序</h1>
+<ol>
+<li>概述 <ol>
+<li>串行排序回顾</li>
+<li>加速比</li>
+</ol>
+</li>
+<li>比较和交换</li>
+<li>冒泡排序 和奇偶互换排序（并行冒泡）</li>
+<li>并行归并排序</li>
+<li>并行快速排序</li>
+<li>奇偶归并排序</li>
+<li>双谐调归并排序</li>
+<li>秩排序</li>
+<li>计数排序</li>
+<li>基数排序</li>
+<li>采样排序</li>
+</ol>
+<h2 id="_1">比较</h2>
+<ul>
+<li><img alt="" src="http://i.imgur.com/byqAla4.png"></li>
+<li><img alt="" src="http://i.imgur.com/sxs8Bv9.png"></li>
+</ul>
+<h2 id="_2">冒泡排序</h2>
+<p>下一次的比较交换动作可以在前一次完全完成之前就开始，
+只要其操作不影响前一次的冒泡即可。</p>
+<ul>
+<li>整个过程分为奇阶段和偶阶段（从0开始）</li>
+<li>在偶阶段，偶数编号的数与其右侧的数进行比较交换操作。（数的排序也从0开始）</li>
+<li>在奇阶段，奇数编号的数与其右侧的数进行比较交换操作。</li>
+</ul>
+<p><b>在并行环境下复杂度为O（n）。（n个进程,每个进程一个数）</b></p>
+<h2 id="_3">归并排序</h2>
+<h3 id="_4">归并操作</h3>
+<p><img alt="" src="http://i.imgur.com/PrskKFf.png">
+<img alt="" src="http://i.imgur.com/aaqj5Np.png"></p>
+<h3 id="_5">归并算法</h3>
+<p>归并排序可以直接映射为并行模式</p>
+<p><b>复杂度为O（n）。</b></p>
+<h2 id="_6">快速排序</h2>
+<p>最优为O(n)</p>
+<h2 id="_7">奇偶归并排序</h2>
+<ol>
+<li>Let A and B be sorted lists of length n, n is even</li>
+<li>Let OM be the sorted list of length n formed by sorting the elements in the odd positions (1, 3, 5, ...) of A and B</li>
+<li>Let EM be the sorted list of length n formed by sorting the elements in the even positions (2, 4, 6, ...) of A and B</li>
+<li>Let R be the sorted list of size 2n formed by merging A and B.</li>
+<li>
+<p>Let AJ, BJ, OMJ, EMJ, RJ be the J'th element of the corresponding lists A, B, OM, EM, R.</p>
+</li>
+<li>
+<p>Example</p>
+</li>
+<li>A         1        2        3        15        20        21</li>
+<li>
+<p>B        6        7        8        9        10        30</p>
+</li>
+<li>
+<p>OM        1        3        6        8        10        20</p>
+</li>
+<li>EM        2        7        9        15        21        30</li>
+<li>R         1        2        3        6        7        8        9        10        15   20  21  30</li>
+</ol>
+<p><b>Lemma.</p>
+<ul>
+<li>R1 = OM1, R2n = EMn</li>
+<li>R2k = min(OMk+1, EMk)</li>
+<li>R2k+1 = max(OMk+1, EMk)
+</b></li>
+</ul>
+<h3 id="_8">并行算法</h3>
+<ol>
+<li>n个数,n个进程</li>
+<li>总体复杂度O（log^2（2，n））,资料显示为nlog^2(2,n)</li>
+</ol>
+<h2 id="_9">双调归并排序</h2>
+<p><img alt="" src="http://i.imgur.com/bFrhOvq.png"></p>
+<h3 id="_10">对无序数列的排序:</h3>
+<ol>
+<li>第一步：<ol>
+<li>先把数分成两两的数对。通过比较和交换操作，邻进的数对形成升序或降序数列。（左升右降）</li>
+<li>短序列归并为长序列</li>
+<li>重复以上过程直到整个数列变为一个大的双调数列</li>
+</ol>
+</li>
+<li>第二步：<ol>
+<li>对此数列进行折半比较交换，方法同前。</li>
+<li>如果是奇数个，随机复制一个，随后删除之。
+<img alt="" src="http://i.imgur.com/8EHBvnC.png"></li>
+</ol>
+</li>
+</ol>
+<h2 id="-nn">秩排序-n*n个处理器</h2>
+<p><img alt="" src="http://i.imgur.com/RtiXv3n.png"></p>
+<h3 id="on">复杂度O(n)</h3>
+<p><img alt="" src="http://i.imgur.com/nZmDa9B.png"></p>
+<h3 id="ologn">复杂度O(log(n))</h3>
+<h2 id="_11">计数排序</h2>
+<p>设数的范围为1-m</p>
+<pre><code>for (i = n; i &gt;= 1; i--) 
+            {
+        b[c[a[i]]] = a[i]
+        c[a[i]]--;   /* ensures stable sorting */
+}
+</code></pre>
+<p>复杂度O(n+m)</p>
+<h2 id="_12">基排序</h2>
+<p><img alt="" src="http://i.imgur.com/SfFl9id.png"></p>
+
+      </section>
+    </div>
+
+    
+  </body>
+</html>

@@ -1,37 +1,201 @@
-\<\!DOCTYPE\ html\>\
-\<html\>\
-\ \ \<head\>\
-\ \ \ \ \<meta\ charset\=\'utf\-8\'\>\
-\ \ \ \ \<meta\ http\-equiv\=\"X\-UA\-Compatible\"\ content\=\"chrome\=1\"\>\
-\
-\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/stylesheet\.css\"\ media\=\"screen\"\>\
-\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/github\-dark\.css\"\ media\=\"screen\"\>\
-\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/print\.css\"\ media\=\"print\"\>\
-\
-\ \ \ \ \<title\>\{\{blogname\}\}\-\-\{\{title\}\}\<\/title\>\
-\ \ \<\/head\>\
-\
-\ \ \<body\>\
-\
-\ \ \ \ \<header\>\
-\ \ \ \ \ \ \<div\ class\=\"container\"\>\
-\ \ \ \ \ \ \ \ \<h1\>\{\{\ title\ \}\}\<\/h1\>\
-\ \ \ \ \ \ \ \ \<h2\>\{\{\ subtitle\ \}\}\<\/h2\>\
-\ \ \ \ \ \ \<\/div\>\
-\ \ \ \ \<\/header\>\
-\
-\ \ \ \ \<div\ class\=\"container\"\>\
-\ \ \ \ \ \ \<section\ id\=\"main\_content\"\>\
-\ \ \ \ \ \ \ \ \<h1\>\
-\	\	\<a\ id\=\"blog\"\ class\=\"anchor\"\ href\=\"\/\"\ aria\-hidden\=\"true\"\>\
-\	\	\	\<span\ aria\-hidden\=\"true\"\ class\=\"octicon\ octicon\-link\"\>INDEX\<\/span\>\
-\	\	\<\/a\>\
-\	\	\<\/h1\>\
-\	\	\{\{content\}\}\
-\
-\ \ \ \ \ \ \<\/section\>\
-\ \ \ \ \<\/div\>\
-\
-\ \ \ \ \
-\ \ \<\/body\>\
-\<\/html\>\
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
+
+    <title>{{blogname}}--WEB-BASED系统概述</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>WEB-BASED系统概述</h1>
+        <h2>{{ subtitle }}</h2>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+		<a id="blog" class="anchor" href="/" aria-hidden="true">
+			<span aria-hidden="true" class="octicon octicon-link">INDEX</span>
+		</a>
+		</h1>
+		<h1 id="web-based">WEB-BASED系统</h1>
+<h2 id="web-based_1">WEB-BASED系统概述</h2>
+<ol>
+<li>可靠性,可用性</li>
+<li>集群,硬件集群,软件集群<ol>
+<li>负载均衡器</li>
+<li>代理服务器集群(nginx反向代理)</li>
+<li>web服务器集群</li>
+</ol>
+</li>
+</ol>
+<h3 id="_1">系统分层架构实例</h3>
+<ol>
+<li>负载均衡<ol>
+<li>硬件四层</li>
+<li>软件四层</li>
+<li>??</li>
+</ol>
+</li>
+<li>web服务器架构<ol>
+<li>WEB服务</li>
+<li>MVC应用架构</li>
+<li>应用级缓存</li>
+</ol>
+</li>
+<li>数据存储<ol>
+<li>NFS/HDFS</li>
+<li>生产数据库/查询数据库</li>
+</ol>
+</li>
+</ol>
+<h2 id="_2">服务器端系统优化</h2>
+<h3 id="1-web">1. web应用和数据库分离</h3>
+<h3 id="2">2. 增加前端页面缓存</h3>
+<h3 id="3-webserver">3. 页面片段缓存(在webserver处)</h3>
+<p>前端页面缓存-&gt;webserver-&gt;{页面片段缓存,数据库}</p>
+<h3 id="4">4. 数据缓存</h3>
+<p>前端页面缓存-&gt;webserver-&gt;{页面片段缓存,数据缓存,数据库}</p>
+<h3 id="5-webserver">5. webserver集群</h3>
+<h3 id="6">6. 分库</h3>
+<p>数据缓存-&gt;分布式缓存</p>
+<p>前端页面缓存-&gt;webservers-&gt;{页面片段缓存,数据缓存s,DAL-&gt;数据库}</p>
+<p>DAL(Data Access Level)</p>
+<h3 id="8">8. 数据读写分离,使用廉价存储方案</h3>
+<p>前端页面缓存-&gt;webservers-&gt;{页面片段缓存,数据缓存s,Bigdata(宽表),分布式文件系统,DAL-&gt;数据库}</p>
+<h2 id="_3">集群的优点</h2>
+<ol>
+<li>高可伸缩性<ol>
+<li>可以随时添加更多的服务器</li>
+</ol>
+</li>
+<li>高可用性<ol>
+<li>防止系统发生故障或自动恢复,不需要操作者干预</li>
+</ol>
+</li>
+<li>高可管理型<ol>
+<li>远程管理</li>
+</ol>
+</li>
+</ol>
+<p>注意成本,是系统故障成本高还是集群系统成本高</p>
+<h3 id="_4">集群类型</h3>
+<ol>
+<li>
+<p>高可用性集群:High Availablity Cluster/容错集群(Fail-Over Cluster)</p>
+<ul>
+<li>主从:闲时从服务器向主服务器发送心跳包,忙时接管主服务器工作</li>
+<li>活动第二服务器:主服务器故障,第二服务器接管,否则,干别的事<ul>
+<li>全部复制:数据不断地拷贝到第二服务器上</li>
+<li>0共享:物理连接同一个磁盘,故障时,另一台服务器获得对方磁盘权限</li>
+<li>共享一切:多个服务器在同时共享同一磁盘,要求一个复杂的锁定管理软件,以管理读写</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>负载均衡集群 Load balance cluster</p>
+<ol>
+<li>给各个集群分发任务,提高性能</li>
+<li>nginx,自动负载均衡</li>
+</ol>
+</li>
+<li>高性能计算集群 High Performance Computing Cluster<ol>
+<li>响应海量数据</li>
+</ol>
+</li>
+</ol>
+<h2 id="_5">代理服务器,反向代理服务器</h2>
+<h3 id="_6">代理服务器</h3>
+<ol>
+<li>客户端-&gt;中间服务器-&gt;原始服务器</li>
+</ol>
+<h3 id="_7">反向代理</h3>
+<ol>
+<li>客户端发送普通请求,反向代理决定发往何处</li>
+<li>典型应用1. 负载均衡 2. 缓存 3. 反向代理是外部服务器通过防火墙提升安全性</li>
+</ol>
+<h3 id="nginx">Nginx</h3>
+<p>master-&gt;create socket-&gt;{worker *}</p>
+<p>windows下tomcat的负载均衡配置</p>
+<h3 id="dns">基于DNS的负载均衡</h3>
+<ol>
+<li>一个域名绑定多个IP</li>
+<li>DNS服务器将http请求平均分配到web服务器上(对不同的用户,获得了不同域名)</li>
+<li>但web服务器出现故障后,需要较长时间(dns刷新时间约24hr)才能获得web服务</li>
+</ol>
+<h3 id="apachetomcat">Apache+Tomcat实现负载均衡</h3>
+<p>用apache进行分流,把请求按照权重以及当时负荷分流</p>
+<h3 id="mysql">Mysql集群</h3>
+<p>双数据库热机备份</p>
+<h2 id="_8">服务器端优化技术</h2>
+<h3 id="_9">缓存</h3>
+<p>b树,b+树</p>
+<ol>
+<li>操作系统磁盘缓存<ol>
+<li>减少磁盘机械操作</li>
+<li>需要保证物理内存</li>
+</ol>
+</li>
+<li>数据库缓存<ol>
+<li>减少文件io</li>
+<li>Mysql Query cache工具</li>
+</ol>
+</li>
+<li>应用程序缓存<ol>
+<li>减少数据库查询</li>
+</ol>
+</li>
+<li>web服务器缓存<ol>
+<li>减少应用服务器请求</li>
+<li>web信息响应不应超过5s</li>
+</ol>
+</li>
+<li>浏览器缓存<ol>
+<li>减少对网站访问</li>
+</ol>
+</li>
+</ol>
+<h3 id="_10">对象缓存</h3>
+<ol>
+<li>由OR mapping框架例如hibernate提供,透明访问,细粒度缓存数据库查询结果</li>
+</ol>
+<h3 id="_11">前端优化技术</h3>
+<p>修改web服务器配置文件,修改js,css,合并图片,脚本等</p>
+<p>应该更加关注前端优化</p>
+<ol>
+<li>减少http请求次数<ol>
+<li>优化图片{css sprites,内联图片,图片地图}</li>
+<li>合并脚本和样式表</li>
+<li>关注expires头的设置,缓存可以使一些客户的请求转为请求缓存</li>
+<li>移除ETag</li>
+<li>加载后下载</li>
+</ol>
+</li>
+<li>利用并行下载</li>
+<li>减少元素大小<ol>
+<li>用gzip压缩脚本样式表html文档图片等</li>
+</ol>
+</li>
+</ol>
+<h3 id="_12">前端优化工具</h3>
+<ol>
+<li>http请求图表 IBM Page Detailer</li>
+<li>...</li>
+</ol>
+
+      </section>
+    </div>
+
+    
+  </body>
+</html>

@@ -1,37 +1,521 @@
-\<\!DOCTYPE\ html\>\
-\<html\>\
-\ \ \<head\>\
-\ \ \ \ \<meta\ charset\=\'utf\-8\'\>\
-\ \ \ \ \<meta\ http\-equiv\=\"X\-UA\-Compatible\"\ content\=\"chrome\=1\"\>\
-\
-\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/stylesheet\.css\"\ media\=\"screen\"\>\
-\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/github\-dark\.css\"\ media\=\"screen\"\>\
-\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/print\.css\"\ media\=\"print\"\>\
-\
-\ \ \ \ \<title\>\{\{blogname\}\}\-\-\{\{title\}\}\<\/title\>\
-\ \ \<\/head\>\
-\
-\ \ \<body\>\
-\
-\ \ \ \ \<header\>\
-\ \ \ \ \ \ \<div\ class\=\"container\"\>\
-\ \ \ \ \ \ \ \ \<h1\>\{\{\ title\ \}\}\<\/h1\>\
-\ \ \ \ \ \ \ \ \<h2\>\{\{\ subtitle\ \}\}\<\/h2\>\
-\ \ \ \ \ \ \<\/div\>\
-\ \ \ \ \<\/header\>\
-\
-\ \ \ \ \<div\ class\=\"container\"\>\
-\ \ \ \ \ \ \<section\ id\=\"main\_content\"\>\
-\ \ \ \ \ \ \ \ \<h1\>\
-\	\	\<a\ id\=\"blog\"\ class\=\"anchor\"\ href\=\"\/\"\ aria\-hidden\=\"true\"\>\
-\	\	\	\<span\ aria\-hidden\=\"true\"\ class\=\"octicon\ octicon\-link\"\>INDEX\<\/span\>\
-\	\	\<\/a\>\
-\	\	\<\/h1\>\
-\	\	\{\{content\}\}\
-\
-\ \ \ \ \ \ \<\/section\>\
-\ \ \ \ \<\/div\>\
-\
-\ \ \ \ \
-\ \ \<\/body\>\
-\<\/html\>\
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
+
+    <title>{{blogname}}--Natural_Language_Process_With_Python</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>Natural_Language_Process_With_Python</h1>
+        <h2>{{ subtitle }}</h2>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+		<a id="blog" class="anchor" href="/" aria-hidden="true">
+			<span aria-hidden="true" class="octicon octicon-link">INDEX</span>
+		</a>
+		</h1>
+		<h1 id="python">PYTHON自然语言处理</h1>
+<hr>
+<h2 id="_1">软件安装需求</h2>
+<ul>
+<li>python</li>
+<li>nltk</li>
+<li>nltk-data</li>
+<li>numpy</li>
+<li>matplotlib</li>
+<li>networkX</li>
+<li>prover9</li>
+</ul>
+<h2 id="nltk">NLTK介绍</h2>
+<p><img alt="" src="http://i.imgur.com/x0nL4S9.jpg"></p>
+<h2 id="1-python">第1章 语言处理与python</h2>
+<h3 id="_2">章节目的</h3>
+<ol>
+<li>简单程序+大量文本能够实现什么?</li>
+<li>如何自动提取概括文本风格和内容的关键词和短语?</li>
+<li>python编程语言为上述工作提供了哪些工具和技术?</li>
+<li>自然语言处理中有哪些有趣的挑战?</li>
+</ol>
+<h3 id="11">1.1 语言计算:文本和单词</h3>
+<p>将选取一些语言相关的编程任务而不去解释它们是如何实现的.</p>
+<ul>
+<li>from nltk.book import *<ul>
+<li>将加载几本书的内容</li>
+</ul>
+</li>
+<li>(nltk.text.Text)text1.concordance(strToSearch)<ul>
+<li>搜索文本</li>
+</ul>
+</li>
+<li>text1.similar(strToSearch)<ul>
+<li>词语索引(搜索词的上下文有哪些词)</li>
+</ul>
+</li>
+<li>text1.common_contexts([word1,word2,...])<ul>
+<li>研究两个词或以上共用的上下文</li>
+</ul>
+</li>
+<li>text1.dispersion_plot([word1,word2...])<ul>
+<li>绘制多个词的文件偏移的散点图</li>
+</ul>
+</li>
+<li>len(text1)<ul>
+<li>返回文本中单词数量</li>
+</ul>
+</li>
+<li>text1.count(strToSearch)<ul>
+<li>返回单词出现次数</li>
+</ul>
+</li>
+</ul>
+<h3 id="12-python">1.2 近观python</h3>
+<p>系统地回顾关键的编程概念</p>
+<h3 id="13">1.3 计算语言:简单的统计</h3>
+<ul>
+<li>FreqDist<ul>
+<li>初始化FreqDist(test1)</li>
+<li>FreqDist.keys()</li>
+<li>FreqDist.plot()<ul>
+<li>FreeDist.plot(50,cumulative=True)<ul>
+<li>只选top50,累计频率图</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>FreqDist.hapaxes()<ul>
+<li>低频词链表</li>
+</ul>
+</li>
+<li><img alt="" src="http://i.imgur.com/U4MrOUp.png"></li>
+</ul>
+</li>
+<li>词语搭配和双连词<ul>
+<li>bigrams(sent1)</li>
+<li>text1.collocations()</li>
+</ul>
+</li>
+</ul>
+<h3 id="15">1.5 自动理解自然语言</h3>
+<ul>
+<li>词意消歧<ul>
+<li>关注上下文有助于自动消除歧义</li>
+</ul>
+</li>
+<li>检测主语和动词的宾语<ul>
+<li>指代消解<ul>
+<li>确定代词或名词短语指的是什么    </li>
+</ul>
+</li>
+<li>语义角色标注<ul>
+<li>确定名词短语如何与动词相关联</li>
+</ul>
+</li>
+<li>先行词 <ul>
+<li>they的先行词thieves 或 paintings</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>自动生成语言<ul>
+<li>自动问答</li>
+<li>机器学习</li>
+<li>弄清楚词的含义,动作的主语以及代词的先行词</li>
+</ul>
+</li>
+<li>机器翻译(MT)<ul>
+<li>文本对齐</li>
+<li>babelize_shell()</li>
+</ul>
+</li>
+<li>人机对话<ul>
+<li>nltk.chat.chatbots()</li>
+<li><img alt="" src="http://i.imgur.com/A1Wrapt.png"></li>
+</ul>
+</li>
+<li>文本含义识别(Recognizing Textual Entailmant RTE)<ul>
+<li>使用浅显但强大的技术代替无边无际的知识和推理能力</li>
+</ul>
+</li>
+</ul>
+<h3 id="_3">习题</h3>
+<ul>
+<li>T15 sorted(w for w in set(text4) if w.startswith('b'))</li>
+<li>T17<ul>
+<li>text9[:].index('sunset')
+629</li>
+<li>text9[630:].index('sunset')
+12
+...</li>
+</ul>
+</li>
+<li>T20 
+    '1'.islower() 
+    True</li>
+</ul>
+<h1 id="2">2 获得文本语料库</h1>
+<h2 id="21">2.1 获取文本语料库</h2>
+<h3 id="_4">古腾堡语料库</h3>
+<p>NLTK 包含古腾堡项目(Project Gutenberg)电子文本档案的经过挑选的一小部分文
+本。该项目大约有 25,000(现在是 36,000 了)本免费电子图书,放在 
+<a href="http://www.gutenberg.
+org/">http://www.gutenberg.
+org/ </a> 上。
+<code>python
+nltk.corpus.gutenberg.fileids()
+gutenburg.words(fieild)#划分为词
+gutenburg.sents(fieild)#划分为句</code></p>
+<h3 id="_5">网络和聊天文本</h3>
+<p>NLTK 的网络文本小集合的内容包括 Firefox 交流论坛,在纽约无意听到的对话,
+《加勒比海盗》的电影剧本,个人广告和葡萄酒的评论
+<code>nltk.corpus.webtext</code>
+即时消息聊天会话语料库,最初由美国海军研究生院为研究自动检测互联网幼童虐待癖而收集的。</p>
+<p>这些帖子都已经被贴上 15种对话行为类型中的一种标签,例如:“陈述”,“情感”,“yn 问题”,“Continuer”。
+<code>nltk.corpus.nps_chat</code></p>
+<h3 id="_6">布朗语料库</h3>
+<p>布朗语料库是第一个百万词级的英语电子语料库的,由布朗大学于 1961 年创建。这个
+语料库包含 500 个不同来源的文本,按照文体分类,如:新闻、社论等</p>
+<p><img alt="image" src="https://github.com/xuesu/picture/blob/master/2016-08-22-192919_602x518_scrot.png?raw=true"></p>
+<h3 id="_7">路透社语料库</h3>
+<p>路透社语料库包含 10,788 个新闻文档,共计 130 万字。这些文档分成 90 个主题,按照
+“训练”和“测试”分为两组。因此,fileid 为“test/14826”的文档属于测试组。这样分割
+是为了训练和测试算法的,这种算法自动检测文档的主题,</p>
+<p>路透社语料库的类别是有互相重叠的,</p>
+<p>语料库方法既接受单个的 fileid 也接受 fileids 列表作为参数</p>
+<h3 id="_8">就职演说语料库</h3>
+<p>语料库实际上是 55个文本的集合,每个文本都是一个总统的演说。这个集合的一个有趣特性是它的时间维度</p>
+<h3 id="_9">标注文本语料库</h3>
+<p>许多文本语料库都包含语言学标注,有词性标注、命名实体、句法结构、语义角色等。
+NLTK 中提供了很方便的方式来访问这些语料库中的几个,还有一个包含语料库和语料样本
+的数据包,用于教学和科研的话可以免费下载。表 2-2 列出了其中一些语料库。有关下载信
+息请参阅 http://www.nltk.org/data。</p>
+<h3 id="_10">其他语料库</h3>
+<p><img alt="image" src="https://github.com/xuesu/picture/blob/master/2016-08-22-200746_686x254_scrot.png?raw=true">
+<img alt="image" src="https://github.com/xuesu/picture/blob/master/2016-08-22-200756_712x589_scrot.png?raw=true"></p>
+<h3 id="_11">载入自己的语料库</h3>
+<p><img alt="image" src="https://github.com/xuesu/picture/blob/master/2016-08-22-201507_558x176_scrot.png?raw=true">
+也可以使用BracketParseCorpusReader</p>
+<h2 id="22">2.2 条件频率分布</h2>
+<p>条件频率分布是频率分布的集合,每个频率分布有一个不同的“条件”。这个条件通常是文本的类别</p>
+<p>ConditionalFreqDist</p>
+<p>```</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>cfd = nltk.ConditionalFreqDist(genre_word)
+cfd 
+<ConditionalFreqDist with 2 conditions>
+cfd.conditions()
+['news', 'romance'] 
+让我们访问这两个条件,它们每一个都只是一个频率分布:
+cfd['news']
+<FreqDist with 100554 outcomes>
+cfd['romance']
+<FreqDist with 70022 outcomes>
+list(cfd['romance'])
+[',', '.', 'the', 'and', 'to', 'a', 'of', '``', "''", 'was', 'I', 'in', 'he', 'had',
+'?', 'her', 'that', 'it', 'his', 'she', 'with', 'you', 'for', 'at', 'He', 'on', 'him',
+'said', '!', '--', 'be', 'as', ';', 'have', 'but', 'not', 'would', 'She', 'The', ...]
+```</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<ul>
+<li>在 plot()和 tabulate()方法中,我们可以使用 conditions= parameter 来选择指定
+哪些条件显示。如果我们忽略它,所有条件都会显示。</li>
+<li>同样,我们可以使用 samples= parameter 来限制要显示的样本。这使得载入大量数据到一个条件频率分布,然后通过选定
+条件和样品,绘图或制表的探索成为可能。这也使我们能全面控制条件和样本的显示顺序。
+<code>cfd.tabulate(conditions=['English', 'German_Deutsch'],
+    samples=range(10), cumulative=True)</code>
+<img alt="image" src="https://github.com/xuesu/picture/blob/master/2016-08-22-203654_737x414_scrot.png?raw=true"></li>
+</ul>
+<h3 id="_12">使用双连词生成随机文本</h3>
+<p>bigrams() 函数接受一个词汇链表,并建立一个连续的词对链表。</p>
+<h2 id="24">2.4 词典资源</h2>
+<p><strong>词典或者词典资源</strong>是一个词和/或短语以及一些相关信息的集合,例如:词性和词意定义等相关信息。</p>
+<p>一个<strong>词项</strong>包括<strong>词目</strong>(也叫<strong>词条</strong>)以及其他附加信息,例如:词性和词意定义。</p>
+<p>两个不同的词拼写相同被称为<strong>同音异义词</strong>。</p>
+<h3 id="_13">词汇列表语料库</h3>
+<p>词汇语料库是 Unix 中的/usr/dict/words 文件,被一些拼写检查程序使用。我们可以用它来寻找文本语料中不寻常的或拼写错误的词汇,
+nltk.corpus.word</p>
+<h3 id="_14">停用词语料库</h3>
+<p>nltk.corpus.stopwords</p>
+<h3 id="cmu">CMU发音词典</h3>
+<p>音素包含数字表示主重音(1),次重音(2)和无重音(0)
+<code>nltk.corpus.cmudict.entries()
+('fir', ['F', 'ER1'])
+('fire', ['F', 'AY1', 'ER0'])
+('fire', ['F', 'AY1', 'R'])
+('firearm', ['F', 'AY1', 'ER</code>
+示例扫描了具有特定重音模式的词汇</p>
+<h3 id="_15">比较词表</h3>
+<p>NLTK 中包含了所谓的斯瓦迪士核心词列表(Swa
+desh wordlists),几种语言中约 200个常用词的列表。语言标识符使用 ISO639 双字母码。</p>
+<p>nltk.corpus.swadesh</p>
+<h3 id="toolbox-shoebox">Toolbox 和 ShoeBox</h3>
+<p>一个 Toolbox文件由一个大量条目的集合组成,其中每个条目由一个或多个字段组成。大多数字段都是可选的或重复的,这意味着这个词汇资源不能作为一个表格或电子表格来处理。以前叫做 Shoebox
+<img alt="image" src="https://github.com/xuesu/picture/blob/master/2016-08-22-212743_687x305_scrot.png?raw=true"></p>
+<h2 id="25-wordnet">2.5 WordNet</h2>
+<p>WordNet是面向语义的英语词典，与普通词典不同的是，它具有很多额外信息，比如同义词，词之间的关系，比如词的从属关系，部分与全部关系，材质关系另外，wordnet还从一般到具体关系出发建立层次结构</p>
+<p>nltk.corpus.wordnet</p>
+<h3 id="_16">意义与同义词</h3>
+<ol>
+<li>synset(同义词集),词条lemma<ul>
+<li>示例car.n.01，中间表示名词词性</li>
+<li>wn.synsets('motorcar')</li>
+<li>wn.synset('car.n.01').lemma_names<ul>
+<li>['car', 'auto', 'automobile', 'machine', 'motorcar']</li>
+</ul>
+</li>
+<li>wn.synset('car.n.01').definition<ul>
+<li>'a motor vehicle with four wheels; usually propelled by an internal combustion engine'</li>
+</ul>
+</li>
+<li>wn.synset('car.n.01').examples<ul>
+<li>['he needs a car to get to work']</li>
+</ul>
+</li>
+<li>wn.synset('car.n.01').lemmas<ul>
+<li>[Lemma('car.n.01.car'),Lemma('car.n.01.auto'),Lemma('car.n.01.automobile'), Lemma('car.n.01.machine'), Lemma('car.n.01.motorcar')]</li>
+</ul>
+</li>
+<li>wn.lemma('car.n.01.automobile')<ul>
+<li>Lemma('car.n.01.automobile')</li>
+</ul>
+</li>
+<li>wn.lemma('car.n.01.automobile').synset<ul>
+<li>Synset('car.n.01')</li>
+</ul>
+</li>
+<li>wn.lemma('car.n.01.automobile').name<ul>
+<li>'automobile'</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="_17">层次结构</h3>
+<ol>
+<li>根：概念一般，独一无二的根同义词集</li>
+<li>下位词：更加具体的概念<ul>
+<li>types_of_motorcar = motorcar.hyponyms()</li>
+</ul>
+</li>
+<li>上位词<ul>
+<li>motorcar.hypernyms()<ul>
+<li>[Synset('motor_vehicle.n.01')]</li>
+</ul>
+</li>
+<li>paths = motorcar.hypernym_paths()<ul>
+<li>len(paths)<ul>
+<li>2</li>
+</ul>
+</li>
+<li>[synset.name for synset in paths[0]]<ul>
+<li>['entity.n.01','physical_entity.n.01',...]</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>motorcar.root_hypernyms()<ul>
+<li>[Synset('entity.n.01')]</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="_18">更多的层次关系</h3>
+<ol>
+<li>部分到整体part_meronyms()</li>
+<li>材料substance_meronyms()</li>
+<li>集合与成员member_holonyms()</li>
+<li>动作和细节(蕴涵)entailments()<ul>
+<li>wn.synset('walk.v.01').entailments()<ul>
+<li>[Synset('step.v.01')]</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="_19">语义相似度</h3>
+<ul>
+<li>lowest_common_hypernyms</li>
+<li>min_depth<ul>
+<li>通过查找每个同义词集深度量化一般性的概念</li>
+</ul>
+</li>
+<li>path_similarity<ul>
+<li>是基于上位词层次结构中相互连接的概念之间的最短路径在 0-1 范围的打分(两者之间没有路径就返回-1)</li>
+</ul>
+</li>
+</ul>
+<h2 id="_20">语料库重要来源</h2>
+<ol>
+<li>公开发行的语料库的重要来源是语言数据联盟((LDC)和欧洲语言资源局(ELRA)<ul>
+<li>使用 OLAC 元数据格式存档,可以通过 http://www.language-archives.org/上的 OLAC 主页搜索到</li>
+</ul>
+</li>
+<li>语料库列表(见http://gandalf.aksis.uib.no/corpora/sub.html)是一个讨论语料库内容的邮件列表,你可以通过搜索列表档案来找到资源或发布资源到列表中。</li>
+<li>Ethnologue是最完整的世界上的语言的清单,http://www.ethnoogue.com/。7000 种语言中只有几十中有大量适合 NLP 使用的数字资源</li>
+</ol>
+<h2 id="_21">习题</h2>
+<p>23.a <img alt="image" src="https://github.com/xuesu/picture/blob/master/2016-08-23-010403_556x430_scrot.png?raw=true">
+<code>python
+import nltk
+import matplotlib.pyplot as plt
+from nltk.corpus import gutenberg
+import math
+fd = nltk.FreqDist(gutenberg.words('austen-emma.txt'))
+x = [e for e in fd.keys()]
+y = [math.log(fd[x0]) for x0 in x ]</code>
+而对于y2 = [math.log(fd[fd.max()]/a) for a in range(1,len(fd) + 1)]，其曲线为</p>
+<p><img alt="image" src="https://github.com/xuesu/picture/blob/master/2016-08-23-011824_605x469_scrot.png?raw=true"></p>
+<p>曲线基本一致，可以认为齐夫定律有可能，所绘的线末尾有很长一段为0</p>
+<p>23.b
+<img alt="image" src="https://github.com/xuesu/picture/blob/master/2016-08-23-014429_569x434_scrot.png?raw=true">
+明显，由于各词汇几乎等概率，所以不满足，齐夫定律只能适用于有意义的自然语言</p>
+<p>25.
+<code>python
+import nltk
+from nltk.corpus import udhr
+def findUdhr(x):
+    return [f for f in udhr.fileids() if x in udhr.words(f)]</code></p>
+<p>26。0.923
+```
+a = wn.all_synsets('n')
+sum = 0
+l  = 0
+for aa in a:
+    sum += len(aa.hyponyms())
+    l += 1</p>
+<p>print float(sum)/l
+```</p>
+<p>27.</p>
+<ul>
+<li>n 1.96887292212</li>
+<li>v 5.36602019322</li>
+<li>s 2.32325402071</li>
+<li>r 1.74813587407
+<code>python
+for t in ['n','v','s','r']:
+    a = wn.all_synsets(t)
+    sum = 0
+    l  = 0
+    for aa in a:
+        sum += len(wn.synsets(aa.name().split('.')[0],t))
+        l += 1
+    print t,float(sum)/l</code></li>
+</ul>
+<h1 id="3">3 加工原料文本</h1>
+<h2 id="31">3.1</h2>
+<p>可以在 http://www.gutenberg.org/catalog/上浏览 25,000 本免费在线书籍的目录,获得 ASCII 码文本文件的 URL</p>
+<ul>
+<li>分词:nltk.word_tokenize(raw)</li>
+<li>处理HTML字符串返回原始文本:nltk.clean_html(html)</li>
+</ul>
+<p>在一个叫做 Universal Feed Parser 的第三方 Python 库(可从 http://feedparser.org/免费下载)的帮助下,我们可以访问一个博客的内容,</p>
+<h1 id="5">5 分类和标注词汇</h1>
+<p>POS tagging:将词汇按它们的词性(parts-of-speech,POS)分类以及相应的标注它们的过程被称为词性标注(part-of-speech tagging, POS tagging)或干脆简称标注。</p>
+<p>标记集:词性也称为词类或词汇范畴。用于特定任务的标记的集合被称为一个标记集</p>
+<h2 id="51">5.1 使用词性标注器</h2>
+<p>POS tagger</p>
+<p>nltk.pos_tag(text)</p>
+<h2 id="52">5.2 标注语料库</h2>
+<ol>
+<li>从表示一个已标注的标识符的标准字符串创建一个这样的特殊元组
+    <code>tagged_token = nltk.tag.str2tuple('fly/NN')</code></li>
+<li>其他语料库使用各种格式存储词性标记。 NLTK 中的语料库阅读器提供了一个统一的接口,使你不必理会这些不同的文件格式。</li>
+<li>并非所有的语料库都采用同一组标记;一个内置的到一个简化的标记集的映射
+    <code>nltk.corpus.brown.tagged_words(simplify_tags=True)</code>
+    <img alt="image" src="https://github.com/xuesu/picture/blob/master/2016-08-23-185740_539x785_scrot.png?raw=true"></li>
+<li>图形化的POS一致性工具nltk.app.concordance()</li>
+</ol>
+<h2 id="_22">自动标注</h2>
+<ol>
+<li>默认标注器</li>
+<li>正则表达式标注器</li>
+<li>查询标注器<ul>
+<li>nltk.UnigramTagger(model = likely_tags)</li>
+</ul>
+</li>
+<li>一个模块输出中的任何错误都在下游模块大
+大的放大</li>
+<li>黄金标准测试数据:一个已经手动标注并作为自动系统评估标准而被接受的语料库。</li>
+</ol>
+<h2 id="55-n-gram">5.5 N-gram标注</h2>
+<p>一元标注(Unigram Tagging)</p>
+<p>一个 n-gram 标注器是一个 unigram 标注器的一般化,它的上下文是当前词和它前面 n-1 个标识符的词性标记</p>
+<p>混淆矩阵 nltk.ConfusionMatrix(gold,test)</p>
+<h2 id="56">5.6 基于转换的标注</h2>
+<p>Brill 标注是一种基于转换的学习,以它的发明者命名。一般的想法很简单:猜每个词的标记,然后返回和修复错误的。在这种方式中,Brill 标注器陆续将一个不良标注的文本转换成一个更好的。与 n-gram标注一样,这是有监督的学习方法,因为我们需要已标注的训练数据来评估标注器的猜测是否是一个错误。然而,不像 n-gram 标注,它<strong>不计数观察结果,只编制一个转换修正规则链表</strong></p>
+<ul>
+<li>在其训练阶段,T1,T2 和 C 的标注器猜测值创造出数以千计的候选规则。</li>
+<li>每一条规则都根据其净收益打分:它修正的不正确标记的数目减去它错误修改的正确标记的数目。</li>
+</ul>
+<h2 id="_23">如何确定词的分类</h2>
+<ol>
+<li>形态学线索</li>
+<li>句法线索</li>
+<li>语义线索</li>
+<li>新词<ul>
+<li>名词可以被认为是开放类，介词则可以被认为是封闭类</li>
+</ul>
+</li>
+<li>构词法</li>
+</ol>
+<h2 id="_24">习题</h2>
+<p>T2.使用ntlk时发现书中示例不能接受该参数
+<code>nltk.corpus.brown.tagged_words(simplify_tags=True)#错误</code>
+T7.d1.update(d2)时，d1中d2和d1的并集被更新覆盖为d2中内容</p>
+<p>T15. </p>
+<ul>
+<li>a:[u'cm.', u'two-thirds', u'mg.', u'data', u'means', u'mechanics', u'sec.', u'$5', u'$2', u"10''", u'ethics', u'Police', u'Headquarters', u'deer', u'lb.', u'savings', u'$3', u'Data']</li>
+<li>b:[u'home', u'Home', u'B']</li>
+<li>c:'NN'</li>
+<li>d:'IN'</li>
+</ul>
+<p>T39. 在二元模型中，以下使用laplace平滑不如普通的二元模型好。另外尝试了HiddenMarkovTrainer+laplace,效果也远远不及
+<code>class LaplaceBigramTagger(nltk.BigramTagger):
+    def __init__(self,train_sents):
+        self.firstD = ConditionalFreqDist(
+            (x,y) for sent in train_sents for (x,y) in sent
+        )
+        self.secondD = ConditionalFreqDist(
+            ((x,z),y) for sent in train_sents for ((z,w),(x,y)) in nltk.bigrams(sent)
+        )
+    def tag(self,sent):
+        ans = []
+        for i in range(len(sent)):
+            x = sent[i]
+            if i == 0:
+                sub = self.firstD[x].max() if x in self.firstD.conditions() and self.firstD[x].N() &gt; 0 else u'NN'
+            else:
+                sub = u'NN'
+                prob = 0
+                for y in self.firstD[x].keys():
+                    z = sent[i - 1]
+                    nowprob = (self.firstD[x][y] + 1.0)/(self.firstD[x].N() + len(self.firstD[x].keys())) * ((1.0/(1 + len(self.secondD[(x,z)].keys()) + self.secondD[(x,z)].N())) if y in self.secondD[(x,z)].keys() else ((self.secondD[(x,z)][y] + 1.0)/(1 + len(self.secondD[(x,z)].keys()) + self.secondD[(x,z)].N())))
+                    if nowprob &gt; prob:
+                        prob = nowprob
+                        sub = y 
+            ans.append((x,sub)) 
+        return ans</code></p>
+
+      </section>
+    </div>
+
+    
+  </body>
+</html>

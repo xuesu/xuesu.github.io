@@ -1,37 +1,302 @@
-\<\!DOCTYPE\ html\>\
-\<html\>\
-\ \ \<head\>\
-\ \ \ \ \<meta\ charset\=\'utf\-8\'\>\
-\ \ \ \ \<meta\ http\-equiv\=\"X\-UA\-Compatible\"\ content\=\"chrome\=1\"\>\
-\
-\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/stylesheet\.css\"\ media\=\"screen\"\>\
-\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/github\-dark\.css\"\ media\=\"screen\"\>\
-\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/print\.css\"\ media\=\"print\"\>\
-\
-\ \ \ \ \<title\>\{\{blogname\}\}\-\-\{\{title\}\}\<\/title\>\
-\ \ \<\/head\>\
-\
-\ \ \<body\>\
-\
-\ \ \ \ \<header\>\
-\ \ \ \ \ \ \<div\ class\=\"container\"\>\
-\ \ \ \ \ \ \ \ \<h1\>\{\{\ title\ \}\}\<\/h1\>\
-\ \ \ \ \ \ \ \ \<h2\>\{\{\ subtitle\ \}\}\<\/h2\>\
-\ \ \ \ \ \ \<\/div\>\
-\ \ \ \ \<\/header\>\
-\
-\ \ \ \ \<div\ class\=\"container\"\>\
-\ \ \ \ \ \ \<section\ id\=\"main\_content\"\>\
-\ \ \ \ \ \ \ \ \<h1\>\
-\	\	\<a\ id\=\"blog\"\ class\=\"anchor\"\ href\=\"\/\"\ aria\-hidden\=\"true\"\>\
-\	\	\	\<span\ aria\-hidden\=\"true\"\ class\=\"octicon\ octicon\-link\"\>INDEX\<\/span\>\
-\	\	\<\/a\>\
-\	\	\<\/h1\>\
-\	\	\{\{content\}\}\
-\
-\ \ \ \ \ \ \<\/section\>\
-\ \ \ \ \<\/div\>\
-\
-\ \ \ \ \
-\ \ \<\/body\>\
-\<\/html\>\
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
+
+    <title>{{blogname}}--第7章 时间计划-进度计划</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>第7章 时间计划-进度计划</h1>
+        <h2>{{ subtitle }}</h2>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+		<a id="blog" class="anchor" href="/" aria-hidden="true">
+			<span aria-hidden="true" class="octicon octicon-link">INDEX</span>
+		</a>
+		</h1>
+		<h1 id="_1">进度计划</h1>
+<p><b>按时完成项目是项目经理最大的挑战之一</p>
+<p>时间是项目规划中灵活性最小的因素</p>
+<p>进度问题是项目冲突的主要原因</b></p>
+<h3 id="_2">进度</h3>
+<p>进度是对执行的活动和里程碑制定的工作计划日期表</p>
+<h3 id="_3">任务</h3>
+<p>确定为完成项目的各个交付成果所必须进行的诸项具体活动</p>
+<h4 id="_4">项目任务的关联关系</h4>
+<ul>
+<li>项目各项活动之间存在相互联系与相互依赖关系,</li>
+<li>根据这些关系进行适当的顺序安排</li>
+<li>前置活动（任务）---〉后置活动（任务）
+<img alt="" src="http://i.imgur.com/QpPdvxL.png"></li>
+</ul>
+<h4 id="_5">任务之间关联关系的依据</h4>
+<ol>
+<li>强制性依赖关系<ol>
+<li>固有,不以人意志转移</li>
+</ol>
+</li>
+<li>软逻辑关系<ol>
+<li>可以作为参考</li>
+</ol>
+</li>
+<li>外部依赖关系<ol>
+<li>依赖于项目之外的</li>
+</ol>
+</li>
+</ol>
+<h2 id="_6">进度管理图示</h2>
+<h3 id="_7">网络图</h3>
+<pre><code>- 网络图是活动排序的一个输出
+- 展示项目中的各个活动以及活动之间的逻辑关系 
+- 网络图可以表达活动的历时
+- 常用的网络图:PDM(优先图,节点法),ADM(箭线法)
+</code></pre>
+<h4 id="adm">ADM</h4>
+<ul>
+<li>在ADM网络图中,箭线表示活动(任务)</li>
+<li>两个代号唯一确定一个任务</li>
+<li>代号表示前一任务的结束,同时也表示后一任务的开始.</li>
+<li>存在虚活动<ul>
+<li>为了定义活动</li>
+<li>为了表示逻辑关系</li>
+<li>不消耗资源的</li>
+</ul>
+</li>
+<li><img alt="" src="http://i.imgur.com/h1gPsO7.png"></li>
+</ul>
+<h4 id="pdm">PDM</h4>
+<ul>
+<li><img alt="" src="http://i.imgur.com/brnT17l.png"></li>
+</ul>
+<h3 id="_8">甘特图</h3>
+<h3 id="_9">里程碑图</h3>
+<p>项目进展中的重大工作完成</p>
+<p><img alt="" src="http://i.imgur.com/ILR7iSL.png"></p>
+<h3 id="_10">资源图</h3>
+<p><img alt="" src="http://i.imgur.com/k7XmZwW.png"></p>
+<h2 id="_11">任务历时估算</h2>
+<ol>
+<li>定额估算法</li>
+<li>经验导出模型</li>
+<li>CPM(关键路径法估计)</li>
+<li>PERT(工程评估评审技术)</li>
+<li>基于承诺的进度估计</li>
+<li>Jones的一阶估算准则</li>
+<li>其它策略<ol>
+<li>专家估算方法 </li>
+<li>类推估计 </li>
+<li>模拟估算</li>
+<li>利用企业的历史数据</li>
+</ol>
+</li>
+</ol>
+<h3 id="_12">定额估算法</h3>
+<p>T=Q/(R*S)</p>
+<pre><code>- T:活动历时
+- Q:任务工作量
+- R:人力数量
+- S:工作效率（贡献率）
+</code></pre>
+<h3 id="_13">经验导出模型</h3>
+<p>经验导出模型：D=a *pow(E,b)：
+    - D:进度(以月单位)
+    - E：工作量(以人月单位)
+    - a:2—4之间
+    - b:1/3左右:依赖于项目的自然属性</p>
+<h4 id="walston-felix">Walston-Felix模型</h4>
+<p>D=2.4*pow(E,0.35)</p>
+<h4 id="cocomo">基本COCOMO</h4>
+<p>D = 2.5 * pow(E,b)
+    - b:
+        - 有机0.38
+        - 半有机:0.35
+        - 嵌入式:0.32</p>
+<h3 id="cpm">CPM 关键路径法估计</h3>
+<ol>
+<li>
+<ul>
+<li>确定项目网络图</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>每个任务的时间比较确定，单一的历时估算</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>根据项目网络图逻辑关系，确定关键路径</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>关键路径是网络图中最长的路径。</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>关键路径可以确定项目完成时间</li>
+</ul>
+</li>
+</ol>
+<h3 id="pert">PERT工程评估评审技术</h3>
+<ol>
+<li>program evaluation and Review Technique</li>
+<li>项目中某项单独的活动，存在很大的不确定性。</li>
+<li>加权算法估算任务历时</li>
+<li>利用网络图逻辑关系，确定项目历时</li>
+<li>基于对某项任务的乐观，悲观以及最可能的概率时间估计</li>
+<li>采用加权平均得到期望值E=（O+4m+P)/6<ul>
+<li>O是最小估算值:乐观(Optimistic) </li>
+<li>P是最大估算值:悲观(Pessimistic)</li>
+<li>M是最大可能估算(Most Likely)</li>
+</ul>
+</li>
+</ol>
+<h4 id="pert_1">PERT风险指标</h4>
+<ul>
+<li>标准差δ =(最大估算值-最小估算值)/6</li>
+<li>方差pow(δ,2) = pow([(最大估算值-最小估算值)/6],2)
+<img alt="" src="http://i.imgur.com/khK69Pe.png">
+<img alt="" src="http://i.imgur.com/2TIdxSm.png"></li>
+</ul>
+<h3 id="_14">基于承诺的进度估算</h3>
+<p>从需求出发去安排进度,要求开发人员做出进度承诺,不进行中间的工作量（规模）估计</p>
+<ul>
+<li>优点<ul>
+<li>有利于开发者对进度的关注</li>
+<li>有利于开发者在接受承诺之后的士气高昂</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>易于产生大的估算误差</li>
+</ul>
+</li>
+</ul>
+<h3 id="jones">Jones的一阶估算准则</h3>
+<ol>
+<li>幂次表</li>
+<li>估算项目功能点</li>
+<li>从幂次表中选择合适的幂次将功能点升幂
+<img alt="" src="http://i.imgur.com/VfMNIwf.png">
+<img alt="" src="http://i.imgur.com/84w6glc.png"></li>
+</ol>
+<h2 id="_15">进度编制的基本方法</h2>
+<ol>
+<li>关键路径法</li>
+<li>时间压缩法</li>
+<li>管理预留</li>
+<li>资源平衡</li>
+<li>敏捷计划</li>
+</ol>
+<h2 id="_16"><font color='red'>关键路径法</font></h2>
+<ul>
+<li>根据指定的网络图逻辑关系和单一的历时估算，计算每一个活动的单一的、确定的最早和最晚开始和完成日期。</li>
+<li>计算浮动时间。</li>
+<li>计算网络图中最长的路径。</li>
+<li>确定项目完成时间</li>
+</ul>
+<h3 id="_17">关键路径,关键链</h3>
+<ul>
+<li>时间浮动为0（Float=0）的路径</li>
+<li>网络图中最长的路径</li>
+<li>关键路径是决定项目完成的最短时间。</li>
+<li>明确关键路径后，你可以合理安排进度</li>
+<li>关键路径上的任何活动延迟，都会导致整个项目完成时间的延迟</li>
+<li>关键路径可能不止一条</li>
+</ul>
+<h3 id="_18">参数</h3>
+<ul>
+<li>ES最早开始时间(Early start)</li>
+<li>LS最晚开始时间(Late start)</li>
+<li>EF最早完成时间(Early finish)</li>
+<li>LF最晚完成时间(Late finish)</li>
+<li>TF总浮动（ Total Float）</li>
+<li>FF自由浮动（Free Float）</li>
+<li>超前(Lead)</li>
+<li>滞后(Lag)</li>
+</ul>
+<h3 id="forward-pass">正推法(Forward pass)</h3>
+<p>按照时间顺序计算最早开始时间和最早完成时间的方法</p>
+<h3 id="backward-pass">逆推法(Backward pass)</h3>
+<p>按照逆时间顺序计算最晚开始时间和最晚结束时间的方法,称为逆推法. </p>
+<h2 id="_19">时间压缩法</h2>
+<p>时间压缩法是在不改变项目范围的前提下缩短项目工期的方法</p>
+<ul>
+<li>应急法--赶工（Crash）(时间-成本平衡法)</li>
+<li>平行作业法--快速跟进（Fast tracking:搭接</li>
+</ul>
+<h3 id="-">应急法-赶工</h3>
+<p>在最小相关成本增加的条件下，压缩关键路经上的关键活动历时的方法</p>
+<h4 id="_20">关于进度压缩与费用增加关系</h4>
+<ul>
+<li>进度压缩单位成本方法：<ul>
+<li>线性关系：</li>
+</ul>
+</li>
+<li>Charles Symons(1991)方法<ul>
+<li>进度压缩比普通进度短的时候，费用迅速上涨</li>
+</ul>
+</li>
+</ul>
+<h4 id="_21">单位压缩成本</h4>
+<p>进度压缩单位成本=（压缩成本-正常成本）/(正常进度-压缩进度)
+<img alt="" src="http://i.imgur.com/s43lSyT.png"></p>
+<h4 id="charles-symons">Charles Symons方法</h4>
+<ul>
+<li>进度压缩因子=压缩进度/正常进度</li>
+<li>压缩进度的工作量=正常工作量/进度压缩因子</li>
+</ul>
+<p>研究表明：进度压缩因子〉0.75，最多可以压缩25％</p>
+<h3 id="-_1">平行作业法-快速跟进</h3>
+<p>是在改变活动间的逻辑关系，并行开展某些活动
+<img alt="" src="http://i.imgur.com/glZNDZi.png">
+<img alt="" src="http://i.imgur.com/scg5ORN.png"></p>
+<h2 id="_22">管理预留法</h2>
+<p>管理预留是一项加在项目末端的人为任务 
+<img alt="" src="http://i.imgur.com/KUtwC2z.png"></p>
+<h2 id="_23">资源平衡法</h2>
+<ol>
+<li>资源优化配置，形成最有效的利用资源</li>
+<li>使资源闲置的时间最小化</li>
+<li>尽量避免超出资源能力</li>
+<li>工期不能加长</li>
+</ol>
+<h2 id="_24">敏捷计划</h2>
+<ol>
+<li>迭代周期</li>
+<li>远粗近细</li>
+</ol>
+<h3 id="scrum">Scrum两层项目计划</h3>
+<ul>
+<li>产品待办事项列表（Product Backlog）<ul>
+<li><img alt="" src="http://i.imgur.com/B087ZrW.png"></li>
+</ul>
+</li>
+<li>Sprint待办事项列表体现（Sprint Backlog）<ul>
+<li><img alt="" src="http://i.imgur.com/OPU4yHs.png"></li>
+</ul>
+</li>
+</ul>
+<h2 id="_25">项目进度模型</h2>
+<p>软件项目进度问题（Software Project Scheduling Problem，SPSP）模型是在给定的项目任务工作量及其关系和资源限制下，对项目确定合适的人员安排，以保证项目的时间最短、成本最小。</p>
+
+      </section>
+    </div>
+
+    
+  </body>
+</html>

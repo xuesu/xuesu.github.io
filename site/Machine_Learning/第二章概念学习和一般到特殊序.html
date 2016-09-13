@@ -1,37 +1,225 @@
-\<\!DOCTYPE\ html\>\
-\<html\>\
-\ \ \<head\>\
-\ \ \ \ \<meta\ charset\=\'utf\-8\'\>\
-\ \ \ \ \<meta\ http\-equiv\=\"X\-UA\-Compatible\"\ content\=\"chrome\=1\"\>\
-\
-\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/stylesheet\.css\"\ media\=\"screen\"\>\
-\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/github\-dark\.css\"\ media\=\"screen\"\>\
-\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/print\.css\"\ media\=\"print\"\>\
-\
-\ \ \ \ \<title\>\{\{blogname\}\}\-\-\{\{title\}\}\<\/title\>\
-\ \ \<\/head\>\
-\
-\ \ \<body\>\
-\
-\ \ \ \ \<header\>\
-\ \ \ \ \ \ \<div\ class\=\"container\"\>\
-\ \ \ \ \ \ \ \ \<h1\>\{\{\ title\ \}\}\<\/h1\>\
-\ \ \ \ \ \ \ \ \<h2\>\{\{\ subtitle\ \}\}\<\/h2\>\
-\ \ \ \ \ \ \<\/div\>\
-\ \ \ \ \<\/header\>\
-\
-\ \ \ \ \<div\ class\=\"container\"\>\
-\ \ \ \ \ \ \<section\ id\=\"main\_content\"\>\
-\ \ \ \ \ \ \ \ \<h1\>\
-\	\	\<a\ id\=\"blog\"\ class\=\"anchor\"\ href\=\"\/\"\ aria\-hidden\=\"true\"\>\
-\	\	\	\<span\ aria\-hidden\=\"true\"\ class\=\"octicon\ octicon\-link\"\>INDEX\<\/span\>\
-\	\	\<\/a\>\
-\	\	\<\/h1\>\
-\	\	\{\{content\}\}\
-\
-\ \ \ \ \ \ \<\/section\>\
-\ \ \ \ \<\/div\>\
-\
-\ \ \ \ \
-\ \ \<\/body\>\
-\<\/html\>\
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
+
+    <title>{{blogname}}--第二章概念学习和一般到特殊序</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>第二章概念学习和一般到特殊序</h1>
+        <h2>{{ subtitle }}</h2>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+		<a id="blog" class="anchor" href="/" aria-hidden="true">
+			<span aria-hidden="true" class="octicon octicon-link">INDEX</span>
+		</a>
+		</h1>
+		<h1 id="chapter-02">Chapter 02 概念学习和一般到特殊序</h1>
+<ul>
+<li>从特殊的训练样例中归纳出一般函数是机器学习的中心问题</li>
+<li>概念学习在预定义的假设空间中搜索假设,使其与训练样例有最佳拟合度<ul>
+<li>为了高效搜索,利用一般道特殊偏序结构</li>
+</ul>
+</li>
+<li>本章讨论了归纳学习的本质以及任意程序能从训练数据中泛化的理由</li>
+</ul>
+<h2 id="21">2.1</h2>
+<ol>
+<li>每个概念可看做一个对象或事件集合,一个较大集合中选取的子集</li>
+<li>从样例中逼近布尔函数(概念学习)给定一样例集合以及每个样例是否属于某一概念的标注,怎样自动推断出该概念的一般定义</li>
+</ol>
+<h3 id="_1">概念学习定义</h3>
+<p>从有关某个布尔函数的输入输出训练样例中推断该布尔函数</p>
+<p>描述为:</p>
+<ol>
+<li>实例的集合<ol>
+<li>元素如天气(sunny,rainy),湿度(normal,high),温度(warm,cold)等</li>
+</ol>
+</li>
+<li>实例集合上的目标函数<ol>
+<li>目标概念满足的性质</li>
+</ol>
+</li>
+<li>候选假设的集合<ol>
+<li>如将每个假设描述为实例值约束的合取</li>
+</ol>
+</li>
+<li>训练样例的集合<ol>
+<li>正例和反例</li>
+</ol>
+</li>
+</ol>
+<h2 id="22">2.2 概念学习任务</h2>
+<h3 id="221">2.2.1</h3>
+<ul>
+<li>概念定义在一个实例集合上,这个集合表示为X</li>
+<li>目标概念c:待学习的概念或函数,可以是定义在实例集X上的任意布尔函数<ul>
+<li>c(x) = 1的示例:正例或目标概念的成员</li>
+<li>c(x) = 0: 反例或非目标概念成员</li>
+</ul>
+</li>
+<li>H:表示所有可能假设集合,H中每个假设h表示X上定义的布尔函数</li>
+<li>机器学习的目的:寻找一个假设h使得对于X中所有x,h(x) = c(x)</li>
+</ul>
+<h3 id="222">2.2.2 归纳学习假设</h3>
+<p>任意假设如果能在足够大的训练样例集中很好地逼近目标函数,那么也能在未见实例中很好地逼近目标函数</p>
+<h3 id="23">2.3 作为搜索的概念学习</h3>
+<p>语法不同(syntactically distinct)的假设(注意包含∅的情况是1种,注意包含?的属性值)</p>
+<h4 id="_2">假设的一般到特殊序</h4>
+<h5 id="more95general95than95or95equal95to">more_general_than_or_equal_to</h5>
+<p>令h_j和h_x为在X上定义的布尔函数,称h_j more_general_than_or_equal_to h_k(记做<img src="http://www.forkosh.com/mathtex.cgi? h_j\geq_gh_k">)当且仅当</p>
+<p>对于任意x属于X,[h_k(x)=1&rarr;h_j(x)=1]</p>
+<p>类似地,有</p>
+<p><img src="http://www.forkosh.com/mathtex.cgi? h_j{
+geq}_gh_k"></p>
+<p><img src="http://www.forkosh.com/mathtex.cgi? h_j>_gh_k"&gt;</p>
+<p>定义相反关系为特殊,则</p>
+<p><img src="http://www.forkosh.com/mathtex.cgi? h_j\leq_gh_k"></p>
+<p><img src="http://www.forkosh.com/mathtex.cgi? h_j<_gh_k"></p>
+<h3 id="24-find-s">2.4 FIND-S 寻找极大特殊假设</h3>
+<pre><code>1. 将h初始化为H中最特殊假设
+2. 对每个正例x
+    1. 对h的每个属性约束a_i
+        1.  如果x满足a_i则不作任何处理,否则将h中a_i替换为下一个更一般约束
+3. 输出假设h
+</code></pre>
+<p>对于属性约束的合取式描述的假设空间,FIND-S保证输出为H中与正例一致的最特殊的假设</p>
+<p>该算法存在的问题</p>
+<ol>
+<li>学习过程是否收敛到了正确的目标概念?如果不能至少要描述其不确定性</li>
+<li>为什么要用最特殊的假设?</li>
+<li>训练样例是否相互一致?</li>
+<li>如果有多个极大特殊假设?FIND-S必须允许其选择怎样在一般化假设的路径上回溯,以容纳目标假设位于偏序结构的另一分支的可能性</li>
+<li>可能是不存在极大假设的特殊空间</li>
+</ol>
+<h2 id="25">2.5 变型空间</h2>
+<h3 id="_3">一致</h3>
+<p>一个假设h与训练样例集合D一致,当且晋档对D中每一个样例&lt;x,c(x)&gt;都有h(x) = c(x)</p>
+<pre><code>Consistent(h,D)≡(任意&lt;x,c(x)&gt;∈D) h(x) = c(x)
+</code></pre>
+<p>注意与满足的区别:</p>
+<ul>
+<li>样例x在h(x)=1时被称为满足假设h</li>
+<li>一致则与目标概念有关</li>
+</ul>
+<h3 id="_4">变形空间</h3>
+<p>关于假设空间H和训练样例集合D的变型空间,标记为VS_{H,D},是H中与训练样例一致的所有假设构成的子集</p>
+<pre><code>VS_{H,D}={h∈H|Consistent(h,D)}
+</code></pre>
+<h4 id="_5">变形空间的简洁表示方法</h4>
+<p>极大一般成员集合G和极大特殊成员集合S</p>
+<p>变型空间表示定理
+令X为任意实例集合,H为X上定义的布尔假设的集合,令c:X→{0,1}为X上定义的任一目标概念,并令D为任意训练样例的集合|{＜x,c(x)＞}|,对于所有的X,H,c,D,以及良好定义的S和G</p>
+<pre><code>VS_{H,D}={h∈H|(存在s∈S)(存在g∈G)
+(g more_general_or_equal_to h more_general_or_equal_to s)}
+</code></pre>
+<h5 id="maximally-general">极大一般成员(maximally general)集合</h5>
+<pre><code>G≡{g∈H|Consistent(g,D)∧(￢存在g'∈H[(g' &gt;g g)∧Consistent(g',D)])}
+</code></pre>
+<h5 id="maximally-specific">极大特殊成员(maximally specific)集合</h5>
+<pre><code>S≡{s属于H|Consistent(s,D)∧(￢存在s'∈H[(s &gt;g s')∧Consistent(s',D)])}
+</code></pre>
+<h2 id="26">2.6 候选消除算法</h2>
+<p>候选消除算法计算变型空间,包含于H中训练样例的观察序列一致的所有假设</p>
+<ol>
+<li>将G集合初始化为H中极大一般假设(＜?,?,?,...＞)</li>
+<li>将S集合初始化为H中极大特殊假设(＜∅,∅,∅,...＞)</li>
+<li>对每个训练样例d,做如下操作<ol>
+<li>如果d是一正例<ol>
+<li>从G中移去所有与d不一致的假设</li>
+<li>对S中每个与d不一致的假设s<ol>
+<li>从S中移去s</li>
+<li>把s中所有的极小一般化式h加入到S中,h满足于d一致,且G中的某个成员比h更一般</li>
+<li>从S中移去所有这样的假设,它比S中另一假设更一般</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>如果d是一反例<ol>
+<li>从S中移去所有与d不一致的假设</li>
+<li>对G中每个与d不一致的假设g<ol>
+<li>从G中移去g</li>
+<li>把g的所有极小特殊化式h加入到G中,其中h满足h与d一致且S中的某个成员比h更特殊</li>
+<li>从G中移去所有这样的假设,它比G中另一假设更特殊</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="_6">收敛到正确假设的条件</h3>
+<ol>
+<li>在训练样例中没有错误</li>
+<li>H中确实包含描述目标概念的正确假设</li>
+<li>可以检测变型空间以判定其与真正的目标概念之间是否还有分歧,以及为确定目标概念还需多少训练样例,当VS_{H,D}收敛到单个的可确定的假设是,目标概念才真正获得</li>
+</ol>
+<h3 id="_7">下一步需要什么样的训练杨丽</h3>
+<ol>
+<li>查询<ol>
+<li>学习器自己选择一个实例</li>
+<li>最优查询策略是产生实例以满足当前变型空间中大约半数的假设</li>
+</ol>
+</li>
+<li>施教者学习</li>
+</ol>
+<h3 id="_8">使用不完全学习概念判断实例</h3>
+<ol>
+<li>实例满足每个S的成员,正例</li>
+<li>实例不满足每个G的成员,反例</li>
+<li>假设H中所有假设有相等的先验概率,则每个假设投票</li>
+</ol>
+<h2 id="27">2.7 归纳偏置</h2>
+<h3 id="_9">无归纳偏置的变型空间</h3>
+<p>允许使用假设的任意析取\合取\否定式</p>
+<p>概念学习算法将完全无法从训练样例中泛化,不能进行演绎派生</p>
+<ul>
+<li>即使使用变型空间的成员投票,每个未见过的示例也会被一半划分为正例,另一半划分为反例</li>
+</ul>
+<p>基本属性:学习器如果不对目标概念的形式做预先假定,它从根本上无法对未见实例进行分类</p>
+<p>考虑一半情况下任意的学习算法L以及为任意目标概念c提供的任意训练数据Dc={＜x,c(x)＞}</p>
+<p>令:L(xi,Dc)在对训练数据Dc学习后L赋予xi的分类(正例 or 反例),</p>
+<ul>
+<li>
+<p>无偏归纳推理可以如下表示</p>
+<pre><code>(Dc∧xi)≻L(xi,Dc)
+</code></pre>
+<ul>
+<li>≻代表归纳推理</li>
+</ul>
+</li>
+<li>
+<p>定义L的归纳前置为最小断言集合B,它使任意目标概念和相应的训练样例Dc满足:</p>
+<pre><code>(∀xi∈X)[(B∧Dc∧xi)├L(xi,Dc)]
+</code></pre>
+<ul>
+<li>├代表演绎推理</li>
+</ul>
+</li>
+</ul>
+<h3 id="_10">有偏程度</h3>
+<ol>
+<li>ROTE-LEARNER机械式学习器:无偏（简单地将每个训练样例存储，通过匹配来给出回答）</li>
+<li>候选消除算法:目标概念c包含在给定的假设空间H中</li>
+<li>FIND-S:目标概念c包含在给定的假设空间H中,任何实例,除非它的逆实例可由其它实例推出,否则它为反例</li>
+</ol>
+
+      </section>
+    </div>
+
+    
+  </body>
+</html>

@@ -1,37 +1,89 @@
-\<\!DOCTYPE\ html\>\
-\<html\>\
-\ \ \<head\>\
-\ \ \ \ \<meta\ charset\=\'utf\-8\'\>\
-\ \ \ \ \<meta\ http\-equiv\=\"X\-UA\-Compatible\"\ content\=\"chrome\=1\"\>\
-\
-\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/stylesheet\.css\"\ media\=\"screen\"\>\
-\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/github\-dark\.css\"\ media\=\"screen\"\>\
-\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/print\.css\"\ media\=\"print\"\>\
-\
-\ \ \ \ \<title\>\{\{blogname\}\}\-\-\{\{title\}\}\<\/title\>\
-\ \ \<\/head\>\
-\
-\ \ \<body\>\
-\
-\ \ \ \ \<header\>\
-\ \ \ \ \ \ \<div\ class\=\"container\"\>\
-\ \ \ \ \ \ \ \ \<h1\>\{\{\ title\ \}\}\<\/h1\>\
-\ \ \ \ \ \ \ \ \<h2\>\{\{\ subtitle\ \}\}\<\/h2\>\
-\ \ \ \ \ \ \<\/div\>\
-\ \ \ \ \<\/header\>\
-\
-\ \ \ \ \<div\ class\=\"container\"\>\
-\ \ \ \ \ \ \<section\ id\=\"main\_content\"\>\
-\ \ \ \ \ \ \ \ \<h1\>\
-\	\	\<a\ id\=\"blog\"\ class\=\"anchor\"\ href\=\"\/\"\ aria\-hidden\=\"true\"\>\
-\	\	\	\<span\ aria\-hidden\=\"true\"\ class\=\"octicon\ octicon\-link\"\>INDEX\<\/span\>\
-\	\	\<\/a\>\
-\	\	\<\/h1\>\
-\	\	\{\{content\}\}\
-\
-\ \ \ \ \ \ \<\/section\>\
-\ \ \ \ \<\/div\>\
-\
-\ \ \ \ \
-\ \ \<\/body\>\
-\<\/html\>\
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
+
+    <title>{{blogname}}--Chapter6</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>Chapter6</h1>
+        <h2>{{ subtitle }}</h2>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+		<a id="blog" class="anchor" href="/" aria-hidden="true">
+			<span aria-hidden="true" class="octicon octicon-link">INDEX</span>
+		</a>
+		</h1>
+		<h1 id="chapter-9-domain-model">Chapter 9: Domain Model</h1>
+<p><img alt="" src="http://i.imgur.com/MVdpd5s.png"></p>
+<h2 id="focus-on-datatype-attribute-in-the-domain-model">Focus on DataType Attribute in the domain Model</h2>
+<ol>
+<li>The attribute should be primitive datatype</li>
+<li>the attributes normally should not be a complex domain concept</li>
+</ol>
+<p><img alt="" src="http://i.imgur.com/wL08LBS.png"></p>
+<h3 id="when-to-define-new-datatype-classes">When to Define New DataType Classes</h3>
+<ol>
+<li>it is composed of separate sections</li>
+<li>there are operations usually associated with it, such as parsing or validation</li>
+<li>has other attributes</li>
+<li>a quantity with a unit</li>
+<li>an abstraction of one or more types with some of these qualities</li>
+</ol>
+<h1 id="chapter-10-system-sequence-diagram">Chapter 10: System Sequence Diagram</h1>
+<p>System Sequence Diagram(SSD) is used to illustrate input and output events related to the system under discussion</p>
+<p>is used to describe a particular scenario</p>
+<p><img alt="" src="http://i.imgur.com/Ux2wFlw.png">
+<img alt="" src="http://i.imgur.com/ZTd9nHX.png"></p>
+<h1 id="chapter-11-operation-contracts">Chapter 11 Operation Contracts</h1>
+<p>Operation Contracts describe system behavior in terms of system changes to objects in the domain model, after a system operation is executed</p>
+<p>the prime inputs to the contracts are the system operations identified SSD, the domain model, and domain insights from experts</p>
+<p><img alt="" src="http://i.imgur.com/EzWPiht.png">
+the sections</p>
+<ol>
+<li>operations<ol>
+<li>name of operation</li>
+<li>parameters</li>
+</ol>
+</li>
+<li>cross reference<ol>
+<li>use cases this operation can occur within</li>
+</ol>
+</li>
+<li>preconditions</li>
+<li>postconditions</li>
+</ol>
+<h2 id="postconditions">Postconditions</h2>
+<ol>
+<li>instances create or be deleted</li>
+<li>associations formed or broken</li>
+<li>attribute changed</li>
+</ol>
+<h2 id="when-are-contracts-useful">When Are Contracts Useful</h2>
+<p>only where the details and complexity of required state changes are awkward to capture in use case, in UP, it is less effective</p>
+<h2 id="how-to-create-and-write-contracts">How to create and write Contracts</h2>
+<ol>
+<li>identify system operations from SSDs</li>
+<li>For System operations that are complex or which are not clear in the use case, construct a contract</li>
+<li>when instance creation and deletion, attribute modification, associations formed and broken, describe the change in postcondition</li>
+</ol>
+
+      </section>
+    </div>
+
+    
+  </body>
+</html>

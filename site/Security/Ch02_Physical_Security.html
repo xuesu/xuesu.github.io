@@ -1,37 +1,128 @@
-\<\!DOCTYPE\ html\>\
-\<html\>\
-\ \ \<head\>\
-\ \ \ \ \<meta\ charset\=\'utf\-8\'\>\
-\ \ \ \ \<meta\ http\-equiv\=\"X\-UA\-Compatible\"\ content\=\"chrome\=1\"\>\
-\
-\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/stylesheet\.css\"\ media\=\"screen\"\>\
-\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/github\-dark\.css\"\ media\=\"screen\"\>\
-\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/print\.css\"\ media\=\"print\"\>\
-\
-\ \ \ \ \<title\>\{\{blogname\}\}\-\-\{\{title\}\}\<\/title\>\
-\ \ \<\/head\>\
-\
-\ \ \<body\>\
-\
-\ \ \ \ \<header\>\
-\ \ \ \ \ \ \<div\ class\=\"container\"\>\
-\ \ \ \ \ \ \ \ \<h1\>\{\{\ title\ \}\}\<\/h1\>\
-\ \ \ \ \ \ \ \ \<h2\>\{\{\ subtitle\ \}\}\<\/h2\>\
-\ \ \ \ \ \ \<\/div\>\
-\ \ \ \ \<\/header\>\
-\
-\ \ \ \ \<div\ class\=\"container\"\>\
-\ \ \ \ \ \ \<section\ id\=\"main\_content\"\>\
-\ \ \ \ \ \ \ \ \<h1\>\
-\	\	\<a\ id\=\"blog\"\ class\=\"anchor\"\ href\=\"\/\"\ aria\-hidden\=\"true\"\>\
-\	\	\	\<span\ aria\-hidden\=\"true\"\ class\=\"octicon\ octicon\-link\"\>INDEX\<\/span\>\
-\	\	\<\/a\>\
-\	\	\<\/h1\>\
-\	\	\{\{content\}\}\
-\
-\ \ \ \ \ \ \<\/section\>\
-\ \ \ \ \<\/div\>\
-\
-\ \ \ \ \
-\ \ \<\/body\>\
-\<\/html\>\
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
+
+    <title>{{blogname}}--Ch02_Physical_Security</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>Ch02_Physical_Security</h1>
+        <h2>{{ subtitle }}</h2>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+		<a id="blog" class="anchor" href="/" aria-hidden="true">
+			<span aria-hidden="true" class="octicon octicon-link">INDEX</span>
+		</a>
+		</h1>
+		<h1 id="chapter-2-physical-security">Chapter 2 Physical Security</h1>
+<h2 id="category">Category</h2>
+<ol>
+<li>Physical Protections and Attacks</li>
+<li>Locks and Safes</li>
+<li>Authentication Technologies</li>
+<li>Direct Attacks Against Computers</li>
+<li>RFID security</li>
+</ol>
+<h2 id="physical-protections-and-attacks">Physical Protections and Attacks</h2>
+<ul>
+<li>Location protection 保护主机物理位置: the protection of the physical location where computer hardware resides, such as through the use of locks. </li>
+<li>Physical intrusion detection 侵入主机所在位置: the detection of unauthorized access to the physical location where computer hardware resides.</li>
+<li>Hardware attacks 攻击硬件: methods that physically attack the hardware representations of information or computations, such as hard drives, network adapters, memory chips, and microprocessors.</li>
+<li>Eavesdropping 监听(硬件变化): attacks that monitor light, sound, radio, or other signals to detect communications or computations.</li>
+<li>Physical interface attacks 攻击物理接口: attacks that penetrate a system’s security by exploiting a weakness in its physical interface.</li>
+</ul>
+<h3 id="destructive-vs-nondestructive-entry">Destructive   vs. Nondestructive  Entry</h3>
+<h3 id="bypass-side-channel-attacks">Bypass : Side Channel Attacks</h3>
+<h3 id="barcode">Barcode 条形码</h3>
+<p>as two-dimensional patterns 二维码</p>
+<h4 id="authentication-via-barcodes">Authentication via Barcodes</h4>
+<p>however, barcodes provide convenience but not security. </p>
+<h3 id="smart-cards">Smart Cards</h3>
+<p>optionally with an on-board microprocessor</p>
+<p>Smart card technology are extremely difficult to duplicate. </p>
+<h3 id="sim-cards">SIM Cards</h3>
+<p>subscriber identity module card</p>
+<p>A SIM card is issued by a <b>network provider</b>. It maintains personal and contact information for a user and allows the user to authenticate to the cellular network of the provider.</p>
+<h3 id="passport">Passport</h3>
+<p>an embedded RFID </p>
+<h3 id="offensivewiretapping">offensive:Wiretapping 窃听器</h3>
+<h3 id="offensiveacoustic-emission">offensive:Acoustic Emission</h3>
+<p>an attacker could use an audio  recording of a user typing on a keyboard to reconstruct what was typed. </p>
+<h3 id="offensivehardware-keyloggers">offensive:Hardware keyloggers</h3>
+<h3 id="defensivefaraday-cages">defensive:Faraday Cages</h3>
+<h3 id="computer-forensics">Computer Forensics</h3>
+<p>obtaining evidence contained on an electronic medium to be used in legal proceedings</p>
+<h3 id="atm-3des">ATM-3DES</h3>
+<p>automatic teller machine</p>
+<h4 id="attacks">Attacks</h4>
+<ol>
+<li>Lebanese loop</li>
+<li>Skimmer</li>
+<li>Fake ATMs</li>
+</ol>
+<h2 id="computer-forensics_1">computer Forensics</h2>
+<p><img alt="" src="http://i.imgur.com/55zSNJQ.png"></p>
+<ol>
+<li>capture more volatile evidence first</li>
+<li>Hidden Data in the Hard Drive Slack Space<ol>
+<li>The logical end of the file (i.e., the end of the data actually in the file) and </li>
+<li>The physical end of the file (i.e., the end of the last sector devoted to the file).</li>
+</ol>
+</li>
+<li>Create a Duplicate Image</li>
+</ol>
+<h3 id="how-to-hide-data">How to Hide Data?</h3>
+<ol>
+<li>Cryptography</li>
+<li>Steganography <ol>
+<li>The process of hiding data inside other data (e.g. image files). </li>
+</ol>
+</li>
+<li>Change file names and extensions<ol>
+<li>E.g. rename a .doc file to a .tmp file</li>
+</ol>
+</li>
+<li>Hidden tracks<ol>
+<li>most hard disks have # of tracks hidden (i.e. track 0)</li>
+<li>They can be used to hide/read data by using a hex editor</li>
+</ol>
+</li>
+<li>Deleted Files<ol>
+<li>not truly deleted, merely marked for deletion. </li>
+</ol>
+</li>
+</ol>
+<h2 id="disk-wiping">Disk Wiping</h2>
+<ul>
+<li>Simple erase<ul>
+<li>The data is still on the drive but the segment has been marked as available</li>
+<li>Next time data is written to the drive it MAY overwrite the segment</li>
+</ul>
+</li>
+<li>Destructive erase<ul>
+<li>First overwrites all data in the file with random data</li>
+<li>Next marks the segment as available</li>
+<li>It may be possible to find ghost images of what was previously on the disk surface</li>
+</ul>
+</li>
+</ul>
+
+      </section>
+    </div>
+
+    
+  </body>
+</html>

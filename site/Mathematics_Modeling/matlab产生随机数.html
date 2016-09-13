@@ -1,37 +1,74 @@
-\<\!DOCTYPE\ html\>\
-\<html\>\
-\ \ \<head\>\
-\ \ \ \ \<meta\ charset\=\'utf\-8\'\>\
-\ \ \ \ \<meta\ http\-equiv\=\"X\-UA\-Compatible\"\ content\=\"chrome\=1\"\>\
-\
-\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/stylesheet\.css\"\ media\=\"screen\"\>\
-\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/github\-dark\.css\"\ media\=\"screen\"\>\
-\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/print\.css\"\ media\=\"print\"\>\
-\
-\ \ \ \ \<title\>\{\{blogname\}\}\-\-\{\{title\}\}\<\/title\>\
-\ \ \<\/head\>\
-\
-\ \ \<body\>\
-\
-\ \ \ \ \<header\>\
-\ \ \ \ \ \ \<div\ class\=\"container\"\>\
-\ \ \ \ \ \ \ \ \<h1\>\{\{\ title\ \}\}\<\/h1\>\
-\ \ \ \ \ \ \ \ \<h2\>\{\{\ subtitle\ \}\}\<\/h2\>\
-\ \ \ \ \ \ \<\/div\>\
-\ \ \ \ \<\/header\>\
-\
-\ \ \ \ \<div\ class\=\"container\"\>\
-\ \ \ \ \ \ \<section\ id\=\"main\_content\"\>\
-\ \ \ \ \ \ \ \ \<h1\>\
-\	\	\<a\ id\=\"blog\"\ class\=\"anchor\"\ href\=\"\/\"\ aria\-hidden\=\"true\"\>\
-\	\	\	\<span\ aria\-hidden\=\"true\"\ class\=\"octicon\ octicon\-link\"\>INDEX\<\/span\>\
-\	\	\<\/a\>\
-\	\	\<\/h1\>\
-\	\	\{\{content\}\}\
-\
-\ \ \ \ \ \ \<\/section\>\
-\ \ \ \ \<\/div\>\
-\
-\ \ \ \ \
-\ \ \<\/body\>\
-\<\/html\>\
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
+
+    <title>{{blogname}}--matlab产生随机数</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>matlab产生随机数</h1>
+        <h2>{{ subtitle }}</h2>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+		<a id="blog" class="anchor" href="/" aria-hidden="true">
+			<span aria-hidden="true" class="octicon octicon-link">INDEX</span>
+		</a>
+		</h1>
+		<h2 id="_1">随机数</h2>
+<ul>
+<li>rand() <ul>
+<li>生成（0,1）区间上均匀分布的随机变量。</li>
+<li>rand([M,N,P ...])<ul>
+<li>生成排列成M<em>N</em>P... 多维向量的随机数。如果只写M，则生成M*M矩阵；如果参数为[M,N]可以省略掉方括号。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>randn()<ul>
+<li>生成服从标准正态分布（均值为0，方差为1）的随机数</li>
+</ul>
+</li>
+<li>unifrnd()<ul>
+<li></li>
+</ul>
+</li>
+<li>
+<p>y = random('分布的英文名',A1,A2,A3,m,n)，
+表示生成 m 行 n 列的 m × n 个参数为 ( A1 , A2 , A3 ) 的该分布的随机数。</p>
+<ul>
+<li>random('分布的英文名',A1,A2,A3,[维度1,维度2,维度3...])</li>
+<li>正态分布 random('Normal',期望,标准差,row,column)</li>
+<li>泊松分布 random('Poisson',lamda,row,column)<ul>
+<li>在实际事例中，当一个随机事件，例如某电话交换台收到的呼叫、来到某公共汽车站的乘客、某放射性物质发射出的粒子、显微镜下某区域中的白血球等等，以固定的平均瞬时速率λ（或称密度）随机且独立地出现时，那么这个事件在单位时间（面积或体积）内出现的次数或个数就近似地服从泊松分布P(λ)。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>R = geornd(P,[m,n...])</p>
+<ul>
+<li>生成参数为 P 的 m 行 n 列的 m × n 个几何随机数</li>
+<li>R = geornd(1./ 2.^(1:6)) ( 生成参数依次为 1/2,1/2^2,到 1/2^6 的 6 个几何随机数)</li>
+</ul>
+</li>
+</ul>
+
+      </section>
+    </div>
+
+    
+  </body>
+</html>

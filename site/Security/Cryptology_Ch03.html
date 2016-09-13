@@ -1,37 +1,77 @@
-\<\!DOCTYPE\ html\>\
-\<html\>\
-\ \ \<head\>\
-\ \ \ \ \<meta\ charset\=\'utf\-8\'\>\
-\ \ \ \ \<meta\ http\-equiv\=\"X\-UA\-Compatible\"\ content\=\"chrome\=1\"\>\
-\
-\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/stylesheet\.css\"\ media\=\"screen\"\>\
-\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/github\-dark\.css\"\ media\=\"screen\"\>\
-\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/print\.css\"\ media\=\"print\"\>\
-\
-\ \ \ \ \<title\>\{\{blogname\}\}\-\-\{\{title\}\}\<\/title\>\
-\ \ \<\/head\>\
-\
-\ \ \<body\>\
-\
-\ \ \ \ \<header\>\
-\ \ \ \ \ \ \<div\ class\=\"container\"\>\
-\ \ \ \ \ \ \ \ \<h1\>\{\{\ title\ \}\}\<\/h1\>\
-\ \ \ \ \ \ \ \ \<h2\>\{\{\ subtitle\ \}\}\<\/h2\>\
-\ \ \ \ \ \ \<\/div\>\
-\ \ \ \ \<\/header\>\
-\
-\ \ \ \ \<div\ class\=\"container\"\>\
-\ \ \ \ \ \ \<section\ id\=\"main\_content\"\>\
-\ \ \ \ \ \ \ \ \<h1\>\
-\	\	\<a\ id\=\"blog\"\ class\=\"anchor\"\ href\=\"\/\"\ aria\-hidden\=\"true\"\>\
-\	\	\	\<span\ aria\-hidden\=\"true\"\ class\=\"octicon\ octicon\-link\"\>INDEX\<\/span\>\
-\	\	\<\/a\>\
-\	\	\<\/h1\>\
-\	\	\{\{content\}\}\
-\
-\ \ \ \ \ \ \<\/section\>\
-\ \ \ \ \<\/div\>\
-\
-\ \ \ \ \
-\ \ \<\/body\>\
-\<\/html\>\
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
+
+    <title>{{blogname}}--Cryptology_Ch03</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>Cryptology_Ch03</h1>
+        <h2>{{ subtitle }}</h2>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+		<a id="blog" class="anchor" href="/" aria-hidden="true">
+			<span aria-hidden="true" class="octicon octicon-link">INDEX</span>
+		</a>
+		</h1>
+		<h1 id="ch03_public_key_cryptography_and_rsa">Ch03_Public_Key_Cryptography_and_RSA</h1>
+<h2 id="diffie-hellman">Diffie-Hellman 密钥交换算法</h2>
+<ul>
+<li>仅限于密钥交换</li>
+<li>all users agree on global parameters:<ul>
+<li>large prime integer or polynomial q</li>
+<li>g being a primitive root mod q (本原根,g及g的幂次%p可以生成0-p-1,即所有余数)</li>
+</ul>
+</li>
+<li>each user (eg. A) generates their key<ul>
+<li>chooses a secret key (number): xA &lt; q </li>
+<li>compute their public key: yA = g^{xA} mod q</li>
+</ul>
+</li>
+<li>each user<strong> makes public that key yA</strong></li>
+<li>
+<p>KAB = g^{xA*xB} mod q</p>
+<p>= yA^{xB} mod q  (which B can compute) </p>
+<p>= yB^{xA} mod q  (which A can compute) </p>
+<h3 id="_1">中间人攻击</h3>
+<p><img alt="" src="http://i.imgur.com/Xt5Xjbi.png"></p>
+</li>
+</ul>
+<h2 id="rsa">RSA</h2>
+<p>Rivest,Shamir,Adleman</p>
+<p>A Method for obtaining Digital signatures and Public-key Cryptosystem</p>
+<h3 id="process">Process</h3>
+<ol>
+<li>By Rivest, Shamir, and Adleman (MIT)</li>
+<li>RSA is the gold standard in public key crypto</li>
+<li>Let p and q be two large prime numbers</li>
+<li>Let N = pq be the modulus</li>
+<li>Choose e relatively prime to (p-1)(q-1)</li>
+<li>Find d such that ed = 1 mod (p-1)(q-1)</li>
+<li>Public key is (N,e)</li>
+<li>Private key is d</li>
+<li>To encrypt M we compute</li>
+<li>C = M^e mod N </li>
+<li>To decrypt ciphertext C compute</li>
+<li>M = C^d mod N </li>
+</ol>
+
+      </section>
+    </div>
+
+    
+  </body>
+</html>

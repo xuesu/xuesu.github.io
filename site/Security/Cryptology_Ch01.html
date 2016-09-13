@@ -1,37 +1,136 @@
-\<\!DOCTYPE\ html\>\
-\<html\>\
-\ \ \<head\>\
-\ \ \ \ \<meta\ charset\=\'utf\-8\'\>\
-\ \ \ \ \<meta\ http\-equiv\=\"X\-UA\-Compatible\"\ content\=\"chrome\=1\"\>\
-\
-\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/stylesheet\.css\"\ media\=\"screen\"\>\
-\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/github\-dark\.css\"\ media\=\"screen\"\>\
-\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/print\.css\"\ media\=\"print\"\>\
-\
-\ \ \ \ \<title\>\{\{blogname\}\}\-\-\{\{title\}\}\<\/title\>\
-\ \ \<\/head\>\
-\
-\ \ \<body\>\
-\
-\ \ \ \ \<header\>\
-\ \ \ \ \ \ \<div\ class\=\"container\"\>\
-\ \ \ \ \ \ \ \ \<h1\>\{\{\ title\ \}\}\<\/h1\>\
-\ \ \ \ \ \ \ \ \<h2\>\{\{\ subtitle\ \}\}\<\/h2\>\
-\ \ \ \ \ \ \<\/div\>\
-\ \ \ \ \<\/header\>\
-\
-\ \ \ \ \<div\ class\=\"container\"\>\
-\ \ \ \ \ \ \<section\ id\=\"main\_content\"\>\
-\ \ \ \ \ \ \ \ \<h1\>\
-\	\	\<a\ id\=\"blog\"\ class\=\"anchor\"\ href\=\"\/\"\ aria\-hidden\=\"true\"\>\
-\	\	\	\<span\ aria\-hidden\=\"true\"\ class\=\"octicon\ octicon\-link\"\>INDEX\<\/span\>\
-\	\	\<\/a\>\
-\	\	\<\/h1\>\
-\	\	\{\{content\}\}\
-\
-\ \ \ \ \ \ \<\/section\>\
-\ \ \ \ \<\/div\>\
-\
-\ \ \ \ \
-\ \ \<\/body\>\
-\<\/html\>\
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
+
+    <title>{{blogname}}--Cryptology_Ch01</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>Cryptology_Ch01</h1>
+        <h2>{{ subtitle }}</h2>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+		<a id="blog" class="anchor" href="/" aria-hidden="true">
+			<span aria-hidden="true" class="octicon octicon-link">INDEX</span>
+		</a>
+		</h1>
+		<h1 id="cryptology-1">Cryptology-1</h1>
+<h2 id="passive-attack-active-attack">Passive Attack &amp; Active Attack</h2>
+<h2 id="history">History</h2>
+<ol>
+<li>第一个阶段:1949年以前<ol>
+<li>古典加密</li>
+<li>1883年Kerchoffs第一次明确提出了编码的原则：加密算法应建立在算法的公开不影响明文和密钥的安全。</li>
+</ol>
+</li>
+<li>
+<p>第二个阶段:1949年到1976年</p>
+<ol>
+<li>标志:<strong> Shannon 发表”Communication Theory of  Secrecy System”</strong></li>
+<li>密码学进入了科学的轨道</li>
+<li>主要技术: 单密钥的对称密钥加密算法</li>
+<li>1967年David Kahn的《The Codebreakers》许多人了解了密码学</li>
+<li>1971-73年IBM Watson实验室的Horst Feistel等几篇技术报告<ul>
+<li>主要特点：数据的安全基于密钥而不是算法的保密 </li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p>第三个阶段 :1976年以后</p>
+<ol>
+<li>标志 : <b><font color = 'red' >Diffie,Hellman发表”New Directions in Cryptography”</font></b></li>
+<li>一种新的密码体制 : 公开密钥体制</li>
+<li><b><font color = 'red' >Rivest,Shamir &amp; Adleman RSA算法</font></b></li>
+</ol>
+</li>
+</ol>
+<h2 id="enigma-by-arthur-scherbius">Enigma (by Arthur Scherbius)</h2>
+<ul>
+<li>1925年，“谜”开始有系列生产</li>
+<li>最后英国在“顺手牵羊”的行动中在德国潜艇上俘获“谜”的密码簿，破解了“谜”。</li>
+<li>破译恩尼格玛而做出了重大贡献的三位杰出的波兰密码学家马里安·雷耶夫斯基(Marian Adam Rejewski)、杰尔兹·罗佐基(Jerzy Witold Różycki)和亨里克(Henryk Zygalski)</li>
+</ul>
+<h2 id="shannon">Shannon</h2>
+<ol>
+<li>"A Mathematical Theory of Communication"(1948), This work focuses on the problem of how best to encode the information a sender wants to transmit. In this fundamental work he used tools in probability theory</li>
+<li>
+<p>1949</p>
+<ol>
+<li>form basis of modern block ciphers </li>
+<li>S-P nets are based on the two primitive cryptographic operations seen before: </li>
+<li>substitution (S-box)</li>
+<li>permutation (P-box)</li>
+<li>provide confusion &amp; diffusion of message &amp; key</li>
+</ol>
+</li>
+<li>
+<p>Shannon developed information entropy</p>
+</li>
+<li>"Prediction and Entropy of Printed English", proving that treating whitespace as the 27th letter of the alphabet actually lowers uncertainty in written language</li>
+<li><strong>in 1949 ,"Communication Theory of Secrecy Systems"</strong>,  in which he proved that all theoretically unbreakable ciphers must have the same requirements as the one-time pad. </li>
+</ol>
+<h2 id="echelon">Echelon</h2>
+<p>梯队系统是一个以美国为中心的情报收集分析网络的俗称。参与国家是英美防卫协定的五个签署国，英国、美国、加拿大、澳洲及新西兰。
+它能够全球性地拦截以公众交换电话网络、卫星及微波通讯所传送的电话、传真，电子邮件和其他数位资讯，并监控其中的内容</p>
+<h2 id="_1">古典密码</h2>
+<ol>
+<li>滚筒密码-移位</li>
+<li>凯撒密码-替代<ol>
+<li>可以穷举</li>
+</ol>
+</li>
+</ol>
+<h2 id="symmetric-cipher-model">Symmetric cipher Model</h2>
+<p><img alt="" src="http://i.imgur.com/Scbx2gY.png"></p>
+<h2 id="cryptosystem">Cryptosystem</h2>
+<ul>
+<li>Quintuple (E, D, M, K, C)</li>
+<li>M set of plaintexts</li>
+<li>K set of keys</li>
+<li>C set of ciphertexts</li>
+<li>E set of encryption functions e: M * K -&gt; C</li>
+<li>D set of decryption functions d: C * K -&gt; M</li>
+</ul>
+<h2 id="language-redundancy-and-cryptanalysis">Language Redundancy and Cryptanalysis</h2>
+<ul>
+<li>in English E is by far the most common letter </li>
+<li>followed by T,R,N,I,O,A,S </li>
+<li>other letters like Z,J,K,Q,X are fairly rare 
+<img alt="" src="http://i.imgur.com/J4KEJhy.png"></li>
+</ul>
+<h2 id="block-vs-stream-ciphers">Block vs Stream Ciphers</h2>
+<ul>
+<li><strong>block ciphers </strong>process messages in blocks, each of which is then en/decrypted <ul>
+<li>like a substitution on very big characters</li>
+<li>64-bits or more </li>
+</ul>
+</li>
+<li><strong>stream ciphers </strong>process messages a bit or byte at a time when en/decrypting<ul>
+<li>many current ciphers are block ciphers</li>
+<li>broader range of applications</li>
+<li>stream ciphers RC4, A5/1, A5/2, A5/3
+<img alt="" src="http://i.imgur.com/dDpQDN7.png"></li>
+</ul>
+</li>
+</ul>
+
+      </section>
+    </div>
+
+    
+  </body>
+</html>
