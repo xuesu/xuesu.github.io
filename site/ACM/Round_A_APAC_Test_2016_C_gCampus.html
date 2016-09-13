@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
+
+    <title>{{blogname}}--Round A APAC Test 2016 C gCampus</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>Round A APAC Test 2016 C gCampus</h1>
+        <h2>{{ subtitle }}</h2>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+		<a id="blog" class="anchor" href="/" aria-hidden="true">
+			<span aria-hidden="true" class="octicon octicon-link">INDEX</span>
+		</a>
+		</h1>
+		<h1 id="problem">Problem</h1>
+<p>Company G has a main campus with N offices (numbered from 0 to N - 1) and M bidirectional roads (numbered from 0 to M - 1). The ith road connects a pair of offices (Ui, Vi), and it takes Ci minutes to travel on it (in either direction).</p>
+<p>A path between two offices X and Y is a series of one or more roads that starts at X and ends at Y. The time taken to travel a path is the sum of the times needed to travel each of the roads that make up the path. (It's guaranteed that there is at least one path connecting any two offices.)</p>
+<p>Company G specializes in efficient transport solutions, but the CEO has just realized that, embarrassingly enough, its own road network may be suboptimal! She wants to know which roads in the campus are inefficient. A road is inefficient if and only if it is not included in any shortest paths between any offices.</p>
+<p>Given the graph of offices and roads, can you help the CEO find all of the inefficient roads? </p>
+<h1 id="_1">题意</h1>
+<p>求不存在于任何一条最短路上的路</p>
+<h1 id="_2">思路</h1>
+<p>先求任意两点间最短路，然后对比每条路看Ci是Ui到Vi的最短长度即可</p>
+<h1 id="_3">==错误原因==</h1>
+<p>==重边==会导致DP数组被覆盖</p>
+<h1 id="code">Code</h1>
+<p>```c++</p>
+<h1 id="include">include <cstdio></h1>
+<h1 id="include_1">include <map></h1>
+<h1 id="include_2">include <cstring></h1>
+<h1 id="include_3">include <algorithm></h1>
+<h1 id="include_4">include <cmath></h1>
+<h1 id="include_5">include <string></h1>
+<h1 id="include_6">include <vector></h1>
+<h1 id="include_7">include <iostream></h1>
+<h1 id="include_8">include <assert.h></h1>
+<h1 id="include_9">include <sstream></h1>
+<h1 id="include_10">include <cctype></h1>
+<h1 id="include_11">include <queue></h1>
+<h1 id="include_12">include <stack></h1>
+<h1 id="include_13">include <map></h1>
+<p>using namespace std;
+typedef pair<int,int> P;
+typedef long long ll;
+typedef long double ld;
+const ll inf = 0x7ffffffffffffff;
+const int maxn = 102;
+ll dp[maxn][maxn];
+struct edge{
+    int f,t;
+    ll c;
+}e[maxn * maxn * 2];
+int main()
+{
+    freopen("C-large-practice.in","r",stdin);
+    freopen("C-large-practice.out","w",stdout);
+    int t;
+    scanf("%d",&amp;t);
+    for(int ti = 1;ti &lt;= t;ti++){
+        printf("Case #%d:
+",ti);
+        int n,m;
+        scanf("%d%d",&amp;n,&amp;m);
+        for(int i = 0;i &lt; n;i++){fill(dp[i],dp[i] + n,inf);dp[i][i] = 0;}
+        for(int i = 0;i &lt; m;i++){
+            scanf("%d%d%lld",&amp;e[i].f,&amp;e[i].t,&amp;e[i].c);
+            dp[e[i].f][e[i].t] = min(dp[e[i].f][e[i].t],e[i].c);
+            dp[e[i].t][e[i].f] = min(dp[e[i].t][e[i].f],e[i].c);
+        }
+        for(int k = 0;k &lt; n;k++){
+            for(int i = 0;i &lt; n;i++){
+                for(int j = 0;j &lt; n;j++){
+                    if(dp[i][k] != inf &amp;&amp; dp[k][j] != inf &amp;&amp; dp[i][j] &gt; dp[i][k] + dp[k][j]){
+                        dp[i][j] = dp[i][k] + dp[k][j];
+                    }
+                }
+            }
+        }
+        for(int i = 0;i &lt; m;i++){
+            if(e[i].c &gt; dp[e[i].f][e[i].t]){
+                printf("%d
+",i);
+            }
+        }
+    }</p>
+<pre><code>return 0;
+</code></pre>
+<p>}</p>
+<p>```</p>
+
+      </section>
+    </div>
+
+    
+  </body>
+</html>

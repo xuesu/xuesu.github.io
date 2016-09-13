@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
+
+    <title>{{blogname}}--Natural_Language_Process_With_Python(2)</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>Natural_Language_Process_With_Python(2)</h1>
+        <h2>{{ subtitle }}</h2>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+		<a id="blog" class="anchor" href="/" aria-hidden="true">
+			<span aria-hidden="true" class="octicon octicon-link">INDEX</span>
+		</a>
+		</h1>
+		<h1 id="_1">学习分类文本</h1>
+<p>本章的目标是要回答下列问题:
+1. 我们怎样才能识别语言数据中能明显用于对其分类的特征?
+2. 我们怎样才能构建语言模型,用于自动执行语言处理任务?
+3. 从这些模型中我们可以学到哪些关于语言的知识?</p>
+<h2 id="61">6.1 有监督分类</h2>
+<p>分类是为给定的输入选择正确的类标签的任务。在基本的分类任务中,每个输入被认为是与所有其它输入隔离的,并且标签集是预先定义的。</p>
+<p>如果分类的建立基于包含每个输入的正确标签的训练语料,被称为<strong>有监督分类</strong></p>
+<p><img alt="image" src="https://github.com/xuesu/picture/blob/master/2016-08-25-170913_679x347_scrot.png?raw=true"></p>
+<p>特征集,映射特征名称到它们的值,特征提取器</p>
+<p><strong>似然比,likelihood ratio</strong>,LR:可以用于比较不同特征-结果关系,<strong>有病者中得出某一筛检试验结果的概率与无病者得出这一概率的比值。</strong></p>
+<h3 id="_2">选择正确的特征</h3>
+<p>典型地,特征提取通过反复试验和错误的过程建立的,由哪些信息是与问题相关的直觉指引的。它通常以“厨房水槽”的方法开始,包括你能想到的所有特征,然后检查哪些特征是实际有用的</p>
+<p>你要用于一个给定的学习算法的特征的数目是有限的——<strong>如果你提供太多的特征,那么该算法将高度依赖你的训练数据的特性而一般化到新的例子的效果不会很好</strong>。这个问题被称为<strong>过拟合</strong></p>
+<p>一旦初始特征集被选定,完善特征集的一个非常有成效的方法是<strong>错误分析</strong></p>
+<h4 id="_3">错误分析</h4>
+<ol>
+<li>选择开发集并将其分为训练集和开发测试集<ul>
+<li>训练集用于训练模型,开发测试集用于进行错误分析,测试集用于系统的最终评估。</li>
+</ul>
+</li>
+<li>每一次错误分析过程被重复,我们应该选择一个不同的开发测试/训练分割,以确保该分类器不会开始反映开发测试集的特质。</li>
+<li>保持测试集分离、未使用过,直到我们的模型开发完毕是很重要的。</li>
+</ol>
+<h3 id="_4">文档分类</h3>
+<p>示例</p>
+<ol>
+<li>提取前200个较为常出现的词语/后缀</li>
+<li>确定每篇训练/待分类语料中是否有这个词语/词语是否以这个后缀为后缀</li>
+<li>输入分类器，比如贝叶斯或者决策树</li>
+</ol>
+<h3 id="_5">探索上下文语境</h3>
+<p>示例（词性标注）</p>
+<ol>
+<li>提取出某个词的前面一个词（如果在开头，则为<START>）以及这个词的三位后缀作为特征</li>
+<li>输入分类器</li>
+</ol>
+<p>问题：如何处理密切相关的分类问题</p>
+<h3 id="_6">序列分类</h3>
+<p>为了捕捉相关的分类任务之间的依赖关系,我们可以使用<strong>联合分类器模型</strong>,收集有关输入,选择适当的标签。</p>
+<ul>
+<li>在词性标注的例子中,各种不同的序列分类器模型可以被用来为一个给定的句子中的所有的词共同选择词性标签。</li>
+</ul>
+<h4 id="_7">连续分类（贪婪序列分类）</h4>
+<p>连续分类或贪婪序列分类,是为第一个输入找到最有可能的类标签,然后使用这个问题的答案帮助找到下一个输入的最佳的标签。</p>
+<h5 id="_8">如何解决初始输入的分类错误？</h5>
+<ul>
+<li>采取转型策略。转型联合分类的工作原理是为输入的标签创建一个初始值,然后反复提炼那个值,尝试修复相关输入之间的不一致。</li>
+</ul>
+<h3 id="_9">其他方法</h3>
+<p>为词性标记所有可能的序列打分,选择总得分最高的序列</p>
+<h4 id="_10">隐马尔科夫模型</h4>
+<p>它不光看输入也看已预测标记的历史</p>
+<h5 id="_11">增强</h5>
+<ul>
+<li>最大熵马尔可夫模型</li>
+<li>线性链条件随机场模型</li>
+</ul>
+<h2 id="62">6.2 有监督分类的更多例子</h2>
+<ol>
+<li>句子分割</li>
+<li>识别对话类型<ul>
+<li>特征：包含什么词 标签：对话行为类型</li>
+</ul>
+</li>
+<li>识别文字蕴含 Recognizing Textual Entailment RTE<ul>
+<li>是判断文本 T 的一个给定片段是否蕴含着另一个叫做“假设”的文本</li>
+<li>比如：T:北京，作为中国的首都，风景优美 假设:北京是中国的首都。 输出:True</li>
+<li>示例采用的特征是某个词语或者实体在假设和T二者中同时出现的次数</li>
+<li>RTEFeatureExtractor 类建立了一个除去一些停用词后在文本和假设中都有的词汇包,然后计算重叠和差异。<ul>
+<li>假设中有而文本中没有的词的程度(由 hyp_extra()方法获取)</li>
+</ul>
+</li>
+<li>nltk.classify.rte_classify 模块使用这些方法在合并的 RTE 测试数据上取得了刚刚超过 58%的准确率</li>
+</ul>
+</li>
+</ol>
+<h3 id="nltk">NLTK可以通过接口透明调用外部机器学习包，来支持拓展到大型数据集</h3>
+<h2 id="_12">==评估==</h2>
+<h3 id="_13">测试集</h3>
+<ol>
+<li>多样性</li>
+<li>测试集中实例与开发集的相似程度越大，推广信心越小</li>
+</ol>
+<h3 id="_14">准确度</h3>
+<ol>
+<li>需要注意测试集的样例分布</li>
+<li>某个结果在结果集中大量出现也会影响评价，因为可以直接返回这个结果，难以分出区别</li>
+</ol>
+<h3 id="_15">精确度和召回率</h3>
+<ul>
+<li>真阳性是相关项目中我们正确识别为相关的。</li>
+<li>真阴性是不相关项目中我们正确识别为不相关的。</li>
+<li>假阳性(或 I 型错误)是不相关项目中我们错误识别为相关的。</li>
+<li>假阴性(或 II 型错误)是相关项目中我们错误识别为不相关的。
+<img alt="image" src="https://github.com/xuesu/picture/blob/master/2016-09-02-192402_728x370_scrot.png?raw=true"></li>
+</ul>
+<h4 id="precision-tptp-fp">精确度 Precision = TP/(TP + FP)</h4>
+<p>表示我们发现的项目中有多少是相关的</p>
+<h4 id="recall-tptp-fn">召回率 Recall TP/(TP + FN)</h4>
+<p>表示相关的项目中我们发现了多少</p>
+<h4 id="f-f-measure-2-precision-recallprecision-recall">F-度量值 F-Measure (2 * Precision * Recall)/(Precision + Recall)</h4>
+<p>(精确度和召回率的调和平均数)</p>
+<h3 id="_16">混淆矩阵</h3>
+<p>一个混淆矩阵是一个表,其中每个 cells[i,j]表示正确的标签 i 被预测为标签 j 的次数。</p>
+<p>nltk.ConfusionMaxtrix(gold,test)</p>
+<h3 id="_17">交叉验证</h3>
+<p>在不同测试集上执行多个评估，然后组合这些评估的得分</p>
+<ol>
+<li>我们将原始语料细分为 N 个子集称为折叠(folds)。</li>
+<li>对于每一个这些的折叠,我们使用除这个折叠中的数据外其他所有数据训练模型,</li>
+<li>然后在这222个折叠上测试模型。</li>
+<li>即使个别的折叠可能是太小了而不能在其上给出准确的评价分数,综合评估得分是基于大量的数据,因此是相当可靠的。</li>
+</ol>
+<h2 id="_18">决策树</h2>
+<p>一个简单的为输入值选择标签的流程图。这个流程图由检查特征值的决策节点和分配标签的叶节点组成</p>
+<h2 id="_19">熵和信息增益</h2>
+<p>熵被定义为每个标签的概率乘以那个标签的 log 概率的总和</p>
+<h3 id="_20">信息熵+决策树</h3>
+<p>流行使用信息增益法决定决策树生成，计算每个决策树桩的叶子的熵,利用这些叶子熵值的平均值(加权每片叶子的样本数量)。</p>
+<h4 id="_21">过拟合问题</h4>
+<ol>
+<li>当训练数据量变得太小时停止分裂节点</li>
+<li>长出一个完整的决策树,但随后进行剪枝剪去在开发测试集上不能提高性能的决策节点。</li>
+</ol>
+<p><strong>决策树需要按一个特定的顺序检查特征的事实,限制了它们的利用相对独立的特征的能力。</strong></p>
+<h2 id="65">6.5 朴素贝叶斯分类器</h2>
+<ol>
+<li>计算每个标签的在训练集中的先验概率</li>
+<li>之后,每个特征的概率与它的先验概率相乘,最终得到每个标签的似然估计。<ul>
+<li>似然估计相当于在特征概率独立的情况下在训练集中同时出现指定标签和出现的特征子集的概率</li>
+</ul>
+</li>
+<li>似然估计最高的标签会分配给输入值。
+<img alt="image" src="https://github.com/xuesu/picture/blob/master/2016-09-03-191744_568x258_scrot.png?raw=true"></li>
+</ol>
+<h3 id="_22">先验概率</h3>
+<ul>
+<li>先验概率不是根据有关自然状态的全部资料测定的，而只是<strong>利用现有的材料</strong>(主要是历史资料)计算的；后验概率使用了有关自然状态更加全面的资料，既有先验概率资料，也有补充资料；</li>
+<li>先验概率的计算比较简单，没有使用贝叶斯公式；而后验概率的计算，要使用贝叶斯公式，而且在利用样本资料计算逻辑概率时，还要使用理论概率分布，需要更多的数理统计知识。</li>
+</ul>
+<h3 id="_23">潜在概率模型</h3>
+<h4 id="_24">朴素贝叶斯假设/独立性假设</h4>
+<p>假设特征之间强（朴素）独立</p>
+<h4 id="_25">标签的似然</h4>
+<p><code>math
+P(label|features) = P(features, label)/P(features)</code></p>
+<p>P(features)对每个标签选择都相同。因此,如果我们只是对寻找最有可能的标签感兴趣,只需计算 P(features,label),我们称之为该标签的似然。</p>
+<h4 id="zero-counts-and-smoothing">Zero Counts and Smoothing</h4>
+<p>如果一个特征从来没有和某个标签一起出现过，那么这个标签的概率可能会被定为0，而实质上这个标签仍有可能是正确的结果</p>
+<h5 id="_26">平滑技术</h5>
+<ul>
+<li>Expected Likelihood Estimation<ul>
+<li>为所有count(f,label)+0.5</li>
+</ul>
+</li>
+<li>Heldout Estimation<ul>
+<li>使用heldout语料库来计算特征频率和特征概率间的关系</li>
+<li>....<ul>
+<li>nltk.probability模块支持很多平滑技术</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="_27">非二元特征</h4>
+<ul>
+<li>通过例如binning的方式（4&lt;x&lt;6）将其转化为二元</li>
+<li>通过回归手段对数字特征建模，比如数字特征符合贝尔曲线，那么可以通过每个特定标签的特征值的均值和方差来估算P(height|label)</li>
+</ul>
+<h3 id="_28">独立性假设</h3>
+<h5 id="_29">如果我们忽略了独立性假设,使用特征不独立的朴素贝叶斯分类器会发生什么?</h5>
+<p>分类器“双重计数”高度相关的特征的影响,将分类器推向更接近给定的标签而不是合理的标签。</p>
+<h1 id="maximum-entropy-classifiers">最大熵分类器 Maximum Entropy Classifiers</h1>
+<ul>
+<li>最大熵分类器和朴素贝叶斯分类器很像，但是它寻找使<strong>训练集整体的似然估计最大</strong>的参数组</li>
+</ul>
+
+      </section>
+    </div>
+
+    
+  </body>
+</html>
