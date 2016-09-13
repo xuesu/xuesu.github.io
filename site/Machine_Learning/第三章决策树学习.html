@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/default.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
+
+    <title>{{blogname}}--第三章决策树学习</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>第三章决策树学习</h1>
+        <h2>{{ subtitle }}</h2>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+		<a id="blog" class="anchor" href="/" aria-hidden="true">
+			<span aria-hidden="true" class="octicon octicon-link">INDEX</span>
+		</a>
+		</h1>
+		<h1 id="3">第3章 决策树学习</h1>
+<h2 id="_1">决策树表示法</h2>
+<p>决策树的每个非叶节点表示对某种属性的测试，每个后继分支对应与这种属性的一个取值，叶节点则对应实例的分类。</p>
+<p>决策树从树根到叶节点的每条路径都能表达一组属性测试的合取，树本身对应这些合取的析取</p>
+<h2 id="_2">决策树适用的问题</h2>
+<ol>
+<li>决策树属性之间具有相对次序的事实限制了决策树利用相对独立的属性的能力</li>
+<li>实例是由属性-值对来表示的，值为离散或者可以转化为离散</li>
+<li>目标函数具有离散的输出值</li>
+<li>可能需要析取的描述</li>
+<li>训练数据可以包含错误</li>
+<li>训练数据可以包含缺少属性值的实例</li>
+</ol>
+<h2 id="_3">基本的决策树学习算法</h2>
+<ol>
+<li>若符合前提的实例都为一个分类，返回该分类的单节点树</li>
+<li>若不存在可用属性，输出符合前提的实例中最常出现的分类的单节点树</li>
+<li>找到<strong>分类能力最好</strong>的属性，根据该属性的不同值，将子树附加到不同分支下,子树的构建方式重复1-3步</li>
+</ol>
+<h3 id="_4">判断属性的分类能力</h3>
+<h4 id="1">1. 用熵来度量样例的均一性</h4>
+<pre><code class="math">Entropy(S) = \sum_{attribute}(p_{attribute}  log(p_{attribute}))
+</code></pre>
+
+<p>熵确定了要编码集合中所有成员分类所需的最小二进制位数</p>
+<p>香农熵和热力学中描述热力学熵的玻尔兹曼公式本质相同</p>
+<h4 id="2">2. 用信息增益度量期望的熵降低</h4>
+<p>一个属性的信息增益就是使用这个属性分割样例而导致的期望熵降低</p>
+<pre><code class="math">Gain(S,A) = Entropy(S) - \sum_{v \in values(A)} rac{|S_v|}{|S|}Entropy(S)
+</code></pre>
+
+<h3 id="_5">决策树学习中的假设空间搜索</h3>
+<ol>
+<li>决策树的搜索范围是一个完整的假设空间，但它不彻底搜索这个空间，变型空间候选消除算法的搜索范围则是不完整的假设空间，但彻底搜索这个假设空间</li>
+<li>决策树失去了表示所有一致假设所带来的优势，例如，不能判断哪些其他决策树与现有训练数据已知，也不能采用新的最优实例查询</li>
+<li>易受无回溯的爬山搜索的常见影响，即收敛到局部最优而不是全局最优</li>
+</ol>
+<h3 id="_6">决策树学习的归纳偏置</h3>
+<ol>
+<li>优先选择短的数</li>
+<li>优先信息增益高的属性</li>
+</ol>
+<h4 id="361">3.6.1 限定偏置和优选偏置</h4>
+<ul>
+<li>归纳偏置：inductive bias <ul>
+<li>限定偏置: restriction bias/language bias<ul>
+<li>对候选假设的限制</li>
+</ul>
+</li>
+<li>优选偏置: preference bias/search bias<ul>
+<li>对某种假设胜过其他假设的一种偏好，对最终可列举的假设没有硬性限制</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="362">3.6.2 为什么短的假设优先</h4>
+<h5 id="_7">奥坎姆剃刀</h5>
+<p>==优先选择拟合数据最简单的假设==</p>
+<h5 id="_8">存在的问题</h5>
+<ol>
+<li>为什么具有短描述的决策树组成的集合比其他可定义的小假设适当</li>
+<li>假设的大小是由学习器内部使用的特定表示决定的，不同的学习器可能得到相互矛盾的结论，尤其是短描述时。</li>
+</ol>
+<h5 id="_9">优点</h5>
+<p>便于通过进化产生更好的内部表示</p>
+<p>进化产生的内部表示使得学习算法的归纳偏置成为自我实现的预言(self-fulfilling prophecy)，因为它改变内部表示比改变学习算法容易</p>
+<h2 id="_10">决策树学习的常见问题</h2>
+<h3 id="_11">避免过度拟合</h3>
+<h4 id="overfit">过度拟合overfit</h4>
+<p>给定一个假设空间H，一个假设h \in H,如果存在其他假设h' \in H,使得在训练数据上h的错误率更小，但是在整个分布上h'表现更好时，可以说h过度拟合训练数据</p>
+<h4 id="_12">过拟合的可能原因</h4>
+<ol>
+<li>训练样例含有噪声</li>
+<li>训练样例自身的规律性</li>
+</ol>
+<h4 id="_13">解决方法</h4>
+<ol>
+<li>及早停止树增长</li>
+<li>post-prune：允许树过度拟合数据，然后进行后修剪</li>
+</ol>
+<p>关键都需要得到树的正确规模</p>
+<h4 id="_14">如何确定最终正确树的规模</h4>
+<ol>
+<li>使用分离的验证样例来评估后修剪法的效用，直到效用有害停止。训练和验证集，training and validation set</li>
+<li>统计测试来估计某个节点是否有可能改善整体实例的分类性能</li>
+<li>明确的标准来衡量训练样例和决策树的复杂度。比如最小描述长度</li>
+</ol>
+<h5 id="1_1">1. 错误率减低修建</h5>
+<ol>
+<li>如果删除某个节点后，对于验证集合的性能不比原来的树差，则</li>
+<li>删除此节点为根的子树，</li>
+<li>使它成为叶节点，</li>
+<li>把最常见分类赋给它</li>
+</ol>
+<h5 id="2_1">2. 规则集修剪</h5>
+<ol>
+<li>从训练集合推出决策树，允许过拟合</li>
+<li>将决策树转化为等价的规则集合</li>
+<li>对每一条规则，删除任何能导致估计精度增高的前件(preconditions)来修剪（泛化）每一条规则</li>
+<li>按照修剪过的规则的估计精度排序，按这样的顺序来应用这些规则<ul>
+<li>注意此时两条规则可能包含同样的实例</li>
+</ul>
+</li>
+</ol>
+<h3 id="_15">合并连续值属性</h3>
+<p>动态的定义离散值</p>
+<h4 id="_16">一种将实数转化为布尔值的方法</h4>
+<ol>
+<li>按照连续属性A排列样例</li>
+<li>确定目标分类不同的相邻实例，用其中间值产生一组候选阈值</li>
+<li>可以证明产生最大信息增益的c值必然位于这样的边界中</li>
+</ol>
+<h3 id="_17">其他独立那个标准</h3>
+<ol>
+<li>
+<p>为了避免偏袒具有较多值的属性，使用增益比率gain radio，也即除以S到属性A的熵</p>
+<ul>
+<li>一个问题是可能会导致分母为0或者非常小，所以需要先计算每个属性的增益，然后仅对超过平均值的属性应用
+<code>math
+SplitInformation(S,A) = - \sum_{i=1}^c(rac{|S_i|}{|S|}log_2(rac{|S_i|}{|S|}))</code></li>
+</ul>
+<p><code>math
+GainRatio(S,A) = rac{Gain(S,A)}{SplitInformation(S,A)}</code>
+2. Lopez de Mantaras (1991)distance-based度量</p>
+<h3 id="_18">处理缺少属性值的训练样例</h3>
+<ol>
+<li>赋予最常见的属性值</li>
+<li>为A的每个可能值赋予一个概率，这些fractional examples被用于计算信息增益,C4.5使用这种方法处理缺少的属性值</li>
+</ol>
+<h3 id="_19">处理不同代价的属性</h3>
+<ol>
+<li>引入代价项</li>
+<li>以下三种方法</li>
+<li>直接用Gain(S,A)除以Cost(A)</li>
+<li>Gain(S,A)的平方除以Cost(A)</li>
+<li>如下
+<code>math
+rac{2^{Gain(S,A)} - 1}{{(Cost(A) + 1)}^w}</code></li>
+</ol>
+</li>
+</ol>
+
+      </section>
+    </div>
+
+    
+  </body>
+</html>
