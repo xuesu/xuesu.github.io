@@ -172,8 +172,9 @@
 <h4 id="_24">朴素贝叶斯假设/独立性假设</h4>
 <p>假设特征之间强（朴素）独立</p>
 <h4 id="_25">标签的似然</h4>
-<p><code>math
-P(label|features) = P(features, label)/P(features)</code></p>
+<pre><code class="math">P(label|features) = P(features, label)/P(features)
+</code></pre>
+
 <p>P(features)对每个标签选择都相同。因此,如果我们只是对寻找最有可能的标签感兴趣,只需计算 P(features,label),我们称之为该标签的似然。</p>
 <h4 id="zero-counts-and-smoothing">Zero Counts and Smoothing</h4>
 <p>如果一个特征从来没有和某个标签一起出现过，那么这个标签的概率可能会被定为0，而实质上这个标签仍有可能是正确的结果</p>

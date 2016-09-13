@@ -37,18 +37,19 @@
 <h1 id="_2">思路</h1>
 <p>johng提供的思路是高度为n时，所有的节点祖先都相同，也就是说对于当前的树来说，状态为111111111...，==1代表某个节点在这棵树里==，于是这时可以检查是否违反条件，然后，把这些点分为两棵n-1高度的树，（一棵树是另一棵对于当前状态的异或），继续进行对子树存在的节点的审查，所有这些状态都可以通过dp数组记录结果进行==记忆搜索==，由于状态中1的数目会唯一决定当前所在子树大小，所以不会发生父亲和子树同时修改使用一个dp值的情况</p>
 <h1 id="code">Code</h1>
-<p>```
-//start of jonathanirvings' template v2.0.0 (BETA)
+<pre><code>//start of jonathanirvings' template v2.0.0 (BETA)
 //省略
-//end of jonathanirvings' template v2.0.0 (BETA)</p>
-<p>int T;
+//end of jonathanirvings' template v2.0.0 (BETA)
+
+int T;
 int dp[1&lt;&lt;17];
 int n,m,nn;
 bool teman[20][20];
 int k[20],e,K,b;
 vi nyala[1&lt;&lt;17];
-vi mungkin[1&lt;&lt;17];</p>
-<p>int jahja(int bit,int tahap)
+vi mungkin[1&lt;&lt;17];
+
+int jahja(int bit,int tahap)
 {
   if (__builtin_popcount(bit) == 1) return 1;
   int &amp;ret = dp[bit];
@@ -71,8 +72,9 @@ vi mungkin[1&lt;&lt;17];</p>
     if (ret &gt; 0) return ret;
   }
   return ret;
-}</p>
-<p>int main()
+}
+
+int main()
 {
   REP(i,(1&lt;&lt;16))
   {
@@ -87,32 +89,32 @@ vi mungkin[1&lt;&lt;17];</p>
       }
     }
   }
-  scanf("%d",&amp;T);
+  scanf(&quot;%d&quot;,&amp;T);
   REPN(cases,T)
   {
-    printf("Case #%d: ",cases);
-    scanf("%d %d",&amp;nn,&amp;m);
+    printf(&quot;Case #%d: &quot;,cases);
+    scanf(&quot;%d %d&quot;,&amp;nn,&amp;m);
     n = 1 &lt;&lt; nn;
     RESET(teman,0);
     REP(i,n) k[i] = 0;
     TC(m)
     {
-      scanf("%d %d %d",&amp;e,&amp;K,&amp;b);
+      scanf(&quot;%d %d %d&quot;,&amp;e,&amp;K,&amp;b);
       k[e-1] = K;
       TC(b)
       {
         int x;
-        scanf("%d",&amp;x);
+        scanf(&quot;%d&quot;,&amp;x);
         teman[e-1][x-1] = 1;
       }
     }
     RESET(dp,-1);
     int risan = jahja((1 &lt;&lt; n) - 1, nn);
-    puts(risan ? "YES" : "NO");
+    puts(risan ? &quot;YES&quot; : &quot;NO&quot;);
   }
   return 0;
 }
-```</p>
+</code></pre>
 
       </section>
     </div>

@@ -39,23 +39,22 @@
 <h1 id="_3">==错误原因==</h1>
 <p>==重边==会导致DP数组被覆盖</p>
 <h1 id="code">Code</h1>
-<p>```c++</p>
-<h1 id="include">include <cstdio></h1>
-<h1 id="include_1">include <map></h1>
-<h1 id="include_2">include <cstring></h1>
-<h1 id="include_3">include <algorithm></h1>
-<h1 id="include_4">include <cmath></h1>
-<h1 id="include_5">include <string></h1>
-<h1 id="include_6">include <vector></h1>
-<h1 id="include_7">include <iostream></h1>
-<h1 id="include_8">include <assert.h></h1>
-<h1 id="include_9">include <sstream></h1>
-<h1 id="include_10">include <cctype></h1>
-<h1 id="include_11">include <queue></h1>
-<h1 id="include_12">include <stack></h1>
-<h1 id="include_13">include <map></h1>
-<p>using namespace std;
-typedef pair<int,int> P;
+<pre><code class="c++">#include &lt;cstdio&gt;
+#include &lt;map&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+#include &lt;cmath&gt;
+#include &lt;string&gt;
+#include &lt;vector&gt;
+#include &lt;iostream&gt;
+#include &lt;assert.h&gt;
+#include &lt;sstream&gt;
+#include &lt;cctype&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;map&gt;
+using namespace std;
+typedef pair&lt;int,int&gt; P;
 typedef long long ll;
 typedef long double ld;
 const ll inf = 0x7ffffffffffffff;
@@ -67,18 +66,18 @@ struct edge{
 }e[maxn * maxn * 2];
 int main()
 {
-    freopen("C-large-practice.in","r",stdin);
-    freopen("C-large-practice.out","w",stdout);
+    freopen(&quot;C-large-practice.in&quot;,&quot;r&quot;,stdin);
+    freopen(&quot;C-large-practice.out&quot;,&quot;w&quot;,stdout);
     int t;
-    scanf("%d",&amp;t);
+    scanf(&quot;%d&quot;,&amp;t);
     for(int ti = 1;ti &lt;= t;ti++){
-        printf("Case #%d:
-",ti);
+        printf(&quot;Case #%d:
+&quot;,ti);
         int n,m;
-        scanf("%d%d",&amp;n,&amp;m);
+        scanf(&quot;%d%d&quot;,&amp;n,&amp;m);
         for(int i = 0;i &lt; n;i++){fill(dp[i],dp[i] + n,inf);dp[i][i] = 0;}
         for(int i = 0;i &lt; m;i++){
-            scanf("%d%d%lld",&amp;e[i].f,&amp;e[i].t,&amp;e[i].c);
+            scanf(&quot;%d%d%lld&quot;,&amp;e[i].f,&amp;e[i].t,&amp;e[i].c);
             dp[e[i].f][e[i].t] = min(dp[e[i].f][e[i].t],e[i].c);
             dp[e[i].t][e[i].f] = min(dp[e[i].t][e[i].f],e[i].c);
         }
@@ -93,15 +92,16 @@ int main()
         }
         for(int i = 0;i &lt; m;i++){
             if(e[i].c &gt; dp[e[i].f][e[i].t]){
-                printf("%d
-",i);
+                printf(&quot;%d
+&quot;,i);
             }
         }
-    }</p>
-<pre><code>return 0;
+    }
+
+    return 0;
+}
+
 </code></pre>
-<p>}</p>
-<p>```</p>
 
       </section>
     </div>

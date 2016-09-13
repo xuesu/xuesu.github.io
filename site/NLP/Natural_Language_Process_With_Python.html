@@ -172,18 +172,23 @@
 本。该项目大约有 25,000(现在是 36,000 了)本免费电子图书,放在 
 <a href="http://www.gutenberg.
 org/">http://www.gutenberg.
-org/ </a> 上。
-<code>python
-nltk.corpus.gutenberg.fileids()
+org/ </a> 上。</p>
+<pre><code class="python">nltk.corpus.gutenberg.fileids()
 gutenburg.words(fieild)#划分为词
-gutenburg.sents(fieild)#划分为句</code></p>
+gutenburg.sents(fieild)#划分为句
+</code></pre>
+
 <h3 id="_5">网络和聊天文本</h3>
 <p>NLTK 的网络文本小集合的内容包括 Firefox 交流论坛,在纽约无意听到的对话,
-《加勒比海盗》的电影剧本,个人广告和葡萄酒的评论
-<code>nltk.corpus.webtext</code>
-即时消息聊天会话语料库,最初由美国海军研究生院为研究自动检测互联网幼童虐待癖而收集的。</p>
-<p>这些帖子都已经被贴上 15种对话行为类型中的一种标签,例如:“陈述”,“情感”,“yn 问题”,“Continuer”。
-<code>nltk.corpus.nps_chat</code></p>
+《加勒比海盗》的电影剧本,个人广告和葡萄酒的评论</p>
+<pre><code>nltk.corpus.webtext
+</code></pre>
+
+<p>即时消息聊天会话语料库,最初由美国海军研究生院为研究自动检测互联网幼童虐待癖而收集的。</p>
+<p>这些帖子都已经被贴上 15种对话行为类型中的一种标签,例如:“陈述”,“情感”,“yn 问题”,“Continuer”。</p>
+<pre><code>nltk.corpus.nps_chat
+</code></pre>
+
 <h3 id="_6">布朗语料库</h3>
 <p>布朗语料库是第一个百万词级的英语电子语料库的,由布朗大学于 1961 年创建。这个
 语料库包含 500 个不同来源的文本,按照文体分类,如:新闻、社论等</p>
@@ -210,37 +215,33 @@ NLTK 中提供了很方便的方式来访问这些语料库中的几个,还有�
 <h2 id="22">2.2 条件频率分布</h2>
 <p>条件频率分布是频率分布的集合,每个频率分布有一个不同的“条件”。这个条件通常是文本的类别</p>
 <p>ConditionalFreqDist</p>
-<p>```</p>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>cfd = nltk.ConditionalFreqDist(genre_word)
-cfd 
-<ConditionalFreqDist with 2 conditions>
-cfd.conditions()
+<pre><code>&gt;&gt;&gt; cfd = nltk.ConditionalFreqDist(genre_word)
+&gt;&gt;&gt; cfd 
+&lt;ConditionalFreqDist with 2 conditions&gt;
+&gt;&gt;&gt; cfd.conditions()
 ['news', 'romance'] 
 让我们访问这两个条件,它们每一个都只是一个频率分布:
-cfd['news']
-<FreqDist with 100554 outcomes>
-cfd['romance']
-<FreqDist with 70022 outcomes>
-list(cfd['romance'])
-[',', '.', 'the', 'and', 'to', 'a', 'of', '``', "''", 'was', 'I', 'in', 'he', 'had',
+&gt;&gt;&gt; cfd['news']
+&lt;FreqDist with 100554 outcomes&gt;
+&gt;&gt;&gt; cfd['romance']
+&lt;FreqDist with 70022 outcomes&gt;
+&gt;&gt;&gt; list(cfd['romance'])
+[',', '.', 'the', 'and', 'to', 'a', 'of', '``', &quot;''&quot;, 'was', 'I', 'in', 'he', 'had',
 '?', 'her', 'that', 'it', 'his', 'she', 'with', 'you', 'for', 'at', 'He', 'on', 'him',
 'said', '!', '--', 'be', 'as', ';', 'have', 'but', 'not', 'would', 'She', 'The', ...]
-```</p>
-</blockquote>
-</blockquote>
-</blockquote>
+</code></pre>
+
 <ul>
 <li>在 plot()和 tabulate()方法中,我们可以使用 conditions= parameter 来选择指定
 哪些条件显示。如果我们忽略它,所有条件都会显示。</li>
 <li>同样,我们可以使用 samples= parameter 来限制要显示的样本。这使得载入大量数据到一个条件频率分布,然后通过选定
-条件和样品,绘图或制表的探索成为可能。这也使我们能全面控制条件和样本的显示顺序。
-<code>cfd.tabulate(conditions=['English', 'German_Deutsch'],
-    samples=range(10), cumulative=True)</code>
-<img alt="image" src="https://github.com/xuesu/picture/blob/master/2016-08-22-203654_737x414_scrot.png?raw=true"></li>
+条件和样品,绘图或制表的探索成为可能。这也使我们能全面控制条件和样本的显示顺序。</li>
 </ul>
+<pre><code>cfd.tabulate(conditions=['English', 'German_Deutsch'],
+    samples=range(10), cumulative=True)
+</code></pre>
+
+<p><img alt="image" src="https://github.com/xuesu/picture/blob/master/2016-08-22-203654_737x414_scrot.png?raw=true"></p>
 <h3 id="_12">使用双连词生成随机文本</h3>
 <p>bigrams() 函数接受一个词汇链表,并建立一个连续的词对链表。</p>
 <h2 id="24">2.4 词典资源</h2>
@@ -253,13 +254,15 @@ nltk.corpus.word</p>
 <h3 id="_14">停用词语料库</h3>
 <p>nltk.corpus.stopwords</p>
 <h3 id="cmu">CMU发音词典</h3>
-<p>音素包含数字表示主重音(1),次重音(2)和无重音(0)
-<code>nltk.corpus.cmudict.entries()
+<p>音素包含数字表示主重音(1),次重音(2)和无重音(0)</p>
+<pre><code>nltk.corpus.cmudict.entries()
 ('fir', ['F', 'ER1'])
 ('fire', ['F', 'AY1', 'ER0'])
 ('fire', ['F', 'AY1', 'R'])
-('firearm', ['F', 'AY1', 'ER</code>
-示例扫描了具有特定重音模式的词汇</p>
+('firearm', ['F', 'AY1', 'ER
+</code></pre>
+
+<p>示例扫描了具有特定重音模式的词汇</p>
 <h3 id="_15">比较词表</h3>
 <p>NLTK 中包含了所谓的斯瓦迪士核心词列表(Swa
 desh wordlists),几种语言中约 200个常用词的列表。语言标识符使用 ISO639 双字母码。</p>
@@ -371,53 +374,57 @@ desh wordlists),几种语言中约 200个常用词的列表。语言标识符使
 <li>Ethnologue是最完整的世界上的语言的清单,http://www.ethnoogue.com/。7000 种语言中只有几十中有大量适合 NLP 使用的数字资源</li>
 </ol>
 <h2 id="_21">习题</h2>
-<p>23.a <img alt="image" src="https://github.com/xuesu/picture/blob/master/2016-08-23-010403_556x430_scrot.png?raw=true">
-<code>python
-import nltk
+<p>23.a <img alt="image" src="https://github.com/xuesu/picture/blob/master/2016-08-23-010403_556x430_scrot.png?raw=true"></p>
+<pre><code class="python">import nltk
 import matplotlib.pyplot as plt
 from nltk.corpus import gutenberg
 import math
 fd = nltk.FreqDist(gutenberg.words('austen-emma.txt'))
 x = [e for e in fd.keys()]
-y = [math.log(fd[x0]) for x0 in x ]</code>
-而对于y2 = [math.log(fd[fd.max()]/a) for a in range(1,len(fd) + 1)]，其曲线为</p>
+y = [math.log(fd[x0]) for x0 in x ]
+</code></pre>
+
+<p>而对于y2 = [math.log(fd[fd.max()]/a) for a in range(1,len(fd) + 1)]，其曲线为</p>
 <p><img alt="image" src="https://github.com/xuesu/picture/blob/master/2016-08-23-011824_605x469_scrot.png?raw=true"></p>
 <p>曲线基本一致，可以认为齐夫定律有可能，所绘的线末尾有很长一段为0</p>
 <p>23.b
 <img alt="image" src="https://github.com/xuesu/picture/blob/master/2016-08-23-014429_569x434_scrot.png?raw=true">
 明显，由于各词汇几乎等概率，所以不满足，齐夫定律只能适用于有意义的自然语言</p>
-<p>25.
-<code>python
-import nltk
+<p>25.</p>
+<pre><code class="python">import nltk
 from nltk.corpus import udhr
 def findUdhr(x):
-    return [f for f in udhr.fileids() if x in udhr.words(f)]</code></p>
-<p>26。0.923
-```
-a = wn.all_synsets('n')
+    return [f for f in udhr.fileids() if x in udhr.words(f)]
+</code></pre>
+
+<p>26。0.923</p>
+<pre><code>a = wn.all_synsets('n')
 sum = 0
 l  = 0
 for aa in a:
     sum += len(aa.hyponyms())
-    l += 1</p>
-<p>print float(sum)/l
-```</p>
+    l += 1
+
+print float(sum)/l
+</code></pre>
+
 <p>27.</p>
 <ul>
 <li>n 1.96887292212</li>
 <li>v 5.36602019322</li>
 <li>s 2.32325402071</li>
-<li>r 1.74813587407
-<code>python
-for t in ['n','v','s','r']:
+<li>r 1.74813587407</li>
+</ul>
+<pre><code class="python">for t in ['n','v','s','r']:
     a = wn.all_synsets(t)
     sum = 0
     l  = 0
     for aa in a:
         sum += len(wn.synsets(aa.name().split('.')[0],t))
         l += 1
-    print t,float(sum)/l</code></li>
-</ul>
+    print t,float(sum)/l
+</code></pre>
+
 <h1 id="3">3 加工原料文本</h1>
 <h2 id="31">3.1</h2>
 <p>可以在 http://www.gutenberg.org/catalog/上浏览 25,000 本免费在线书籍的目录,获得 ASCII 码文本文件的 URL</p>
@@ -476,9 +483,11 @@ for t in ['n','v','s','r']:
 <li>构词法</li>
 </ol>
 <h2 id="_24">习题</h2>
-<p>T2.使用ntlk时发现书中示例不能接受该参数
-<code>nltk.corpus.brown.tagged_words(simplify_tags=True)#错误</code>
-T7.d1.update(d2)时，d1中d2和d1的并集被更新覆盖为d2中内容</p>
+<p>T2.使用ntlk时发现书中示例不能接受该参数</p>
+<pre><code>nltk.corpus.brown.tagged_words(simplify_tags=True)#错误
+</code></pre>
+
+<p>T7.d1.update(d2)时，d1中d2和d1的并集被更新覆盖为d2中内容</p>
 <p>T15. </p>
 <ul>
 <li>a:[u'cm.', u'two-thirds', u'mg.', u'data', u'means', u'mechanics', u'sec.', u'$5', u'$2', u"10''", u'ethics', u'Police', u'Headquarters', u'deer', u'lb.', u'savings', u'$3', u'Data']</li>
@@ -486,8 +495,8 @@ T7.d1.update(d2)时，d1中d2和d1的并集被更新覆盖为d2中内容</p>
 <li>c:'NN'</li>
 <li>d:'IN'</li>
 </ul>
-<p>T39. 在二元模型中，以下使用laplace平滑不如普通的二元模型好。另外尝试了HiddenMarkovTrainer+laplace,效果也远远不及
-<code>class LaplaceBigramTagger(nltk.BigramTagger):
+<p>T39. 在二元模型中，以下使用laplace平滑不如普通的二元模型好。另外尝试了HiddenMarkovTrainer+laplace,效果也远远不及</p>
+<pre><code>class LaplaceBigramTagger(nltk.BigramTagger):
     def __init__(self,train_sents):
         self.firstD = ConditionalFreqDist(
             (x,y) for sent in train_sents for (x,y) in sent
@@ -511,7 +520,8 @@ T7.d1.update(d2)时，d1中d2和d1的并集被更新覆盖为d2中内容</p>
                         prob = nowprob
                         sub = y 
             ans.append((x,sub)) 
-        return ans</code></p>
+        return ans
+</code></pre>
 
       </section>
     </div>

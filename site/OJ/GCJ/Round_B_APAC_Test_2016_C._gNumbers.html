@@ -39,23 +39,22 @@
 <h1 id="_3">错误</h1>
 <p>sg(x) = 0,fail, 而不是sg(x)&amp;1</p>
 <h1 id="_4">代码</h1>
-<p>```c++</p>
-<h1 id="include">include <cstdio></h1>
-<h1 id="include_1">include <map></h1>
-<h1 id="include_2">include <cstring></h1>
-<h1 id="include_3">include <algorithm></h1>
-<h1 id="include_4">include <cmath></h1>
-<h1 id="include_5">include <string></h1>
-<h1 id="include_6">include <vector></h1>
-<h1 id="include_7">include <iostream></h1>
-<h1 id="include_8">include <assert.h></h1>
-<h1 id="include_9">include <sstream></h1>
-<h1 id="include_10">include <cctype></h1>
-<h1 id="include_11">include <queue></h1>
-<h1 id="include_12">include <stack></h1>
-<h1 id="include_13">include <map></h1>
-<p>using namespace std;
-typedef pair<int,int> P;
+<pre><code class="c++">#include &lt;cstdio&gt;
+#include &lt;map&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+#include &lt;cmath&gt;
+#include &lt;string&gt;
+#include &lt;vector&gt;
+#include &lt;iostream&gt;
+#include &lt;assert.h&gt;
+#include &lt;sstream&gt;
+#include &lt;cctype&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;map&gt;
+using namespace std;
+typedef pair&lt;int,int&gt; P;
 typedef long long ll;
 typedef long double ld;
 const int maxs = 102;
@@ -71,7 +70,7 @@ void init(){
         }
     }
 }
-map<ll,int>sg;
+map&lt;ll,int&gt;sg;
 bool check(ll n){
     int sum = 0;
     while(n &gt; 0){
@@ -80,17 +79,19 @@ bool check(ll n){
     }
     if(sum == 1)return true;
     return !ntprime[sum];
-}</p>
-<p>int a[maxs],len;
-ll num[maxs];</p>
-<p>void split(ll n){
+}
+
+int a[maxs],len;
+ll num[maxs];
+
+void split(ll n){
     len = 0;
     if(n &gt; 0 &amp;&amp; (n &amp; 1) == 0){
         a[len] = 2;
         num[len] = 1;
         while(n &gt; 0 &amp;&amp; (n &amp; 1) == 0){
             n &gt;&gt;= 1;
-            num[len] <em>= 2;
+            num[len] *= 2;
         }
         len++;
     }
@@ -100,7 +101,7 @@ ll num[maxs];</p>
             num[len] = 1;
             while(n % i == 0){
                 n /= i;
-                num[len] </em>= i;
+                num[len] *= i;
             }
             len++;
         }
@@ -110,8 +111,9 @@ ll num[maxs];</p>
         num[len] = n;
         len++;
     }
-}</p>
-<p>int getsg(ll n){
+}
+
+int getsg(ll n){
     if(sg.count(n) != 0)return sg[n];
     if(check(n)){
         return sg[n] = 0;
@@ -131,29 +133,31 @@ ll num[maxs];</p>
         }
     }
     return sg[n];
-}</p>
-<p>int main()
+}
+
+int main()
 {
-   // freopen("input.txt","r",stdin);
-    freopen("C-large-practice.in","r",stdin);
-    freopen("C-large-practice.out","w",stdout);
+   // freopen(&quot;input.txt&quot;,&quot;r&quot;,stdin);
+    freopen(&quot;C-large-practice.in&quot;,&quot;r&quot;,stdin);
+    freopen(&quot;C-large-practice.out&quot;,&quot;w&quot;,stdout);
     init();
     int T;
-    scanf("%d",&amp;T);
+    scanf(&quot;%d&quot;,&amp;T);
     for(int ti = 1;ti &lt;= T;ti++){
         ll n;
-        scanf("%lld",&amp;n);
+        scanf(&quot;%lld&quot;,&amp;n);
         split(n);
         sg.clear();
         int ans = getsg(n);
-        printf("Case #%d: %s
-",ti,ans?"Laurence":"Seymour");</p>
-<pre><code>}
+        printf(&quot;Case #%d: %s
+&quot;,ti,ans?&quot;Laurence&quot;:&quot;Seymour&quot;);
 
-return 0;
+    }
+
+    return 0;
+}
+
 </code></pre>
-<p>}</p>
-<p>```</p>
 
       </section>
     </div>
