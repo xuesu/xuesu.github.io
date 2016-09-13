@@ -1,149 +1,37 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-
-    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
-
-    <title>{{blogname}}--11_数值计算_矩阵乘法_线性方程组求解</title>
-  </head>
-
-  <body>
-
-    <header>
-      <div class="container">
-        <h1>11_数值计算_矩阵乘法_线性方程组求解</h1>
-        <h2>{{ subtitle }}</h2>
-      </div>
-    </header>
-
-    <div class="container">
-      <section id="main_content">
-        <h1>
-		<a id="blog" class="anchor" href="/" aria-hidden="true">
-			<span aria-hidden="true" class="octicon octicon-link">INDEX</span>
-		</a>
-		</h1>
-		<h2 id="_1">数值计算</h2>
-<ol>
-<li>矩阵</li>
-<li>矩阵乘法<ol>
-<li>串行</li>
-<li>并行</li>
-<li>划分</li>
-<li>直接并行实现</li>
-<li>递归实现</li>
-<li>Cannon 算法</li>
-<li>Systolic 算法</li>
-</ol>
-</li>
-<li>求解线性方程组<ol>
-<li>高斯消去法</li>
-<li>迭代方法<ol>
-<li>稀疏线性方程组及雅可比迭代</li>
-<li>高斯-塞德尔松驰</li>
-<li>红黑排序法</li>
-<li>高阶差分法</li>
-<li>过度松驰法</li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-<h2 id="-">矩阵乘法-并行</h2>
-<ol>
-<li>使用n个处理器，<ol>
-<li>每个处理A阵的一行，与B阵的每一列相乘，得到C的一行。 或者：每个处理B阵的一列，与A阵的每一行相乘，得到C的一列</li>
-<li>复杂度为O（n2）</li>
-</ol>
-</li>
-<li>使用n2个处理器<ol>
-<li>每个处理A的一行与B的一列相乘，得到C的一个点。</li>
-<li>复杂度为O（n）。</li>
-</ol>
-</li>
-<li>使用n3个处理器<ol>
-<li>用n个处理器来完成A的一行与B的一列的乘积，然后要相加。</li>
-<li>需要并行化内层的循环。</li>
-<li>复杂度为O（logn）。注意不是O（1），也不是O（n）。</li>
-</ol>
-</li>
-</ol>
-<h3 id="_2">效率分析</h3>
-<ul>
-<li>进一步增加处理器的数目不能提高其效率。 O（logn）是下界。</li>
-<li>以上未考虑通信的开销。</li>
-</ul>
-<h2 id="-_1">矩阵乘法-划分</h2>
-<pre><code>for (p = 0; p &lt; s; p++)
-    for (q = 0; q &lt; s; q++) 
-    {
-        Cp,q = 0;                       /* clear elements of submatrix */
-        for (r = 0; r &lt; m; r++)       /* submatrix multiplication &amp;*/
-        Cp,q = Cp,q + Ap,r * Br,q;   /*add to accum. submatrix*/
-    }
-</code></pre>
-<h2 id="_3">直接实现：</h2>
-<pre><code>- 通信：
-    - 每个从进程：收到一行和一列，以及要返回一个结果。有n^2个从进程
-    - 所以tcomm=n^2（2tstartup+2ntdata)+n^2(tstartup+tdata）
-    - 利用广播可以减少tstartup时间。
-    - Tcomm=（tstartup+n^2tdata）+n^2（tstartup +tdata）
-    - 时间主要消耗在数据返回上，因为tstartup 较大。
-    - &lt;b&gt;用gather 表面上可以简化，实际上是一样的。&lt;/b&gt;
-- 计算：
-    - Tcomp=2n
-- 划分为子矩阵的复杂度分析，与之类似。
-</code></pre>
-<h2 id="_4">递归</h2>
-<p><img alt="" src="http://i.imgur.com/V51vrTF.png"></p>
-<h2 id="canon">Canon算法</h2>
-<p><img alt="" src="http://i.imgur.com/Vzpnbsh.png"></p>
-<ol>
-<li>
-<ol>
-<li>所有块Aij(0≤i,j≤sqrt(p) - 1)向左循环移动i步；   </li>
-<li>所有块Bij(0≤i,j≤sqrt(p) - 1))向上循环移动j步； <img alt="" src="http://i.imgur.com/iFa5n7H.png"></li>
-</ol>
-</li>
-<li>所有处理器Pi,j做执行Ai,j和Bi,j的乘-加运算;</li>
-<li>
-<ol>
-<li>A的每个块向左循环移动一步;</li>
-<li>B的每个块向上循环移动一步;</li>
-</ol>
-</li>
-<li>转2执行sqrt(p)-1次;</li>
-</ol>
-<h2 id="-systolic">矩阵乘法-Systolic乘法</h2>
-<p><img alt="" src="http://i.imgur.com/l5Bpg4r.png">
-<img alt="" src="http://i.imgur.com/M12QEyr.png">
-<img alt="" src="http://i.imgur.com/gPzeG7u.png"></p>
-<h2 id="_5">求解线性方程组</h2>
-<ul>
-<li>稠密方程<ul>
-<li>高斯消元法</li>
-<li>转化为三角方程组</li>
-<li>串行复杂度O（n3）</li>
-<li>并行复杂度O（n2）</li>
-</ul>
-</li>
-<li>稀疏方程<ul>
-<li>取决于迭代方法和迭代次数,典型复杂度O(log n)</li>
-<li>Jacobi 迭代</li>
-<li>Gauss-Seidel relaxation (not good for parallelization)</li>
-<li>Red-Black ordering</li>
-<li>Multigrid</li>
-</ul>
-</li>
-</ul>
-
-      </section>
-    </div>
-
-    
-  </body>
-</html>
+\<\!DOCTYPE\ html\>\
+\<html\>\
+\ \ \<head\>\
+\ \ \ \ \<meta\ charset\=\'utf\-8\'\>\
+\ \ \ \ \<meta\ http\-equiv\=\"X\-UA\-Compatible\"\ content\=\"chrome\=1\"\>\
+\
+\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/stylesheet\.css\"\ media\=\"screen\"\>\
+\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/github\-dark\.css\"\ media\=\"screen\"\>\
+\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/print\.css\"\ media\=\"print\"\>\
+\
+\ \ \ \ \<title\>\{\{blogname\}\}\-\-\{\{title\}\}\<\/title\>\
+\ \ \<\/head\>\
+\
+\ \ \<body\>\
+\
+\ \ \ \ \<header\>\
+\ \ \ \ \ \ \<div\ class\=\"container\"\>\
+\ \ \ \ \ \ \ \ \<h1\>\{\{\ title\ \}\}\<\/h1\>\
+\ \ \ \ \ \ \ \ \<h2\>\{\{\ subtitle\ \}\}\<\/h2\>\
+\ \ \ \ \ \ \<\/div\>\
+\ \ \ \ \<\/header\>\
+\
+\ \ \ \ \<div\ class\=\"container\"\>\
+\ \ \ \ \ \ \<section\ id\=\"main\_content\"\>\
+\ \ \ \ \ \ \ \ \<h1\>\
+\	\	\<a\ id\=\"blog\"\ class\=\"anchor\"\ href\=\"\/\"\ aria\-hidden\=\"true\"\>\
+\	\	\	\<span\ aria\-hidden\=\"true\"\ class\=\"octicon\ octicon\-link\"\>INDEX\<\/span\>\
+\	\	\<\/a\>\
+\	\	\<\/h1\>\
+\	\	\{\{content\}\}\
+\
+\ \ \ \ \ \ \<\/section\>\
+\ \ \ \ \<\/div\>\
+\
+\ \ \ \ \
+\ \ \<\/body\>\
+\<\/html\>\

@@ -1,72 +1,37 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-
-    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
-
-    <title>{{blogname}}--3_多项式乘法</title>
-  </head>
-
-  <body>
-
-    <header>
-      <div class="container">
-        <h1>3_多项式乘法</h1>
-        <h2>{{ subtitle }}</h2>
-      </div>
-    </header>
-
-    <div class="container">
-      <section id="main_content">
-        <h1>
-		<a id="blog" class="anchor" href="/" aria-hidden="true">
-			<span aria-hidden="true" class="octicon octicon-link">INDEX</span>
-		</a>
-		</h1>
-		<h1 id="12">12.多项式相乘,以及快速傅里叶变换</h1>
-<p>由于两个n次多项式相乘复杂度为n^2过高,本章讨论如何将复杂度降至n*log(n)</p>
-<h2 id="_1">记号</h2>
-<p>多项式A(X)=/sum^{n-1}_{j=0}{a_j*x^j}</p>
-<ul>
-<li>次数D(degree) 变量最高的次数</li>
-<li>次数界DB(degree bound) 严格大于次数的数</li>
-</ul>
-<p>C(X) = A(X) * B(X)</p>
-<p>也即</p>
-<p>A(X) * B(X) = c0 + c1*x + c2 * x^2 + ... c_n * x ^n</p>
-<p>c_j = /sum^j_{k=0}{a_k*b_{j-k}}</p>
-<p>a_k,b_k当k在[0,n-1]才非0</p>
-<p>也即积的系数是乘数被乘数的系数的卷积,convolution</p>
-<h2 id="_2">多项式的表示法</h2>
-<h3 id="1">1. 系数法</h3>
-<p>Horner法则</p>
-<p>A(x_0) = a_0 + x_0 * (a_1 + x_0 *(...+ a_{n-1} * x_0))</p>
-<h3 id="2">2. 点值表示法</h3>
-<p>使用n个点值对表示多项式</p>
-<p>{(x0,y1),...,(x_{n-1},y_{n=1})}</p>
-<p>由Horner法则,系数表示法复杂度为n^2</p>
-<h3 id="_3">从点值表示法到系数表示法</h3>
-<p>对于任意的点值表示法集合, 存在唯一的n次多项式,A(x)满足y_k=A(x_k)</p>
-<p>范得蒙矩阵</p>
-<p>利用拉格朗日插值公式,可以在平方复杂度内完成</p>
-<h3 id="_4">点值法用途</h3>
-<p>加法可以直接加和</p>
-<p>乘法可以直接相乘</p>
-<h2 id="_5">离散傅里叶变换</h2>
-<p>n次单位复根恰好有n个,均匀分布在单位圆上</p>
-<p>Wn = e^{2pie/n}为主n次单位根,其它的根均为主单位根的幂</p>
-<p>n个n次单位根Wn^0,...Wn^{n-1}在乘法运算下构成一个群</p>
-<h3 id="_6">引理</h3>
-<p>相消引理 w_{dn}^{dk}=Wn^k</p>
-<p>Wn^{n/2} = -1 当n为偶数</p>
-
-      </section>
-    </div>
-
-    
-  </body>
-</html>
+\<\!DOCTYPE\ html\>\
+\<html\>\
+\ \ \<head\>\
+\ \ \ \ \<meta\ charset\=\'utf\-8\'\>\
+\ \ \ \ \<meta\ http\-equiv\=\"X\-UA\-Compatible\"\ content\=\"chrome\=1\"\>\
+\
+\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/stylesheet\.css\"\ media\=\"screen\"\>\
+\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/github\-dark\.css\"\ media\=\"screen\"\>\
+\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/print\.css\"\ media\=\"print\"\>\
+\
+\ \ \ \ \<title\>\{\{blogname\}\}\-\-\{\{title\}\}\<\/title\>\
+\ \ \<\/head\>\
+\
+\ \ \<body\>\
+\
+\ \ \ \ \<header\>\
+\ \ \ \ \ \ \<div\ class\=\"container\"\>\
+\ \ \ \ \ \ \ \ \<h1\>\{\{\ title\ \}\}\<\/h1\>\
+\ \ \ \ \ \ \ \ \<h2\>\{\{\ subtitle\ \}\}\<\/h2\>\
+\ \ \ \ \ \ \<\/div\>\
+\ \ \ \ \<\/header\>\
+\
+\ \ \ \ \<div\ class\=\"container\"\>\
+\ \ \ \ \ \ \<section\ id\=\"main\_content\"\>\
+\ \ \ \ \ \ \ \ \<h1\>\
+\	\	\<a\ id\=\"blog\"\ class\=\"anchor\"\ href\=\"\/\"\ aria\-hidden\=\"true\"\>\
+\	\	\	\<span\ aria\-hidden\=\"true\"\ class\=\"octicon\ octicon\-link\"\>INDEX\<\/span\>\
+\	\	\<\/a\>\
+\	\	\<\/h1\>\
+\	\	\{\{content\}\}\
+\
+\ \ \ \ \ \ \<\/section\>\
+\ \ \ \ \<\/div\>\
+\
+\ \ \ \ \
+\ \ \<\/body\>\
+\<\/html\>\

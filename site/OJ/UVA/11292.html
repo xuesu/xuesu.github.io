@@ -1,83 +1,37 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-
-    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
-
-    <title>{{blogname}}--11292</title>
-  </head>
-
-  <body>
-
-    <header>
-      <div class="container">
-        <h1>11292</h1>
-        <h2>{{ subtitle }}</h2>
-      </div>
-    </header>
-
-    <div class="container">
-      <section id="main_content">
-        <h1>
-		<a id="blog" class="anchor" href="/" aria-hidden="true">
-			<span aria-hidden="true" class="octicon octicon-link">INDEX</span>
-		</a>
-		</h1>
-		<h2 id="question">Question</h2>
-<p><a href="https://uva.onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;page=show_problem&amp;problem=2267" title="UVA 11292 - Dragon of Loowater">https://uva.onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;page=show_problem&amp;problem=2267</a></p>
-<h2 id="evolution">Evolution</h2>
-<ol>
-<li>Asc sort head &amp; knight separately by head's diameter &amp; knight's height.</li>
-<li>For ith head h[i], if there exist a knight whose height k[j] &gt;= h[i], and j (this knight's index) greater than the index of knight who can cut i-1th head(if exists), the jth knight must be the cheapest and most suitable knight to cut ith head, if there doesnt, Loowater is doomed!</li>
-</ol>
-<h2 id="attention">Attention</h2>
-<ol>
-<li>UVA use %lld to print long long.</li>
-<li>c++'s sort automatically sort by asc. </li>
-</ol>
-<h2 id="code">Code</h2>
-<pre><code>#include &lt;cstdio&gt;
-#include &lt;algorithm&gt;
-using namespace std;
-int main(){
-    const int MAXN = 2e4 + 4;
-    int k[MAXN],h[MAXN];
-    int n,m;
-    while(scanf("%d%d",&amp;n,&amp;m)==2 &amp;&amp; (n||m)){
-        for(int i = 0;i &lt; n;i++){
-            scanf("%d",h + i);
-        }
-        for(int i = 0;i &lt; m;i++){
-            scanf("%d",k + i);
-        }
-
-        sort(h,h + n);
-        sort(k,k + m);
-
-        int j = 0;
-        long long ans = 0;
-        for(int i = 0;i &lt; n;i++){
-            for(;j &lt; m &amp;&amp; h[i] &gt; k[j];j++){}
-            if(j &gt;= m){j++;break;}
-            ans += k[j];
-            j++;
-        }
-        if(j &gt; m)printf("Loowater is doomed!
-");
-        else printf("%lld
-",ans);
-    }
-    return 0;
-}
-</code></pre>
-
-      </section>
-    </div>
-
-    
-  </body>
-</html>
+\<\!DOCTYPE\ html\>\
+\<html\>\
+\ \ \<head\>\
+\ \ \ \ \<meta\ charset\=\'utf\-8\'\>\
+\ \ \ \ \<meta\ http\-equiv\=\"X\-UA\-Compatible\"\ content\=\"chrome\=1\"\>\
+\
+\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/stylesheet\.css\"\ media\=\"screen\"\>\
+\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/github\-dark\.css\"\ media\=\"screen\"\>\
+\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/print\.css\"\ media\=\"print\"\>\
+\
+\ \ \ \ \<title\>\{\{blogname\}\}\-\-\{\{title\}\}\<\/title\>\
+\ \ \<\/head\>\
+\
+\ \ \<body\>\
+\
+\ \ \ \ \<header\>\
+\ \ \ \ \ \ \<div\ class\=\"container\"\>\
+\ \ \ \ \ \ \ \ \<h1\>\{\{\ title\ \}\}\<\/h1\>\
+\ \ \ \ \ \ \ \ \<h2\>\{\{\ subtitle\ \}\}\<\/h2\>\
+\ \ \ \ \ \ \<\/div\>\
+\ \ \ \ \<\/header\>\
+\
+\ \ \ \ \<div\ class\=\"container\"\>\
+\ \ \ \ \ \ \<section\ id\=\"main\_content\"\>\
+\ \ \ \ \ \ \ \ \<h1\>\
+\	\	\<a\ id\=\"blog\"\ class\=\"anchor\"\ href\=\"\/\"\ aria\-hidden\=\"true\"\>\
+\	\	\	\<span\ aria\-hidden\=\"true\"\ class\=\"octicon\ octicon\-link\"\>INDEX\<\/span\>\
+\	\	\<\/a\>\
+\	\	\<\/h1\>\
+\	\	\{\{content\}\}\
+\
+\ \ \ \ \ \ \<\/section\>\
+\ \ \ \ \<\/div\>\
+\
+\ \ \ \ \
+\ \ \<\/body\>\
+\<\/html\>\

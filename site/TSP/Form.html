@@ -1,292 +1,37 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-
-    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
-
-    <title>{{blogname}}--Form</title>
-  </head>
-
-  <body>
-
-    <header>
-      <div class="container">
-        <h1>Form</h1>
-        <h2>{{ subtitle }}</h2>
-      </div>
-    </header>
-
-    <div class="container">
-      <section id="main_content">
-        <h1>
-		<a id="blog" class="anchor" href="/" aria-hidden="true">
-			<span aria-hidden="true" class="octicon octicon-link">INDEX</span>
-		</a>
-		</h1>
-		<h1 id="tsp">TSP表</h1>
-<h2 id="_1">未开始</h2>
-<h3 id="info">INFO表</h3>
-<ul>
-<li>filled by student</li>
-<li>teacher use this form to make the team and role assignments</li>
-</ul>
-<h2 id="_2">全周期</h2>
-<h3 id="weekscheduletask">个人WEEK表,SCHEDULE表,TASK表</h3>
-<ul>
-<li>filled by each member</li>
-<li>planning manager use those form to generate weekly status report,then team leader report it to instructor</li>
-</ul>
-<h3 id="scheduletask">小组SCHEDULE表,TASK表</h3>
-<ul>
-<li>filled by planning manager</li>
-<li>team leader use those form and report it to instructor</li>
-</ul>
-<h2 id="plan">Plan阶段开始</h2>
-<h3 id="sumstaskschedulesumpsumq">SUMS,TASK,SCHEDULE,SUMP,SUMQ</h3>
-<h2 id="design">Design阶段开始</h2>
-<h3 id="logtlogd">LOGT,LOGD,</h3>
-<h2 id="strategy">strategy</h2>
-<h3 id="strat">STRAT表</h3>
-<ul>
-<li>时间/规模估计由Planning Manager进行</li>
-<li>filled by Quality/Process Manager</li>
-<li>三件策略周期主要做的事 <ol>
-<li>conceptual design(做什么,什么周期做) </li>
-<li>preliminary size estimation </li>
-<li>preliminary time estimation</li>
-</ol>
-</li>
-</ul>
-<h3 id="itl">ITL表</h3>
-<ol>
-<li>记录risk</li>
-<li>将risk每周分配到组员身上进行跟踪</li>
-</ol>
-<h3 id="scm">SCM</h3>
-<ol>
-<li>CIP Configuration Identification Plan<ol>
-<li>规定产品命名</li>
-<li>标识纳入产品基线变更管理的时间点</li>
-<li>标识属主,属主将对是否同意变更做决策</li>
-</ol>
-</li>
-<li>CCP Configuration Control Plan<ol>
-<li>保证更改不冲突</li>
-</ol>
-</li>
-<li>CCB Configuration Control Board<ol>
-<li>由支持经理负责</li>
-<li>必须加入开发经理</li>
-</ol>
-</li>
-</ol>
-<h2 id="plan_1">Plan阶段</h2>
-<h3 id="task">个人/团队TASK表</h3>
-<ol>
-<li>每个任务的粗略估计</li>
-<li>任务的粗略顺序</li>
-<li>PV</li>
-</ol>
-<h3 id="schedule">个人/团队SCHEDULE表</h3>
-<ol>
-<li>每周的工作计划时间</li>
-<li>每周PV</li>
-</ol>
-<h3 id="sums">SUMS表</h3>
-<ol>
-<li>扩展STRAT表的内容</li>
-<li>加入其它产品的估计</li>
-<li>SUMS表填三列1. 产品名称 2. 单位 3. 只填新增加和修改的量</li>
-</ol>
-<h3 id="sump">SUMP表</h3>
-<ol>
-<li>from SUMQ &amp; TASK表</li>
-<li>在Plan阶段完成Size 和Time 的计算</li>
-</ol>
-<h3 id="sumq">SUMQ表</h3>
-<ol>
-<li>内容<ol>
-<li>Summary rate<ol>
-<li>LOC/hour</li>
-<li>%reuse 复用比例</li>
-<li>%new reuse 本次的代码有%将被下一个周期/项目复用</li>
-</ol>
-</li>
-<li>Percent defect-free(PDF)<ol>
-<li>给定的模块中,无缺陷的模块占总数百分比 </li>
-<li><font color='red'>system-&gt;subsystem-&gt;component-&gt;module-&gt;submodule</font></li>
-<li>在系统测试阶段,达到或者超过90%</li>
-</ol>
-</li>
-<li>Defects/Page<ol>
-<li>from HLD or SRS</li>
-</ol>
-</li>
-<li>defects/KLOC<ol>
-<li>编码前是没有的</li>
-<li>重视个人代码复查</li>
-</ol>
-</li>
-<li>Defect Radios<ol>
-<li>缺陷比率 比率尽量&gt;2</li>
-<li>分为两方面<ol>
-<li>Code review/compile defect radio</li>
-<li>DLD review/unit defect radio</li>
-</ol>
-</li>
-</ol>
-</li>
-<li>Development time radios<ol>
-<li>具体见PPT</li>
-</ol>
-</li>
-<li>A/FR in PSPi A/FR &gt; 2; in TSPi A/FR = 1</li>
-<li>Review and inspection rates<ol>
-<li>...</li>
-</ol>
-</li>
-<li>Defect-injection Rates(Defects/Hour)</li>
-<li>Phase Yields(阶段效益)<ol>
-<li>在一个给定的阶段里</li>
-<li>排除缺陷的效益</li>
-<li>(defects found) / (defects in the product (former + injected))</li>
-</ol>
-</li>
-<li>Process Yields(过程效益)<ol>
-<li>在一个给定阶段之前</li>
-<li>PSPi:&gt;80% TSPi:before first compile 75%,before first unit test:85%</li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-<h2 id="requirement">Requirement</h2>
-<h3 id="completedinspectedupdated-srs-and-system-test-plan">completed,inspected,updated SRS and system test plan</h3>
-<ol>
-<li>SRS内容<ol>
-<li>角色分析</li>
-<li>功能需求分析(<font color='red'>不能出现模块</font>)</li>
-<li>UML用例图(Use Case)</li>
-<li>非功能需求分析</li>
-</ol>
-</li>
-<li>由开发经理划分工作,由组长分配工作</li>
-<li>由开发经理形成草稿并加入基线控制</li>
-<li>过程/控制经理检查</li>
-<li>System test plan 开发经理领导</li>
-<li>过程/控制经理检查</li>
-</ol>
-<h3 id="inscompleted-inspection-form">INS(completed inspection form)</h3>
-<ol>
-<li>filled by PROCESS/QUALITY MANAGER</li>
-<li>写出test plan后(system 或 integration)</li>
-<li>最终在design阶段完成</li>
-</ol>
-<h2 id="design_1">Design 阶段</h2>
-<h3 id="design-standard">Design Standard</h3>
-<ol>
-<li>filled by quality/process manager</li>
-</ol>
-<h3 id="name-glossary">Name glossary</h3>
-<h3 id="sds">SDS</h3>
-<ol>
-<li>内容<ol>
-<li>软件总体架构</li>
-<li>分配用例给components<ol>
-<li>相当于功能模块图</li>
-</ol>
-</li>
-<li>模块/部件的外部说明(功能,使用方法,返回值)</li>
-<li>确定每个开发周期开发哪些功能模块</li>
-<li>(实际上)界面设计,数据库设计</li>
-</ol>
-</li>
-<li>只需要部分人做</li>
-<li>基本流程<ol>
-<li>开发经理和team leader分配任务</li>
-<li>写SDS</li>
-<li>写test plan</li>
-<li>SDS 和Test plan inspection</li>
-<li>SDS 和Test plan Update</li>
-<li>final SDS放入基线下</li>
-</ol>
-</li>
-</ol>
-<h3 id="integration-test-plan">integration Test Plan</h3>
-<h3 id="ins-form">INS form</h3>
-<h2 id="implementation">Implementation</h2>
-<ol>
-<li>components</li>
-<li>unit test plan and support material<ol>
-<li>implementation planning 开发经理分任务</li>
-<li>task allocation: team leader分配任务</li>
-<li>Detailed Design &amp; Design Review</li>
-<li>Unit Test Plan</li>
-<li>Detailed-Design Review</li>
-<li>Coding,code review &amp; compile</li>
-<li>code inspection<ol>
-<li>互相代码检查</li>
-</ol>
-</li>
-<li>unit test</li>
-<li>component quality review</li>
-<li>component release</li>
-</ol>
-</li>
-</ol>
-<h2 id="test">Test</h2>
-<h3 id="_3">最终产品</h3>
-<h3 id="_4">用户手册</h3>
-<ol>
-<li>内容<ol>
-<li>文档包含</li>
-<li>功能</li>
-<li>想查的东西</li>
-</ol>
-</li>
-<li>书写原则(<font color="red">记住</font>)<ol>
-<li>短句,简单句</li>
-<li>简单的词和短语</li>
-<li>使用标准条款</li>
-</ol>
-</li>
-<li>Review(<font color="red">掌握</font>)<ol>
-<li>组织架构是否合理</li>
-<li>Terminology<ol>
-<li>可能涉及专业知识,需要进行解释</li>
-</ol>
-</li>
-<li>Content<ol>
-<li>内容是否正确,完整(根据架构)</li>
-</ol>
-</li>
-<li>准确性</li>
-<li>可读性</li>
-<li>易懂性</li>
-</ol>
-</li>
-</ol>
-<h3 id="logtest">LOGTEST</h3>
-<p><img alt="" src="http://i.imgur.com/3c68Kl6.png"></p>
-<h2 id="postmortem">Postmortem</h2>
-<h3 id="_5">周期一报告</h3>
-<ul>
-<li>队长分任务分配任务</li>
-<li><img alt="" src="http://i.imgur.com/GMLdaVn.png"></li>
-</ul>
-<h3 id="pip">PIP</h3>
-<ul>
-<li>与SUMP等计划比较</li>
-</ul>
-<h3 id="peer">PEER</h3>
-
-      </section>
-    </div>
-
-    
-  </body>
-</html>
+\<\!DOCTYPE\ html\>\
+\<html\>\
+\ \ \<head\>\
+\ \ \ \ \<meta\ charset\=\'utf\-8\'\>\
+\ \ \ \ \<meta\ http\-equiv\=\"X\-UA\-Compatible\"\ content\=\"chrome\=1\"\>\
+\
+\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/stylesheet\.css\"\ media\=\"screen\"\>\
+\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/github\-dark\.css\"\ media\=\"screen\"\>\
+\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/print\.css\"\ media\=\"print\"\>\
+\
+\ \ \ \ \<title\>\{\{blogname\}\}\-\-\{\{title\}\}\<\/title\>\
+\ \ \<\/head\>\
+\
+\ \ \<body\>\
+\
+\ \ \ \ \<header\>\
+\ \ \ \ \ \ \<div\ class\=\"container\"\>\
+\ \ \ \ \ \ \ \ \<h1\>\{\{\ title\ \}\}\<\/h1\>\
+\ \ \ \ \ \ \ \ \<h2\>\{\{\ subtitle\ \}\}\<\/h2\>\
+\ \ \ \ \ \ \<\/div\>\
+\ \ \ \ \<\/header\>\
+\
+\ \ \ \ \<div\ class\=\"container\"\>\
+\ \ \ \ \ \ \<section\ id\=\"main\_content\"\>\
+\ \ \ \ \ \ \ \ \<h1\>\
+\	\	\<a\ id\=\"blog\"\ class\=\"anchor\"\ href\=\"\/\"\ aria\-hidden\=\"true\"\>\
+\	\	\	\<span\ aria\-hidden\=\"true\"\ class\=\"octicon\ octicon\-link\"\>INDEX\<\/span\>\
+\	\	\<\/a\>\
+\	\	\<\/h1\>\
+\	\	\{\{content\}\}\
+\
+\ \ \ \ \ \ \<\/section\>\
+\ \ \ \ \<\/div\>\
+\
+\ \ \ \ \
+\ \ \<\/body\>\
+\<\/html\>\

@@ -1,170 +1,37 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-
-    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
-
-    <title>{{blogname}}--第15章 核心计划执行控制</title>
-  </head>
-
-  <body>
-
-    <header>
-      <div class="container">
-        <h1>第15章 核心计划执行控制</h1>
-        <h2>{{ subtitle }}</h2>
-      </div>
-    </header>
-
-    <div class="container">
-      <section id="main_content">
-        <h1>
-		<a id="blog" class="anchor" href="/" aria-hidden="true">
-			<span aria-hidden="true" class="octicon octicon-link">INDEX</span>
-		</a>
-		</h1>
-		<h1 id="_1">核心计划执行控制</h1>
-<h2 id="_2">范围管理</h2>
-<p>注意点</p>
-<ol>
-<li>防止不合理的范围递增<ol>
-<li>蔓延</li>
-<li>镀金</li>
-</ol>
-</li>
-</ol>
-<h2 id="_3">时间/成本管理(重要)</h2>
-<ol>
-<li>图解控制阀<ol>
-<li>甘特图 进度<ol>
-<li>注意跟踪</li>
-</ol>
-</li>
-<li>费用曲线 成本<ol>
-<li>计划费用曲线</li>
-<li>实际费用曲线</li>
-</ol>
-</li>
-<li>资源图 资源<ol>
-<li>跟踪资源图<ol>
-<li>计划资源图</li>
-<li>实际资源图</li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-</li>
-<li>
-<p>挣值分析法</p>
-<ul>
-<li>量化的性能分析方法</li>
-<li>BAC 总估算Budget At Completion</li>
-<li>BCWS 预算Budgeted Cost of Work Schecduled</li>
-<li>ACWP 实际Actural Cost of Work Performed</li>
-<li>BCWP 挣值 表示项目的价格 Budgeted cost of Work Performed<ul>
-<li>难点是计算BCWP</li>
-<li>BCWP计算方法<ul>
-<li>常用规则 <ul>
-<li>50/50规则<ul>
-<li>只要没有完成,就认为获得了50%的价值</li>
-</ul>
-</li>
-<li>0/100规则</li>
-<li>经验加权法</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>CV 成本差 ACWP-BCWP</li>
-<li>SV 进度差 BCWS - BCWP</li>
-<li>CPI 成本效能指标 BCWP/ACWP</li>
-<li>SPI 进度效能指标 BCWP/BCWS</li>
-<li>EAC 预测成本 BAC/CPI</li>
-<li>SAC Schedule(预测总时间)/SPI</li>
-<li>TCPI 未完工指数 剩余工作/剩余成本<ul>
-<li>(BAC - BCWP)/(Goal - ACWP)
-<img alt="" src="http://i.imgur.com/Jbb6g4n.png">
-<img alt="" src="http://i.imgur.com/8FcarYb.png">
-<img alt="" src="http://i.imgur.com/LAtOOfh.png">
-<img alt="" src="http://i.imgur.com/x7IY6fa.png">
-<img alt="" src="http://i.imgur.com/7oKmTLl.png">
-<img alt="" src="http://i.imgur.com/Ku9NHWS.png">
-<img alt="" src="http://i.imgur.com/8tvnIS8.png">
-<img alt="" src="http://i.imgur.com/FCJraU8.png"></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p>敏捷进度控制</p>
-<p>远粗近细,每天需要站立会议,燃尽图(还有多少工作量)</p>
-<h2 id="_4">质量管理</h2>
-<ol>
-<li>质量保证活动
-    <img alt="" src="http://i.imgur.com/gCmOcSF.png"></li>
-<li>第三方的质量活动</li>
-<li>主要包括过程审计,产品审计</li>
-<li>过程审计<ol>
-<li>需要首先定义过程,审计所有过程是否执行,所有输出是否产生
-<img alt="" src="http://i.imgur.com/ZMWRQOU.png"></li>
-</ol>
-</li>
-<li>产品审计<ol>
-<li>给出审计要素,给出审计报告</li>
-<li>例如 产品模板,数据结构...</li>
-</ol>
-</li>
-<li>QC 质量控制活动</li>
-<li>技术评审<ol>
-<li>从技术的角度看需求设计代码</li>
-<li>尽早发现工作中的缺陷,面对问题本质<ol>
-<li>对等评审: 技术人员让同事评审<ol>
-<li>结对编程
-<img alt="" src="http://i.imgur.com/v4Tf8Xt.png"></li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-</li>
-<li>代码评审/走查<ol>
-<li>代码评审,是一种技术评审<ol>
-<li>重要的三点1. 有人阅读代码 2. 有人提出意见 3. 有人记录问题</li>
-</ol>
-</li>
-<li>代码走查,特殊的技术评审,只有编码者本身看自己代码</li>
-</ol>
-</li>
-<li>返工</li>
-<li>软件测试<ol>
-<li>目的在于发现错误</li>
-</ol>
-</li>
-<li>QC手段:控制图法<ol>
-<li>一种图形化控制方法,显示产品质量随时间变化的情况,标识出质量控制的偏差标准,缺陷密度or缺陷数量,上限
-<img alt="" src="http://i.imgur.com/4ZtxaF7.png"></li>
-</ol>
-</li>
-<li>QC手段:趋势分析<ol>
-<li>运用数字技巧,根据过去成果预测将来产品</li>
-</ol>
-</li>
-<li>QC手段:抽样统计,<font color='red'>可以降低质量成本</font>
-<img alt="" src="http://i.imgur.com/TTcqiIF.png"></li>
-</ol>
-</li>
-</ol>
-
-      </section>
-    </div>
-
-    
-  </body>
-</html>
+\<\!DOCTYPE\ html\>\
+\<html\>\
+\ \ \<head\>\
+\ \ \ \ \<meta\ charset\=\'utf\-8\'\>\
+\ \ \ \ \<meta\ http\-equiv\=\"X\-UA\-Compatible\"\ content\=\"chrome\=1\"\>\
+\
+\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/stylesheet\.css\"\ media\=\"screen\"\>\
+\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/github\-dark\.css\"\ media\=\"screen\"\>\
+\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/print\.css\"\ media\=\"print\"\>\
+\
+\ \ \ \ \<title\>\{\{blogname\}\}\-\-\{\{title\}\}\<\/title\>\
+\ \ \<\/head\>\
+\
+\ \ \<body\>\
+\
+\ \ \ \ \<header\>\
+\ \ \ \ \ \ \<div\ class\=\"container\"\>\
+\ \ \ \ \ \ \ \ \<h1\>\{\{\ title\ \}\}\<\/h1\>\
+\ \ \ \ \ \ \ \ \<h2\>\{\{\ subtitle\ \}\}\<\/h2\>\
+\ \ \ \ \ \ \<\/div\>\
+\ \ \ \ \<\/header\>\
+\
+\ \ \ \ \<div\ class\=\"container\"\>\
+\ \ \ \ \ \ \<section\ id\=\"main\_content\"\>\
+\ \ \ \ \ \ \ \ \<h1\>\
+\	\	\<a\ id\=\"blog\"\ class\=\"anchor\"\ href\=\"\/\"\ aria\-hidden\=\"true\"\>\
+\	\	\	\<span\ aria\-hidden\=\"true\"\ class\=\"octicon\ octicon\-link\"\>INDEX\<\/span\>\
+\	\	\<\/a\>\
+\	\	\<\/h1\>\
+\	\	\{\{content\}\}\
+\
+\ \ \ \ \ \ \<\/section\>\
+\ \ \ \ \<\/div\>\
+\
+\ \ \ \ \
+\ \ \<\/body\>\
+\<\/html\>\

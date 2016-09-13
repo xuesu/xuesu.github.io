@@ -1,71 +1,37 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-
-    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
-
-    <title>{{blogname}}--Cryptology_Ch02</title>
-  </head>
-
-  <body>
-
-    <header>
-      <div class="container">
-        <h1>Cryptology_Ch02</h1>
-        <h2>{{ subtitle }}</h2>
-      </div>
-    </header>
-
-    <div class="container">
-      <section id="main_content">
-        <h1>
-		<a id="blog" class="anchor" href="/" aria-hidden="true">
-			<span aria-hidden="true" class="octicon octicon-link">INDEX</span>
-		</a>
-		</h1>
-		<h2 id="chapter-02-cryptology">Chapter 02 Cryptology</h2>
-<h2 id="_1">无密钥体制</h2>
-<ol>
-<li>A将密文加密,发给B</li>
-<li>B再将密文加密,发给A</li>
-<li>A解密自己的密文,发回B</li>
-<li>B解密自己的密文</li>
-</ol>
-<p>特点:
-1. 不需要交换秘钥
-2. 未找到安全算子</p>
-<h2 id="_2">单钥/对称体制</h2>
-<h3 id="1949shannon">1949,Shannon</h3>
-<ol>
-<li>form basis of modern block ciphers </li>
-<li>S-P nets are based on the two primitive cryptographic operations seen before: </li>
-<li>substitution (S-box)</li>
-<li>permutation (P-box)</li>
-<li>provide confusion &amp; diffusion of message &amp; key</li>
-</ol>
-<h4 id="s-box">S-box</h4>
-<p>Substitution</p>
-<h4 id="p-box">P-box</h4>
-<p>Permutation</p>
-<h4 id="confusion">Confusion 使密码和密文之间的联系复杂</h4>
-<p>makes relationship between ciphertext and key as complex as possible</p>
-<h4 id="diffusion">Diffusion 模糊明文统计结构</h4>
-<p>issipates statistical structure of plaintext over bulk of ciphertext</p>
-<h2 id="feistel-cipher-structure">Feistel Cipher structure</h2>
-<ol>
-<li>data split in 2 halves, </li>
-<li>processed through a number of rounds which perform a substitution on left half using output of round function on right half &amp; key, </li>
-<li>and a permutation which swaps halves, as listed previously.</li>
-</ol>
-<p><img alt="" src="http://i.imgur.com/nyqv8gr.png"></p>
-
-      </section>
-    </div>
-
-    
-  </body>
-</html>
+\<\!DOCTYPE\ html\>\
+\<html\>\
+\ \ \<head\>\
+\ \ \ \ \<meta\ charset\=\'utf\-8\'\>\
+\ \ \ \ \<meta\ http\-equiv\=\"X\-UA\-Compatible\"\ content\=\"chrome\=1\"\>\
+\
+\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/stylesheet\.css\"\ media\=\"screen\"\>\
+\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/github\-dark\.css\"\ media\=\"screen\"\>\
+\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/print\.css\"\ media\=\"print\"\>\
+\
+\ \ \ \ \<title\>\{\{blogname\}\}\-\-\{\{title\}\}\<\/title\>\
+\ \ \<\/head\>\
+\
+\ \ \<body\>\
+\
+\ \ \ \ \<header\>\
+\ \ \ \ \ \ \<div\ class\=\"container\"\>\
+\ \ \ \ \ \ \ \ \<h1\>\{\{\ title\ \}\}\<\/h1\>\
+\ \ \ \ \ \ \ \ \<h2\>\{\{\ subtitle\ \}\}\<\/h2\>\
+\ \ \ \ \ \ \<\/div\>\
+\ \ \ \ \<\/header\>\
+\
+\ \ \ \ \<div\ class\=\"container\"\>\
+\ \ \ \ \ \ \<section\ id\=\"main\_content\"\>\
+\ \ \ \ \ \ \ \ \<h1\>\
+\	\	\<a\ id\=\"blog\"\ class\=\"anchor\"\ href\=\"\/\"\ aria\-hidden\=\"true\"\>\
+\	\	\	\<span\ aria\-hidden\=\"true\"\ class\=\"octicon\ octicon\-link\"\>INDEX\<\/span\>\
+\	\	\<\/a\>\
+\	\	\<\/h1\>\
+\	\	\{\{content\}\}\
+\
+\ \ \ \ \ \ \<\/section\>\
+\ \ \ \ \<\/div\>\
+\
+\ \ \ \ \
+\ \ \<\/body\>\
+\<\/html\>\

@@ -1,79 +1,37 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-
-    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
-
-    <title>{{blogname}}--Chapter5</title>
-  </head>
-
-  <body>
-
-    <header>
-      <div class="container">
-        <h1>Chapter5</h1>
-        <h2>{{ subtitle }}</h2>
-      </div>
-    </header>
-
-    <div class="container">
-      <section id="main_content">
-        <h1>
-		<a id="blog" class="anchor" href="/" aria-hidden="true">
-			<span aria-hidden="true" class="octicon octicon-link">INDEX</span>
-		</a>
-		</h1>
-		<h2 id="chapter-9-domain-model">Chapter 9 Domain Model</h2>
-<h3 id="the-most-important-oaa-object-attribute-association">The most important OAA object, attribute, association</h3>
-<h3 id="domain-model">Domain Model</h3>
-<ol>
-<li>illustrate meaningful conceptual classes in the problem domain</li>
-<li>is a source of inspiration for design software objects</li>
-</ol>
-<p><img alt="" src="http://i.imgur.com/nx2DPJu.png"></p>
-<h3 id="avoid-xxdatabase-or-function-in-domain-model">Avoid XXDatabase or function in Domain Model</h3>
-<h2 id="how-to-create-a-domain-model">How to Create a Domain Model</h2>
-<ol>
-<li>Find the conceptual classes(List the candidate conceptural classes)</li>
-<li>Draw them as classes in a UML class diagram</li>
-<li>Add associations and attributes</li>
-</ol>
-<h2 id="how-to-find-conceptual-classes">How to find Conceptual Classes</h2>
-<ol>
-<li>Reuse or modify existing models</li>
-<li>Use a category list</li>
-<li>Identify noun phrases</li>
-</ol>
-<h2 id="domain-modeling-guidelines">Domain Modeling Guidelines</h2>
-<ol>
-<li>On Naming and Modeling things<ol>
-<li>The Mapmaker Strategy or Use the Domain Vocabulary strategy<ol>
-<li>Use the existing names in the territory</li>
-<li>exclude irrelevant features</li>
-<li>do not add things that are not there</li>
-</ol>
-</li>
-</ol>
-</li>
-<li>A common mistake : represent something as an attribute when it should have been a concept</li>
-<li>If X cant be thought as number or text, X is probably a conceptual class</li>
-</ol>
-<h2 id="description-classes">Description Classes</h2>
-<p>When there is a need to be a description about an item or service, independent or the current existence</p>
-<p>Deleting instances of things they describe results in a loss of info that needs to be maintained</p>
-<h2 id="the-uml-association-notation">The UML Association Notation</h2>
-<p><img alt="" src="http://i.imgur.com/sFPeNat.png"></p>
-<h2 id="common-association-list">Common Association List</h2>
-<p><img alt="" src="http://i.imgur.com/kIw2s1z.png">
-<img alt="" src="http://i.imgur.com/cZ7yyVE.png"></p>
-
-      </section>
-    </div>
-
-    
-  </body>
-</html>
+\<\!DOCTYPE\ html\>\
+\<html\>\
+\ \ \<head\>\
+\ \ \ \ \<meta\ charset\=\'utf\-8\'\>\
+\ \ \ \ \<meta\ http\-equiv\=\"X\-UA\-Compatible\"\ content\=\"chrome\=1\"\>\
+\
+\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/stylesheet\.css\"\ media\=\"screen\"\>\
+\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/github\-dark\.css\"\ media\=\"screen\"\>\
+\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/print\.css\"\ media\=\"print\"\>\
+\
+\ \ \ \ \<title\>\{\{blogname\}\}\-\-\{\{title\}\}\<\/title\>\
+\ \ \<\/head\>\
+\
+\ \ \<body\>\
+\
+\ \ \ \ \<header\>\
+\ \ \ \ \ \ \<div\ class\=\"container\"\>\
+\ \ \ \ \ \ \ \ \<h1\>\{\{\ title\ \}\}\<\/h1\>\
+\ \ \ \ \ \ \ \ \<h2\>\{\{\ subtitle\ \}\}\<\/h2\>\
+\ \ \ \ \ \ \<\/div\>\
+\ \ \ \ \<\/header\>\
+\
+\ \ \ \ \<div\ class\=\"container\"\>\
+\ \ \ \ \ \ \<section\ id\=\"main\_content\"\>\
+\ \ \ \ \ \ \ \ \<h1\>\
+\	\	\<a\ id\=\"blog\"\ class\=\"anchor\"\ href\=\"\/\"\ aria\-hidden\=\"true\"\>\
+\	\	\	\<span\ aria\-hidden\=\"true\"\ class\=\"octicon\ octicon\-link\"\>INDEX\<\/span\>\
+\	\	\<\/a\>\
+\	\	\<\/h1\>\
+\	\	\{\{content\}\}\
+\
+\ \ \ \ \ \ \<\/section\>\
+\ \ \ \ \<\/div\>\
+\
+\ \ \ \ \
+\ \ \<\/body\>\
+\<\/html\>\

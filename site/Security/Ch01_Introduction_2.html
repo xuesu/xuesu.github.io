@@ -1,115 +1,37 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-
-    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
-
-    <title>{{blogname}}--Ch01_Introduction_2</title>
-  </head>
-
-  <body>
-
-    <header>
-      <div class="container">
-        <h1>Ch01_Introduction_2</h1>
-        <h2>{{ subtitle }}</h2>
-      </div>
-    </header>
-
-    <div class="container">
-      <section id="main_content">
-        <h1>
-		<a id="blog" class="anchor" href="/" aria-hidden="true">
-			<span aria-hidden="true" class="octicon octicon-link">INDEX</span>
-		</a>
-		</h1>
-		<h2 id="access-control">Access Control</h2>
-<h3 id="question">Question</h3>
-<ol>
-<li>Which users can read/write which files?</li>
-<li>Are my files really safe?</li>
-<li>What does it mean to be root?</li>
-<li>What do we really want to control?</li>
-</ol>
-<h3 id="elements">Elements</h3>
-<ol>
-<li>Users and groups</li>
-<li>Authentication</li>
-<li>Passwords</li>
-<li>File protection</li>
-<li>Access control lists</li>
-</ol>
-<h3 id="access-control-matrices">Access Control Matrices</h3>
-<p>A table that defines permissions. </p>
-<ol>
-<li>row:a user, group, or system that can perform actions. </li>
-<li>column:a file, directory, document, device, resource, or any other entity for which we want to define access rights. </li>
-<li>cell:the access rights for the associated combination of subject and object. <ol>
-<li>Access rights can include actions such as reading, writing, copying, executing, deleting, and annotating. </li>
-<li>An empty cell means that no access rights are granted.</li>
-</ol>
-</li>
-</ol>
-<p><img alt="" src="http://i.imgur.com/z2SFHfL.png"></p>
-<h3 id="access-control-lists">Access Control Lists</h3>
-<p><img alt="" src="http://i.imgur.com/JqLaVsu.png"></p>
-<h3 id="capabilities">Capabilities</h3>
-<p><img alt="" src="http://i.imgur.com/5wZKXmI.png"></p>
-<h3 id="role-based-access-control">Role-based Access Control</h3>
-<p>Define roles and then specify access control rights for these roles, rather than for subjects directly.</p>
-<h2 id="encryption-and-decryption">Encryption and Decryption</h2>
-<pre><code>C = E(M)
-M = D(C)
-</code></pre>
-<h3 id="cryptosystem">Cryptosystem</h3>
-<ol>
-<li>The set of possible plaintexts</li>
-<li>The set of possible ciphertexts</li>
-<li>The set of encryption keys</li>
-<li>The set of decryption keys</li>
-<li>The correspondence between encryption keys and decryption keys</li>
-<li>The encryption algorithm to use</li>
-<li>The decryption algorithm to use</li>
-</ol>
-<h4 id="caesar-cipher">Caesar Cipher 移位密码</h4>
-<h4 id="symmetric-cryptosystems">Symmetric Cryptosystems</h4>
-<p>secret key is used for both encryption and decryption.</p>
-<h4 id="public-key-cryptography">Public-Key Cryptography</h4>
-<p>the sender uses the public key of the recipient to encrypt and the recipient uses its private key to decrypt. </p>
-<h5 id="applicationdigital-envelope">application:Digital Envelope</h5>
-<p><img alt="" src="http://i.imgur.com/YH053pB.png"></p>
-<h5 id="applicationdigital-signature">application:Digital Signature</h5>
-<p>To sign a message, M, Alice just encrypts it with her private key, SA, creating C = ESA(M).</p>
-<p>Anyone can decrypt this message using Alice’s public key, as M’ = DPA(C), and compare that to the message M. </p>
-<h2 id="cryptographic-hash-functions">Cryptographic Hash Functions</h2>
-<p>A checksum on a message, M, should be: One-way, Collision-resistant</p>
-<h3 id="message-authentication-codes">Message Authentication Codes</h3>
-<p><img alt="" src="http://i.imgur.com/hHoXE5p.png"></p>
-<h3 id="certificate-authority">Certificate authority</h3>
-<p>digitally signs a binding between an identity and the public key for that identity.</p>
-<h2 id="password">Password</h2>
-<h3 id="what-is-a-strong-password">What is a strong password</h3>
-<ol>
-<li>UPPER/lower case characters</li>
-<li>Special characters</li>
-<li>Numbers</li>
-</ol>
-<p>Odd character, Longer Password,</p>
-<h3 id="password-validity-brute-force-test">Password Validity: Brute Force Test</h3>
-<h2 id="social-engineering">Social Engineering</h2>
-<ol>
-<li>Pretexting 借口:creating a story that convinces an administrator or operator into revealing secret information.</li>
-<li>Baiting 诱饵:offering a kind of “gift” to get a user or agent to perform an insecure action.</li>
-<li>Quid pro quo 交换物: offering an action or service and then expecting something in return.</li>
-</ol>
-
-      </section>
-    </div>
-
-    
-  </body>
-</html>
+\<\!DOCTYPE\ html\>\
+\<html\>\
+\ \ \<head\>\
+\ \ \ \ \<meta\ charset\=\'utf\-8\'\>\
+\ \ \ \ \<meta\ http\-equiv\=\"X\-UA\-Compatible\"\ content\=\"chrome\=1\"\>\
+\
+\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/stylesheet\.css\"\ media\=\"screen\"\>\
+\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/github\-dark\.css\"\ media\=\"screen\"\>\
+\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/print\.css\"\ media\=\"print\"\>\
+\
+\ \ \ \ \<title\>\{\{blogname\}\}\-\-\{\{title\}\}\<\/title\>\
+\ \ \<\/head\>\
+\
+\ \ \<body\>\
+\
+\ \ \ \ \<header\>\
+\ \ \ \ \ \ \<div\ class\=\"container\"\>\
+\ \ \ \ \ \ \ \ \<h1\>\{\{\ title\ \}\}\<\/h1\>\
+\ \ \ \ \ \ \ \ \<h2\>\{\{\ subtitle\ \}\}\<\/h2\>\
+\ \ \ \ \ \ \<\/div\>\
+\ \ \ \ \<\/header\>\
+\
+\ \ \ \ \<div\ class\=\"container\"\>\
+\ \ \ \ \ \ \<section\ id\=\"main\_content\"\>\
+\ \ \ \ \ \ \ \ \<h1\>\
+\	\	\<a\ id\=\"blog\"\ class\=\"anchor\"\ href\=\"\/\"\ aria\-hidden\=\"true\"\>\
+\	\	\	\<span\ aria\-hidden\=\"true\"\ class\=\"octicon\ octicon\-link\"\>INDEX\<\/span\>\
+\	\	\<\/a\>\
+\	\	\<\/h1\>\
+\	\	\{\{content\}\}\
+\
+\ \ \ \ \ \ \<\/section\>\
+\ \ \ \ \<\/div\>\
+\
+\ \ \ \ \
+\ \ \<\/body\>\
+\<\/html\>\

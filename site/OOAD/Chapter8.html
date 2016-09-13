@@ -1,80 +1,37 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-
-    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
-
-    <title>{{blogname}}--Chapter8</title>
-  </head>
-
-  <body>
-
-    <header>
-      <div class="container">
-        <h1>Chapter8</h1>
-        <h2>{{ subtitle }}</h2>
-      </div>
-    </header>
-
-    <div class="container">
-      <section id="main_content">
-        <h1>
-		<a id="blog" class="anchor" href="/" aria-hidden="true">
-			<span aria-hidden="true" class="octicon octicon-link">INDEX</span>
-		</a>
-		</h1>
-		<h1 id="chapter-16-uml-class-diagram">Chapter 16 UML Class Diagram</h1>
-<p><img alt="" src="http://i.imgur.com/dcsk6Ha.png">
-<img alt="" src="http://i.imgur.com/pY3q6bW.png">
-<img alt="" src="http://i.imgur.com/mioAqcU.png">
-<img alt="" src="http://i.imgur.com/ov8nWXE.png">
-<img alt="" src="http://i.imgur.com/QT7jiQb.png"></p>
-<h1 id="chapter-17-grasp-design-objects-with-responsiblity">Chapter 17 GRASP Design Objects with Responsiblity</h1>
-<ul>
-<li>What methods belong to where</li>
-<li>How the objects should interact</li>
-</ul>
-<h2 id="responsibilities-and-rdd">Responsibilities and RDD</h2>
-<p>RDD: Responsibility-Driven Design</p>
-<h2 id="grasp">GRASP</h2>
-<p>General Responsibility Assignment Software Patthern</p>
-<p>describe fundamental principles of object design and responsibility assignment, expressed as patterns</p>
-<h2 id="grasp-patterns">GRASP patterns</h2>
-<ol>
-<li>Information Experts</li>
-<li>Creator</li>
-<li>Controller</li>
-<li>High Cohesion</li>
-<li>Low Coupling</li>
-<li>Polymorphism</li>
-<li>Indirection</li>
-<li>Pure Fabrication</li>
-<li>Protected Variations</li>
-</ol>
-<h2 id="a">创建者：谁创建了A？</h2>
-<p>解决方案：（有一个为真即可）
-    1、B“包含”或组成聚集了A
-    2、B记录A
-    3、B紧密地使用A
-    4、B具有A的初始化数据</p>
-<h2 id="square">信息专家：如果给定键值，谁知道Square对象的信息？</h2>
-<p>解决方案：把职责分配给具有完成该职责所需信息的那个类</p>
-<h2 id="boarddog">低耦合：为什么是Board而不是Dog？如何减少变化产生的影响？</h2>
-<p>解决方案：分配职责以使耦合保持在较低的水平。用该原则对可选方案进行评估</p>
-<h2 id="ui">控制器：在UI层之上首先接受和协调系统操作的对象是什么？</h2>
-<p>解决方案：把职责分配给能代表下列选择之一的对象：
-        1、代表全部“系统”、“根对象”、运行软件的设备或主要的子系统
-        2、代表发生系统操作的用例场景（用例或会话）</p>
-<h2 id="_1">高内聚：怎样使对象保持有内聚、可理解和可管理，同时具有支持低耦合的附加作用？</h2>
-<p>解决方案：职责分配应保持高内聚，依此来评估备选方案</p>
-
-      </section>
-    </div>
-
-    
-  </body>
-</html>
+\<\!DOCTYPE\ html\>\
+\<html\>\
+\ \ \<head\>\
+\ \ \ \ \<meta\ charset\=\'utf\-8\'\>\
+\ \ \ \ \<meta\ http\-equiv\=\"X\-UA\-Compatible\"\ content\=\"chrome\=1\"\>\
+\
+\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/stylesheet\.css\"\ media\=\"screen\"\>\
+\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/github\-dark\.css\"\ media\=\"screen\"\>\
+\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/print\.css\"\ media\=\"print\"\>\
+\
+\ \ \ \ \<title\>\{\{blogname\}\}\-\-\{\{title\}\}\<\/title\>\
+\ \ \<\/head\>\
+\
+\ \ \<body\>\
+\
+\ \ \ \ \<header\>\
+\ \ \ \ \ \ \<div\ class\=\"container\"\>\
+\ \ \ \ \ \ \ \ \<h1\>\{\{\ title\ \}\}\<\/h1\>\
+\ \ \ \ \ \ \ \ \<h2\>\{\{\ subtitle\ \}\}\<\/h2\>\
+\ \ \ \ \ \ \<\/div\>\
+\ \ \ \ \<\/header\>\
+\
+\ \ \ \ \<div\ class\=\"container\"\>\
+\ \ \ \ \ \ \<section\ id\=\"main\_content\"\>\
+\ \ \ \ \ \ \ \ \<h1\>\
+\	\	\<a\ id\=\"blog\"\ class\=\"anchor\"\ href\=\"\/\"\ aria\-hidden\=\"true\"\>\
+\	\	\	\<span\ aria\-hidden\=\"true\"\ class\=\"octicon\ octicon\-link\"\>INDEX\<\/span\>\
+\	\	\<\/a\>\
+\	\	\<\/h1\>\
+\	\	\{\{content\}\}\
+\
+\ \ \ \ \ \ \<\/section\>\
+\ \ \ \ \<\/div\>\
+\
+\ \ \ \ \
+\ \ \<\/body\>\
+\<\/html\>\

@@ -1,81 +1,37 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-
-    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
-
-    <title>{{blogname}}--语音编码</title>
-  </head>
-
-  <body>
-
-    <header>
-      <div class="container">
-        <h1>语音编码</h1>
-        <h2>{{ subtitle }}</h2>
-      </div>
-    </header>
-
-    <div class="container">
-      <section id="main_content">
-        <h1>
-		<a id="blog" class="anchor" href="/" aria-hidden="true">
-			<span aria-hidden="true" class="octicon octicon-link">INDEX</span>
-		</a>
-		</h1>
-		<h2 id="-taskg711a-g729">- TASK:G711A-G729编解码,解释原理</h2>
-<ul>
-<li>语音编码:<ul>
-<li>波形编码</li>
-<li>参数编码</li>
-<li>波形参数混合编码</li>
-</ul>
-</li>
-<li>PCM:G.703<ul>
-<li>Pulse Code Modulation</li>
-</ul>
-</li>
-<li>PCMA:G.711A<ul>
-<li>8 bit</li>
-<li>所需频宽：64Kbps</li>
-<li>特性：算法复杂度小，音质一般</li>
-<li>优点：算法复杂度低，压缩比小（CD音质&gt;400kbps），编解码延时最短（相对其它技术）</li>
-<li>缺点：占用的带宽较高</li>
-</ul>
-</li>
-<li>PCMμ:G.711U 北美,日本</li>
-<li>G.723<ul>
-<li>6.3kbits/s码率编码器采用多脉冲最大似然量化技术（MP－MLQ)</li>
-<li>5.3kbits/s码率编码器采用代数码激励线性预测技术。</li>
-</ul>
-</li>
-<li>G.729<ul>
-<li>所需频宽：8Kbps</li>
-<li>“共轭结构代数码本激励线性预测编码方案”(CS-ACELP)</li>
-</ul>
-</li>
-<li>G.729A<ul>
-<li>所需频宽：8Kbps(34.4)</li>
-<li>特性：复杂性较G.729低，性能较G.729差。</li>
-<li>优点：<ul>
-<li>提供了对帧丢失和分组丢失的隐藏处理机制</li>
-<li>较低的编解码复杂度</li>
-<li>较高的语音质量</li>
-<li>很低的编解码延时</li>
-</ul>
-</li>
-<li>缺点：性能较G.729差</li>
-</ul>
-</li>
-</ul>
-
-      </section>
-    </div>
-
-    
-  </body>
-</html>
+\<\!DOCTYPE\ html\>\
+\<html\>\
+\ \ \<head\>\
+\ \ \ \ \<meta\ charset\=\'utf\-8\'\>\
+\ \ \ \ \<meta\ http\-equiv\=\"X\-UA\-Compatible\"\ content\=\"chrome\=1\"\>\
+\
+\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/stylesheet\.css\"\ media\=\"screen\"\>\
+\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/github\-dark\.css\"\ media\=\"screen\"\>\
+\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/print\.css\"\ media\=\"print\"\>\
+\
+\ \ \ \ \<title\>\{\{blogname\}\}\-\-\{\{title\}\}\<\/title\>\
+\ \ \<\/head\>\
+\
+\ \ \<body\>\
+\
+\ \ \ \ \<header\>\
+\ \ \ \ \ \ \<div\ class\=\"container\"\>\
+\ \ \ \ \ \ \ \ \<h1\>\{\{\ title\ \}\}\<\/h1\>\
+\ \ \ \ \ \ \ \ \<h2\>\{\{\ subtitle\ \}\}\<\/h2\>\
+\ \ \ \ \ \ \<\/div\>\
+\ \ \ \ \<\/header\>\
+\
+\ \ \ \ \<div\ class\=\"container\"\>\
+\ \ \ \ \ \ \<section\ id\=\"main\_content\"\>\
+\ \ \ \ \ \ \ \ \<h1\>\
+\	\	\<a\ id\=\"blog\"\ class\=\"anchor\"\ href\=\"\/\"\ aria\-hidden\=\"true\"\>\
+\	\	\	\<span\ aria\-hidden\=\"true\"\ class\=\"octicon\ octicon\-link\"\>INDEX\<\/span\>\
+\	\	\<\/a\>\
+\	\	\<\/h1\>\
+\	\	\{\{content\}\}\
+\
+\ \ \ \ \ \ \<\/section\>\
+\ \ \ \ \<\/div\>\
+\
+\ \ \ \ \
+\ \ \<\/body\>\
+\<\/html\>\

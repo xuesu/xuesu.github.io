@@ -1,98 +1,37 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-
-    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
-
-    <title>{{blogname}}--Deploy_WebApp_in_Tomcat_and_Bind_a_Domain</title>
-  </head>
-
-  <body>
-
-    <header>
-      <div class="container">
-        <h1>Deploy_WebApp_in_Tomcat_and_Bind_a_Domain</h1>
-        <h2>{{ subtitle }}</h2>
-      </div>
-    </header>
-
-    <div class="container">
-      <section id="main_content">
-        <h1>
-		<a id="blog" class="anchor" href="/" aria-hidden="true">
-			<span aria-hidden="true" class="octicon octicon-link">INDEX</span>
-		</a>
-		</h1>
-		<h1 id="deploy-webapp-in-tomcat80-and-bind-a-domain">Deploy WebApp in Tomcat8.0 and Bind a Domain</h1>
-<h2 id="get-an-available-domain">Get an available domain</h2>
-<ol>
-<li>get a domain:use freenom</li>
-<li>DNS: use dnsla</li>
-<li>put the host message of dnsla into your domain manage in freenom</li>
-<li>try to ping it.</li>
-<li>Port mapping: for me,I use hiwifi as my routers,<img alt="" src="http://i.imgur.com/coqmKUO.png"></li>
-</ol>
-<h2 id="prepare">Prepare</h2>
-<p>I use eclipse to write my J2EE webapps, but eclipse does not support remote host. </p>
-<p>the default webapps is stored in <b>&lt;YOUR_WORKSPACE&gt;/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps</b></p>
-<p>however, the default webapps path in Tomcat is <b> &lt;CATALINA_BASE&gt;\webapps(or &lt; CATALINA_HOME &gt;\webapps, for example:E:	omcat)</b> </p>
-<p>Thus,we need to copy the webapp from <b>&lt;YOURWORKSPACE&gt;/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps</b> into <b> &lt;CATALINA_BASE&gt;/webapps</b></p>
-<p>We can do it automatically in Eclipse,</p>
-<ol>
-<li>open configuration of server in eclipse</li>
-<li>clear the deployed apps below the server(if exists)</li>
-<li>start the server</li>
-<li>change Server location into use Tomcat location,set server path = &lt;CATALINA_BASE&gt;, set deploy path = webapps</li>
-<li>ctrl+s save it.</li>
-</ol>
-<p>Before:
-<img alt="" src="http://i.imgur.com/GcemO36.png"></p>
-<p>After:
-<img alt="" src="http://i.imgur.com/bDDLaEh.png"></p>
-<h2 id="edit-serverxml">Edit server.xml</h2>
-<ol>
-<li>open &lt;CATALINA_BASE&gt;\conf\server.xml.</li>
-<li>
-<p>replace </p>
-<pre><code>&lt;Engine defaultHost="localhost" name="Catalina"&gt;
-</code></pre>
-<p>as</p>
-<pre><code>&lt;Engine defaultHost="&lt;YOUR_DOMAIN&gt;" name="Catalina"&gt;
-</code></pre>
-<p>or</p>
-<pre><code>&lt;Engine defaultHost="&lt;YOUR_IP&gt;" name="Catalina"&gt;
-</code></pre>
-<ol>
-<li>
-<p>replace</p>
-<p><Host appBase="webapps" autoDeploy="true" name="www.xuesu.tk" unpackWARs="true"></p>
-</li>
-</ol>
-<p>as</p>
-<pre><code>&lt;Host appBase="webapps" autoDeploy="true" name="&lt;YOUR_DOMAIN&gt;" unpackWARs="true"&gt;
-</code></pre>
-<p>or</p>
-<pre><code>&lt;Host appBase="webapps" autoDeploy="true" name="&lt;YOUR_IP&gt;" unpackWARs="true"&gt;
-</code></pre>
-<ol>
-<li><font color='red'>start &lt;CATALINA_BASE&gt;in\startup.bat.</font></li>
-</ol>
-</li>
-</ol>
-<h2 id="attention">Attention</h2>
-<ol>
-<li>eclipse will automically change the server configuration in Tomcat, so need to correct server.xml each time we use eclipse in this workspace.</li>
-<li>China Telecom ban the direct access of port 80,8080 unless we have put the official records, so I use port 8110.</li>
-<li>use startup.bat other than directly use tomcat8.exe</li>
-</ol>
-
-      </section>
-    </div>
-
-    
-  </body>
-</html>
+\<\!DOCTYPE\ html\>\
+\<html\>\
+\ \ \<head\>\
+\ \ \ \ \<meta\ charset\=\'utf\-8\'\>\
+\ \ \ \ \<meta\ http\-equiv\=\"X\-UA\-Compatible\"\ content\=\"chrome\=1\"\>\
+\
+\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/stylesheet\.css\"\ media\=\"screen\"\>\
+\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/github\-dark\.css\"\ media\=\"screen\"\>\
+\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/print\.css\"\ media\=\"print\"\>\
+\
+\ \ \ \ \<title\>\{\{blogname\}\}\-\-\{\{title\}\}\<\/title\>\
+\ \ \<\/head\>\
+\
+\ \ \<body\>\
+\
+\ \ \ \ \<header\>\
+\ \ \ \ \ \ \<div\ class\=\"container\"\>\
+\ \ \ \ \ \ \ \ \<h1\>\{\{\ title\ \}\}\<\/h1\>\
+\ \ \ \ \ \ \ \ \<h2\>\{\{\ subtitle\ \}\}\<\/h2\>\
+\ \ \ \ \ \ \<\/div\>\
+\ \ \ \ \<\/header\>\
+\
+\ \ \ \ \<div\ class\=\"container\"\>\
+\ \ \ \ \ \ \<section\ id\=\"main\_content\"\>\
+\ \ \ \ \ \ \ \ \<h1\>\
+\	\	\<a\ id\=\"blog\"\ class\=\"anchor\"\ href\=\"\/\"\ aria\-hidden\=\"true\"\>\
+\	\	\	\<span\ aria\-hidden\=\"true\"\ class\=\"octicon\ octicon\-link\"\>INDEX\<\/span\>\
+\	\	\<\/a\>\
+\	\	\<\/h1\>\
+\	\	\{\{content\}\}\
+\
+\ \ \ \ \ \ \<\/section\>\
+\ \ \ \ \<\/div\>\
+\
+\ \ \ \ \
+\ \ \<\/body\>\
+\<\/html\>\

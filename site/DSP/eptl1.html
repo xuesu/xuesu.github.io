@@ -1,199 +1,37 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-
-    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
-
-    <title>{{blogname}}--eptl1</title>
-  </head>
-
-  <body>
-
-    <header>
-      <div class="container">
-        <h1>eptl1</h1>
-        <h2>{{ subtitle }}</h2>
-      </div>
-    </header>
-
-    <div class="container">
-      <section id="main_content">
-        <h1>
-		<a id="blog" class="anchor" href="/" aria-hidden="true">
-			<span aria-hidden="true" class="octicon octicon-link">INDEX</span>
-		</a>
-		</h1>
-		<h1 id="dsp">DSP</h1>
-<h2 id="1introduction">1.Introduction</h2>
-<h3 id="history">History</h3>
-<ol>
-<li>
-<p>Pythagoras</p>
-<p>Most Reality can be described in terms of numbers and measurement</p>
-</li>
-<li>
-<p>Parmenides</p>
-<p>plant the seed of fndemental dichotomy, the fundemental difference between the reality and the ideal reality</p>
-</li>
-<li>
-<p>Plato</p>
-<p>metaphysics</p>
-</li>
-<li>
-<p>Zeno's Paradox</p>
-</li>
-<li>Galileo's Calculus and Descartes' Coordinate</li>
-<li>Fourier Analysis</li>
-<li>Nyquist and Shanon: The Sampling Theorem</li>
-</ol>
-<h3 id="discretizationtime-or-amplitude">discretization:time or amplitude</h3>
-<p>the amplitude discretization are good for storage,processing and transmission</p>
-<h3 id="attenuation-and-noise">Attenuation and Noise</h3>
-<p>because of Noise, the digital signal is better</p>
-<h2 id="21-discrete-time-signals">2.1 Discrete time signals</h2>
-<h3 id="discrete-time-signals">discrete time signals</h3>
-<ul>
-<li>a sequence of complex numbers<ul>
-<li>notation: x[n]<ul>
-<li>n: integer, dimention-less "time"</li>
-</ul>
-</li>
-<li>two-side sequences: x: z-&gt;c</li>
-<li>analysis: periodic measurement</li>
-<li>synthesis: stream of generated samples</li>
-</ul>
-</li>
-</ul>
-<h3 id="examples">examples</h3>
-<h4 id="delta-signal">Delta signal</h4>
-<p><img alt="" src="http://i.imgur.com/1aAYGN8.png"></p>
-<h4 id="the-unit-step">The unit step</h4>
-<p><img alt="" src="http://i.imgur.com/mQND81O.png"></p>
-<h4 id="the-exponential-decay">The exponential decay</h4>
-<p><img alt="" src="http://i.imgur.com/kaDbH3V.png">
-x[n](n &lt; 0) is 0 because it will unbounded </p>
-<h4 id="sinusoid">Sinusoid</h4>
-<p><img alt="" src="http://i.imgur.com/WOucGGy.png"></p>
-<h3 id="four-signal-classes">Four Signal Classes</h3>
-<ul>
-<li>Finite-Length Signal</li>
-<li>Infinite-Length Signal</li>
-<li>Periodic<ul>
-<li><img alt="" src="http://i.imgur.com/1DWedfI.png"></li>
-</ul>
-</li>
-<li>Finite-Support<ul>
-<li><img alt="" src="http://i.imgur.com/adNZU0Q.png"></li>
-</ul>
-</li>
-</ul>
-<h3 id="elementary-operators">Elementary operators</h3>
-<ul>
-<li>scaling<ul>
-<li><img src="http://www.forkosh.com/mathtex.cgi? $y[n]=lpha x[n]$"></li>
-</ul>
-</li>
-<li>sum<ul>
-<li>y[n] = x[n] + z[n]</li>
-</ul>
-</li>
-<li>product<ul>
-<li>y[n] = x[n] * z[n]</li>
-</ul>
-</li>
-<li>shift by k(decay)<ul>
-<li>y[n] = x[n - k]</li>
-<li>shift of a finite-length:finite support<ul>
-<li><img alt="" src="http://i.imgur.com/oh680Kz.png"></li>
-</ul>
-</li>
-<li>shift of a finite-length:periodic extension<ul>
-<li><img alt="" src="http://i.imgur.com/EdFjCCv.png"></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Energy<ul>
-<li><img src="http://www.forkosh.com/mathtex.cgi? $E_x=\sum_{n=-\infty}^{+\infty}{\left|x[n] ight|}^2$"/></li>
-</ul>
-</li>
-<li>Power<ul>
-<li><img src="http://www.forkosh.com/mathtex.cgi? $P_x=\lim_{N 	o \infty} rac{1}{2N+1} \sum_{n=-N}^N{\left|{x[n]} ight|}^2"/></li>
-<li>The window's size is 2N+1</li>
-</ul>
-</li>
-<li>Energy&amp;Power:Periodic Signal
-        - <img src="http://www.forkosh.com/mathtex.cgi? $E_{	ilde{x}}= \infty$" /><ul>
-<li>Energy  <ul>
-<li><img src="http://www.forkosh.com/mathtex.cgi? $E_{	ilde{x}}= \infty$" /></li>
-</ul>
-</li>
-<li>Power<ul>
-<li><img src="http://www.forkosh.com/mathtex.cgi? $P_{	ilde{x}}= rac{1}{N} \sum_{n=0}^{N-1}{\left| {	ilde{x}[n]} ight|}^2$" /></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="22-the-complex-exponential">2.2 The Complex Exponential</h2>
-<h3 id="complex-exponential">Complex Exponential</h3>
-<ul>
-<li>The oscillatory heartbeat is measured by:<ul>
-<li>a frequency <img src="http://www.forkosh.com/mathtex.cgi? $\omega$" />(unit:radians)</li>
-<li>an initial phase  <img src="http://www.forkosh.com/mathtex.cgi? $\phi$" />(unit:radians)</li>
-<li>an amplitude A</li>
-<li>a trigonometric function <img src="http://www.forkosh.com/mathtex.cgi? $x[n]=Acos(\omega n+\phi)$" /></li>
-</ul>
-</li>
-<li>The Euler's formulas<ul>
-<li><img src="http://www.forkosh.com/mathtex.cgi? $x[n]=Acos(\omega n+\phi)+Ajsin(\omega n+\phi)=e^{j(\omega n+\phi)}$" /></li>
-</ul>
-</li>
-<li>The advantages of using complex exponentials rather than trigonometric<ul>
-<li>sine &amp; cosine "live" together</li>
-<li>phase shift is simple multiplication<ul>
-<li><img alt="" src="http://i.imgur.com/BI3b3Hj.png"></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="periodic">Periodic</h3>
-<ul>
-<li><img alt="" src="http://i.imgur.com/CX7E15b.png"></li>
-<li>Attention: Not all sinusiod is periodic</li>
-<li>Periodic when:<img src="http://www.forkosh.com/mathtex.cgi? $x[n]=e^{j(\omega n+\phi)},\omega=rac{M}{N}2\pi (M,N\in N)$" /></li>
-<li>so <img src="http://www.forkosh.com/mathtex.cgi? $x[n]=e^{j(\omega n+\phi)}=e^{j(\omega n+\phi +2\pi)}$" /></li>
-</ul>
-<h3 id="wagonwheel-effect"><b>Wagonwheel effect</b></h3>
-<ul>
-<li>when the <img src="http://www.forkosh.com/mathtex.cgi? $\omega$" /> is larger and larger, when it is near <img src="http://www.forkosh.com/mathtex.cgi? 2$\pi$" /> we can see the wagonwheel seems stop</li>
-</ul>
-<h3 id="discrete-time-frequency-vs-physical-time-frequecy">Discrete time frequency vs. Physical time frequecy</h3>
-<ul>
-<li>Discrete<ul>
-<li>n: no physical dimension</li>
-<li>periodicty: samples</li>
-</ul>
-</li>
-<li>Physical<ul>
-<li>measured in Hz</li>
-</ul>
-</li>
-<li><img alt="" src="http://i.imgur.com/Pz3Cvmn.png"><ul>
-<li>where system clock take part in interpolation</li>
-<li>The real frequency is <img src="http://www.forkosh.com/mathtex.cgi? $f=MT_s$" /></li>
-</ul>
-</li>
-</ul>
-
-      </section>
-    </div>
-
-    
-  </body>
-</html>
+\<\!DOCTYPE\ html\>\
+\<html\>\
+\ \ \<head\>\
+\ \ \ \ \<meta\ charset\=\'utf\-8\'\>\
+\ \ \ \ \<meta\ http\-equiv\=\"X\-UA\-Compatible\"\ content\=\"chrome\=1\"\>\
+\
+\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/stylesheet\.css\"\ media\=\"screen\"\>\
+\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/github\-dark\.css\"\ media\=\"screen\"\>\
+\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/print\.css\"\ media\=\"print\"\>\
+\
+\ \ \ \ \<title\>\{\{blogname\}\}\-\-\{\{title\}\}\<\/title\>\
+\ \ \<\/head\>\
+\
+\ \ \<body\>\
+\
+\ \ \ \ \<header\>\
+\ \ \ \ \ \ \<div\ class\=\"container\"\>\
+\ \ \ \ \ \ \ \ \<h1\>\{\{\ title\ \}\}\<\/h1\>\
+\ \ \ \ \ \ \ \ \<h2\>\{\{\ subtitle\ \}\}\<\/h2\>\
+\ \ \ \ \ \ \<\/div\>\
+\ \ \ \ \<\/header\>\
+\
+\ \ \ \ \<div\ class\=\"container\"\>\
+\ \ \ \ \ \ \<section\ id\=\"main\_content\"\>\
+\ \ \ \ \ \ \ \ \<h1\>\
+\	\	\<a\ id\=\"blog\"\ class\=\"anchor\"\ href\=\"\/\"\ aria\-hidden\=\"true\"\>\
+\	\	\	\<span\ aria\-hidden\=\"true\"\ class\=\"octicon\ octicon\-link\"\>INDEX\<\/span\>\
+\	\	\<\/a\>\
+\	\	\<\/h1\>\
+\	\	\{\{content\}\}\
+\
+\ \ \ \ \ \ \<\/section\>\
+\ \ \ \ \<\/div\>\
+\
+\ \ \ \ \
+\ \ \<\/body\>\
+\<\/html\>\

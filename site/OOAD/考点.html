@@ -1,183 +1,37 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-
-    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
-
-    <title>{{blogname}}--考点</title>
-  </head>
-
-  <body>
-
-    <header>
-      <div class="container">
-        <h1>考点</h1>
-        <h2>{{ subtitle }}</h2>
-      </div>
-    </header>
-
-    <div class="container">
-      <section id="main_content">
-        <h1>
-		<a id="blog" class="anchor" href="/" aria-hidden="true">
-			<span aria-hidden="true" class="octicon octicon-link">INDEX</span>
-		</a>
-		</h1>
-		<p>作业内容和考试紧密联系
-<a href="http://blog.csdn.net/sfdev/article/details/3906243">http://blog.csdn.net/sfdev/article/details/3906243</a>
-和期中题型相似</p>
-<p>相关建模会考,但是范围不会特别大</p>
-<h2 id="1-what-does-rup-stand-for">1.    What does RUP stand for?</h2>
-<p>软件开发过程3词,统一过程 流行2部分,RUP 详细精化</p>
-<p>UP:A:7个词.迭代实践示范结构灵活轻量敏捷</p>
-<p>B:风险驱动,用户驱动</p>
-<p>C:三特征(短时间定量,快速反馈,调整)</p>
-<p>D:4阶段</p>
-<p>E:六实践 迭代需求架构模型质量变更</p>
-<p>软件开发过程描述了构造、部署以及维护软件的方式。统一过程已经成为一种流行的面向对象系统的迭代软件开发过程。RUP是对统一过程的详细精化。</p>
-<p>UP是迭代过程；UP实践提供了如何实施OOA/D示范结构；UP具有灵活性，可以应用于轻量级和敏捷方法。</p>
-<p>UP提倡风险驱动和用户驱动相结合的迭代计划。</p>
-<p>UP所倡导的核心思想是：短时间定量迭代、进化和可适应性开发</p>
-<p>UP的阶段： 初始、细化、构造、移交</p>
-<p>包含六项最佳实践：
-1.  迭代式软件开发
-2.  需求管理
-3.  基于构建的架构应用
-4.  建立可视化的软件模型
-5.  软件质量验证
-6.  软件变更控制</p>
-<h2 id="2-give-simple-examples-to-explain-qualified-association">2.    Give simple examples to explain qualified-association</h2>
-<p>限定关联具有限定符,用于从规模较大的相关对象集合中,根据限定符的间选择一个或多个对象</p>
-<p><img alt="" src="http://i.imgur.com/mioAqcU.png"></p>
-<h2 id="3-what-does-grasp-stand-for">3.    What does GRASP stand for?</h2>
-<p>GRASP为通用职责分配软件模式General Responsibility Assignment Software Patterns，描述对象设计的基本原则和职责分配，</p>
-<ul>
-<li>有五种模式：<ol>
-<li>创建者模式</li>
-<li>信息专家模式</li>
-<li>控制器模式</li>
-<li>高内聚模式</li>
-<li>低耦合模式</li>
-</ol>
-</li>
-<li>具有的职责有：<ul>
-<li>行为职责：自身的一些行为（创建实例计算等）；创建其他对象的行动；协调控制其他对象的活动</li>
-<li>认知职责：对私有封装数据的认知；对其他对象的认知；对可导出或者可计算的事务的认知。</li>
-</ul>
-</li>
-</ul>
-<h2 id="4-furps">4.    FURPS</h2>
-<p>FURPS-33254</p>
-<p>FURPS+5</p>
-<ul>
-<li>F:FCS<ul>
-<li>Features</li>
-<li>Capabilities</li>
-<li>Security</li>
-</ul>
-</li>
-<li>U:HHD<ul>
-<li>Human factors</li>
-<li>help</li>
-<li>Documentation</li>
-</ul>
-</li>
-<li>R:FR<ul>
-<li>Failure frequency</li>
-<li>Recoverability</li>
-</ul>
-</li>
-<li>P:TARAR<ul>
-<li>Thoughput</li>
-<li>Availbility</li>
-<li>Response time</li>
-<li>Accuracy</li>
-<li>Resource utilization</li>
-</ul>
-</li>
-<li>S:AMIC<ul>
-<li>Adapability</li>
-<li>Maintainablity</li>
-<li>Internationalization</li>
-<li>Configuration</li>
-</ul>
-</li>
-<li>FURPS+:PLIOI<ul>
-<li>Packaging</li>
-<li>Legal</li>
-<li>Implementation</li>
-<li>Operation</li>
-<li>Interface</li>
-</ul>
-</li>
-</ul>
-<p>content</p>
-<ol>
-<li>Functional: features, capabilities, security<ul>
-<li>功能性：特性、功能、安全性</li>
-</ul>
-</li>
-<li>Usability: human factors, help, documentation<ul>
-<li>可用性：人性化因素、帮助、文档</li>
-</ul>
-</li>
-<li>Reliability: failure frequency, recoverability<ul>
-<li>可靠性：故障频率、可恢复性、可预测性</li>
-</ul>
-</li>
-<li>Performance: response times, throughput, accuracy, availability, resource utilization    <ul>
-<li>性能：响应时间、吞吐量、准确性、有效性、资源利用率</li>
-</ul>
-</li>
-<li>Supportability: adaptability, maintainability, internationalization, configurability<ul>
-<li>可支持性：适应性、可维护性、国际化、可配置性</li>
-</ul>
-</li>
-</ol>
-<h2 id="5-what-solved-in-ooaooa">5.    What solved in OOA,OOA的制品是什么?</h2>
-<p>OOA是面向对象分析，在面向对象分析中，强调了问题领域所描述的对象或者概念，由属性，关系和概念组成。面向对象分析的结果可以表示为领域模型，在领域模型中展示重要的领域对象或者概念。但是领域模型并不是对软件对象的描述，只是对真实世界领域中的对象和概念的可视化。</p>
-<h2 id="6-operation-contract-7">6.    operation contract 7点</h2>
-<p>系统操作是作为黑盒构件的系统在其公共接口中提供的操作。</p>
-<p>从SSD图,domain model,专家知识中确定系统操作</p>
-<p>如果系统操作复杂，其结果可能不明显，或者在用例中不清楚，则可以为其构造契约</p>
-<p>在UP中，用例是项目需求的主要知识库。用例可以为设计提供大部分或全部所需细节。这中情况下，契约就没什么用处。</p>
-<p>操作契约使用前置和后置条件的形式，描述领域模型里对象的详细变化，并作为系统操作的结果。
-操作契约可以视为UP用例模型的一部分，因为它对用例指出的系统操作的效用提供了更详细的分析。</p>
-<p>操作契约有哪些部分</p>
-<ol>
-<li>操作：操作的名称和参数</li>
-<li>引用：会发生此操作的用例</li>
-<li>前置条件：执行操作之前，对系统或领域模型对象状态的重要假设。</li>
-<li>后置条件：最重要的部分。完成操作后，领域模型对象的状态。</li>
-</ol>
-<p>使用以下几种类表来描述后置条件：</p>
-<ol>
-<li>创建或删除实例</li>
-<li>属性值的变化</li>
-<li>形成或消除关联（UML连接）</li>
-</ol>
-<h2 id="7-explain-the-diagram">7. Explain the diagram</h2>
-<p><img alt="" src="http://i.imgur.com/mS3tG7u.png"></p>
-<h2 id="8-grasp">8.    GRASP最重要的三个模式及举例</h2>
-<p>1)  创建者模式
-2)  信息专家模式
-3)  控制器模式</p>
-<h2 id="9">9.    画图题</h2>
-<h2 id="10">10.   根据下面的描述画出类图,下面的描述是一种编程语言。</h2>
-<h3 id="modulefeaturefeaturevariable-routine-moduleroutinexxxx">一个module中可以有很多个feature，feature可以包括variable, routine, 和嵌套的module。一个routine中包含一个XX和一个XX</h3>
-<h2 id="11-enterlineitemmakelineitemjava">11.   根据下面的通信图写出enterLineItem函数和makeLineItem函数的java代码</h2>
-<p><img alt="" src="http://i.imgur.com/Z5tvAVq.png"></p>
-<h2 id="12-give-simple-examples-to-explain-static-modeling">12. Give simple examples to explain static modeling</h2>
-<p>静态模型也叫领域模型或者类图模型。</p>
-<p>领域模型中展示重要的领域对象或者概念。但是领域模型并不是对软件对象的描述，只是对真实世界领域中的对象和概念的可视化。</p>
-
-      </section>
-    </div>
-
-    
-  </body>
-</html>
+\<\!DOCTYPE\ html\>\
+\<html\>\
+\ \ \<head\>\
+\ \ \ \ \<meta\ charset\=\'utf\-8\'\>\
+\ \ \ \ \<meta\ http\-equiv\=\"X\-UA\-Compatible\"\ content\=\"chrome\=1\"\>\
+\
+\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/stylesheet\.css\"\ media\=\"screen\"\>\
+\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/github\-dark\.css\"\ media\=\"screen\"\>\
+\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/print\.css\"\ media\=\"print\"\>\
+\
+\ \ \ \ \<title\>\{\{blogname\}\}\-\-\{\{title\}\}\<\/title\>\
+\ \ \<\/head\>\
+\
+\ \ \<body\>\
+\
+\ \ \ \ \<header\>\
+\ \ \ \ \ \ \<div\ class\=\"container\"\>\
+\ \ \ \ \ \ \ \ \<h1\>\{\{\ title\ \}\}\<\/h1\>\
+\ \ \ \ \ \ \ \ \<h2\>\{\{\ subtitle\ \}\}\<\/h2\>\
+\ \ \ \ \ \ \<\/div\>\
+\ \ \ \ \<\/header\>\
+\
+\ \ \ \ \<div\ class\=\"container\"\>\
+\ \ \ \ \ \ \<section\ id\=\"main\_content\"\>\
+\ \ \ \ \ \ \ \ \<h1\>\
+\	\	\<a\ id\=\"blog\"\ class\=\"anchor\"\ href\=\"\/\"\ aria\-hidden\=\"true\"\>\
+\	\	\	\<span\ aria\-hidden\=\"true\"\ class\=\"octicon\ octicon\-link\"\>INDEX\<\/span\>\
+\	\	\<\/a\>\
+\	\	\<\/h1\>\
+\	\	\{\{content\}\}\
+\
+\ \ \ \ \ \ \<\/section\>\
+\ \ \ \ \<\/div\>\
+\
+\ \ \ \ \
+\ \ \<\/body\>\
+\<\/html\>\

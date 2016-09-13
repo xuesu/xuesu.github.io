@@ -1,207 +1,37 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-
-    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
-
-    <title>{{blogname}}--3_简单并行计算</title>
-  </head>
-
-  <body>
-
-    <header>
-      <div class="container">
-        <h1>3_简单并行计算</h1>
-        <h2>{{ subtitle }}</h2>
-      </div>
-    </header>
-
-    <div class="container">
-      <section id="main_content">
-        <h1>
-		<a id="blog" class="anchor" href="/" aria-hidden="true">
-			<span aria-hidden="true" class="octicon octicon-link">INDEX</span>
-		</a>
-		</h1>
-		<h1 id="_1">简单并行计算</h1>
-<h2 id="_2">要求</h2>
-<p>一个计算任务：</p>
-<ul>
-<li>可以很容易地分为诸多小组</li>
-<li>每个组完全独立的部分， </li>
-<li>每个部分使用一个处理器完成。</li>
-<li>各个进程之间的通信很少</li>
-<li>自然并行</li>
-</ul>
-<h2 id="_3">基本模式</h2>
-<p><img alt="" src="http://i.imgur.com/aZIhU4V.png"></p>
-<h3 id="_4">示例</h3>
-<ol>
-<li>像素的平移旋转缩放<ol>
-<li><b>复杂度分析</b><ol>
-<li>串行O(n^2)</li>
-<li>并行O(n^2 + p + n^2/p)<ol>
-<li>通信复杂度<ol>
-<li>总线程scatter:O(p)</li>
-<li>工作线程上传:O(n^2)</li>
-</ol>
-</li>
-<li>计算复杂度O(n^2/p)</li>
-</ol>
-</li>
-</ol>
-</li>
-<li><b>加速比</b><ol>
-<li>加速比为1,没有加速</li>
-<li>原因:通信复杂度</li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-<h3 id="_5">通信方式</h3>
-<ul>
-<li>主进程：<ul>
-<li>发送：<ul>
-<li>使用阻塞的，标准的即缓冲的发送。发送能够立刻返回，只要不去更改发送到变量，其发送工作能够在后台完成，也无需wait或test。</li>
-</ul>
-</li>
-<li>接受：<ul>
-<li>使用阻塞的接收，但往往可以指定Pany，即从任意进程接收。不至于因为某子进程的延误而耽搁其他进程。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>从进程：<ul>
-<li>接受：<ul>
-<li>使用阻塞的接受</li>
-</ul>
-</li>
-<li>发送：<ul>
-<li>使用阻塞的缓冲的发送，同样不要去改变发送变量。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="_6">动态任务分配</h2>
-<h3 id="_7">简单并行计算基本模式的问题</h3>
-<ol>
-<li>子进程每次发送一个节点，效率低。<ul>
-<li>考虑按组发送。</li>
-</ul>
-</li>
-<li>服务器阻塞在接收进程上，<ul>
-<li>可考虑使用非阻塞的方式。</li>
-</ul>
-</li>
-<li>每个点的计算次数不相同。但是事先并不清楚。计算节点的计算能力亦不相同。 计算效率以最慢点节点为准。<ul>
-<li>动态任务分配</li>
-</ul>
-</li>
-</ol>
-<h3 id="_8">概念</h3>
-<p>工作池，处理器农庄。
-线程池，进程池。</p>
-<p>进程向工作池请求任务，取走任务，计算，提交结果，再次请求任务。</p>
-<p><img alt="" src="http://i.imgur.com/dRR94aj.png"></p>
-<h3 id="_9">示例</h3>
-<ol>
-<li>Mandelbrot集合<ul>
-<li>混沌和分形</li>
-<li>是自然界的普适现象。其根本规律仍然在研究中。 （Feigenbaum Constant ） 费根鲍姆常数。</li>
-<li>Manderbrot集合以一种简单的方式揭示了自然界的奇妙现象。</li>
-<li><img alt="Mandelbrot集合结果染色图" src="http://i.imgur.com/SFUPzrV.png"></li>
-<li>基本算法：<pre><code>1. **已知复平面上的点c，** 对其着色n，其颜色n的确定方法如下：
-2. 选定固定的模值a a&gt;0
-3. 选定固定的初始点Z0
-4. 进行如下迭代Zk+1 =Zk^2+ c
-5. 直到超过迭代次数或者Zk的模超过a
-6. 记录下c的迭代次数n。
-7. 以某种事先确定的方式将n映射为颜色。
-8. 在二维平面上对c着色
-9. 对某区域中所有的点均作如上操作。
-10. 所得图像即Mandelbrot集合。
-</code></pre>
-<ol>
-<li>
-<p>Julia集合</p>
-<ul>
-<li>
-<p>基本算法</p>
-</li>
-<li>
-<p><strong>已知复平面上的点Z0，</strong> 对其着色n，其颜色n的确定方法如下：</p>
-</li>
-<li>选定固定的模值a a&gt;0</li>
-<li>选定固定的初始偏移点c</li>
-<li>进行如下迭代Zk+1 =Zk^2+ c</li>
-<li>直到超过迭代次数或者Zk的模超过a</li>
-<li>记录下Z0的迭代次数n。</li>
-<li>以某种事先确定的方式将n映射为颜色。</li>
-<li>在二维平面上对Z0着色</li>
-<li>对某区域中所有的点均作如上操作。</li>
-<li>所得图像即Julia集合。</li>
-</ul>
-</li>
-</ol>
-</li>
-</ul>
-</li>
-</ol>
-<h2 id="monte-carlo-method">Monte Carlo Method</h2>
-<p>每个处理器各自计算，求均值即可</p>
-<h3 id="_10">应用</h3>
-<ol>
-<li>
-<p>计算pie</p>
-</li>
-<li>
-<p>随机方法计算定积分</p>
-<ol>
-<li>定积分转换为求和
-<img alt="" src="http://i.imgur.com/kH2faRW.png"></li>
-<li>要求<ul>
-<li>注意这里不是无限划分区间！ （面积积分是这种方法，见MPI计算Pi的例子）。</li>
-<li>随机性必须好。</li>
-<li>次数足够多。</li>
-</ul>
-</li>
-</ol>
-</li>
-</ol>
-<h2 id="pie">Pie计算</h2>
-<ul>
-<li>面积积分</li>
-<li>幂级数</li>
-<li>改进的幂级数</li>
-<li>蒙特卡罗方法</li>
-<li>随机积分方法</li>
-</ul>
-<h2 id="_11">并行伪随机数计算</h2>
-<ul>
-<li>假设有k个进程同时参加计算</li>
-<li>算法：<ol>
-<li>先顺序计算出x1,x2,……. xk.</li>
-<li>第i个进程（1&lt;=i&lt;=k) 负责完成 x_(n*k+i) 其中n=1，2，…… 的计算<ul>
-<li>x_(k+i)= （A_xi +C） mod m  </li>
-<li>其中A=a^kmod m ，C=c（a^(k-1)+a^(k-2)+……+a+1)</li>
-<li>即X_(k+i) 用Xi 来表示。下标相隔k个，原始公式中下标只相隔1个</li>
-</ul>
-</li>
-<li>x_(2k+i) , x_(3k+i)等 依次计算。（X_(2k+i) 与X_(k+I) 下标也相隔k个）</li>
-<li>其他进程对不同的i 分别计算。由此实现并行计算。</li>
-</ol>
-</li>
-</ul>
-
-      </section>
-    </div>
-
-    
-  </body>
-</html>
+\<\!DOCTYPE\ html\>\
+\<html\>\
+\ \ \<head\>\
+\ \ \ \ \<meta\ charset\=\'utf\-8\'\>\
+\ \ \ \ \<meta\ http\-equiv\=\"X\-UA\-Compatible\"\ content\=\"chrome\=1\"\>\
+\
+\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/stylesheet\.css\"\ media\=\"screen\"\>\
+\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/github\-dark\.css\"\ media\=\"screen\"\>\
+\ \ \ \ \<link\ rel\=\"stylesheet\"\ type\=\"text\/css\"\ href\=\"\/stylesheets\/print\.css\"\ media\=\"print\"\>\
+\
+\ \ \ \ \<title\>\{\{blogname\}\}\-\-\{\{title\}\}\<\/title\>\
+\ \ \<\/head\>\
+\
+\ \ \<body\>\
+\
+\ \ \ \ \<header\>\
+\ \ \ \ \ \ \<div\ class\=\"container\"\>\
+\ \ \ \ \ \ \ \ \<h1\>\{\{\ title\ \}\}\<\/h1\>\
+\ \ \ \ \ \ \ \ \<h2\>\{\{\ subtitle\ \}\}\<\/h2\>\
+\ \ \ \ \ \ \<\/div\>\
+\ \ \ \ \<\/header\>\
+\
+\ \ \ \ \<div\ class\=\"container\"\>\
+\ \ \ \ \ \ \<section\ id\=\"main\_content\"\>\
+\ \ \ \ \ \ \ \ \<h1\>\
+\	\	\<a\ id\=\"blog\"\ class\=\"anchor\"\ href\=\"\/\"\ aria\-hidden\=\"true\"\>\
+\	\	\	\<span\ aria\-hidden\=\"true\"\ class\=\"octicon\ octicon\-link\"\>INDEX\<\/span\>\
+\	\	\<\/a\>\
+\	\	\<\/h1\>\
+\	\	\{\{content\}\}\
+\
+\ \ \ \ \ \ \<\/section\>\
+\ \ \ \ \<\/div\>\
+\
+\ \ \ \ \
+\ \ \<\/body\>\
+\<\/html\>\
