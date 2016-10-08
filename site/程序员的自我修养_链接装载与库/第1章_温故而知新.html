@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/default.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
+
+    <title>{{blogname}}--第1章_温故而知新</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>第1章_温故而知新</h1>
+        <h2>{{ subtitle }}</h2>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+		<a id="blog" class="anchor" href="/" aria-hidden="true">
+			<span aria-hidden="true" class="octicon octicon-link">INDEX</span>
+		</a>
+		</h1>
+		<h1 id="11-hello-world">1.1 从Hello World说起</h1>
+<h2 id="_1">问题</h2>
+<ol>
+<li>程序为什么要编译了之后才能运行<ul>
+<li>程序设计语言一般是高级语言，与具体机器无关，所以需要编译成为机器知道的机器码</li>
+</ul>
+</li>
+<li>编译器在把c语言转换成可以执行的机器码的过程中做了什么，怎么做的？<ul>
+<li>Compiler:<ul>
+<li>词法分析：读取标识符，确定词法错误</li>
+<li>语法分析：确定标识符间关系，确定语法错误</li>
+<li>语义分析：进行类型审查</li>
+</ul>
+</li>
+<li>Linker:<ul>
+<li>将第三方库等与源文件链接</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>最后编译出来的可执行文件里面是什么？除了机器码还有什么？它们怎么存放的，怎么组织的？</li>
+<li>
+<h1 id="includec">include<stdio.h>是什么意思？C语言库又是什么？它怎么实现的？</h1>
+</li>
+<li>不同的编译器在不同硬件平台和操作系统上最终编译出来的结果一样吗？为什么？<ul>
+<li>不一样，识别的机器码不同</li>
+</ul>
+</li>
+<li>Hello World程序是怎么运行起来的？操作系统是怎么装载它的？它从哪里开始执行，又从哪里结束？main函数之前发生了什么，main函数结束之后又发生了什么<ul>
+<li>操作系统将程序代码装入内存，生成对应的进程线程，给其分配时间，然后找到主程序段开始执行，到待机指令结束</li>
+</ul>
+</li>
+<li>如果没有操作系统，Hello World程序可以运行吗？要在一台没有操作系统的机器上运行Hello World需要什么，怎么实现<ul>
+<li>可以实现，但是Hello World要起到驱动程序的作用与硬件交互</li>
+</ul>
+</li>
+<li>printf是怎么实现的？它为什么可以有不定数量的参数，为什么它能在终端输出字符串</li>
+<li>Hello World程序在运行前，他在内存是什么样子的</li>
+</ol>
+<h1 id="12">1.2 万变不离其宗</h1>
+<ol>
+<li>三个关键部件<ol>
+<li>CPU</li>
+<li>Main Memory</li>
+<li>I/O</li>
+</ol>
+</li>
+<li>Bus<ol>
+<li>PCI BUS,PCI Bridge:北桥，高速设备</li>
+<li>ISA BUS,ISA Bridge:南桥，低速设备</li>
+</ol>
+</li>
+<li>SMP与多核<ol>
+<li>SMP:Symmetrical Multi-Processing</li>
+<li>多核:共享比较昂贵的缓存部件，保留多个处理器核心</li>
+</ol>
+</li>
+</ol>
+<h1 id="13">1.3 站的高望的远</h1>
+<p>Any problem in computer can be solved by another layer of indirection.</p>
+<ul>
+<li>运行库<ul>
+<li>Application Programming Interface<ul>
+<li>System Call Interface<ul>
+<li>Software Interrupt<ul>
+<li>Hardware Specification</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="14">1.4 操作系统做什么</h1>
+<h2 id="141-cpu">1.4.1 不要让CPU打盹</h2>
+<ol>
+<li>Multiprogramming</li>
+<li>Time-Sharing System</li>
+<li>Multi-tasking</li>
+<li>Preemptive</li>
+</ol>
+<h2 id="142">1.4.2 设备驱动</h2>
+<ol>
+<li>操作系统是对硬件的管理和抽象</li>
+<li>Device Driver：<ul>
+<li>往往和操作系统一起运行在特权级</li>
+<li>一般通过读写I/O端口寄存器实现</li>
+</ul>
+</li>
+</ol>
+<h1 id="15">1.5 内存不够怎么办</h1>
+<ol>
+<li>LBA Logical Block Address:现代硬盘使用一种叫做LBA的方式，分配逻辑扇区号，电子设备会将逻辑扇区号自动转化为物理扇区号</li>
+<li>问题<ol>
+<li>地址空间不隔离</li>
+<li>内存使用效率低</li>
+<li>运行地址不确定</li>
+</ol>
+</li>
+</ol>
+<h2 id="151">1.5.1 关于隔离</h2>
+<p>虚拟地址空间Virtual Address Space</p>
+<p>MMU: Memory Management Unit使用该硬件进行页映射 </p>
+<h2 id="152">1.5.2 分段</h2>
+<p>Segmentation + Virtual Address Space</p>
+<h2 id="153">1.5.3 分页</h2>
+<ol>
+<li>一般每页为4KB</li>
+<li>VP Virtual Page, PP Physical Page, DP Disk Page</li>
+<li>当某页需要用到而又不在内存中时会引发页错误Page Fault，操作系统接管进程并将页装入内存</li>
+</ol>
+<h1 id="16">1.6 众人拾柴火焰高</h1>
+<h2 id="161">1.6.1 线程基础</h2>
+<p>线程一般由线程ID，当前指令指针(PC),寄存器集合和堆栈组成。通常一个进程由一个或多个线程组成，各个线程之间共享内存空间以及一些进程级的资源</p>
+<h3 id="_2">线程的私有存储空间</h3>
+<ol>
+<li>栈</li>
+<li>线程局部存储Thread Local Store TLS</li>
+<li>寄存器</li>
+</ol>
+<h3 id="_3">线程调度</h3>
+<p>Time Slice，Priority Schedule, Round Robin,Thread Priority</p>
+<p>为了避免Starvation, 调度系统常常会逐步提升那些等待了过长时间的得不到执行的线程的优先级</p>
+<h3 id="preemption">Preemption</h3>
+<ol>
+<li>不可抢占线程<ul>
+<li>线程必须主动进入就绪状态<ol>
+<li>试图等待某事件(I/O)</li>
+<li>主动放弃时间片</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="linux">Linux的多线程</h3>
+<ol>
+<li>并不存在真正意义上的线程，所有执行实体都称为任务，不同任务可以选择共享内存空间</li>
+<li>常用方法<ol>
+<li>fork 复制当前进程<ul>
+<li>fork 和原任务一起共享==Copy On Write==的内存空间</li>
+</ul>
+</li>
+<li>exec 使用新的可执行映像覆盖当前可执行映像</li>
+<li>clone 创建子进程并从指定位置开始运行</li>
+</ol>
+</li>
+</ol>
+<h2 id="162">1.6.2 线程安全</h2>
+<h3 id="_4">竞争和原子操作</h3>
+<ol>
+<li>Windows 的 Interlocked API</li>
+</ol>
+<h3 id="_5">同步与锁</h3>
+<ol>
+<li>Lock</li>
+<li>Binary Semaphore</li>
+<li>Semaphore</li>
+<li>Mutex:与二元信号量相似，但是只允许获得Mutex的线程负责释放这个锁</li>
+<li>Critical Section：比互斥量严格，其他进程无法获取该锁</li>
+<li>Read-Write Lock,三种状态，自由，Shared,Exclusive</li>
+<li>Conditional Variable</li>
+</ol>
+<h3 id="reentrant">Reentrant与线程安全</h3>
+<p>这个函数还没有执行完成但是由于外部或者内部调用又一次进入该函数</p>
+<p>可能原因</p>
+<ol>
+<li>多线程同时执行</li>
+<li>函数自身递归</li>
+</ol>
+<h3 id="_6">==过度优化==</h3>
+<ol>
+<li>编译器可能交换两条不相干指令，而多线程下出问题<ul>
+<li>volatile变量能够阻止变量被缓存到寄存器而不写回，也能阻止编译器调整volatile变量的指令顺序，但是还会被CPU调整</li>
+</ul>
+</li>
+<li>CPU优化<ul>
+<li>EXample：单例模式可能返回没有构造完毕却不是空指针的地址</li>
+<li>barrier 阻止CPU将该指令之前的指令交换到barrier之后，也阻止之后的指令交换到barrier之前</li>
+</ul>
+</li>
+</ol>
+<h3 id="_7">多线程内部情况</h3>
+<ol>
+<li>内核线程与用户线程的对应<ol>
+<li>一对一</li>
+<li>多对一</li>
+<li>多对多</li>
+</ol>
+</li>
+</ol>
+
+      </section>
+    </div>
+
+    
+  </body>
+</html>
