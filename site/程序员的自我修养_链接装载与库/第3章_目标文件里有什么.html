@@ -528,18 +528,10 @@ Elf32_Word       sh_entsize;     /* Section Entry Size,如果段包含固定大�
 <td>STT_FILE</td>
 <td>表示文件名，该符号必须是STB_LOCAL的，st_shndx一定是SHN_ABS</td>
 </tr>
-<tr>
-<td>#### st_shndx</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>如果符号定义在本目标文件中，则代表该符号所在段的下标</td>
-<td></td>
-<td></td>
-</tr>
 </tbody>
 </table>
+<h4 id="st_shndx">st_shndx</h4>
+<p>如果符号定义在本目标文件中，则代表该符号所在段的下标</p>
 <table>
 <thead>
 <tr>
@@ -564,28 +556,14 @@ Elf32_Word       sh_entsize;     /* Section Entry Size,如果段包含固定大�
 <td>SHN_UNDEF</td>
 <td>未定义，在其他目标文件中</td>
 </tr>
-<tr>
-<td>#### st_value</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>1. 可执行文件中，表示符号的虚拟地址</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>2. 目标文件中，若不是COMMON块，表示相对于st_shndx的偏移</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>3. COMMON块类型，表示对齐属性</td>
-<td></td>
-<td></td>
-</tr>
 </tbody>
 </table>
+<h4 id="st_value">st_value</h4>
+<ol>
+<li>可执行文件中，表示符号的虚拟地址</li>
+<li>目标文件中，若不是COMMON块，表示相对于st_shndx的偏移</li>
+<li>COMMON块类型，表示对齐属性</li>
+</ol>
 <h2 id="352">3.5.2 特殊符号</h2>
 <p>有些符号被定义在==ld的链接脚本==中（只有使用ld链接才会存在）</p>
 <pre><code>__executable_start 程序起始地址
