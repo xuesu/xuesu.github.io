@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/default.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
+
+    <title>{{blogname}}--第3章_目标文件里有什么</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>第3章_目标文件里有什么</h1>
+        <h2>{{ subtitle }}</h2>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+		<a id="blog" class="anchor" href="/" aria-hidden="true">
+			<span aria-hidden="true" class="octicon octicon-link">INDEX</span>
+		</a>
+		</h1>
+		<p>目标文件：已经编译过，还没有链接</p>
+<h1 id="31">3.1 目标文件的格式</h1>
+<h2 id="_1">主流格式</h2>
+<p>现在PC平台流行的Executable File Format主要是COFF格式(Common File Format)包括</p>
+<ol>
+<li>windows下的PE-COFF(Portable Executable)</li>
+<li>Linux下ELF(Executable Linking File)</li>
+</ol>
+<p>不太流行的</p>
+<ol>
+<li>Intel/Microsoft OMF (Object Module Format)</li>
+<li>Unix a.out</li>
+<li>MS-DOS .COM</li>
+</ol>
+<h2 id="dll-lib">DLL, lib</h2>
+<p>动态链接库DLL, Dynamic Linking Library和静态链接库Static Linking Library（静态链接库将许多目标文件打包并加上索引）都按照PE-COFF或ELF文件格式存储</p>
+<h2 id="elf">ELF文件标准</h2>
+<table>
+<thead>
+<tr>
+<th>文件类型</th>
+<th>说明</th>
+<th>实例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Relocatable File 可重定位文件</td>
+<td>1. 可以被用于链接成为共享目标文件或者可执行文件 2.包括静态链接库</td>
+<td>linux .o,.a win .obj,.lib</td>
+</tr>
+<tr>
+<td>Executable File 可执行文件</td>
+<td>可执行的程序</td>
+<td>linux下可以没有拓展名,win .exe</td>
+</tr>
+<tr>
+<td>Shared Object File 共享目标文件</td>
+<td>1. 可以被链接为新目标文件 2. 可以被动态链接器链接入可执行文件作为程序一部分</td>
+<td>linux .so win .dll</td>
+</tr>
+<tr>
+<td>Core Dump File核心转储文件</td>
+<td>程序意外终止时可以用于保存地址空间的内容和其他信息</td>
+<td>Linux core dump</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_2">目标文件小历史</h2>
+<p>a.out太过简单
+COFF格式定义了段和调试数据格式</p>
+<h1 id="32">3.2 目标文件是什么样的</h1>
+<p>section 和segment在链接和装载时有细微区别</p>
+<ul>
+<li>data section主要存储初始化了的全局变量和局部静态变量</li>
+<li>code section主要存储代码</li>
+<li>BSS(Block Started by Symbol)主要存储了未初始化的全局变量和局部静态变量</li>
+<li>rodata段存放只读数据，主要是只读变量或者字符串常量</li>
+</ul>
+<h2 id="bss">BSS历史</h2>
+<p>是UA-SAP汇编器中的一个伪指令，用于为符号预留一块内存空间</p>
+<h2 id="_3">为何指令数据分离</h2>
+<ol>
+<li>可以分别映射为可读写和只读，保护程序数据</li>
+<li>方便CPU，如缓存命中</li>
+<li>程序代码共享</li>
+</ol>
+<h1 id="33-simplesectiono">3.3 挖掘SimpleSection.o</h1>
+<h2 id="331">3.3.1 代码段</h2>
+<ol>
+<li>汇编代码长度不一定</li>
+<li>有些函数会被单独分段</li>
+</ol>
+<h2 id="332">3.3.2 数据段和只读数据段</h2>
+<ol>
+<li>有时编译器不会把字符串常量放在只读数据段</li>
+<li>采用只读数据段可以贴合只读存储器比如ROM</li>
+</ol>
+<h2 id="333-bss">3.3.3 BSS段</h2>
+<ol>
+<li>有些编译器会将未定义的未初始化变量放在bss段，有些则不会只是预留一个未定义的全局变量符号，等到最终链接为可执行文件再在bss段分配空间，这可能与强符号和弱符号，common块等有关</li>
+<li>编译单元内部的静态变量的确存放在bss段</li>
+</ol>
+<h2 id="334">3.3.4 其他段</h2>
+<table>
+<thead>
+<tr>
+<th>常用段名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.rodata1</td>
+<td>同.rodata</td>
+</tr>
+<tr>
+<td>.comment</td>
+<td>存放编译器版本信息</td>
+</tr>
+<tr>
+<td>.debug</td>
+<td>debug</td>
+</tr>
+<tr>
+<td>.dynamic</td>
+<td>动态链接信息</td>
+</tr>
+<tr>
+<td>.hash</td>
+<td>符号hash表</td>
+</tr>
+<tr>
+<td>.line</td>
+<td>行号表</td>
+</tr>
+<tr>
+<td>.note</td>
+<td>额外的编译器信息，比如程序公司名，发布版本号等</td>
+</tr>
+<tr>
+<td>.strtab</td>
+<td>string table</td>
+</tr>
+<tr>
+<td>.symtab</td>
+<td>symbol table</td>
+</tr>
+<tr>
+<td>.shstrtab</td>
+<td>section header string table</td>
+</tr>
+<tr>
+<td>.plt &amp;&amp; .got</td>
+<td>动态链接的跳转表和全局入口表</td>
+</tr>
+<tr>
+<td>.init &amp;&amp; .fini</td>
+<td>程序初始化与终结代码段</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_4">自定义段</h3>
+<ol>
+<li>自定义段名不应该使用.作为前缀</li>
+<li>可以使用objcopy将二进制文件作为程序的一个段</li>
+</ol>
+<h1 id="34-elf">3.4 ELF文件结构描述</h1>
+<h2 id="341">3.4.1 文件头</h2>
+<p>ELF文件头结构及相关参数被定义在/usr/include/elf.h中</p>
+<pre><code>typedef struct elf32_hdr{
+  unsigned char e_ident[EI_NIDENT]; //Magic 16字节 
+  Elf32_Half e_type;  //elf文件类型
+  Elf32_Half e_machine;  //CPU平台属性
+  Elf32_Word e_version;  //ELF文件版本号，一般为1,ELF 文件最新版本为1.2
+  Elf32_Addr e_entry; /* Entry point 程序入口的虚拟地址，可重定位文件一般为0*/
+  Elf32_Off e_phoff;  //start of program headers
+  Elf32_Off e_shoff;  //start of section headers
+  Elf32_Word e_flags;  //
+  Elf32_Half e_ehsize;  //size of elf header
+  Elf32_Half e_phentsize;  // size of program headers
+  Elf32_Half e_phnum;  //num of program header
+  Elf32_Half e_shentsize; //size of section headers
+  Elf32_Half e_shnum; //num of section header
+  Elf32_Half e_shstrndx; //section header string table index
+ } Elf32_Ehdr;  //此结构体一共52个字节
+</code></pre>
+
+<h3 id="magic-numbers">magic numbers</h3>
+<p>7f 45 4c 46 01 01 01 00 00 00 00 00 00 00 00 00</p>
+<p>del E L F class(0x01 32,0x02 64) endian version</p>
+<p>==系统在加载时会确定魔数是否正确，不正确会停止加载==</p>
+<h3 id="_5">文件类型</h3>
+<p>系统通过e_type而不是扩展名判断elf文件类型</p>
+<h2 id="342">3.4.2 段表</h2>
+<p>ELF段表数组的第一个元素是无效的段描述符，类型为NULL</p>
+<pre><code>typedef struct
+{
+Elf32_Word        sh_name;        /* 在section string table中的索引 */
+Elf32_Word        sh_type;        /* Section type */
+Elf32_Word        sh_flags;       /* Section flags */
+Elf32_Addr        sh_addr;        /* Section virtual addr at execution */
+Elf32_Off        sh_offset;      /* Section file offset,如果该段存在于文件中，bss段offset无意义 */
+Elf32_Word        sh_size;        /* Section size in bytes */
+Elf32_Word        sh_link;        /* Section Link */
+Elf32_Word        sh_info;        /* Section information */
+Elf32_Word        sh_addralign;   /* Section Address alignment 表示地址对齐数量的指数，2**sh_addralign，如果sh_addralign为0或1，则表示没有对齐要求 */
+Elf32_Word       sh_entsize;     /* Section Entry Size,如果段包含固定大小的项，表示项的大小 */
+} Elf32_Shdr;
+</code></pre>
+
+<h3 id="sh_type">sh_type</h3>
+<p>==段的名字只在链接和编译过程有意义，决定段的属性的是sh_type和sh_flags==</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>常量</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>SHT_NULL</td>
+<td>无效段</td>
+</tr>
+<tr>
+<td>1</td>
+<td>SHT_PROGBITS</td>
+<td>程序段代码段数据段等都是这种类型</td>
+</tr>
+<tr>
+<td>2</td>
+<td>SHT_SYMTAB</td>
+<td>符号表</td>
+</tr>
+<tr>
+<td>3</td>
+<td>SHT_STRTAB</td>
+<td>字符串表</td>
+</tr>
+<tr>
+<td>4</td>
+<td>SHT_RELA</td>
+<td>重定位表</td>
+</tr>
+<tr>
+<td>5</td>
+<td>SHT_HASH</td>
+<td>符号hash表</td>
+</tr>
+<tr>
+<td>6</td>
+<td>SHT_DYNAMIC</td>
+<td>动态链接信息</td>
+</tr>
+<tr>
+<td>7</td>
+<td>SHT_NOTE</td>
+<td>提示性信息</td>
+</tr>
+<tr>
+<td>8</td>
+<td>SHT_NOBITS</td>
+<td>该段在文件中没有内容，bss</td>
+</tr>
+<tr>
+<td>9</td>
+<td>SHT_REL</td>
+<td>重定位信息</td>
+</tr>
+<tr>
+<td>10</td>
+<td>SHT_SHLIB</td>
+<td>保留</td>
+</tr>
+<tr>
+<td>11</td>
+<td>SHT_DNYSYM</td>
+<td>动态链接的符号表</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sh_flags">sh_flags</h3>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>常量</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>SHF_WRITE</td>
+<td>可写</td>
+</tr>
+<tr>
+<td>2</td>
+<td>SHF_ALLOC</td>
+<td>需要在进程空间中分配空间</td>
+</tr>
+<tr>
+<td>3</td>
+<td>SHF_EXECINSTR</td>
+<td>可执行</td>
+</tr>
+</tbody>
+</table>
+<h4 id="_6">常见表的属性</h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>sh_type</th>
+<th>sh_flag</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.bss</td>
+<td>SH_NOBITS</td>
+<td>SHF_ALLOC,SHF_WRITE</td>
+</tr>
+<tr>
+<td>.comment</td>
+<td>SHT_PROGBITS</td>
+<td>none</td>
+</tr>
+<tr>
+<td>.data</td>
+<td>SHT_PROGBITS</td>
+<td>SHF_ALLOC, SHF_WRITE</td>
+</tr>
+<tr>
+<td>.debug</td>
+<td>SHT_PROGBITS</td>
+<td>none</td>
+</tr>
+<tr>
+<td>.dynamic</td>
+<td>SHT_DYNAMIC</td>
+<td>SHF_ALLOC, SHF_WRITE?</td>
+</tr>
+<tr>
+<td>.hash</td>
+<td>SHT_HASH</td>
+<td>SHF_ALLOC</td>
+</tr>
+<tr>
+<td>.line</td>
+<td>SHT_PROGBITS</td>
+<td>none</td>
+</tr>
+<tr>
+<td>.note</td>
+<td>SHT_NOTE</td>
+<td>none</td>
+</tr>
+<tr>
+<td>.rodata</td>
+<td>SHT_PROGBITS</td>
+<td>SHF_ALLOC</td>
+</tr>
+<tr>
+<td>.shstrtab</td>
+<td>SHT_STRTAB</td>
+<td>none</td>
+</tr>
+<tr>
+<td>.strtab</td>
+<td>SHT_STRTAB</td>
+<td>如果有可装载的段需要用到该字符串表，那么SHF_ALLOC</td>
+</tr>
+<tr>
+<td>.symtab</td>
+<td>SHT_SYMTAB</td>
+<td>如果有可装载的段需要用到该字符串表，那么SHF_ALLOC</td>
+</tr>
+<tr>
+<td>.text</td>
+<td>SHT_PROGBITS</td>
+<td>SHF_ALLOC,SHF_EXECINSTR</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sh_infosh_link">sh_info,sh_link</h3>
+<table>
+<thead>
+<tr>
+<th>sh_type</th>
+<th>sh_link</th>
+<th>sh_info</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SHT_DYNAMIC</td>
+<td>该段使用的字符串表在段表中的下标</td>
+<td>0</td>
+</tr>
+<tr>
+<td>SHT_HASH</td>
+<td>该段使用的符号表在段表中的下标</td>
+<td>0</td>
+</tr>
+<tr>
+<td>SHT_REL或SHT_RELA</td>
+<td>该段使用的相应符号表在段表中的下标</td>
+<td>该重定位表所作用的段在段表中的下标</td>
+</tr>
+<tr>
+<td>SHT_SYMTAB或SHT_DYNSYM</td>
+<td>操作系统相关</td>
+<td>操作系统相关</td>
+</tr>
+<tr>
+<td>other</td>
+<td>SHN_UNDEF</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<h2 id="343">3.4.3 重定位表</h2>
+<p>代码段和数据段中对绝对地址的引用都需要重定位，每个需要重定位的表都有相应的重定位表段</p>
+<p>sh_type为SHT_REL,sh_info表明其作用表的下标</p>
+<h2 id="344">3.4.4 字符串表</h2>
+<p>把字符串集中起来存放，然后使用字符串在表中的偏移来引用字符串</p>
+<h1 id="35-">3.5 链接的接口-符号</h1>
+<ol>
+<li>函数和变量统称为Symbol，Symbol Name，Symbol Value</li>
+<li></li>
+</ol>
+<p>符号可能包含以下几种</p>
+<ol>
+<li>变量 Symbol Value为地址</li>
+<li>函数 value为地址</li>
+<li>定义在本目标文件，可以被其他目标文件引用的全局符号</li>
+<li>在本目标文件中引用</li>
+<li>段名，value是该段的起始地址</li>
+<li>局部符号，只在编译单元内部可见，这些局部符号对于链接器没有作用</li>
+<li>行号信息</li>
+</ol>
+<h2 id="351-elf">3.5.1 ELF符号表结构</h2>
+<pre><code>typedef struct{
+    ELF32_Word st_name,//符号名在字符串表中的下标
+    ELF32_Addr st_value,//对应的值
+    ELF32_Word st_size,//符号大小，数据类型大小或者0（0或未知）
+    unsigned char st_info,//符号类型和绑定信息
+    unsigned char st_other,//0
+    ELF_Half st_shndx;//符号所在的段
+}ELF32_Sym
+</code></pre>
+
+<h3 id="st_info">st_info</h3>
+<p>==低4位表示Symbol Type，高28位表示Symbol Binding==</p>
+<h4 id="symbol-binding">symbol binding</h4>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>宏定义名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>STB_LOCAL</td>
+<td>局部</td>
+</tr>
+<tr>
+<td>1</td>
+<td>STB_GLOBAL</td>
+<td>全局外部可见</td>
+</tr>
+<tr>
+<td>2</td>
+<td>STB_WEAK</td>
+<td>弱引用</td>
+</tr>
+</tbody>
+</table>
+<h4 id="symbol-type">symbol type</h4>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>宏定义名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>STT_NOTYPE</td>
+<td>未知</td>
+</tr>
+<tr>
+<td>1</td>
+<td>STT_OBJECT</td>
+<td>数据对象</td>
+</tr>
+<tr>
+<td>2</td>
+<td>STT_FUNC</td>
+<td>函数</td>
+</tr>
+<tr>
+<td>3</td>
+<td>STT_SECTION</td>
+<td>表示一个段，该符号必须是STB_LOCAL的</td>
+</tr>
+<tr>
+<td>4</td>
+<td>STT_FILE</td>
+<td>表示文件名，该符号必须是STB_LOCAL的，st_shndx一定是SHN_ABS</td>
+</tr>
+<tr>
+<td>#### st_shndx</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>如果符号定义在本目标文件中，则代表该符号所在段的下标</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>宏定义名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0xfff1</td>
+<td>SHN_ABS</td>
+<td>绝对的值</td>
+</tr>
+<tr>
+<td>0xfff2</td>
+<td>SHN_COMMON</td>
+<td>COMMON块类型符号</td>
+</tr>
+<tr>
+<td>0</td>
+<td>SHN_UNDEF</td>
+<td>未定义，在其他目标文件中</td>
+</tr>
+<tr>
+<td>#### st_value</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>1. 可执行文件中，表示符号的虚拟地址</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2. 目标文件中，若不是COMMON块，表示相对于st_shndx的偏移</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3. COMMON块类型，表示对齐属性</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="352">3.5.2 特殊符号</h2>
+<p>有些符号被定义在==ld的链接脚本==中（只有使用ld链接才会存在）</p>
+<pre><code>__executable_start 程序起始地址
+__etext或_etext或etext 代码段结束地址
+_edata或edata 数据段结束地址
+_end或end 程序结束地址
+</code></pre>
+
+<h2 id="353">3.5.3 符号修饰与函数签名</h2>
+<ol>
+<li>20世纪70年代之前符号名与变量名或者函数名相同</li>
+<li>为了防止不同语言的目标文件冲突，后来c语言符号名在前面加_,fortran在前后都加</li>
+<li>现在gcc（可以通过-fleading-underscore来控制是否加下划线）在linux下不用加下划线，但是win下回家，win下的编译器也还加下划线</li>
+</ol>
+<h3 id="cname-decorationname-mangling">c++符号修饰Name Decoration,Name Mangling</h3>
+<h4 id="gcc">gcc的修饰方法</h4>
+<pre><code>_ZN1N1C4funcEi//N::C::func(int)
+</code></pre>
+
+<ol>
+<li>_Z开头</li>
+<li>嵌套的部分：N[len(name)][name]</li>
+<li>E结尾</li>
+<li>函数参数列表跟在E后面，比如int就是i</li>
+</ol>
+<p>也用来防止静态变量名称冲突</p>
+<h4 id="function-signature">function signature</h4>
+<h2 id="354-extern-c">3.5.4 extern "C"</h2>
+<p>c++编译器将会把extern "C"大括号中的内容当做c语言代码处理</p>
+<h3 id="__cplusplus">__cplusplus</h3>
+<p>c++编译器会在编译时默认定义这个宏，所以可以使用条件宏判断当前是不是ｃ++</p>
+<h2 id="355-weak-symbolstrong-symbol">3.5.5 弱符号和强符号Weak Symbol,Strong Symbol</h2>
+<ol>
+<li>默认函数和初始化了的全局变量为强符号，未初始化的全局变量为弱符号</li>
+<li>外部全局变量不是强符号也不是弱符号</li>
+</ol>
+<h3 id="_7">选择规则</h3>
+<ol>
+<li>不允许强符号被多次定义</li>
+<li>如果一个符号在某个目标文件中是强符号，其他文件中都是弱符号，那么选择强符号</li>
+<li>==如果都是弱符号，选择占空间最大的，容易引发ｂｕｇ==</li>
+</ol>
+<h3 id="_8">强引用和弱引用</h3>
+<p>strong ref:对外部目标文件的符号引用在链接时需要被正确决议，如果没有找到符号定义，链接器就会报错</p>
+<p>weak ref:如果没有定义，则不报错，而是默认其为０或者是特殊值</p>
+<p>__attribute((weakref))，gcc,设置对外部函数的引用为弱引用</p>
+<h4 id="_9">作用</h4>
+<ol>
+<li>可以用于重定义库函数，或者链接拓展功能模块</li>
+<li>可以使用弱引用来判断是否有-lpthread选项</li>
+</ol>
+<pre><code>int pthread_create(pthread_t *, const pthread_attr_t *, void * (*) (void *), void *) __attrbute__((weak));
+
+int main(){
+    if(pthread_create){
+        puts(&quot;multi-thread&quot;);
+    }
+}
+</code></pre>
+
+<h1 id="36">3.6　调试信息</h1>
+<p>ＥＬＦ文件采用DWARF(Debug With Arbitrary Record Format)标准的调试信息格式</p>
+<h1 id="_10">命令和工具</h1>
+<h2 id="file">file</h2>
+<p>查看相应文件格式</p>
+<h2 id="gcc-c">gcc -c</h2>
+<p>只编译不链接</p>
+<h2 id="objdump">objdump</h2>
+<p>-h 打印ELF文件中主要段的基本信息</p>
+<p>-s 将段内容以16进制打印</p>
+<p>-d 将所有包含指令的段反汇编</p>
+<p>COTENTS属性表示该段在elf文件中实际存在</p>
+<h2 id="size">size</h2>
+<p>用于查看ELF文件text,data,bss段长度</p>
+<h2 id="readelf">readelf</h2>
+<p>详细查看elf文件</p>
+<h2 id="objcopy">objcopy</h2>
+<p>objcopy -I binary -O elf32-i386 -B -i386 image.jpg image.o
+可以将image.jpg作为单独的段加入image.o中</p>
+<h2 id="attributesectionname"><strong>attribute</strong>((section("name")))</h2>
+<p>放在全局变量或者函数前面可以将其指定到对应name的段中</p>
+<h2 id="nm">nm</h2>
+<p>用于查看elf文件的符号表</p>
+<h2 id="cfile">c++file</h2>
+<p>可以解析gcc被修饰的名称</p>
+<h2 id="undecoratesymbolname">UnDecorateSymbolName</h2>
+<p>解析visual c++被修饰的名称</p>
+<h2 id="extern-c">extern "C"</h2>
+<p>c++编译器将会把extern "C"大括号中的内容当做c语言代码处理</p>
+<h2 id="__cplusplus_1">__cplusplus</h2>
+<p>c++编译器会在编译时默认定义这个宏，所以可以使用条件宏判断当前是不是ｃ++</p>
+<h2 id="__attributeweakref">__attribute((weakref))</h2>
+<p>gcc,设置对外部函数的引用为弱引用</p>
+<h2 id="strip">strip</h2>
+<p>ｌｉｎｕｘ，去除ｅｌｆ文件调试信息</p>
+
+      </section>
+    </div>
+
+    
+  </body>
+</html>

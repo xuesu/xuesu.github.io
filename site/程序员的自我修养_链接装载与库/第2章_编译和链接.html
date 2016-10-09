@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/default.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
+
+    <title>{{blogname}}--第2章_编译和链接</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>第2章_编译和链接</h1>
+        <h2>{{ subtitle }}</h2>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+		<a id="blog" class="anchor" href="/" aria-hidden="true">
+			<span aria-hidden="true" class="octicon octicon-link">INDEX</span>
+		</a>
+		</h1>
+		<ol>
+<li>build<ol>
+<li>预编译preprosssing .li</li>
+<li>编译compilation (预编译+编译 cc1,cc1plus)<ol>
+<li>词法分析lex</li>
+<li>语法分析yacc</li>
+<li>语义分析</li>
+<li>中间代码生成及优化</li>
+<li>目标代码生成及优化</li>
+</ol>
+</li>
+<li>汇编assembly as .o</li>
+<li>链接linking ld .out</li>
+</ol>
+</li>
+<li>Preprocessing<ol>
+<li>删除#define</li>
+<li>处理#if等</li>
+<li>处理#include,将对应文件插入</li>
+<li>删除注释</li>
+<li>添加行号和文件名标识</li>
+<li>保留#pragma</li>
+</ol>
+</li>
+<li>在语法树上做优化比较困难，所以编译器往往将目标代码转化为中间代码，如三地址码再进行优化。</li>
+<li>Linking<ol>
+<li>Address and Storage Allocation</li>
+<li>Symbol Resolution</li>
+<li>Relocation<ol>
+<li>relocation entry</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+
+      </section>
+    </div>
+
+    
+  </body>
+</html>
