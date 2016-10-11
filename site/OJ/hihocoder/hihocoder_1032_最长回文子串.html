@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/default.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
+
+    <title>{{blogname}}--hihocoder_1032_最长回文子串</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>hihocoder_1032_最长回文子串</h1>
+        <h2>{{ subtitle }}</h2>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+		<a id="blog" class="anchor" href="/" aria-hidden="true">
+			<span aria-hidden="true" class="octicon octicon-link">INDEX</span>
+		</a>
+		</h1>
+		<h1 id="_1">题意</h1>
+<p>给若干字符串，输出最长回文子串长度</p>
+<h1 id="_2">思路</h1>
+<ol>
+<li><strong>当以i为中心的回文子串长度为dp[i]时，若i&gt;=2,则在以i为中心的回文子串范围内，以i-1为中心的回文子串恰好等于以i+1为中心的回文子串</strong>，利用<strong>以i为中心对称</strong>的性质，可以减少对比次数</li>
+<li>以i+1为中心的回文子串在以i为中心的回文子串的范围内的最大长度是dp[i]-2</li>
+<li>可以在首尾和中间都加入特殊字符，将偶长度的回文字符串转化为奇数长度的回文字符串,新字符串的有效长度为长度/2（整除）</li>
+</ol>
+<h1 id="_3">代码</h1>
+<pre><code class="c++">#include &lt;cstdio&gt;
+#include &lt;map&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+#include &lt;cmath&gt;
+#include &lt;string&gt;
+#include &lt;vector&gt;
+#include &lt;iostream&gt;
+#include &lt;assert.h&gt;
+#include &lt;sstream&gt;
+#include &lt;cctype&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;map&gt;
+using namespace std;
+//typedef pair&lt;int,int&gt; P;
+typedef long long ll;
+typedef unsigned long long ull;
+typedef long double ld;
+const int maxn = 2e6 + 6;
+char org[maxn],maz[maxn];
+int dp[maxn];
+int main(){
+    int T;
+    freopen(&quot;input.txt&quot;,&quot;r&quot;,stdin);
+    scanf(&quot;%d&quot;,&amp;T);
+    for(int ti = 1;ti &lt;= T;ti++){
+        scanf(&quot;%s&quot;,org);
+        for(int i = 0;org[i];i++){
+            maz[2 * i] = '#';
+            maz[2 * i + 1] = org[i];
+            dp[2 * i] = dp[2 * i + 1] = 1;
+            if(org[i + 1] == 0){
+                maz[2 * i + 2] = '#';
+                maz[2 * i + 3] = 0;
+                dp[2 * i + 2] = dp[2 * i + 3] = 1;
+            }
+        }
+        int ans = 1;
+        for(int i = 1;maz[i];i++){
+            if(i &gt;= 2)dp[i] = max(dp[i],min(dp[i - 2],dp[i - 1] - 2));
+            int j = dp[i] / 2 + 1;
+            for(;i - j &gt;= 0 &amp;&amp; maz[i + j];j++){
+                if(maz[i - j] != maz[i + j])break;
+            }
+            dp[i] = j * 2 - 1;
+            ans = max(dp[i],ans);
+        }
+        printf(&quot;%d
+&quot;,ans / 2);
+    }
+    return 0;
+}
+
+</code></pre>
+
+      </section>
+    </div>
+
+    
+  </body>
+</html>

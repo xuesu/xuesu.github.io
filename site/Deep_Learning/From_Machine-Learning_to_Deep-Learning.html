@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/default.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
+
+    <title>{{blogname}}--From_Machine-Learning_to_Deep-Learning</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>From_Machine-Learning_to_Deep-Learning</h1>
+        <h2>{{ subtitle }}</h2>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+		<a id="blog" class="anchor" href="/" aria-hidden="true">
+			<span aria-hidden="true" class="octicon octicon-link">INDEX</span>
+		</a>
+		</h1>
+		<h1 id="logistic-classifierlinear-classifier">logistic classifier(linear classifier)</h1>
+<p>wx + b = y(w,b,x,y are all vector)</p>
+<ul>
+<li>just a giant matrix multiply</li>
+<li>x is input vector</li>
+<li>w weights</li>
+<li>b biased term</li>
+<li>scores in logistic classifier is often called logits</li>
+</ul>
+<h2 id="softmax">softmax</h2>
+<pre><code class="math">Score(y_i) = rac{e_{yi}}{\sum_j {e_{yj}}}
+</code></pre>
+
+<p>turn scores into probabilities</p>
+<pre><code class="python">def softmax(x):
+    return numpy.exp(x) / numpy.sum(x,axis = 0)
+</code></pre>
+
+<p>注意numpy */ 是按元素进行乘除，矩阵乘法用dot</p>
+<ul>
+<li>if you increase the size of input(x), the classifier will be confident about the output</li>
+</ul>
+<h2 id="one-hot-encoding">one-hot encoding</h2>
+<p>L(yi):1.0 for right label yi, and 0 for others</p>
+<ol>
+<li>using embeddings to handle big scale sparse matrix</li>
+<li>measure how well we are doing by comparing two vectors(probabilities and vector after one-hot encoding) </li>
+</ol>
+<h2 id="cross-entropy">cross entropy</h2>
+<p>to measure the distance between probabilities and vector after one-hot encoding</p>
+<pre><code class="math">D(S,L) = - \sum_i{(Li * log(Si))}
+
+</code></pre>
+
+<p><strong>Be careful,the cross entropy is not symmetric, D(S,L) != D(L,S)</strong></p>
+<h2 id="multinomial-logistic-classification">Multinomial Logistic Classification</h2>
+<p><img alt="image" src="https://github.com/xuesu/picture/blob/master/2016-10-10-173349_922x519_scrot.png?raw=true"></p>
+<h2 id="aim">Aim</h2>
+<ol>
+<li>have a high cross entropy distance for incorrect label, but have a low distance for correct label</li>
+<li>to minimize the training loss</li>
+</ol>
+<h2 id="trainning-loss">Trainning loss</h2>
+<p>The average of cross entropy distance of all instances in training sets</p>
+<p>it is a humongous function
+<img alt="image" src="https://github.com/xuesu/picture/blob/master/2016-10-11-214408_716x437_scrot.png?raw=true"></p>
+<h2 id="normalized-inputs-and-initial-weights-and-bias">Normalized Inputs and Initial Weights and Bias</h2>
+<h3 id="1-normalized-inputs">1. Normalized Inputs</h3>
+<p>To avoid lost accuracy</p>
+<ul>
+<li>mean(x) == e<ul>
+<li><img alt="image" src="https://github.com/xuesu/picture/blob/master/2016-10-11-213204_946x477_scrot.png?raw=true"></li>
+</ul>
+</li>
+<li>equal variance(xi方差相等)</li>
+</ul>
+<h4 id="when-dealing-with-images">when dealing with Images</h4>
+<p>(r - 128)/128,(g - 128)/128,(b - 128)/128,
+<img alt="image" src="https://github.com/xuesu/picture/blob/master/2016-10-11-214059_778x453_scrot.png?raw=true"></p>
+<h3 id="2-a-simple-way-to-picking-initial-weights">2. A simple way to picking initial weights</h3>
+<p>To avoid lost accuracy and fasten the process</p>
+<ul>
+<li>draw the weight randomly from <strong>a Gaussian Distribution with mean zero and standard deviation sigma</strong><ul>
+<li>the sigma values determines the order of magnitude(数量级) of your outputs at initial point</li>
+<li>a large sigma will make the distribution have large peaks, which going to be very <strong>opinionated</strong></li>
+<li>a small sigma will going to be less confident</li>
+</ul>
+</li>
+<li>it is better to begin with an uncertain distribution and let it become more confident during progress</li>
+</ul>
+<h2 id="a-possible-way-gradient-descent">a possible way - gradient descent</h2>
+<p>to compute the derivatives and finally reach the minimum.</p>
+<p>Question: (where the optimizer is still in black-box)</p>
+<ol>
+<li>how do you fill the pixels into classifier</li>
+<li>where do you initialize the optimazation</li>
+</ol>
+<h2 id="validationtest-size-rule-of-thumb-30">validation,test size - rule of thumb 30</h2>
+<p>a change that affects 30 examples in your validation set, one way or not,is usually statistically significant and typically can be trusted, </p>
+<p>the following picture descript which accuracy change is acceptable by rule of thumb 30
+<img alt="image" src="https://github.com/xuesu/picture/blob/master/Deeplearning-ruleofthumb30-quiz.png?raw=true"></p>
+<p>when validation set size &gt; 30000, change &gt; 0.1% is acceptable</p>
+<p>cross-entropy is one way to mix this problem, but it is too slow,</p>
+<p>get more data is often the right solution</p>
+<h2 id="optimizating-a-logistic-classifier-using-gradient-descent">Optimizating a logistic classifier using gradient descent</h2>
+<p>the important Question is that how to scale gradient descent</p>
+<h2 id="stochastic-gradient-descent-sgd">Stochastic Gradient Descent SGD</h2>
+<p>To reduce running time(calculate entire gradient takes a lot running time), instead of taking large step and calculate the gradient of all training sets, <strong>taking small step and calculate small random fraction of the training sets(an estimate of actual gradient)</strong></p>
+<ul>
+<li>a terrible estimate in fact</li>
+<li>but it works in practice,comes with a lots of issues</li>
+<li>needs to pick very randomly</li>
+</ul>
+<p><img alt="image" src="https://github.com/xuesu/picture/blob/master/2016-10-11-115600_911x495_scrot.png?raw=true"></p>
+<p><img alt="image" src="https://github.com/xuesu/picture/blob/master/2016-10-11-115829_842x472_scrot.png?raw=true"></p>
+<h3 id="helping-sgd">Helping SGD</h3>
+<h4 id="initial">initial</h4>
+<ol>
+<li>input<ul>
+<li>zero means</li>
+<li>equal variable(SMALL)</li>
+</ul>
+</li>
+<li>initial weights<ul>
+<li>random</li>
+<li>zero means</li>
+<li>equal variable(SMALL)</li>
+</ul>
+</li>
+</ol>
+<h4 id="momentum">Momentum(动量)</h4>
+<p>Cause:</p>
+<ol>
+<li>each step toward a random direction</li>
+<li>on aggregate, we toward the minimum loss</li>
+</ol>
+<p>use w = 0.9w + gradient instead of gradient as the direction of each step</p>
+<p><img alt="image" src="https://github.com/xuesu/picture/blob/master/2016-10-11-220012_928x499_scrot.png?raw=true"></p>
+<h4 id="learning-rate-decay">Learning Rate decay</h4>
+<ol>
+<li>exponential</li>
+<li>reach the plateau</li>
+</ol>
+<p><img alt="image" src="https://github.com/xuesu/picture/blob/master/2016-10-11-220404_413x401_scrot.png?raw=true"></p>
+<h2 id="parameter-hyperspace">Parameter Hyperspace</h2>
+<p><img alt="image" src="https://github.com/xuesu/picture/blob/master/2016-10-11-220647_891x479_scrot.png?raw=true"></p>
+
+      </section>
+    </div>
+
+    
+  </body>
+</html>
