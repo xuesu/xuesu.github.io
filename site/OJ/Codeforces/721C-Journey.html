@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/default.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
+
+    <title>{{blogname}}--721C-Journey</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>721C-Journey</h1>
+        <h2>{{ subtitle }}</h2>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+		<a id="blog" class="anchor" href="/" aria-hidden="true">
+			<span aria-hidden="true" class="octicon octicon-link">INDEX</span>
+		</a>
+		</h1>
+		<h1 id="_1">题意</h1>
+<p>单向无环无重边图，每条弧都需花费一段时间，起点为1，终点为n，求在时间T内最多经过多少个点？（节点从1到n,n &lt;= 5000,共有m条弧，m &lt;=5000, T&lt;= 5000）</p>
+<h1 id="_2"></h1>
+<h1 id="_3">思路</h1>
+<p>可以在最短路同时，维护目前的路径长度，也即原始版本最短路为dp[i]，代表从起点1到i所经过的最短路径，现在则维护dp[i][j],代表从起点1到i经过j个点的最短路径</p>
+<h1 id="_4">注意</h1>
+<ol>
+<li>起点必须为1，所以spfa的queue最初只需要加入起点1</li>
+<li>因为起点为1，所以对于点i来说,dp[i]不是严格递增的，因为有些j小于能到达的步数，此时dp[i][j]为初始化的inf</li>
+</ol>
+<h1 id="code">Code</h1>
+<pre><code class="c++">#include &lt;cstdio&gt;
+#include &lt;map&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+#include &lt;cmath&gt;
+#include &lt;string&gt;
+#include &lt;vector&gt;
+#include &lt;iostream&gt;
+#include &lt;assert.h&gt;
+#include &lt;sstream&gt;
+#include &lt;cctype&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;map&gt;
+using namespace std;
+typedef pair&lt;int,int&gt; P;
+typedef long long ll;
+typedef unsigned long long ull;
+typedef long double ld;
+const int maxn = 5e3 + 3;
+const int maxm = 5e3 + 3;
+int first[maxn];
+int nxt[maxn];
+int to[maxn];
+int cost[maxn];
+int len;
+int dp[maxn][maxn];
+int pre[maxn][maxn];
+bool vis[maxn][maxn];
+int st[maxn];
+void addedge(int u,int v,int c){
+    nxt[len] = first[u];
+    to[len] = v;
+    cost[len] = c;
+    first[u] = len++;
+}
+int main(){
+    freopen(&quot;input.txt&quot;,&quot;r&quot;,stdin);
+    int n,m,t;
+    memset(first,-1,sizeof first);
+    memset(dp,0x6f,sizeof dp);
+    scanf(&quot;%d%d%d&quot;,&amp;n,&amp;m,&amp;t);
+    for(int i = 0;i &lt; m;i++){
+        int u,v,c;
+        scanf(&quot;%d%d%d&quot;,&amp;u,&amp;v,&amp;c);
+        addedge(u,v,c);
+    }
+    for(int i = 1;i &lt;= n;i++)dp[i][1] = 0;
+    queue&lt;P&gt;que;
+    que.push(P(1,1));
+    vis[1][1] = true;
+    while(!que.empty()){
+        int u = que.front().first;int num = que.front().second;que.pop();vis[u][num] = false;
+        if(u == n)continue;
+        for(int p = first[u];p != -1;p = nxt[p]){
+            int v = to[p];
+            if(dp[u][num] + cost[p] &lt;= t &amp;&amp; dp[u][num] + cost[p] &lt; dp[v][num + 1]){
+                dp[v][num + 1] = dp[u][num] + cost[p];
+                pre[v][num + 1] = u;
+                if(!vis[v][num]){
+                    que.push(P(v,num + 1));
+                   // printf(&quot;%d to %d
+&quot;,u,v);
+                    vis[v][num] = true;
+                }
+            }
+        }
+    }
+    int ans = 1;
+    for(int i = n;i &gt;= 1;i--){
+        if(dp[n][i ] &lt;= t){
+            ans = i;
+            for(int j = i, u = n;j &gt; 0;j--){
+                st[j] = u;
+                u = pre[u][j];
+            }
+            break;
+        }
+    }
+    printf(&quot;%d
+&quot;,ans);
+    for(int i = 1;i &lt;= ans;i++){
+        printf(&quot;%d%c&quot;,st[i],i == ans?'
+':' ');
+    }
+    return 0;
+}
+
+</code></pre>
+
+<h1 id="_5">学习部分</h1>
+<h2 id="code-1-shortest-size">Code #1 shortest size</h2>
+<pre><code class="c++">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+
+int N, M, T, e[5555][3], d[5555][5555], p[5555][5555], a, i, j, x, y, z;
+stack&lt;int&gt; s;
+
+int main() {
+    for (cin &gt;&gt; N &gt;&gt; M &gt;&gt; T; i &lt; M * 3; i++) cin &gt;&gt; e[i / 3][i % 3];
+    for (i = 0; i &lt;= N; i++) for (j = 0; j &lt;= N; j++) d[i][j] = 1.1e9;
+    for (d[1][1] = 0, i = 2; i &lt;= N; i++){
+        bool fl = false;
+        for (j = 0; j &lt; M; j++){
+            if (x = e[j][0], y = e[j][1], z = e[j][2], d[i - 1][x] + z &lt; d[i][y] &amp;&amp; T - d[i - 1][x] &gt;= z){
+                d[i][y] = d[i - 1][x] + z, p[i][y] = x;
+                fl = true;
+                if(y == N)a = i;
+            }
+        }
+        if(!fl)break;
+    }
+    cout &lt;&lt; a &lt;&lt; '
+';
+    for (j = N; j; j = p[a--][j]) s.push(j);
+    while (s.size()) cout &lt;&lt; s.top() &lt;&lt; &quot; &quot;, s.pop();
+}
+
+</code></pre>
+
+<h2 id="code-1tips">Code #1:Tips</h2>
+<ol>
+<li>由于z + d[i - 1][x] &lt;= T 可能超过int范围，所以可以用 T - d[i - 1][x] &gt;= z代替，也即<strong>判断中加法可能超过范围时可以在不等式两边做减法</strong></li>
+<li>每组输入数据数量一定时，可以使用总index来输入遍历各组输入，不过可读性较差
+     <code>c++
+    for (cin &gt;&gt; N &gt;&gt; M &gt;&gt; T; i &lt; M * 3; i++) cin &gt;&gt; e[i / 3][i % 3];</code></li>
+<li>逗号操作符返回最右边的数值，
+    <code>c++
+    if (x = e[j][0], y = e[j][1], z = e[j][2], d[i - 1][x] + z &lt; d[i][y] &amp;&amp; T - d[i - 1][x] &gt;= z){</code></li>
+<li>思路不同处<ol>
+<li>dp(d)第一维为路径长度，从动态规划方面考虑，次数固定，不需要spfa算法</li>
+<li>方便跳出循环节约时间，</li>
+<li>且路径长度往往较短，比起使用节点作为第一维更优</li>
+</ol>
+</li>
+</ol>
+<h2 id="code2-shortest-time">Code#2 :shortest time</h2>
+<pre><code class="c++">#include&lt;iostream&gt;
+#include&lt;stdio.h&gt;
+#include&lt;string.h&gt;
+#include&lt;stdlib.h&gt;
+#include&lt;algorithm&gt;
+#include&lt;utility&gt;
+#include&lt;vector&gt;
+#include&lt;map&gt;
+using namespace std;
+const int N = 5008;
+#define ll long long
+#define mp make_pair
+#define X first
+#define Y second
+
+int n, m, tim, flag;
+int minx(int x, int y) { if (x&lt;y)y = x; return y; }
+int maxx(int x, int y) { if (x&gt;y)y = x; return y; }
+vector&lt; pair&lt;int, int&gt; &gt;a[N];
+map&lt;int, int&gt;b[N], c[N];
+int d[N];
+
+void yun(int x)
+{
+    if (d[x]) return;   
+    d[x] = 1;
+
+    if (x == n) return;
+
+    int i, p, p1, p2;
+    map&lt;int, int&gt;::iterator k;  
+    for (i = 0; i&lt;(int)a[x].size(); i++)
+    {
+        yun(p = a[x][i].X);
+        for (k = b[p].begin(); k != b[p].end(); k++)
+        {
+            p1 = (*k).X; p2 = (*k).Y;
+            if ((p2 + a[x][i].Y) &lt;= tim &amp;&amp; (b[x].find(p1 + 1) == b[x].end() || b[x][p1 + 1]&gt;p2 + a[x][i].Y))
+            {
+                b[x][p1 + 1] = p2 + a[x][i].Y;
+                c[x][p1 + 1] = p;
+            }
+        }
+    }
+    return;
+}
+
+void dfs(int x, int y)
+{
+    if (flag) printf(&quot; &quot;);
+    flag = 1;
+    printf(&quot;%d&quot;, x);
+    if (x &lt; n) dfs(c[x][y], y - 1);
+}
+
+int main(void)
+{
+    int i, j, p1, p2, p3;
+    scanf(&quot;%d%d%d&quot;, &amp;n, &amp;m, &amp;tim);
+    for (i = 1; i &lt;= m; i++) 
+    { 
+        scanf(&quot;%d%d%d&quot;, &amp;p1, &amp;p2, &amp;p3);
+        a[p1].push_back(mp(p2, p3));
+    }
+
+    b[n][1] = 0;
+
+    yun(1);
+    map&lt;int, int&gt;::iterator k;
+    j = 0;
+    for (k = b[1].begin(); k != b[1].end(); k++)
+    {
+        j = maxx(j, (*k).X);
+    }
+
+    printf(&quot;%d
+&quot;, j);
+    flag = 0;
+    dfs(1, j);
+
+    return 0;
+}
+</code></pre>
+
+<h2 id="code2tips">Code#2:Tips</h2>
+<ol>
+<li>在单向无环图中，dfs比最短路和dp更优</li>
+<li>由于步数的区间并不连续，代码原作者选择了使用<strong>map</strong></li>
+<li>stl的使用<ul>
+<li>map<int, int>::iterator k;</li>
+<li>在此场景（一个点联通的其它点数目不会很多）下map的效率很高</li>
+<li>(b[x].find(p1 + 1) == b[x].end() || b[x][p1 + 1]&gt;p2 + a[x][i].Y)<ul>
+<li>可以使用find查找key值对应的value，找不到返回end()</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="code-2map">Code #2:改编非map版</h2>
+<pre><code class="c++">#include &lt;cstdio&gt;
+#include &lt;map&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+#include &lt;cmath&gt;
+#include &lt;string&gt;
+#include &lt;vector&gt;
+#include &lt;iostream&gt;
+#include &lt;assert.h&gt;
+#include &lt;sstream&gt;
+#include &lt;cctype&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;map&gt;
+using namespace std;
+typedef pair&lt;int,int&gt; P;
+typedef long long ll;
+typedef unsigned long long ull;
+typedef long double ld;
+const int maxn = 5e3 + 3;
+const int maxm = 5e3 + 3;
+int first[maxn];
+int nxt[maxn];
+int to[maxn];
+int cost[maxn];
+int len;
+int dp[maxn][maxn];
+int pre[maxn][maxn];
+int d[maxn];
+int st[maxn];
+int n,m,t;
+void addedge(int u,int v,int c){
+    nxt[len] = first[u];
+    to[len] = v;
+    cost[len] = c;
+    first[u] = len++;
+}
+void dfs(int u){
+    if(d[u] != 0)return;
+    for(int p = first[u];p != -1;p = nxt[p]){
+        int v = to[p];
+        if(d[v] == 0)dfs(v);
+        if(d[v] == -1)continue;
+        for(int num = d[v];num &lt;= n;num++){
+            if(t - dp[v][num] &gt;= cost[p] &amp;&amp; dp[v][num] + cost[p] &lt; dp[u][num + 1]){
+                dp[u][num + 1] = dp[v][num] + cost[p];
+                pre[u][num + 1] = v;
+                if(d[u] == 0)d[u] = num + 1;
+            }
+        }
+    }
+    if(d[u] == 0)d[u] = -1;
+}
+int main(){
+    freopen(&quot;input.txt&quot;,&quot;r&quot;,stdin);
+    memset(first,-1,sizeof first);
+    memset(dp,0x6f,sizeof dp);
+    scanf(&quot;%d%d%d&quot;,&amp;n,&amp;m,&amp;t);
+    for(int i = 0;i &lt; m;i++){
+        int u,v,c;
+        scanf(&quot;%d%d%d&quot;,&amp;u,&amp;v,&amp;c);
+        addedge(u,v,c);
+    }
+    dp[n][1] = 0;
+    d[n] = 1;
+    dfs(1);
+    for(int i = n;i &gt;= 1;i--){
+        if(dp[1][i] &lt;= t){
+            printf(&quot;%d
+&quot;,i);
+            for(int j = 1,k = i;k &gt; 0;j = pre[j][k],k--){
+                printf(&quot;%d%c&quot;,j,k == 1?'
+':' ');
+            }
+            break;
+        }
+    }
+    return 0;
+}
+
+</code></pre>
+
+      </section>
+    </div>
+
+    
+  </body>
+</html>
