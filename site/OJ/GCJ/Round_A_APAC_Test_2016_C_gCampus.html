@@ -4,10 +4,11 @@
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
 
-    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/default.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
+<!--    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">-->
+     <link rel="stylesheet" type="text/css" href="/stylesheets/default.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://github.com/jasonm23/markdown-css-themes/blob/gh-pages/foghorn.css" media="screen">
+<!--    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">-->
 
     <title>{{blogname}}--Round A APAC Test 2016 C gCampus</title>
   </head>
@@ -16,19 +17,17 @@
 
     <header>
       <div class="container">
+        <a id="blog" class="anchor" href="/" aria-hidden="true">
+          <span aria-hidden="true" class="octicon octicon-link">HOME</span>
+        </a>
         <h1>Round A APAC Test 2016 C gCampus</h1>
-        <h2>{{ subtitle }}</h2>
+       <!-- <h2>{{ subtitle }}</h2>-->
       </div>
     </header>
 
     <div class="container">
       <section id="main_content">
-        <h1>
-		<a id="blog" class="anchor" href="/" aria-hidden="true">
-			<span aria-hidden="true" class="octicon octicon-link">INDEX</span>
-		</a>
-		</h1>
-		<h1 id="problem">Problem</h1>
+		    <h1 id="problem">Problem</h1>
 <p>Company G has a main campus with N offices (numbered from 0 to N - 1) and M bidirectional roads (numbered from 0 to M - 1). The ith road connects a pair of offices (Ui, Vi), and it takes Ci minutes to travel on it (in either direction).</p>
 <p>A path between two offices X and Y is a series of one or more roads that starts at X and ends at Y. The time taken to travel a path is the sum of the times needed to travel each of the roads that make up the path. (It's guaranteed that there is at least one path connecting any two offices.)</p>
 <p>Company G specializes in efficient transport solutions, but the CEO has just realized that, embarrassingly enough, its own road network may be suboptimal! She wants to know which roads in the campus are inefficient. A road is inefficient if and only if it is not included in any shortest paths between any offices.</p>
@@ -103,10 +102,8 @@ int main()
 }
 
 </code></pre>
-
       </section>
     </div>
-
     
   </body>
 </html>

@@ -4,10 +4,11 @@
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
 
-    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/default.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
+<!--    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">-->
+     <link rel="stylesheet" type="text/css" href="/stylesheets/default.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://github.com/jasonm23/markdown-css-themes/blob/gh-pages/foghorn.css" media="screen">
+<!--    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">-->
 
     <title>{{blogname}}--第3章_目标文件里有什么</title>
   </head>
@@ -16,19 +17,17 @@
 
     <header>
       <div class="container">
+        <a id="blog" class="anchor" href="/" aria-hidden="true">
+          <span aria-hidden="true" class="octicon octicon-link">HOME</span>
+        </a>
         <h1>第3章_目标文件里有什么</h1>
-        <h2>{{ subtitle }}</h2>
+       <!-- <h2>{{ subtitle }}</h2>-->
       </div>
     </header>
 
     <div class="container">
       <section id="main_content">
-        <h1>
-		<a id="blog" class="anchor" href="/" aria-hidden="true">
-			<span aria-hidden="true" class="octicon octicon-link">INDEX</span>
-		</a>
-		</h1>
-		<p>目标文件：已经编译过，还没有链接</p>
+		    <p>目标文件：已经编译过，还没有链接</p>
 <h1 id="31">3.1 目标文件的格式</h1>
 <h2 id="_1">主流格式</h2>
 <p>现在PC平台流行的Executable File Format主要是COFF格式(Common File Format)包括</p>
@@ -659,10 +658,8 @@ int main(){
 <p>gcc,设置对外部函数的引用为弱引用</p>
 <h2 id="strip">strip</h2>
 <p>ｌｉｎｕｘ，去除ｅｌｆ文件调试信息</p>
-
       </section>
     </div>
-
     
   </body>
 </html>

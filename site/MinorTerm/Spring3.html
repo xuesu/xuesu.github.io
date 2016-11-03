@@ -4,10 +4,11 @@
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
 
-    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/default.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
+<!--    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">-->
+     <link rel="stylesheet" type="text/css" href="/stylesheets/default.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://github.com/jasonm23/markdown-css-themes/blob/gh-pages/foghorn.css" media="screen">
+<!--    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">-->
 
     <title>{{blogname}}--Spring3</title>
   </head>
@@ -16,19 +17,17 @@
 
     <header>
       <div class="container">
+        <a id="blog" class="anchor" href="/" aria-hidden="true">
+          <span aria-hidden="true" class="octicon octicon-link">HOME</span>
+        </a>
         <h1>Spring3</h1>
-        <h2>{{ subtitle }}</h2>
+       <!-- <h2>{{ subtitle }}</h2>-->
       </div>
     </header>
 
     <div class="container">
       <section id="main_content">
-        <h1>
-		<a id="blog" class="anchor" href="/" aria-hidden="true">
-			<span aria-hidden="true" class="octicon octicon-link">INDEX</span>
-		</a>
-		</h1>
-		<h1 id="spring-3x">Spring 3.x</h1>
+		    <h1 id="spring-3x">Spring 3.x</h1>
 <ol>
 <li>Weblogic - 分层,基于j2ee,服务器</li>
 <li>IOC: 通过配置,解决了高内聚低耦合的问题</li>
@@ -285,10 +284,8 @@ public class JdkProxyFactory implements InvocationHandler {
 <li>NESTED ： 嵌套事务 （只对DataSourceTransactionManager 起效），就是使用JDBC3.0之后 SavePoint功能，当被调用方出现异常，可以选择将事务回滚到保存点，然后继续操作</li>
 <li>REQUIRED、NESTED 只有一个事务， REQUIRES_NEW 两个事务， NESTED可以实现REQUIRES_NEW 效果</li>
 </ul>
-
       </section>
     </div>
-
     
   </body>
 </html>

@@ -4,10 +4,11 @@
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
 
-    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/default.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
+<!--    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">-->
+     <link rel="stylesheet" type="text/css" href="/stylesheets/default.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://github.com/jasonm23/markdown-css-themes/blob/gh-pages/foghorn.css" media="screen">
+<!--    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">-->
 
     <title>{{blogname}}--python</title>
   </head>
@@ -16,19 +17,17 @@
 
     <header>
       <div class="container">
+        <a id="blog" class="anchor" href="/" aria-hidden="true">
+          <span aria-hidden="true" class="octicon octicon-link">HOME</span>
+        </a>
         <h1>python</h1>
-        <h2>{{ subtitle }}</h2>
+       <!-- <h2>{{ subtitle }}</h2>-->
       </div>
     </header>
 
     <div class="container">
       <section id="main_content">
-        <h1>
-		<a id="blog" class="anchor" href="/" aria-hidden="true">
-			<span aria-hidden="true" class="octicon octicon-link">INDEX</span>
-		</a>
-		</h1>
-		<h1 id="pythonsite-packages">确定python的site-packages位置</h1>
+		    <h1 id="pythonsite-packages">确定python的site-packages位置</h1>
 <pre><code>from distutils.sysconfig import get_python_lib
 print get_python_lib()
 </code></pre>
@@ -54,10 +53,8 @@ sudo apt-get install ipython
 <h1 id="install-scipy">install sciPy</h1>
 <pre><code>sudo apt-get install python-numpy python-scipy python-matplotlib ipython ipython-notebook python-pandas python-sympy python-nose
 </code></pre>
-
       </section>
     </div>
-
     
   </body>
 </html>

@@ -4,10 +4,11 @@
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
 
-    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/default.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
+<!--    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">-->
+     <link rel="stylesheet" type="text/css" href="/stylesheets/default.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://github.com/jasonm23/markdown-css-themes/blob/gh-pages/foghorn.css" media="screen">
+<!--    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">-->
 
     <title>{{blogname}}--5_流水线计算</title>
   </head>
@@ -16,19 +17,17 @@
 
     <header>
       <div class="container">
+        <a id="blog" class="anchor" href="/" aria-hidden="true">
+          <span aria-hidden="true" class="octicon octicon-link">HOME</span>
+        </a>
         <h1>5_流水线计算</h1>
-        <h2>{{ subtitle }}</h2>
+       <!-- <h2>{{ subtitle }}</h2>-->
       </div>
     </header>
 
     <div class="container">
       <section id="main_content">
-        <h1>
-		<a id="blog" class="anchor" href="/" aria-hidden="true">
-			<span aria-hidden="true" class="octicon octicon-link">INDEX</span>
-		</a>
-		</h1>
-		<h1 id="chapter-5">Chapter 5 流水线计算</h1>
+		    <h1 id="chapter-5">Chapter 5 流水线计算</h1>
 <h2 id="category">Category</h2>
 <ol>
 <li>流水线计算<ol>
@@ -136,10 +135,8 @@ send(&amp;x[i], Pi+1);
 </code></pre>
 <h3 id="_6">复杂度分析</h3>
 <p>每个进程的工作量不一样。最后一个最大。最大的进程需要进行n次计算。n次接收和发送。<b>复杂度为O（n）</b></p>
-
       </section>
     </div>
-
     
   </body>
 </html>

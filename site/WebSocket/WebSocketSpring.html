@@ -4,10 +4,11 @@
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
 
-    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/default.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
+<!--    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">-->
+     <link rel="stylesheet" type="text/css" href="/stylesheets/default.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://github.com/jasonm23/markdown-css-themes/blob/gh-pages/foghorn.css" media="screen">
+<!--    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">-->
 
     <title>{{blogname}}--WebSocketSpring</title>
   </head>
@@ -16,19 +17,17 @@
 
     <header>
       <div class="container">
+        <a id="blog" class="anchor" href="/" aria-hidden="true">
+          <span aria-hidden="true" class="octicon octicon-link">HOME</span>
+        </a>
         <h1>WebSocketSpring</h1>
-        <h2>{{ subtitle }}</h2>
+       <!-- <h2>{{ subtitle }}</h2>-->
       </div>
     </header>
 
     <div class="container">
       <section id="main_content">
-        <h1>
-		<a id="blog" class="anchor" href="/" aria-hidden="true">
-			<span aria-hidden="true" class="octicon octicon-link">INDEX</span>
-		</a>
-		</h1>
-		<h1 id="websocket">WebSocket</h1>
+		    <h1 id="websocket">WebSocket</h1>
 <p>http://docs.spring.io/spring/docs/current/spring-framework-reference/html/websocket.html#websocket-intro</p>
 <h2 id="1-introduction">1 Introduction</h2>
 <p>使用websocket优点以及设计考虑,移植挑战等.</p>
@@ -151,10 +150,8 @@ public WebSocketHandler myHandler() {
 <h3 id="23-websockethandler-decoration">2.3 WebSocketHandler Decoration</h3>
 <p>Spring提供了基础类WebSocketHandlerDecorator以用于修饰WebSocketHandler并使其做额外的事</p>
 <p>当使用WebSocket 的JavaConfig或者XML设置时,logging和异常处理被默认添加.ExceptionWebSocketHandlerDecorator把所有在WebSocketHandler中丢出的错误接住后,关闭webSocket会话</p>
-
       </section>
     </div>
-
     
   </body>
 </html>

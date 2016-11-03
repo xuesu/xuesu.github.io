@@ -4,10 +4,11 @@
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
 
-    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/default.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
+<!--    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">-->
+     <link rel="stylesheet" type="text/css" href="/stylesheets/default.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://github.com/jasonm23/markdown-css-themes/blob/gh-pages/foghorn.css" media="screen">
+<!--    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">-->
 
     <title>{{blogname}}--Chapter10</title>
   </head>
@@ -16,19 +17,17 @@
 
     <header>
       <div class="container">
+        <a id="blog" class="anchor" href="/" aria-hidden="true">
+          <span aria-hidden="true" class="octicon octicon-link">HOME</span>
+        </a>
         <h1>Chapter10</h1>
-        <h2>{{ subtitle }}</h2>
+       <!-- <h2>{{ subtitle }}</h2>-->
       </div>
     </header>
 
     <div class="container">
       <section id="main_content">
-        <h1>
-		<a id="blog" class="anchor" href="/" aria-hidden="true">
-			<span aria-hidden="true" class="octicon octicon-link">INDEX</span>
-		</a>
-		</h1>
-		<h2 id="_1">多态：如何处理基于类型的选择？如何创建可插拔的软件构件？</h2>
+		    <h2 id="_1">多态：如何处理基于类型的选择？如何创建可插拔的软件构件？</h2>
 <pre><code>解决方案：当相关选择或行为随类型（类）有所不同时，使用多态操作作为变化的行为类型分配职责。推论：不要测试对象的类型，也不要使用条件逻辑来执行基于类型的不同选择
 </code></pre>
 <h2 id="_2">纯虚构：当你并不想违背高内聚和低耦合或者其他目标，但是基于专家模式所提供的方案又不合适时，哪些对象应该承担这一职责？</h2>
@@ -40,10 +39,8 @@
 <h2 id="_4">防止变异：如何设计对象、子系统和系统，使其内部的变化或不稳定不会对其他元素产生不良影响？</h2>
 <pre><code>解决方案：识别预计变化或不稳定之处，分配职责用以在这些变化之外创建稳定接口
 </code></pre>
-
       </section>
     </div>
-
     
   </body>
 </html>
