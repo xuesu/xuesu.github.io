@@ -43,7 +43,7 @@
 
 <p>turn scores into probabilities</p>
 <pre><code class="python">def softmax(x):
-    return numpy.exp(x) / numpy.sum(x,axis = 0)
+    return numpy.exp(x) / numpy.sum(numpy.exp(x),axis = 0)
 </code></pre>
 
 <p>注意numpy */ 是按元素进行乘除，矩阵乘法用dot</p>
@@ -154,6 +154,42 @@
 <p><img alt="image" src="https://github.com/xuesu/picture/blob/master/2016-10-11-220404_413x401_scrot.png?raw=true"></p>
 <h2 id="parameter-hyperspace">Parameter Hyperspace</h2>
 <p><img alt="image" src="https://github.com/xuesu/picture/blob/master/2016-10-11-220647_891x479_scrot.png?raw=true"></p>
+<h1 id="intro-to-deep-neural-network">Intro to Deep Neural Network</h1>
+<ol>
+<li>Regulation:make us enable to increase the scale of dataset</li>
+<li>If you have N inputs, and K outputs, the complexity of the simple model above is (N+1)K<img alt="image" src="https://github.com/xuesu/picture/blob/master/2016-10-30-232511_944x443_scrot.png?raw=true"></li>
+<li>linear model is limited <img alt="image" src="https://github.com/xuesu/picture/blob/master/2016-10-30-234400_792x411_scrot.png?raw=true"></li>
+<li>linear model is cheap(GPU) and good,we can show that small change in input can never yield big change in output</li>
+<li>the derivative of the model is constant and stable.</li>
+<li>we'd like to keep our model inside big linear models but we also want the model to keep nonlinear</li>
+</ol>
+<h1 id="rectified-linear-unitrelu">Rectified Linear Unit(RELU)</h1>
+<p>a nonlinear function lazy engineer perfered</p>
+<pre><code>y = x &gt; 0?x:0
+</code></pre>
+
+<p>Add a RELU into Linear Function,the model is now nonlinear
+<img alt="image" src="https://github.com/xuesu/picture/blob/master/2016-10-31-000150_917x453_scrot.png?raw=trueo">
+H is the number of RELU units we inserted</p>
+<p>The first Neural Network</p>
+<ol>
+<li>The first layer effectively consists of the set of weights and biases applied to X and passed through ReLUs. <strong>The output of this layer is fed to the next one, but is not observable outside the network</strong>, hence it is known as a <strong>hidden layer</strong>.</li>
+<li>The second layer consists of the weights and biases applied to these intermediate outputs, followed <strong>by the softmax function to generate probabilities.</strong></li>
+</ol>
+<h1 id="chain-rule">Chain Rule</h1>
+<p>For h(x) = g(f(x)),h'(x) = g'(f(x)) * f'(x)
+- we can compute the derivative of h by taking the product of the derivative of different component
+- It's easy to compute the derivative of whole function by lots of data reuse and pipeline
+- So we can use a lot of simple funtion to build the model so that the deep learning model can handle it</p>
+<h1 id="back-propagation">Back-propagation</h1>
+<p><img alt="image" src="https://github.com/xuesu/picture/blob/master/2016-10-31-001714_843x379_scrot.png?raw=true">
+- As long as the function is made up by simple block with simple derivatives, the learning framework help you work out the derivative by simple block
+- It makes computing complex derivatives very effective</p>
+<p><img alt="image" src="https://github.com/xuesu/picture/blob/master/2016-10-31-002024_851x437_scrot.png?raw=true">
+- Forward Prop:Running the model up to the prediction
+- Back Prop:the model that goes backward and compute derivative
+<img alt="image" src="https://github.com/xuesu/picture/blob/master/2016-10-31-002152_855x497_scrot.png?raw=true">
+- The Back Prop always take twice compute complexity and memory complexity than Forward Prop</p>
 
       </section>
     </div>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/default.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
+
+    <title>{{blogname}}--Docker</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>Docker</h1>
+        <h2>{{ subtitle }}</h2>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+		<a id="blog" class="anchor" href="/" aria-hidden="true">
+			<span aria-hidden="true" class="octicon octicon-link">INDEX</span>
+		</a>
+		</h1>
+		<h1 id="_1">功能</h1>
+<ul>
+<li>软件程序可移植的轻量容器</li>
+<li>软件可以在安装了docker的系统上执行，而不用关心</li>
+<li>隔离应用依赖，创建应用镜像</li>
+</ul>
+<h1 id="docker">Docker镜像</h1>
+<ul>
+<li>类似虚拟机的快照，但是更为轻量</li>
+<li>镜像拥有唯一ID,并有名字和标签对用于阅读</li>
+<li>镜像是一个json，指定了从该镜像运行的容器的特性，如union装载点等</li>
+</ul>
+<h1 id="_2">容器</h1>
+<ul>
+<li>被设计用于单线程，如果有多线程，可以使用exec命令运行具体程序</li>
+<li>当停止容器时，对镜像所做的变化会丢失，也即容器内的数据除了数据卷等都受到容器本身的生命周期限制。</li>
+<li><strong>容器是短暂的和一次性的</strong></li>
+</ul>
+<h1 id="_3">数据卷</h1>
+<ul>
+<li>数据卷表现为容器内的空间，但是不受容器的生命周期影响</li>
+<li>卷保存在运行docker的文件宿主系统上</li>
+<li>卷还可以用于数据共享</li>
+</ul>
+<h1 id="_4">链接</h1>
+<ul>
+<li>容器启动，将被分配一个随机的私有ip地址，便于容器间通信，形成本地网络</li>
+<li>链接：要开启容器间通讯，可以在容器创建时以别名引用其它现存容器，则这两个容器链接在了一起</li>
+<li>要求声明容器被链接时要开放那些端口给其它容器，否则就没有端口可用</li>
+</ul>
+<h1 id="_5">镜像的可移植性</h1>
+<ul>
+<li>可以在镜像中定义卷，但是要放在默认位置</li>
+<li>可以定义要公开给其它容器的端口，不能制定被公开的端口</li>
+<li>不能在镜像上定义链接，因为需要使用名字来引用其它容器，但不知道对方如何命名容器</li>
+</ul>
+<h1 id="_6">文件系统</h1>
+<ol>
+<li>cgroup提供容器隔离<ul>
+<li>linux内核功能</li>
+<li>限制资源占用</li>
+<li>为进程组制作pid,uts,ipc，网络，用户，装载命名空间，如pid命名空间</li>
+</ul>
+</li>
+<li>union保存镜像幷使容器变得短暂<ul>
+<li>文件系统可以被装载在其它文件系统之上</li>
+<li>新版本的镜像只是旧版本镜像上的一个新ｕｎｉｏｎ文件系统，这使得docker镜像非常轻</li>
+</ul>
+</li>
+</ol>
+<h1 id="1">命令1</h1>
+<h2 id="1-docker-pull">1. docker pull</h2>
+<pre><code>docker pull ubuntu:latest
+</code></pre>
+<p>从公共registry下载镜像</p>
+<h2 id="2-docker-images">2. docker images</h2>
+<p>列出你的所有镜像</p>
+<h2 id="3-docker-run">3. docker run</h2>
+<p>运行镜像</p>
+<pre><code>docker run --rm -ti ubuntu /bin/bash
+</code></pre>
+<ul>
+<li>--rm 一旦运行的进程退出后就删除容器</li>
+<li>-ti 打开伪终端进入交互模式</li>
+<li>-d 以后台模式运行</li>
+<li>ubuntu 要运行的镜像</li>
+<li>/bin/bash 要运行命令</li>
+</ul>
+<h2 id="4-docker-ps">4. docker ps</h2>
+<h2 id="5-docker-exec">5. docker exec</h2>
+
+      </section>
+    </div>
+
+    
+  </body>
+</html>

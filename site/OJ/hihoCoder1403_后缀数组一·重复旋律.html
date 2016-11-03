@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/default.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
+
+    <title>{{blogname}}--hihoCoder1403_后缀数组一·重复旋律</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>hihoCoder1403_后缀数组一·重复旋律</h1>
+        <h2>{{ subtitle }}</h2>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+		<a id="blog" class="anchor" href="/" aria-hidden="true">
+			<span aria-hidden="true" class="octicon octicon-link">INDEX</span>
+		</a>
+		</h1>
+		<h1 id="_1">题目</h1>
+<p>小Hi平时的一大兴趣爱好就是演奏钢琴。我们知道一个音乐旋律被表示为长度为 N 的数构成的数列。</p>
+<p>小Hi在练习过很多曲子以后发现很多作品自身包含一样的旋律。旋律是一段连续的数列，相似的旋律在原数列可重叠。比如在1 2 3 2 3 2 1 中 2 3 2 出现了两次。</p>
+<p>小Hi想知道一段旋律中出现次数至少为K次的旋律最长是多少？</p>
+<h1 id="_2">思路</h1>
+<p>求出原数组的高度数组，当k&gt;=2时，问题就能转化为求连续k-1个高度的最小值</p>
+<h1 id="code">Code</h1>
+<pre><code class="c++">#include &lt;cstdio&gt;
+#include &lt;map&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+#include &lt;cmath&gt;
+#include &lt;string&gt;
+#include &lt;vector&gt;
+#include &lt;iostream&gt;
+#include &lt;assert.h&gt;
+#include &lt;sstream&gt;
+#include &lt;cctype&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;map&gt;
+#include &lt;iterator&gt;
+using namespace std;
+typedef long long ll;
+typedef pair&lt;int,int&gt; P;
+typedef unsigned long long ull;
+typedef long double ld;
+const int maxn = 2e5 + 5;
+const int maxm = 102;
+int cntA[maxn],cntB[maxn],A[maxn],B[maxn],sa[maxn],tsa[maxn],rk[maxn],a[maxn],h[maxn];
+void debugrk(int n,int l){
+    for(int i = 0;i &lt;= n;i++){
+        printf(&quot;sa[%d]:%d &quot;,i,sa[i]);
+    }
+    puts(&quot;&quot;);
+    for(int i = 0;i &lt;= n;i++){
+        printf(&quot;rk[%d]:%d &quot;,i,rk[i]);
+        for(int j = i;j &lt; n &amp;&amp; j &lt; i + l;j++){
+            printf(&quot;%d &quot;,a[j]);
+        }
+        puts(&quot;&quot;);
+    }
+    puts(&quot;&quot;);
+}
+void debugh(int n){
+    for(int i = 0;i &lt;= n;i++){
+        printf(&quot;h[%d]:%d &quot;,i,h[i]);
+        for(int j = sa[i];j &lt; n;j++){
+            printf(&quot;%d &quot;,a[j]);
+        }
+        puts(&quot;&quot;);
+    }
+    puts(&quot;&quot;);
+}
+int main(){
+    int n,k;
+    freopen(&quot;input.txt&quot;,&quot;r&quot;,stdin);
+    scanf(&quot;%d%d&quot;,&amp;n,&amp;k);
+    for(int i = 0;i &lt; n;i++){
+        scanf(&quot;%d&quot;,a + i);
+        cntA[a[i]]++;
+    }
+    a[n] = 0;
+    for(int i = 1;i &lt; maxn;i++){
+        cntA[i] += cntA[i - 1];
+    }
+    for(int i = 0;i &lt;= n;i++){
+        sa[cntA[a[i]]--] = i;
+    }
+    sa[0] = n;rk[n] = 0;
+    for(int i = 1;i &lt;= n;i++){
+        rk[sa[i]] = rk[sa[i - 1]] + (a[sa[i]] == a[sa[i - 1]]?0:1);
+    }
+    //debugrk(n,1);
+    for(int l = 1;l &lt; n;l&lt;&lt;=1){
+        memset(cntA,0,sizeof cntA);memset(cntB,0,sizeof cntB);
+        for(int i = 0;i &lt; n;i++){
+            cntA[A[i] = rk[i]]++;
+            cntB[B[i] = rk[min(i + l,n)]]++;
+        }
+        for(int i = 1;i &lt;= n;i++){
+            cntA[i] += cntA[i - 1];
+            cntB[i] += cntB[i - 1];
+        }
+        for(int i = 0;i &lt;= n;i++){
+            tsa[cntB[B[i]]--] = i;
+        }
+        for(int i = n;i &gt;= 0;i--){
+            sa[cntA[A[tsa[i]]]--] = tsa[i];
+        }
+        for(int i = 1;i &lt;= n;i++){
+            rk[sa[i]] = rk[sa[i - 1]] + ((A[sa[i]] == A[sa[i - 1]] &amp;&amp; B[sa[i]] == B[sa[i - 1]])?0:1);
+        }
+      //  debugrk(n,2 * l);
+    }
+    for(int i = 0,height = 0;i &lt; n;i++){
+        if(height)height--;
+        for(;sa[rk[i] - 1] + height &lt; n &amp;&amp; i + height &lt; n &amp;&amp; a[i + height] == a[sa[rk[i] - 1] + height];height++){}
+        h[rk[i] - 1] = height;
+    }
+ //   debugh(n);
+    int ans = k == 1?n:0;
+    k--;
+    priority_queue&lt;P,vector&lt;P&gt;,greater&lt;P&gt; &gt; que;
+    for(int i = 0;i &lt; n;i++){
+        que.push(P(h[i],i));
+        while(!que.empty() &amp;&amp; que.top().second &lt;= i - k){que.pop();}
+        if(!que.empty() &amp;&amp; i &gt;= k - 1){ans = max(ans,que.top().first);}
+    }
+    printf(&quot;%d
+&quot;,ans);
+    return 0;
+}
+
+</code></pre>
+
+      </section>
+    </div>
+
+    
+  </body>
+</html>

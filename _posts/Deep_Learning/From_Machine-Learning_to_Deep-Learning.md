@@ -16,7 +16,7 @@ turn scores into probabilities
 
 ```python
 def softmax(x):
-    return numpy.exp(x) / numpy.sum(x,axis = 0)
+    return numpy.exp(x) / numpy.sum(numpy.exp(x),axis = 0)
 ```
 注意numpy */ 是按元素进行乘除，矩阵乘法用dot
 
@@ -133,3 +133,42 @@ use w = 0.9w + gradient instead of gradient as the direction of each step
 
 ## Parameter Hyperspace
 ![image](https://github.com/xuesu/picture/blob/master/2016-10-11-220647_891x479_scrot.png?raw=true)
+
+# Intro to Deep Neural Network
+1. Regulation:make us enable to increase the scale of dataset
+2. If you have N inputs, and K outputs, the complexity of the simple model above is (N+1)K![image](https://github.com/xuesu/picture/blob/master/2016-10-30-232511_944x443_scrot.png?raw=true)
+3. linear model is limited ![image](https://github.com/xuesu/picture/blob/master/2016-10-30-234400_792x411_scrot.png?raw=true)
+4. linear model is cheap(GPU) and good,we can show that small change in input can never yield big change in output
+5. the derivative of the model is constant and stable.
+6. we'd like to keep our model inside big linear models but we also want the model to keep nonlinear
+# Rectified Linear Unit(RELU)
+a nonlinear function lazy engineer perfered
+```
+y = x > 0?x:0
+```
+Add a RELU into Linear Function,the model is now nonlinear
+![image](https://github.com/xuesu/picture/blob/master/2016-10-31-000150_917x453_scrot.png?raw=trueo)
+H is the number of RELU units we inserted
+
+The first Neural Network
+
+
+1. The first layer effectively consists of the set of weights and biases applied to X and passed through ReLUs. **The output of this layer is fed to the next one, but is not observable outside the network**, hence it is known as a **hidden layer**.
+2. The second layer consists of the weights and biases applied to these intermediate outputs, followed **by the softmax function to generate probabilities.**
+
+# Chain Rule
+For h(x) = g(f(x)),h'(x) = g'(f(x)) * f'(x)
+- we can compute the derivative of h by taking the product of the derivative of different component
+- It's easy to compute the derivative of whole function by lots of data reuse and pipeline
+- So we can use a lot of simple funtion to build the model so that the deep learning model can handle it
+# Back-propagation
+![image](https://github.com/xuesu/picture/blob/master/2016-10-31-001714_843x379_scrot.png?raw=true)
+- As long as the function is made up by simple block with simple derivatives, the learning framework help you work out the derivative by simple block
+- It makes computing complex derivatives very effective
+
+
+![image](https://github.com/xuesu/picture/blob/master/2016-10-31-002024_851x437_scrot.png?raw=true)
+- Forward Prop:Running the model up to the prediction
+- Back Prop:the model that goes backward and compute derivative
+![image](https://github.com/xuesu/picture/blob/master/2016-10-31-002152_855x497_scrot.png?raw=true)
+- The Back Prop always take twice compute complexity and memory complexity than Forward Prop

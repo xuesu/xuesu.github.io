@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/default.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/print.css" media="print">
+
+    <title>{{blogname}}--Linux命名空间</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>Linux命名空间</h1>
+        <h2>{{ subtitle }}</h2>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+		<a id="blog" class="anchor" href="/" aria-hidden="true">
+			<span aria-hidden="true" class="octicon octicon-link">INDEX</span>
+		</a>
+		</h1>
+		<h1 id="namespaces">Namespaces</h1>
+<p>isolation building blocks 统称为Namespaces</p>
+<p>Linux 3.12内核支持六种Namespaces
+1. UTS:hostname
+2. IPC:进程间通信
+3. PID:chroot进程树
+4. NET:网络访问
+5. NS:挂载点
+6. User:将虚拟的userid映射到真实的userid</p>
+<h2 id="purpose">Purpose</h2>
+<ul>
+<li>to wrap a particular global system resource in an abstraction that makes it appear to the processes within the namespace that they have their own isolated instance of the global resource.</li>
+<li>to support the implementation of containers</li>
+</ul>
+<p>The CLONE_NEW* identifiers listed in parentheses are the names of the constants used to identify namespace types when employing the namespace-related APIs </p>
+<h1 id="mount-spacesclone_newns">Mount Spaces(CLONE_NEWNS)</h1>
+<p>isolate the set of <strong>filesystem mount points</strong> seen by a group of processes. </p>
+<p>Thus, processes in different mount namespaces can have different views of the <strong>filesystem hierarchy.</strong></p>
+<p>the mount() and umount() system calls instead performed operations that affected <strong>just the mount namespace associated with the calling process.</strong></p>
+<h1 id="utsclone_newuts">UTS(CLONE_NEWUTS)</h1>
+<p>LinuX Containers
+1. 一种操作系统层次上的资源的虚拟化。
+2. 容器有效地将由单个操作系统管理的资源划分到孤立的组中，以更好地在孤立的组之间平衡有冲突的资源使用需求。
+3. 将不同应用的运行隔离</p>
+<p>依赖linux运行的三种隔离机制
+1. cgroups
+2. chroot
+3. namespaces(isolation building block)</p>
+<ul>
+<li>isolate two system identifiers—nodename and domainname—returned by the uname() system call; the names are set using the <strong>sethostname() and setdomainname() system calls.</strong></li>
+<li>allows each container to <strong>have its own hostname and NIS domain name.</strong> This can be useful for initialization and configuration scripts that tailor their actions based on these names. </li>
+<li>The term "UTS" derives from the name of the structure passed to the uname() system call: struct utsname. The name of that structure in turn derives from "UNIX Time-sharing System". </li>
+</ul>
+<h2 id="ipc-clone_newipc">IPC (CLONE_NEWIPC)</h2>
+<ul>
+<li>isolate certain <strong>interprocess communication (IPC) resources</strong>, namely, <strong>System V IPC objects and (since Linux 2.6.30) POSIX message queues.</strong> </li>
+<li>IPC objects <strong>are identified by mechanisms</strong> other than filesystem pathnames. </li>
+<li>Each IPC namespace has its own set of System V IPC identifiers and its own POSIX message queue filesystem. </li>
+</ul>
+<h2 id="pidclone_newpid">PID(CLONE_NEWPID)</h2>
+<ul>
+<li>isolate the <strong>process ID number space</strong>.</li>
+<li>containers can be migrated between hosts while keeping the same process IDs for the processes inside the container. </li>
+<li>PID namespaces also allow each container to have its own init (PID 1), the <strong>"ancestor of all processes"</strong> that manages various system initialization tasks and reaps orphaned child processes when they terminate.</li>
+<li>a process has two PIDs: the PID inside the namespace, and the PID outside the namespace on the host system.</li>
+</ul>
+<h2 id="networkclone_newnet">Network(CLONE_NEWNET)</h2>
+<ul>
+<li>provide isolation of the system resources associated with networking. </li>
+<li>Thus, each network namespace has its own network devices, IP addresses, IP routing tables, /proc/net directory, port numbers, and so on</li>
+<li>each container can have <strong>its own (virtual) network device and its own applications that bind to the per-namespace port number space</strong>; suitable routing rules in the host system can direct network packets to the network device associated with a specific container. </li>
+</ul>
+<h2 id="userclone_newuser">User(CLONE_NEWUSER)</h2>
+<ul>
+<li>isolate the user and group ID number spaces.</li>
+<li>a process can have a normal unprivileged user ID outside a user namespace while at the same time having a user ID of 0 inside the namespace. This means that the process <strong>has full root privileges for operations inside the user namespace</strong>, but is <strong>unprivileged for operations outside the namespace.</strong> </li>
+</ul>
+
+      </section>
+    </div>
+
+    
+  </body>
+</html>
